@@ -7,8 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
-<%= yield %>
-
+  <ul class="hmenu">
+    <%= render 'devise/menu/registration_items' %>
+    <%= link_to "Admin", admin_dashboard_path if current_user.try(:teacher?) %>
+    <%= render 'devise/menu/login_items' %>
+  </ul>
+  <%= yield %>
 </body>
 </html>

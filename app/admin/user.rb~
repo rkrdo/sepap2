@@ -4,9 +4,19 @@ ActiveAdmin.register User do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :teacher, :label => "Super Administrator"
+      f.input :teacher, :label => "Teacher"
     end
     f.buttons
+  end
+
+  index do
+    column :email
+    column :reset_password_sent_at
+    column :current_sign_in_at
+    column :last_sign_in_at
+    column :created_at
+    column :updated_at
+    column :teacher
   end
 
   create_or_edit = Proc.new {

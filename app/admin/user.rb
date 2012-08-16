@@ -9,6 +9,17 @@ ActiveAdmin.register User do
     f.buttons
   end
 
+  index do
+    column :email
+    column :reset_password_sent_at
+    column :current_sign_in_at
+    column :last_sign_in_at
+    column :current_sign_in_ip
+    column :created_at
+    column :updated_at
+    column :teacher
+  end
+
   create_or_edit = Proc.new {
     @user            = User.find_or_create_by_id(params[:id])
     @user.teacher = params[:user][:teacher]
