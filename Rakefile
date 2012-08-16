@@ -4,4 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-Sepap::Application.load_tasks
+Sepap2::Application.load_tasks

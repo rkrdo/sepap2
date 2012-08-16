@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-Sepap::Application.config.secret_token = '54d803b01034c2e7978ed02e87397a32be7357da27d78d809f7419a849983d27a6421cb1c657e0450d9fc5163c20b4c6f1d4535492882fd7e59fd40c44a5bde4'
+Sepap2::Application.config.secret_token = '1b2d76f1e378aa1cc197947789fd4215e1bf8bbf7654c171ec9869d233415cd5d5cb1ad6f0dc1d3f05f67c3fe0a285203ed139919a8d3bf2ef5deaa5f26b0715'
