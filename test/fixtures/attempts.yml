@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  problem: 
+  user: 
+  outcome: MyString
+  language: MyString
+
+two:
+  problem: 
+  user: 
+  outcome: MyString
+  language: MyString

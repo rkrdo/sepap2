@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120816222435) do
+ActiveRecord::Schema.define(:version => 20120817015249) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -27,6 +27,63 @@ ActiveRecord::Schema.define(:version => 20120816222435) do
   add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
   add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
   add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
+
+  create_table "attempts", :force => true do |t|
+    t.integer  "problem_id"
+    t.integer  "user_id"
+    t.string   "outcome"
+    t.string   "language"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "attempts", ["problem_id"], :name => "index_attempts_on_problem_id"
+  add_index "attempts", ["user_id"], :name => "index_attempts_on_user_id"
+
+  create_table "enrollments", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "group_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "enrollments", ["group_id"], :name => "index_enrollments_on_group_id"
+  add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
+
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "problem_id"
+    t.integer  "line_number"
+    t.string   "comment"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "feedbacks", ["problem_id"], :name => "index_feedbacks_on_problem_id"
+
+  create_table "groups", :force => true do |t|
+    t.integer  "subject_id"
+    t.string   "period"
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "groups", ["subject_id"], :name => "index_groups_on_subject_id"
+
+  create_table "problems", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.float    "time"
+    t.boolean  "module"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "subjects", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false

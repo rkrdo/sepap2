@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  subject: 
+  period: MyString
+  name: MyString
+
+two:
+  subject: 
+  period: MyString
+  name: MyString

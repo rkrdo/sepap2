@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  problem: 
+  line_number: 1
+  comment: MyString
+
+two:
+  problem: 
+  line_number: 1
+  comment: MyString
