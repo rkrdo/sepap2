@@ -11,6 +11,35 @@
     </div>
   <% end %>
 
+
+  <div class="field">
+    <%= f.label :problem_id, 'Número de problema' %><br />
+    <%= f.text_field :problem_id, :size => 6, :value=>@numero%>
+  </div>
+  <div class="field">
+  	Lenguaje
+  	<br />
+    <select id="language" name="language">
+        <option>C/C++</option>
+	<option>C#</option>
+        <option>Java</option>
+	<option>Python</option>
+	<option>Ruby</option>
+    </select> 
+  </div>
+
+
+  <div class="field" id="divSubir">
+  	<fieldset>
+  		<legend>
+  			<%= f.label :code, 'Código fuente' %>
+  		</legend>
+			<br />
+			<%= f.file_field :code %>
+	</fieldset>
+  </div>
+  
+
   <div class="actions">
     <%= f.submit %>
   </div>
