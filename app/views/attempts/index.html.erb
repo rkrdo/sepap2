@@ -2,6 +2,8 @@
 
 <table>
   <tr>
+    <th>title</th>
+    <th>outcome</th>
     <th>problem</th>
     <th>status</th>
     <th>last attempted</th>
@@ -14,6 +16,12 @@
   <td>
     <%= attempt.outcome %>
   </td>
+	<tr>
+		<td>Attempt</td>
+		<td><%= link_to 'Show', attempt %></td>
+		<td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
+		<td><%= link_to 'Destroy', attempt, confirm: 'Are you sure?', method: :delete %></td>
+	</tr>
 <% end %>
 </table>
 

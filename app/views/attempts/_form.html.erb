@@ -1,23 +1,21 @@
 <%= form_for([@problem, @problem.attempts.build]) do |f| %>
   <div class="field">
-  	Lenguaje
-  	<br />
+    Lenguaje
+    <br />
     <select id="language" name="language">
-        <option>C/C++</option>
-	<option>C#</option>
-        <option>Java</option>
-	<option>Python</option>
-	<option>Ruby</option>
+      <option>C/C++</option>
+      <option>C#</option>
+      <option>Java</option>
+      <option>Python</option>
+      <option>Ruby</option>
     </select>
   </div>
   <div class="field" id="divSubir">
-  	<fieldset>
-  		<legend>
-  			<%= f.label :code, 'Código fuente' %>
-  		</legend>
-			<br />
-			<%= f.file_field :code %>
-	</fieldset>
+    <fieldset>
+      <legend><%= f.label :code, 'Código fuente' %></legend>
+      <br />
+      <%= f.file_field :code %>
+    </fieldset>
   </div>
   <div class="actions">
     <%= f.submit %>

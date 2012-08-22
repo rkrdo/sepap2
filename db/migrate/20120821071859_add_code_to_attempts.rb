@@ -1,5 +1,5 @@
 class AddCodeToAttempts < ActiveRecord::Migration
   def change
-    add_column :attempts, :code, :text
+    add_column :attempts, :code, :string
   end
 end
