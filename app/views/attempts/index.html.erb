@@ -8,11 +8,12 @@
   </tr>
 
 <% @attempts.each do |attempt| %>
-  <tr>
-    <td><%= link_to 'Show', attempt %></td>
-    <td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
-    <td><%= link_to 'Destroy', attempt, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+	<tr>
+		<td>Attempt</td>
+		<td><%= link_to 'Show', attempt %></td>
+		<td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
+		<td><%= link_to 'Destroy', attempt, confirm: 'Are you sure?', method: :delete %></td>
+	</tr>
 <% end %>
 </table>
 
