@@ -100,6 +100,9 @@ ActiveRecord::Schema.define(:version => 20120821214356) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.boolean  "teacher",                :default => false, :null => false
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "num"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

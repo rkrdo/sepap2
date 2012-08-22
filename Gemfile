@@ -2,6 +2,10 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
+# Required for file uploads (Carrierwave)
+gem "rmagick"
+gem "carrierwave"
+
 # Active Admin + Required Gems
 gem 'activeadmin'
 gem "meta_search", '>= 1.1.0.pre'

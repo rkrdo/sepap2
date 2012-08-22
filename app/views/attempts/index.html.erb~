@@ -1,0 +1,20 @@
+<h1>Listing attempts</h1>
+
+<table>
+  <tr>
+    <th>problem</th>
+    <th>status</th>
+    <th>last attempted</th>
+  </tr>
+
+<% @attempts.each do |attempt| %>
+  <td>
+    <%= attempt.problem.title %>
+  </td>
+  <td>
+    <%= attempt.outcome %>
+  </td>
+<% end %>
+</table>
+
+<br />

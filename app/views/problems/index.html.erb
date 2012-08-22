@@ -1,0 +1,19 @@
+<h1>Listing problems</h1>
+
+<table>
+  <tr>
+    <th>Title</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @problems.each do |problem| %>
+  <tr>
+    <td><%= problem.title %></td>
+    <td><%= link_to 'Try', problem %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

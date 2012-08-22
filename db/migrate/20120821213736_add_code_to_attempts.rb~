@@ -1,0 +1,11 @@
+class AddCodeToAttempts < ActiveRecord::Migration
+  def up
+    change_table :attempts do |t|
+      t.text :code
+    end
+  end
+
+  def down
+    remove_column :attempts, :code
+  end
+end
