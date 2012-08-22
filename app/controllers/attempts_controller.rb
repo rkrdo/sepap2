@@ -41,16 +41,16 @@ class AttemptsController < ApplicationController
   def create
     @problem = Problem.find(params[:problem_id])
     @attempt = @problem.attempts.new(params[:attempt])
-    @attempt.user_id = current_user
+    @attempt.user_id = current_user.id
     @attempt.language=params[:language]
-    @attempt.save
+
     respond_to do |format|
       if @attempt.save
-        format.html { redirect_to @attempt, notice: 'Attempt was successfully created.' }
-        format.json { render json: @attempt, status: :created, location: @attempt }
+        format.html { redirect_to @problem, notice: 'Attempt was successfully created.' }
+        format.json { render json: @problem, status: :created, location: @attempt }
       else
         format.html { render action: "new" }
-        format.json { render json: @attempt.errors, status: :unprocessable_entity }
+        format.json { render json: @problem.errors, status: :unprocessable_entity }
       end
     end
   end
