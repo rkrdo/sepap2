@@ -2,20 +2,19 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>problem</th>
+    <th>status</th>
+    <th>last attempted</th>
   </tr>
 
 <% @attempts.each do |attempt| %>
-  <tr>
-    <td><%= link_to 'Show', attempt %></td>
-    <td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
-    <td><%= link_to 'Destroy', attempt, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
+  <td>
+    <%= attempt.problem.title %>
+  </td>
+  <td>
+    <%= attempt.outcome %>
+  </td>
 <% end %>
 </table>
 
 <br />
-
-<%= link_to 'New Attempt', new_attempt_path %>

@@ -2,8 +2,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = Attempt.all
-
+    @attempts = current_user.attempts
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @attempts }
@@ -40,17 +39,11 @@ class AttemptsController < ApplicationController
   # POST /attempts
   # POST /attempts.json
   def create
-    @attempt = Attempt.new(params[:attempt])
-
-    respond_to do |format|
-      if @attempt.save
-        format.html { redirect_to @attempt, notice: 'Attempt was successfully created.' }
-        format.json { render json: @attempt, status: :created, location: @attempt }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @attempt.errors, status: :unprocessable_entity }
-      end
-    end
+    @problem = Problem.find(params[:problem_id])
+    @attempt = @problem.attempts.new(params[:attempt])
+    @attempt.user_id = current_user
+    @attempt.save
+    redirect_to problem_path(@problem)
   end
 
   # PUT /attempts/1

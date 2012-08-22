@@ -1,16 +1,8 @@
-<%= form_for(@attempt) do |f| %>
-  <% if @attempt.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@attempt.errors.count, "error") %> prohibited this attempt from being saved:</h2>
-
-      <ul>
-      <% @attempt.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
-
+<%= form_for([@problem, @problem.attempts.build]) do |f| %>
+  <div class="field">
+    <%= f.label :code %><br />
+    <%= f.text_area :code %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
