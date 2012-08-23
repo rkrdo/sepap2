@@ -6,6 +6,21 @@
 // styles here:
 div#header{
 	background:#003275;
+	color:#fffff9;
+}
+
+div#header a{
+	background:#003275;
+	font-size: 16px;
+	color:#fffff9;
+}
+
+#header ul#tabs > li.current > a{
+	background:#001053;
+}
+
+#header ul#tabs > li:hover > a {
+	background:#005497;
 }
 
 div#title_bar{
@@ -29,5 +44,5 @@ span.breadcrumb a{
 }
 
 #title_bar h2{
-	color:#E0E0E0;
+	color:#303030;
 }
