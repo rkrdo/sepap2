@@ -7,7 +7,7 @@ div#problem_container{
   width:1000px;
   background-color:#777;
   margin: 0px auto;
-  padding: 5px;
+  padding: 15px;
   overflow:auto;
   border:solid;
   border-width:5px;
@@ -19,18 +19,18 @@ height: 0;
 border-bottom: 2px dotted #000;
 }
 
-div#problem_info{
+#problem_info, #problem_attempt{
+  height: 450px;
+  font-size: 13px;
+  width:482px;
   float:left;
-  width:450px;
-  height:480px;
-  background-color:#fff;
-  margin:0px 0px 0px 30px;
 }
+#problem_info{margin:0px 10px 0px 0px;}
+#problem_attempt{margin:0px 0px 0px 10px;}
+#problem_info .ui-tabs-selected, #problem_attempt .ui-tabs-selected,{ margin-top: -5px !important; }
+#problem_info a, #problem_attempt a{ font-size: 12px; }
 
-div#problem_attempt{
-  float:left;
-  width:450px;
-  height:480px;
-  background-color:#fff;
-  margin:0px 30px 0px 35px;
-}
+.tabs-bottom { position: relative; }
+.tabs-bottom .ui-tabs-panel { height: 400px; overflow: auto;}
+.tabs-bottom .ui-tabs-nav { position: absolute !important; left: 0; bottom: 0; right:0; padding: 0 0.2em 0.2em 0; }
+  .tabs-bottom .ui-tabs-nav li { margin-top: -4px !important; margin-bottom: 1px !important; border-top: none; border-bottom-width: 1px; }
