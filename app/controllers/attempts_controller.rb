@@ -43,7 +43,9 @@ class AttemptsController < ApplicationController
     @attempt = @problem.attempts.new(params[:attempt])
     @attempt.user_id = current_user.id
     @attempt.language=params[:language]
-
+	
+	@attempt.compile
+	
     respond_to do |format|
       if @attempt.save
         format.html { redirect_to @problem, notice: 'Attempt was successfully created.' }
