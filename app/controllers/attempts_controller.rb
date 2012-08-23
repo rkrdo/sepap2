@@ -14,6 +14,13 @@ class AttemptsController < ApplicationController
   def show
     @attempt = Attempt.find(params[:id])
 
+    if(current_user.id!=@attempt.user_id)
+        respond_to do |format|
+          format.html { redirect_to root_path, notice: 'Acceso Restringido' }
+      end
+      return
+    end
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @attempt }

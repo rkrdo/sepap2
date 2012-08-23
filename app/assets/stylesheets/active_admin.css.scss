@@ -4,3 +4,45 @@
 
 // To customize the Active Admin interfaces, add your
 // styles here:
+div#header{
+	background:#003275;
+	color:#fffff9;
+}
+
+div#header a{
+	background:#003275;
+	font-size: 16px;
+	color:#fffff9;
+}
+
+#header ul#tabs > li.current > a{
+	background:#001053;
+}
+
+#header ul#tabs > li:hover > a {
+	background:#005497;
+}
+
+div#title_bar{
+	background:#bccbcf;
+}
+
+.panel h3{
+	background:#003275;
+	color:#fffff9;
+	text-shadow: none !important;
+}
+
+table.index_table th, table.index_table th a{
+	background:#003275 !important;
+	color:#fffff9 !important;
+	text-shadow: none !important;
+}
+
+span.breadcrumb a{
+	color:#ffffff !important;
+}
+
+#title_bar h2{
+	color:#303030;
+}
