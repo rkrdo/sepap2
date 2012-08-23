@@ -14,7 +14,7 @@ class ProblemsController < ApplicationController
   # GET /problems/1.json
   def show
     @problem = Problem.find(params[:id])
-
+    @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @problem }

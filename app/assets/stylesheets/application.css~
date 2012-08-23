@@ -1,11 +1,8 @@
-div#hmenu ul {
-  list-style: none;
-  padding: 0;
-}
+/*
+ *= require_self
+*/
 
-div#hmenu ul li {
-  display: inline;
-}
+@import "problem.css.scss";
 
 div#hmenu{
   background-color:#003275;
@@ -17,9 +14,26 @@ div#hmenu{
   border-color:#bbb
 }
 
-div#hmenu a{
+div#hmenu ul li{
+  display: inline;
+}
+
+div#hmenu ul {
+  list-style: none;
+  padding: 0px 0px 0px 20px;
+}
+
+div#hmenu li{
+  padding:0px 18px 0px 0px;
+}
+
+div#hmenu a, div#hmenu{
   color: #fff;
-  font-size:13px;
+  font-size:16px;
   font-family:Helvetica, Arial, sans-serif;;
   text-decoration:none;
+}
+
+div.right {
+  float:right;
 }
