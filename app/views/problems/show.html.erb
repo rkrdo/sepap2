@@ -1,19 +1,20 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <b>Title:</b>
-  <%= @problem.title %>
-</p>
 
-<p>
-  <b>Description:</b>
-  <%= @problem.description %>
-</p>
-<p>
-<b>Attempt:</b>
-<%= render "attempts/form" %>
-</p>
-<%= link_to 'Edit problem', edit_problem_path(@problem) %> |
-<%= link_to 'Back to problems', problems_path %> |
-
-<%= link_to 'Edit', edit_problem_path(@problem) %> |
-<%= link_to 'Back', problems_path %>
+<div id="problem_container">
+  <p id="title">
+    <%= @problem.title %>
+  </p>
+  <hr/>
+  <div id="problem_info"
+  <p>
+    <b>Description:</b>
+    <%= @problem.description %>
+  </p>
+  </div>
+  <div id="problem_attempt"
+  <p>
+  <b>Attempt:</b>
+  <%= render "attempts/form" %>
+  </p>
+  </div>
+</div>
