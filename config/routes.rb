@@ -6,7 +6,6 @@ Sepap2::Application.routes.draw do
     resources :attempts
   end
 
-  resources :attempts, only: [:index]
 
   devise_for :users
 
