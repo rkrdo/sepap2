@@ -5,6 +5,9 @@ Sepap2::Application.routes.draw do
   resources :problems do
     resources :attempts
   end
+
+  resources :attempts, only: [:index]
+
   devise_for :users
 
   # The priority is based upon order of creation:
