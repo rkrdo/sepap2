@@ -2,7 +2,6 @@ Sepap2::Application.routes.draw do
   get "home/index"
 
   ActiveAdmin.routes(self)
-  match 'attempts' => 'attempts#index'
   resources :problems do
     resources :attempts
   end
