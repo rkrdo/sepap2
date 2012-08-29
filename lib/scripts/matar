@@ -1,0 +1,27 @@
+#!/bin/bash
+#================================================
+#	Este script matará a compilarJava2 o a compilarC en caso de
+#	que la ejecución del programa (java o C) se cicle  
+#	o tarde demasiado tiempo en ejecutarse
+#===============================================
+jPID=$1
+tiempoLimite=$2
+
+limite=$(expr $(expr $tiempoLimite \* 2) + 2)	#se hace un sleep de 0.5 segundos, por es es *2
+tope=$(expr $tiempoLimite \* 2)
+
+for (( i=1; i<=$limite; i++ ))
+do
+	kill -0 $1
+	if [ $? -eq 0 ]; then				#checa si esta corriendo el java
+		if [ $i -gt $tope ]; then		#si el tiempo transcurrido es mayor al tope, lo mata
+			kill -9 $jPID
+			echo "Tiempo excedido"
+			break
+		else						#de lo contrario solo se espera un medio segundo mas
+			sleep 0.5
+		fi
+	else
+		break			#cuando el programa termine, se sale del ciclo y termina 'matar'
+	fi
+done
