@@ -2,10 +2,12 @@ Sepap2::Application.routes.draw do
   get "home/index"
 
   ActiveAdmin.routes(self)
-  match 'attempts' => 'attempts#index'
+  resources :attempts
   resources :problems do
     resources :attempts
   end
+
+
   devise_for :users
 
   # The priority is based upon order of creation:
