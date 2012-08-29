@@ -1,28 +1,15 @@
-<h1>Listing attempts</h1>
-
+<h1>Listing attempted problems</h1>
 <table>
   <tr>
-    <th>title</th>
-    <th>outcome</th>
-    <th>problem</th>
-    <th>status</th>
-    <th>last attempted</th>
+    <th>Title</th>
+    <th>Number of attempts</th>
+    <th></th>
+    <th></th>
+    <th></th>
   </tr>
-
-<% @attempts.each do |attempt| %>
-  <td>
-    <%= attempt.problem.title %>
-  </td>
-  <td>
-    <%= attempt.outcome %>
-  </td>
-	<tr>
-		<td>Attempt</td>
-		<td><%= link_to 'Show', attempt %></td>
-		<td><%= link_to 'Edit', edit_attempt_path(attempt) %></td>
-		<td><%= link_to 'Destroy', attempt, confirm: 'Are you sure?', method: :delete %></td>
-	</tr>
-<% end %>
+  <% current_user.attempts.each do |attempt| %>
+    <%= attempt.inspect %>
+  <% end %>
 </table>
 
 <br />

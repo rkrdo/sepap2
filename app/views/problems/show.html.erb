@@ -1,19 +1,39 @@
 <p id="notice"><%= notice %></p>
-<p>
-  <b>Title:</b>
-  <%= @problem.title %>
-</p>
 
-<p>
-  <b>Description:</b>
-  <%= @problem.description %>
-</p>
-<p>
-<b>Attempt:</b>
-<%= render "attempts/form" %>
-</p>
-<%= link_to 'Edit problem', edit_problem_path(@problem) %> |
-<%= link_to 'Back to problems', problems_path %> |
-
-<%= link_to 'Edit', edit_problem_path(@problem) %> |
-<%= link_to 'Back', problems_path %>
+<div id="problem_container">
+  <h3 id="title">
+    <%= @problem.title %>
+  </h3>
+  <hr/>
+  <div id="problem_info" class="tabs-bottom">
+    <ul>
+      <li><a href="#tabs-1">Description</a></li>
+      <li><a href="#tabs-2">Sample I/O</a></li>
+      <li><a href="#tabs-3">Toolkit</a></li>
+    </ul>
+    <div id="tabs-1">
+      <p><%= @problem.description %></p>
+    </div>
+    <div id="tabs-2">
+      <p>Sample I/O</p>
+    </div>
+    <div id="tabs-3">
+      <p>TOOLKIT!!</p>
+    </div>
+  </div>
+  <div id="problem_attempt" class="tabs-bottom">
+    <ul>
+      <li><a href="#tabs-0">New Attempt</a></li>
+      <% @user_problem_attempts.each_with_index do |attempt, i|  %>
+        <li><a href="#tabs-<%=i+1%>">Attempt #<%=i+1%></a></li>
+      <% end %>
+    </ul>
+    <div id="tabs-0">
+      <%= render "attempts/form" %>
+    </div>
+    <% @user_problem_attempts.each_with_index do |attempt, i|  %>
+      <div id="tabs-<%=i+1%>">
+        <p>Attempt <%= i+1 %></p>
+      </div>
+    <% end %>
+</div>

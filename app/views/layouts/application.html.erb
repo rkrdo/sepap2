@@ -7,17 +7,18 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <ul class="hmenu">
-    <%= render 'devise/menu/registration_items' %>
-    <%= link_to "Admin", admin_dashboard_path if current_user.try(:teacher?) %>
-    <%= render 'devise/menu/login_items' %>
-  </ul>
-  <% if flash[:alert] %>
-    <p class="flash-error"><%= flash[:alert] %></p>
-  <% end %>
-  <% if flash[:notice] %>
-    <p class="flash-notice"><%= flash[:notice] %></p>
-  <% end %>
+  <div id="hmenu">
+    <ul>
+      <li><%= link_to 'SEPAP', root_path %></li>
+        <li><%= link_to "Admin", admin_dashboard_path if current_user.try(:teacher?) %></li>
+      <div class="right">
+        <ul>
+          <li><%= link_to "Problem list", problems_path %></li>
+          <%= render 'devise/menu/login_items' %>
+        </ul>
+      </div>
+    </ul>
+  </div>
   <%= yield %>
 </body>
 </html>

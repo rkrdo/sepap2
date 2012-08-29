@@ -1,9 +1,40 @@
-ul.hmenu {
-  list-style: none;
-  margin: 0 0 2em;
-  padding: 0;
+/*
+ *= require_self
+*/
+
+@import "problem.css.scss";
+@import "jquery-ui.css";
+
+div#hmenu{
+  background-color:#003275;
+  height:44px;
+  margin:-16px -10px 0px -10px;
+  padding: 1px 10px 0px 10px;
+  border-style:solid;
+  border-width:2px;
+  border-color:#bbb
 }
 
-ul.hmenu li {
+div#hmenu ul li{
   display: inline;
+}
+
+div#hmenu ul {
+  list-style: none;
+  padding: 0px 0px 0px 20px;
+}
+
+div#hmenu li{
+  padding:0px 18px 0px 0px;
+}
+
+div#hmenu a, div#hmenu{
+  color: #fff;
+  font-size:16px;
+  font-family:Helvetica, Arial, sans-serif;;
+  text-decoration:none;
+}
+
+div.right {
+  float:right;
 }

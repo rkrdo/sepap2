@@ -2,7 +2,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = current_user.attempts
+    @problems_attempted = current_user.problems
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @attempts }
@@ -12,10 +12,8 @@ class AttemptsController < ApplicationController
   # GET /attempts/1
   # GET /attempts/1.json
   def show
-    @attempt = Attempt.find(params[:id])
-
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { redirect_to root_path, notice: 'Acceso Restringido' }
       format.json { render json: @attempt }
     end
   end
