@@ -5,13 +5,15 @@ h3#title{
 
 div#problem_container{
   width:1000px;
-  background-color:#777;
-  margin: 0px auto;
+  background-color:rgba(85, 85, 85, 0.54);
+  margin: 20px auto;
   padding: 15px;
   overflow:auto;
   border:solid;
-  border-width:5px;
-  border-color:#333;
+  border-width:3px;
+  border-color:#BBB;
+  border-radius:7px;
+  color:#FFF;
 }
 
 #problem_info, #problem_attempt{

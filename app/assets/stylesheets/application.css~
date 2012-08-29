@@ -3,11 +3,28 @@
 */
 
 @import "problem.css.scss";
+@import "jquery-ui.css";
+
+body{
+  font-family:'helvetica';
+  background-image:url('bg_pattern.png');
+  margin:0px;
+}
+
+hr{
+border: 0;
+color: #9E9E9E;
+background-color: #9E9E9E;
+height: 1px;
+width: 100%;
+text-align: left;
+margin:10px 0px;
+}
 
 div#hmenu{
-  background-color:#003275;
-  height:44px;
-  margin:-16px -10px 0px -10px;
+	background:#003275;
+  height:45px;
+  margin:-10px 0px 0px 0px;
   padding: 1px 10px 0px 10px;
   border-style:solid;
   border-width:2px;

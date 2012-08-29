@@ -25,7 +25,9 @@
     <ul>
       <li><a href="#tabs-0">New Attempt</a></li>
       <% @user_problem_attempts.each_with_index do |attempt, i|  %>
-        <li><a href="#tabs-<%=i+1%>">Attempt #<%=i+1%></a></li>
+        <li><a href="#tabs-<%=i+1%>">Attempt #<%=i+1%>
+        <%= link_to 'Delete', attempt, :confirm => 'Are you sure?', :method => :delete, :remote => true%>
+        </a></li>
       <% end %>
     </ul>
     <div id="tabs-0">
