@@ -41,8 +41,8 @@ class AttemptsController < ApplicationController
     @attempt = @problem.attempts.new(params[:attempt])
     @attempt.user_id = current_user.id
     @attempt.language=params[:language]
-	
-	
+
+
     respond_to do |format|
       if @attempt.save
 	@attempt.compile
@@ -75,10 +75,11 @@ class AttemptsController < ApplicationController
   # DELETE /attempts/1.json
   def destroy
     @attempt = Attempt.find(params[:id])
+    problem = @attempt.problem
     @attempt.destroy
 
     respond_to do |format|
-      format.html { redirect_to attempts_url }
+      format.html { redirect_to problem_path(problem) }
       format.json { head :no_content }
     end
   end
