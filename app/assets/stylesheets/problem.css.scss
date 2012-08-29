@@ -1,6 +1,6 @@
-p#title{
+h3#title{
   text-align:center;
-  font-size:20px;
+  margin:0px 0px 5px 0px;
 }
 
 div#problem_container{
@@ -14,13 +14,8 @@ div#problem_container{
   border-color:#333;
 }
 
-hr {
-height: 0;
-border-bottom: 2px dotted #000;
-}
-
 #problem_info, #problem_attempt{
-  height: 450px;
+  height: 480px;
   font-size: 13px;
   width:482px;
   float:left;

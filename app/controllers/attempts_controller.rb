@@ -2,7 +2,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = current_user.attempts
+    @problems_attempted = current_user.problems
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @attempts }

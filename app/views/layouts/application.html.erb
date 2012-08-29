@@ -12,8 +12,10 @@
       <li><%= link_to 'SEPAP', root_path %></li>
         <li><%= link_to "Admin", admin_dashboard_path if current_user.try(:teacher?) %></li>
       <div class="right">
-        <li><%= render 'devise/menu/registration_items' %></li>
-        <li><%= render 'devise/menu/login_items' %></li>
+        <ul>
+          <li><%= link_to "Problem list", problems_path %></li>
+          <%= render 'devise/menu/login_items' %>
+        </ul>
       </div>
     </ul>
   </div>
