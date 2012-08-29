@@ -46,3 +46,39 @@ span.breadcrumb a{
 #title_bar h2{
 	color:#303030;
 }
+
+body{
+	font-family:'helvetica';
+ 	background-image:url('bg_pattern.png');
+	font-size: 15px;
+}
+
+div#title_bar{
+	background-color:transparent;
+	position:fixed;
+	top:-3000px;
+}
+
+span.action_item{
+	position:relative;
+	top: 3030px;
+	right: 300px;
+}
+
+.blank_slate_container .blank_slate small {
+	color:#000000;
+}
+
+.blank_slate_container .blank_slate{
+	color:#000000;
+}
+
+tr:nth-child(odd) {
+	background: #ffffff;
+}
+
+div.index_content{
+	position:relative;
+	top: 30px;
+}
+
