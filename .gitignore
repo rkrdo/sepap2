@@ -17,3 +17,5 @@ rerun.txt
 pickle-email-*.html
 *.swp
 ./archivos/*
+/public/uploads/*
+/files/*

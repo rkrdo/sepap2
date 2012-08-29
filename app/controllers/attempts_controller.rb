@@ -51,11 +51,11 @@ class AttemptsController < ApplicationController
     @attempt.user_id = current_user.id
     @attempt.language=params[:language]
 	
-	@attempt.compile
 	
     respond_to do |format|
       if @attempt.save
-        format.html { redirect_to @problem, notice: 'Attempt was successfully created.' }
+	@attempt.compile
+	format.html { redirect_to @problem, notice: 'Attempt was successfully created.' }
         format.json { render json: @problem, status: :created, location: @attempt }
       else
         format.html { render action: "new" }
