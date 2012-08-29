@@ -1,0 +1,15 @@
+<h1>Listing attempted problems</h1>
+<table>
+  <tr>
+    <th>Title</th>
+    <th>Number of attempts</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+  <% current_user.attempts.each do |attempt| %>
+    <%= attempt.inspect %>
+  <% end %>
+</table>
+
+<br />
