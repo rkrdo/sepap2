@@ -4,6 +4,12 @@
 
 @import "problem.css.scss";
 @import "jquery-ui.css";
+@import "dataTables.css";
+
+div#table_container{
+  margin:0px auto;
+  width:90%;
+}
 
 body{
 	font-family:'helvetica';
