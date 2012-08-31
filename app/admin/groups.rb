@@ -15,12 +15,16 @@ ActiveAdmin.register Group do
     column :subject
     column :members do |g|
       if g.users.present?
-        link_to "Miembros", admin_groups_path
+        link_to "Miembros", view_members_admin_group_path(g)
       else
         '-'
       end
     end
     default_actions
+  end
+
+  member_action :view_members do
+    @group = Group.find(params[:id])
   end
 
   controller do
