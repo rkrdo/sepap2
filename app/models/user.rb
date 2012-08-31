@@ -9,5 +9,6 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :attempts
   has_many :problems, through: :attempts, group: :id, counter_sql: true
+  has_many :enrollments
 
 end

@@ -9,6 +9,20 @@ ActiveAdmin.register Group do
     f.buttons
   end
 
+  index do 
+    column :name
+    column :period
+    column :subject
+    column :members do |g|
+      if g.users.present?
+        link_to "Miembros", admin_groups_path
+      else
+        '-'
+      end
+    end
+    default_actions
+  end
+
   controller do
     def create
       @group = Group.new(params[:group])

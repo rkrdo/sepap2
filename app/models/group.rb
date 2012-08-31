@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
   belongs_to :subject
+  has_many :users, through: :enrollments
+  has_many :enrollments
   attr_accessible :name, :period, :subject_id, :members
 
   attr_accessor :members 
