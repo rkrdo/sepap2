@@ -6,7 +6,7 @@
 @import "jquery-ui.css";
 @import "dataTables.css";
 
-table#table_container{
+div#table_container{
   margin:0px auto;
   width:90%;
 }
