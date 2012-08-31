@@ -79,7 +79,12 @@ tr:nth-child(odd) {
 
 div.index_content{
 	position:relative;
-	top: 30px;
+	top: 5px;
+}
+
+.sidebar_section{
+	position:relative;
+	top: 35px;
 }
 
 div#index_footer{
@@ -94,7 +99,8 @@ div#index_footer{
 
 body.logged_in .flash.flash_notice{
 	position:relative;
-	top:6px;
+	top:0px;
+	height:23px;
 }
 
 div.pagination_information{
