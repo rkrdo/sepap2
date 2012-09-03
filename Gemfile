@@ -2,6 +2,9 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
+#ace code editor
+gem 'ace-rails'
+
 # Required for file uploads (Carrierwave)
 gem "rmagick"
 gem "carrierwave"
