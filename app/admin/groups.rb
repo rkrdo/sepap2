@@ -4,7 +4,15 @@ ActiveAdmin.register Group do
       f.input :name
       f.input :period, as: :select
       f.input :subject
-      f.input :members, as: :text
+    end
+    f.inputs do
+      if f.object.new_record?      
+        f.input :members, as: :text
+      else
+        f.has_many :enrollments do |e|
+          e.input :user
+        end
+      end
     end
     f.buttons
   end
@@ -13,18 +21,28 @@ ActiveAdmin.register Group do
     column :name
     column :period
     column :subject
-    column :members do |g|
-      if g.users.present?
-        link_to "Miembros", view_members_admin_group_path(g)
-      else
-        '-'
-      end
-    end
     default_actions
   end
 
-  member_action :view_members do
-    @group = Group.find(params[:id])
+  show do
+    attributes_table do
+        row :name
+        row :subject
+        row :period
+    end
+    panel "Members" do
+      table_for group.enrollments do
+        column "Num" do |enrollment|
+          enrollment.user.num
+        end
+        column "First Name" do |enrollment|
+          enrollment.user.name
+        end
+        column "Last Name" do |enrollment|
+          enrollment.user.lastname
+        end
+      end
+    end
   end
 
   controller do

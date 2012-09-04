@@ -1,5 +1,0 @@
-table_for @group.users do
-  column :num
-  column :name
-  column :lastname
-end
