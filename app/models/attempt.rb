@@ -12,6 +12,10 @@ class Attempt < ActiveRecord::Base
 		
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
 		
+#		if self.problem.module?
+#			link = `cd #{basepath};ln -s #{self.problem.main}`
+#		end
+				
 		# Time limit
 		time=self.problem.time
 		
