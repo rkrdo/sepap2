@@ -1,6 +1,6 @@
 ActiveAdmin.register Problem do
 	index do
-		column "ID" do |problem|
+		column "ID", :sortable=>true do |problem|
      			link_to problem.id, admin_problem_path(problem)
 		end
 		column :title
