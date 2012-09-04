@@ -1,0 +1,15 @@
+#!/bin/bash
+#Se compila el archivo de solucion de un problema
+route=$1
+archivo=$2
+error=$3
+
+echo "" > $error
+
+cd $route
+javac $archivo &> $error
+if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
+	echo "ok"
+else
+	echo "Error de compilación"
+fi
