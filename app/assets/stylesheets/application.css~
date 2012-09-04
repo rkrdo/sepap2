@@ -4,6 +4,12 @@
 
 @import "problem.css.scss";
 @import "jquery-ui.css";
+@import "dataTables.css";
+
+div#table_container{
+  margin:0px auto;
+  width:90%;
+}
 
 body{
   font-family:'helvetica';
@@ -23,7 +29,7 @@ margin:10px 0px;
 
 div#hmenu{
 	background:#003275;
-  height:45px;
+  height:46px;
   margin:-10px 0px 0px 0px;
   padding: 1px 10px 0px 10px;
   border-style:solid;

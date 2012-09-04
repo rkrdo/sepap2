@@ -1,15 +1,21 @@
 <h1>Listing attempted problems</h1>
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Number of attempts</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-  <% current_user.attempts.each do |attempt| %>
-    <%= attempt.inspect %>
-  <% end %>
-</table>
-
-<br />
+<div id="table_container">
+  <table class="data_table">
+      <thead>
+      <tr>
+        <th>Title</th>
+        <th>Number of attempts</th>
+        <th>Outcome</th>
+      </tr>
+      </thead>
+      <tbody>
+    <% @attempts.each do |attempt| %>
+      <tr>
+        <td><%= link_to attempt["title"], problem_path(attempt["problem_id"]) %></td>
+        <td><%= attempt["times_attempted"] %></td>
+        <td><%= attempt["outcome"] %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

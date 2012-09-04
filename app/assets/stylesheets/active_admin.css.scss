@@ -55,7 +55,7 @@ body{
 
 div#title_bar{
 	background-color:transparent;
-	position:fixed;
+	position:absolute;
 	top:-3000px;
 }
 
@@ -79,6 +79,30 @@ tr:nth-child(odd) {
 
 div.index_content{
 	position:relative;
+	top: 5px;
+}
+
+.sidebar_section{
+	position:relative;
+	top: 35px;
+}
+
+div#index_footer{
+	position:relative;
 	top: 30px;
 }
 
+#active_admin_content #main_content_wrapper {
+	position:relative;
+	top:30px;
+}
+
+body.logged_in .flash.flash_notice{
+	position:relative;
+	top:0px;
+	height:23px;
+}
+
+div.pagination_information{
+	color:#000000;
+}

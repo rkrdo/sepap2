@@ -1,19 +1,21 @@
 <h1>Listing problems</h1>
 
-<table>
+<div id="table_container">
+  <table class="data_table">
+  <thead>
   <tr>
     <th>Title</th>
     <th></th>
-    <th></th>
-    <th></th>
   </tr>
-
+  </thead>
+  <tbody>
 <% @problems.each do |problem| %>
   <tr>
     <td><%= problem.title %></td>
     <td><%= link_to 'Try', problem %></td>
   </tr>
 <% end %>
+  </tbody>
 </table>
 
 <br />

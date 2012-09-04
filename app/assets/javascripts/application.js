@@ -13,3 +13,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+$(document).ready(function() {
+    oTable = $('.data_table').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+} );
