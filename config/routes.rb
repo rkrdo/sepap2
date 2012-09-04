@@ -3,7 +3,7 @@ Sepap2::Application.routes.draw do
 
   ActiveAdmin.routes(self)
   resources :attempts
-  resources :problems do
+  resources :problems, only:[:index,:show] do
     resources :attempts
   end
 
