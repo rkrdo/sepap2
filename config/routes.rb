@@ -1,5 +1,4 @@
 Sepap2::Application.routes.draw do
-  get "home/index"
 
   ActiveAdmin.routes(self)
   resources :attempts
