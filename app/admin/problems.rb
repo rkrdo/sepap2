@@ -13,6 +13,18 @@ ActiveAdmin.register Problem do
 			end
 		end
 	end
+	
+	form do |f|
+		f.inputs do
+			f.input :title
+			f.input :description
+			f.input :time
+			f.input :main
+			f.input :method
+			f.input :input, :as => :text
+			f.input :output, :as => :text
+		end
+	end
   
 	index do
 		column "ID", :sortable=>true do |problem|
