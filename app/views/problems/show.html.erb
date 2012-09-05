@@ -35,7 +35,9 @@
     </div>
     <% @user_problem_attempts.each_with_index do |attempt, i|  %>
       <div id="tabs-<%=i+1%>">
-        <p>Attempt <%= i+1 %></p>
+        <div>
+          <p><%= attempt.show_code %></p>
+        </div>
       </div>
     <% end %>
 </div>

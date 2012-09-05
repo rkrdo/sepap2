@@ -1,0 +1,16 @@
+#!/bin/bash
+#Se compila el archivo de solucion de un problema
+route=$1
+archivo=$2
+ejecutable=$3
+error=$4
+
+echo "" > $error
+
+cd $route
+g++ $archivo -o $ejecutable &> $error
+if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
+	echo "ok"
+else
+	echo "Error de compilación"
+fi
