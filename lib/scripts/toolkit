@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ejecutable=$1
+entrada=$2
+salida=$3
+
+echo "" > $salida
+
+java -classpath $ejecutable < $entrada &> $salida
+
