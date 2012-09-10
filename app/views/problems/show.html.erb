@@ -1,5 +1,3 @@
-
-
 <div id="problem_container">
   <h3 id="title">
     <%= @problem.title %>
@@ -36,7 +34,7 @@
     <% @user_problem_attempts.each_with_index do |attempt, i|  %>
       <div id="tabs-<%=i+1%>">
         <div>
-          <p><%= attempt.show_code %></p>
+          <p><%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %></p>
         </div>
       </div>
     <% end %>
