@@ -5,14 +5,14 @@
   <thead>
   <tr>
     <th>Title</th>
-    <th></th>
+    <th>ID</th>
   </tr>
   </thead>
   <tbody>
 <% @problems.each do |problem| %>
-  <tr>
-    <td><%= problem.title %></td>
-    <td><%= link_to 'Try', problem %></td>
+  <tr onclick="location.href='<%= problem_path(problem) %>'" style='cursor:pointer'>
+    <td><%=  problem.title %></td>
+    <td><%=  problem.id %></td>
   </tr>
 <% end %>
   </tbody>
