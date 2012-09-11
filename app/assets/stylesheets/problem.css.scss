@@ -78,9 +78,31 @@ table.CodeRay td {
 ol.CodeRay { font-size: 10pt }
 ol.CodeRay li { white-space: pre }
 
+div.attempt_header{
+  overflow:auto;
+  width:50%;
+  margin:0px auto;
+  color:#555;
+  background-color:lightgreen;
+  border-radius:10px 0px 10px 0px ;
+  padding: 20px;
+	border: 1px solid green;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+  font-family: 'Bree Serif', serif;
+	font-weight: 300;
+	font-size: 28px;
+}
+div.attempt_time{
+  float:left;
+}
+div.attempt_outcome{
+  float:right;
+}
+
 .CodeRay .code pre { overflow: auto }
 .CodeRay .debug { color:white ! important; background:blue ! important; }
-
 .CodeRay .annotation { color:#007 }
 .CodeRay .attribute-name { color:#f08 }
 .CodeRay .attribute-value { color:#700 }

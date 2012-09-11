@@ -3,15 +3,15 @@
   <table class="data_table">
       <thead>
       <tr>
-        <th>Title</th>
+        <th>Problem</th>
         <th>Number of attempts</th>
         <th>Outcome</th>
       </tr>
       </thead>
       <tbody>
     <% @attempts.each do |attempt| %>
-      <tr>
-        <td><%= link_to attempt["title"], problem_path(attempt["problem_id"]) %></td>
+      <tr onclick="location.href='<%= problem_path(attempt['problem_id']) %>'" style='cursor:pointer'>
+        <td><%= attempt["title"] %></td>
         <td><%= attempt["times_attempted"] %></td>
         <td><%= attempt["outcome"] %></td>
       </tr>

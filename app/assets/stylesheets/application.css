@@ -4,6 +4,7 @@
 @import "problem.css.scss";
 @import "jquery-ui.css";
 @import "dataTables.css";
+@import "facebox.css";
 
 div#table_container{
   margin:0px auto;
