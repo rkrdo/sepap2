@@ -12,6 +12,29 @@ div#table_container{
   text-align: center;
 }
 
+h3{
+  text-align:center;
+  font-family: 'Bree Serif', serif;
+	font-weight: 300;
+	font-size: 28px;
+	margin:0px 0px;
+	color: #414848;
+}
+
+div.container{
+  width:92%;
+  margin: 20px auto;
+  padding: 10px;
+  overflow:auto;
+  color:#414848;
+	background-color: #f3f3f3;
+	border: 1px solid #fff;
+	border-radius: 5px;
+	box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
 body{
 	font-family:'helvetica';
 	background-image:url('bg_pattern.png');
