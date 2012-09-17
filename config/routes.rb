@@ -5,7 +5,11 @@ Sepap2::Application.routes.draw do
   resources :attempts
   resources :problems, only:[:index,:show] do
     resources :attempts
+    get :use_toolkit, on: :member
   end
+
+
+
 
 
   devise_for :users

@@ -80,4 +80,25 @@ class ProblemsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def use_toolkit
+    @problem = Problem.find(params[:id])
+
+    basepath_problem=Rails.root.to_s+"/files/problems/#{@problem.id}"
+    file = File.basename(@problem.main.to_s, File.extname(@problem.main.to_s))
+
+    exe = basepath_problem+" "+file
+    puts "/////////////////////////////////////////////////////"
+    puts params[:input]
+
+    @resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'`
+
+
+    puts @resultado
+
+    respond_to do |format|
+      format.js
+    end
+
+  end
 end
