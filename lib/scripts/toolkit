@@ -3,6 +3,6 @@
 ejecutable=$1
 entrada=$2
 
-java -classpath $ejecutable << INPUT 
+java -classpath $ejecutable << INPUT
 $entrada
 INPUT

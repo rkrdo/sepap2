@@ -16,7 +16,7 @@ class ProblemsController < ApplicationController
     @problem = Problem.find(params[:id])
     @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user)
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # new.html.erb
       format.json { render json: @problem }
     end
   end
@@ -92,7 +92,7 @@ class ProblemsController < ApplicationController
     puts params[:input]
 
     @resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'`
-
+    @resultado.gsub! /\n/, "&#013;&#010;"
     #@resultado = <<-HMM
      # roberto
       #plancarte
@@ -100,7 +100,7 @@ class ProblemsController < ApplicationController
 
     #@resultado = "Guayo"
 
-    puts @resultado 
+    puts @resultado
     respond_to do |format|
       format.js
     end

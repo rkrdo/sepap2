@@ -63,7 +63,7 @@ class Attempt < ActiveRecord::Base
 	end
 
 	def show_code
-	  #IO.try(:read(self.code.to_s))
+	  IO.read((self.code.to_s))
 	end
 
 end
