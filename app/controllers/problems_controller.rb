@@ -83,24 +83,8 @@ class ProblemsController < ApplicationController
 
   def use_toolkit
     @problem = Problem.find(params[:id])
+    @resultado = @problem.toolkit(params)
 
-    basepath_problem=Rails.root.to_s+"/files/problems/#{@problem.id}"
-    file = File.basename(@problem.main.to_s, File.extname(@problem.main.to_s))
-
-    exe = basepath_problem+" "+file
-    puts "/////////////////////////////////////////////////////"
-    puts params[:input]
-
-    @resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'`
-    @resultado.gsub! /\n/, "&#013;&#010;"
-    #@resultado = <<-HMM
-     # roberto
-      #plancarte
-   # HMM
-
-    #@resultado = "Guayo"
-
-    puts @resultado
     respond_to do |format|
       format.js
     end
