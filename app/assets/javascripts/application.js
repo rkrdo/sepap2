@@ -19,3 +19,10 @@ $(document).ready(function() {
         "sPaginationType": "full_numbers"
     });
 } );
+
+$.facebox.settings.closeImage = '../assets/images/closelabel.png'
+$.facebox.settings.loadingImage = '../assets/images/loading.gif'
+
+jQuery(document).ready(function($) {
+  $('a[rel*=facebox]').facebox()
+})

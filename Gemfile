@@ -2,8 +2,15 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
-#ace code editor
+#thin webserver
+gem 'thin'
+
+
+
+#ace code editor and syntax highlighter
 gem 'ace-rails'
+gem 'coderay'
+gem 'RedCloth'
 
 # Required for file uploads (Carrierwave)
 gem "rmagick"

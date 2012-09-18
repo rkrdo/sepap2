@@ -1,7 +1,4 @@
-
-
-<div id="problem_container">
-  <h3 id="title">
+  <h3>
     <%= @problem.title %>
   </h3>
   <hr/>
@@ -36,8 +33,8 @@
     <% @user_problem_attempts.each_with_index do |attempt, i|  %>
       <div id="tabs-<%=i+1%>">
         <div>
-          <p><%= attempt.show_code %></p>
+          <a href="#<%=i+1%>info" rel="facebox">View Attempt Code</a>
+          <div id="<%=i+1%>info" style="display:none"><%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %></div>
         </div>
       </div>
     <% end %>
-</div>

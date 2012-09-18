@@ -93,9 +93,14 @@ class ProblemsController < ApplicationController
 
     @resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'`
 
+    #@resultado = <<-HMM
+     # roberto
+      #plancarte
+   # HMM
 
-    puts @resultado
+    #@resultado = "Guayo"
 
+    puts @resultado 
     respond_to do |format|
       format.js
     end
