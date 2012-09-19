@@ -54,16 +54,17 @@ ActiveAdmin.register Group do
     end
 
     def update
-      @group = Group.find(params[:group])
-      enrollments = params[:group][:enrollment_attributes]
-      if @group.save
-          errors = @group.add_users(enrollments)
-          flash[:errors] = "The following student ids are not valid: #{errors}" unless errors.blank?
-          format.html { redirect_to admin_groups_path, notice: 'Group was successfully created.' }
-      else
-        format.html { render action: "index" }
+      @group = Group.find(params[:id])
+      @group.members = "A00192955"
+      respond_to do |format|
+        if @group.save
+            errors = @group.populate_group
+            flash[:errors] = "The following student ids are not valid: #{errors}" unless errors.blank?
+            format.html { redirect_to admin_group_path(@group), notice: 'Group was successfully updated.' }
+        else
+          format.html { render action: "index" }
+        end
       end
-
     end
   end
 end

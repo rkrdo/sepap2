@@ -15,11 +15,11 @@ class Group < ActiveRecord::Base
     errors = Array.new
 
     groupMembers.each do |num|
-      member = User.find_by_num(num)
-      member ||= User.create(num: num, email: "#{num}@itesm.mx", 
-          password: num, password_confirmation: num)
+      
+      member = User.find_or_create_by_num(num: "#{num}", 
+              :email => "#{num}@itesm.mx", password: "#{num}", password_confirmation: "#{num}")
       if member != nil
-        enroll = Enrollment.create(user_id: member.id, group_id: id)
+        enroll = Enrollment.create(user_id: member.id, group_id: id) unless users.include? member
       else
         errors << member
       end
