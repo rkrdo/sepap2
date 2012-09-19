@@ -7,7 +7,8 @@
 	</div>
 	
 	<div class="content">
-		<span>Please input your e-mail to recover your password</span><br />
+		<span>Please input your Student ID and e-mail to recover your password</span><br />
+		<%= f.text_field :num, :placeholder=>"Student ID", :class=>"input username" %>
 		<%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username" %>
 	</div>
 	
