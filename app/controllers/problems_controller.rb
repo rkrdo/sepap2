@@ -16,7 +16,7 @@ class ProblemsController < ApplicationController
     @problem = Problem.find(params[:id])
     @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user)
     respond_to do |format|
-      format.html # show.html.erb
+      format.html # new.html.erb
       format.json { render json: @problem }
     end
   end
@@ -79,5 +79,15 @@ class ProblemsController < ApplicationController
       format.html { redirect_to problems_url }
       format.json { head :no_content }
     end
+  end
+
+  def use_toolkit
+    @problem = Problem.find(params[:id])
+    @resultado = @problem.toolkit(params)
+
+    respond_to do |format|
+      format.js
+    end
+
   end
 end
