@@ -4,6 +4,8 @@ ActiveAdmin.register Problem do
 			@problem = Problem.new(params[:problem])
 			respond_to do |format|
 				if @problem.save
+					# Create and store input
+					@problem.store_input
 					@problem.compile_solution
 					format.html { redirect_to admin_problem_path(@problem), notice: 'Problem was successfully created.' }
 				else
@@ -22,8 +24,8 @@ ActiveAdmin.register Problem do
 			f.input :main
 			f.input :method
 			f.input :input, :as => :text
-			f.input :output, :as => :text
 		end
+		f.buttons
 	end
   
 	index do
