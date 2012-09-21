@@ -8,6 +8,13 @@ ActiveAdmin.register Group do
     f.inputs "Members"do
       f.input :members, as: :text
     end
+    if !f.object.new_record?
+      f.has_many :enrollments do |enrollment|
+        enrollment.inputs "#{enrollment.object.user.try(:num)}" do
+          enrollment.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
+        end
+      end
+    end
     f.buttons
   end
 
@@ -27,13 +34,13 @@ ActiveAdmin.register Group do
     panel "Members" do
       table_for group.enrollments do
         column "Num" do |enrollment|
-          enrollment.user.num
+          enrollment.user.try(:num)
         end
         column "First Name" do |enrollment|
-          enrollment.user.name
+          enrollment.user.try(:name)
         end
         column "Last Name" do |enrollment|
-          enrollment.user.lastname
+          enrollment.user.try(:lastname)
         end
       end
     end
@@ -55,7 +62,8 @@ ActiveAdmin.register Group do
 
     def update
       @group = Group.find(params[:id])
-      @group.members = "A00192955"
+      @group.members = params[:group][:members]
+      @group.enrollments_attributes = params[:group][:enrollments_attributes]
       respond_to do |format|
         if @group.save
             errors = @group.populate_group

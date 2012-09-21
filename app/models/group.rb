@@ -16,8 +16,9 @@ class Group < ActiveRecord::Base
 
     groupMembers.each do |num|
       
-      member = User.find_or_create_by_num(num: "#{num}", 
-              :email => "#{num}@itesm.mx", password: "#{num}", password_confirmation: "#{num}")
+      conditions = {num: "#{num}", email: "#{num}@itesm.mx", password: "#{num}", password_confirmation: "#{num}"}
+
+      member = User.find_by_num("#{num}") || User.create(conditions)
       if member != nil
         enroll = Enrollment.create(user_id: member.id, group_id: id) unless users.include? member
       else
