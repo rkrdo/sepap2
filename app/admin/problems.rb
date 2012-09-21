@@ -13,7 +13,27 @@ ActiveAdmin.register Problem do
 			end
 		end
 	end
-  
+
+	collection_action :type_tokens, :method => :get do
+		@tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:q]}%")
+		respond_to do |format|
+			format.json { render :json => @tags.map {|t| {:id => t.id.to_s, :name => t.name }} }
+		end
+  	end
+
+	form do |f|
+		f.inputs do
+			f.input :title
+			f.input :description
+			f.input :time
+			f.input :main
+			f.input :method
+			f.input :type_list, :input_html => {:id => "type_autocomplete"}
+		end
+		f.buttons
+	end
+ 
+
 	index do
 		column "ID", :sortable=>true do |problem|
      			link_to problem.id, admin_problem_path(problem)

@@ -1,6 +1,10 @@
 class Problem < ActiveRecord::Base
   has_many :attempts, :dependent => :delete_all
-  attr_accessible :description, :module, :time, :title, :main, :method
+  attr_accessible :description, :module, :time, :title, :main, :method, :type_list
+  attr_reader :type_list
+
+  acts_as_taggable_on :type
+
 
   mount_uploader :main, MainUploader
   mount_uploader :method, MethodUploader
@@ -43,6 +47,10 @@ class Problem < ActiveRecord::Base
     resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'`
     resultado.gsub! /\n/, "&#013;&#010;"
     resultado
+  end
+
+  def type_tokens=(ids)
+    self.type_ids = ids.split(",")
   end
 
 end

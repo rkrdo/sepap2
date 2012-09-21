@@ -3,6 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 @import "problem.css.scss";
 @import "jquery-ui.css";
+@import "token-input"
 @import "dataTables.css";
 @import "facebox.css";
 
