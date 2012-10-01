@@ -9,5 +9,11 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :attempts
   has_many :problems, through: :attempts, group: :id, counter_sql: true
+  has_many :enrollments
+
+  validates_presence_of :num, :email, :password, :password_confirmation
+  validates_format_of :num, with: /\A(A|L)([0-9]{8})\z/i
+  validates_uniqueness_of :num, case_sensitive: false
+  validates_uniqueness_of :email
 
 end

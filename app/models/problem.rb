@@ -9,8 +9,8 @@ class Problem < ActiveRecord::Base
   mount_uploader :main, MainUploader
   mount_uploader :method, MethodUploader
 
-  validates :title, :description, :main, :presence => true
   validates_numericality_of :time, :greater_than_or_equal_to =>1, :message => "El tiempo no puede ser negativo."
+  validates_presence_of :title, :description, :main
 
 	def compile_solution
 
