@@ -53,9 +53,5 @@ class Attempt < ActiveRecord::Base
 			self.outcome="Lenguaje no identificado"
 			
 		end	
-		
-	
-		
 	end 	
-
 end
