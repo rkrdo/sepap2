@@ -1,12 +1,22 @@
-<h2>Forgot your password?</h2>
+<%= devise_error_messages! %>
+<div id="wrapper2">
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
+	<div class="upper">	
+		<h1>Forgot your password?</h1>
+		<%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
+	</div>
+	
+	<div class="content">
+		<span>Please input your Student ID and e-mail to recover your password</span><br />
+		<%= f.text_field :num, :placeholder=>"Student ID", :class=>"input username" %>
+		<%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username" %>
+	</div>
+	
+	<div class="footer">
+		<div><%= f.submit "Reset", :class=>"button"  %></div>
+		<%= link_to 'Sign In', new_user_session_path, :class=>"register" %>
+		<%= link_to 'Register', new_user_registration_path, :class=>"register" %>
+	<% end %>
+	</div>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.submit "Send me reset password instructions" %></div>
-<% end %>
-
-<%= render "links" %>
+</div>

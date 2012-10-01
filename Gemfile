@@ -2,6 +2,16 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
 
+#thin webserver
+gem 'thin'
+
+
+
+#ace code editor and syntax highlighter
+gem 'ace-rails'
+gem 'coderay'
+gem 'RedCloth'
+
 # Required for file uploads (Carrierwave)
 gem "rmagick"
 gem "carrierwave"
@@ -36,6 +46,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
+
+gem 'acts-as-taggable-on'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

@@ -12,6 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-tokeninput
 //= require_tree .
 $(document).ready(function() {
     oTable = $('.data_table').dataTable({
@@ -19,3 +20,10 @@ $(document).ready(function() {
         "sPaginationType": "full_numbers"
     });
 } );
+
+$.facebox.settings.closeImage = '../assets/images/closelabel.png'
+$.facebox.settings.loadingImage = '../assets/images/loading.gif'
+
+jQuery(document).ready(function($) {
+  $('a[rel*=facebox]').facebox()
+})

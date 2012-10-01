@@ -1,18 +1,24 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Sign up" %></div>
-<% end %>
-
-<%= render "links" %>
+<%= devise_error_messages! %>
+<div id="wrapper2">
+	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+	<div class="upper">
+		<h1>Sign up</h1>
+		<%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
+	</div>
+	
+	<div class="content">
+	  	<span>Please Sign Up</span><br />
+		<%= f.text_field :num, :placeholder=>"Student ID", :class=>"input username"  %>
+		<%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username"  %>
+		
+		<%= f.password_field :password, :placeholder=>"Password", :class=>"input password" %>
+	  	<%= f.password_field :password_confirmation, :placeholder=>"Please input your password again", :class=>"input password" %>
+	</div>
+	
+	<div class="footer">
+		<div><%= f.submit "Sign up", :class=>"button"  %></div>
+		<%= link_to 'Sign In', new_user_session_path, :class=>"register" %>
+		<%= link_to 'Forgot your password?', new_user_password_path, :class=>"register" %>
+	<% end %>
+	</div>
+</div>

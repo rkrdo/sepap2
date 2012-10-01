@@ -1,12 +1,11 @@
 Sepap2::Application.routes.draw do
-  get "home/index"
 
   ActiveAdmin.routes(self)
   resources :attempts
-  resources :problems do
+  resources :problems, only:[:index,:show] do
     resources :attempts
+    get :use_toolkit, on: :member
   end
-
 
   devise_for :users
 
