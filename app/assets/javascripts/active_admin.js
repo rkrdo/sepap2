@@ -9,4 +9,9 @@ $(document).ready(function () {
     	crossDomain: false,
     	allowCustomEntry: true
     });
+
+    $("#type_autocomplete_search").tokenInput("/admin/problems/type_tokens.json", {
+    	crossDomain: false,
+    	allowCustomEntry: false
+    });
 });

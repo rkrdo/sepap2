@@ -33,6 +33,15 @@ ActiveAdmin.register Problem do
 		f.buttons
 	end
 
+ 	#filters
+ 	filter :id
+	filter :title
+	filter :taggings_tag_name, :label => "Type", :as => :check_boxes,
+        :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }
+    #filter :taggings_tag_name, :label => "Type", :as => :string,
+    #     :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }, :input_html => {:id => "type_autocomplete_search"}
+	filter :created_at
+
 
 	index do
 		column "ID", :sortable=>true do |problem|
