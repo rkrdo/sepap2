@@ -110,20 +110,18 @@ div.pagination_information{
 // AUTOCOMPLETE
 /* Example tokeninput style #1: Token vertical list*/
 ul.token-input-list {
-    overflow: hidden; 
-    height: auto !important; 
+    overflow: hidden;
+    height: auto !important;
     height: 1%;
-    width: 400px;
-    border: 1px solid #999;
     cursor: text;
-    font-size: 12px;
+    font-size: 14px;
     font-family: Verdana;
-    z-index: 999;
-    margin: 0;
-    padding: 0;
-    background-color: #fff;
     list-style-type: none;
-    clear: left;
+    background-color: white;
+    margin:0px 25px 0px 0px;
+    border-radius:3px;
+    padding:5px;
+    border: 1px solid #C9D0D6 !important;
 }
 
 ul.token-input-list li {
@@ -132,15 +130,14 @@ ul.token-input-list li {
 
 ul.token-input-list li input {
     border: 0;
-    width: 350px;
     padding: 3px 8px;
     background-color: white;
     -webkit-appearance: caret;
 }
 
 li.token-input-token {
-    overflow: hidden; 
-    height: auto !important; 
+    overflow: hidden;
+    height: auto !important;
     height: 1%;
     margin: 3px;
     padding: 3px 5px;
@@ -174,7 +171,6 @@ li.token-input-selected-token span {
 
 div.token-input-dropdown {
     position: absolute;
-    width: 400px;
     background-color: #fff;
     overflow: hidden;
     border-left: 1px solid #ccc;

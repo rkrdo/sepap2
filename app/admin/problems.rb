@@ -24,15 +24,15 @@ ActiveAdmin.register Problem do
 	form do |f|
 		f.inputs do
 			f.input :title
+			f.input :type_list, input_html: {id: "type_autocomplete"}
 			f.input :description
 			f.input :time
 			f.input :main
 			f.input :method
-			f.input :type_list, :input_html => {:id => "type_autocomplete"}
 		end
 		f.buttons
 	end
- 
+
 
 	index do
 		column "ID", :sortable=>true do |problem|
@@ -47,7 +47,7 @@ ActiveAdmin.register Problem do
   	end
 
   	show do |problem|
-  		attributes_table do 
+  		attributes_table do
 	  		row :id
 	  		row :title
 	  		row :description
