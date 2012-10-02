@@ -54,12 +54,7 @@ class Attempt < ActiveRecord::Base
 
 		else
 			self.update_attributes(:outcome=>"Lenguaje no identificado")
-
 		end
-
-		print "<<<<<<<<<<<<<<<<<<<<<<<<<"
-		print exe
-
 	end
 
 	def show_code
