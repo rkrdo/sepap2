@@ -6,6 +6,8 @@ class AddTeacherToUser < ActiveRecord::Migration
     User.create! do |r|
       r.email      = 'admin@sepap.com'
       r.password   = '121212'
+      r.password_confirmation   = '121212'
+      r.num = 'A12121212'
       r.teacher = true
     end
   end
