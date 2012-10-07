@@ -24,15 +24,24 @@ ActiveAdmin.register Problem do
 	form do |f|
 		f.inputs do
 			f.input :title
+			f.input :type_list, input_html: {id: "type_autocomplete"}
 			f.input :description
 			f.input :time
 			f.input :main
 			f.input :method
-			f.input :type_list, :input_html => {:id => "type_autocomplete"}
 		end
 		f.buttons
 	end
- 
+
+ 	#filters
+ 	filter :id
+	filter :title
+	filter :taggings_tag_name, :label => "Type", :as => :check_boxes,
+        :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }
+    #filter :taggings_tag_name, :label => "Type", :as => :string,
+    #     :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }, :input_html => {:id => "type_autocomplete_search"}
+	filter :created_at
+
 
 	index do
 		column "ID", :sortable=>true do |problem|
@@ -47,7 +56,7 @@ ActiveAdmin.register Problem do
   	end
 
   	show do |problem|
-  		attributes_table do 
+  		attributes_table do
 	  		row :id
 	  		row :title
 	  		row :description

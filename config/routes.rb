@@ -1,5 +1,7 @@
 Sepap2::Application.routes.draw do
 
+
+  devise_for :users
   ActiveAdmin.routes(self)
   resources :attempts
   resources :problems, only:[:index,:show] do
@@ -7,7 +9,6 @@ Sepap2::Application.routes.draw do
     get :use_toolkit, on: :member
   end
 
-  devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
