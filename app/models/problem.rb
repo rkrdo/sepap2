@@ -3,7 +3,11 @@ class Problem < ActiveRecord::Base
   attr_accessible :description, :module, :time, :title, :main, :method, :type_list
   attr_reader :type_list
 
+  before_save :remove_quotes
+
   acts_as_taggable_on :type
+
+
 
 
   mount_uploader :main, MainUploader
@@ -11,6 +15,10 @@ class Problem < ActiveRecord::Base
 
   validates :title, :description, :main, :presence => true
   validates_numericality_of :time, :greater_than_or_equal_to =>1, :message => "El tiempo no puede ser negativo."
+
+  def remove_quotes
+    self.type_list.last.gsub("'", "")
+  end
 
 	def compile_solution
 
