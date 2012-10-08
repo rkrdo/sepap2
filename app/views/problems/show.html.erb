@@ -2,39 +2,43 @@
     <%= @problem.title %>
   </h3>
   <hr/>
-  <div id="problem_info" class="tabs-bottom">
-    <ul>
-      <li><a href="#tabs-1">Description</a></li>
-      <li><a href="#tabs-2">Sample I/O</a></li>
-      <li><a href="#tabs-3">Toolkit</a></li>
-    </ul>
-    <div id="tabs-1">
-      <p><%= @problem.description %></p>
-    </div>
-    <div id="tabs-2">
-      <p>Sample I/O</p>
-    </div>
-    <div id="tabs-3">
-      <p><%= render "toolkit" %></p>
+  <div id="left">
+    <div id="problem_info" class="tabs-bottom">
+      <ul>
+        <li><a href="#tabs-1">Description</a></li>
+        <li><a href="#tabs-2">Sample I/O</a></li>
+        <li><a href="#tabs-3">Toolkit</a></li>
+      </ul>
+      <div id="tabs-1">
+        <p><%= @problem.description %></p>
+      </div>
+      <div id="tabs-2">
+        <p>Sample I/O</p>
+      </div>
+      <div id="tabs-3">
+        <p><%= render "toolkit" %></p>
+      </div>
     </div>
   </div>
-  <div id="problem_attempt" class="tabs-bottom">
-    <ul>
-      <li><a href="#tabs-0">New Attempt</a></li>
-      <% @user_problem_attempts.each_with_index do |attempt, i|  %>
-        <li id='tabs<%=i+1%>'><a href="#tabs-<%=i+1%>">Attempt #<%=i+1%>
-        <%= link_to 'Delete', attempt, :confirm => 'Are you sure?', :method => :delete%>
-        </a></li>
-      <% end %>
-    </ul>
-    <div id="tabs-0">
-      <%= render "attempts/form" %>
-    </div>
-    <% @user_problem_attempts.each_with_index do |attempt, i|  %>
-      <div id="tabs-<%=i+1%>">
-        <div>
-          <a href="#<%=i+1%>info" rel="facebox">View Attempt Code</a>
-          <div id="<%=i+1%>info" style="display:none"><%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %></div>
-        </div>
+  <div id="right">
+    <div id="problem_attempt" class="tabs-bottom">
+      <ul>
+        <li><a href="#tabs-0">New Attempt</a></li>
+        <% @user_problem_attempts.each_with_index do |attempt, i|  %>
+          <li id='tabs<%=i+1%>'><a href="#tabs-<%=i+1%>">Attempt #<%=i+1%>
+          <%= link_to 'Delete', attempt, :confirm => 'Are you sure?', :method => :delete%>
+          </a></li>
+        <% end %>
+      </ul>
+      <div id="tabs-0">
+        <%= render "attempts/form" %>
       </div>
-    <% end %>
+      <% @user_problem_attempts.each_with_index do |attempt, i|  %>
+        <div id="tabs-<%=i+1%>">
+          <div>
+            <a href="#<%=i+1%>info" rel="facebox">View Attempt Code</a>
+            <div id="<%=i+1%>info" style="display:none"><%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %></div>
+          </div>
+        </div>
+      <% end %>
+    </div>
