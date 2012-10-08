@@ -7,7 +7,8 @@
 $(document).ready(function () {
     $("#type_autocomplete").tokenInput("/admin/problems/type_tokens.json", {
     	crossDomain: false,
-    	allowCustomEntry: true
+    	allowCustomEntry: true,
+	preventDuplicates: true
     });
 
     $("#type_autocomplete_search").tokenInput("/admin/problems/type_tokens.json", {
