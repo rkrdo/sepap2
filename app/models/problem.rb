@@ -17,8 +17,8 @@ class Problem < ActiveRecord::Base
   validates_presence_of :title, :description, :main
 
   def remove_quotes
-    params[:type_list].each do |name|
-      name = "plancartonto"
+    self.type_list.each do |name|
+      name.gsub!("'", "")
     end
   end
 

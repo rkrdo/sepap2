@@ -890,8 +890,8 @@ $.TokenList = function (input, url_or_data_or_function, settings) {
         var regex = new RegExp(settings.tokenQuote, "gi");
 
         $.each(tokens, function (index, value) {
-            token_ids.push(value.id
-                ? value.id
+            token_ids.push(value.name
+                ? value.name
                 : settings.tokenQuote + value.name.replace(regex, settings.tokenQuoteEscaped) + settings.tokenQuote
                 );
         });
