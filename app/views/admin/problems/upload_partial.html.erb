@@ -1,0 +1,28 @@
+<b>Hello there </b>
+<br />
+<b> Title: </b><%= @problem.title %>
+<br />
+
+
+	<table>
+		<tr>
+			<th>Index</th>
+			<th>Line</th>
+			<th>Feedback</th>
+		</tr>
+		<% @out.each_with_index do |line,i| %>
+		<tr>
+			<td> 
+				<%= i %>
+
+			</td>
+			<td>
+				<%= line %>
+			</td>
+			<td>
+				
+			</td>
+		</tr>
+		<% end %>
+	</table>
+

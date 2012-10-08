@@ -15,7 +15,8 @@ if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
 	echo "ok - compilación exitosa de solucion"
 	
 	java -classpath $ejecutable < $entrada &> $salida &
-	
+	javaPID=$!
+	wait $javaPID
 else
 	echo "Error de compilación"
 fi

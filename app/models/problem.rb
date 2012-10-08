@@ -1,12 +1,14 @@
 class Problem < ActiveRecord::Base
   has_many :attempts, :dependent => :delete_all
+  has_many :feedbacks, :dependent => :delete_all
   attr_accessible :description, :module, :time, :title, :main, :method, :input, :output
 
   mount_uploader :main, MainUploader
   mount_uploader :method, MethodUploader
 
   validates :title, :description, :main, :presence => true
-  validates_numericality_of :time, :greater_than_or_equal_to =>1, :message => "El tiempo no puede ser negativo."
+  validates_numericality_of :time, :greater_than_or_equal_to =>1, :message => "El tiempo debe ser mayor o igual a 1."
+
 
 	def  store_input
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.id}"
@@ -40,19 +42,10 @@ class Problem < ActiveRecord::Base
 		if extension.include? "java"
 			# where executable should be
 			exe = basepath_problem+" "+file_basename
-			
-			puts "<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<yesyes"
-			puts basepath_problem
-			puts file
-			puts exe
-			puts self.input
-			puts self.output
-			puts error
-			puts "<>>>>>>>>>>>>>>>>>>>>>"
 
 			# Compile!
 			compile=`./lib/scripts/compilarJava_solucion #{basepath_problem} #{file} '#{exe}' #{self.input} #{self.output} #{error}`
-			
+			puts compile
 		elsif (extension.include? "c") || (extension.include? "cpp")
 			exe=File.basename(file,extension)
 			# Compile C code !

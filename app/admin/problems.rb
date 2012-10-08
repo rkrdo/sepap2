@@ -7,7 +7,8 @@ ActiveAdmin.register Problem do
 					# Create and store input
 					@problem.store_input
 					@problem.compile_solution
-					format.html { redirect_to admin_problem_path(@problem), notice: 'Problem was successfully created.' }
+					
+					format.html { redirect_to upload_partial_admin_problem_path(@problem), notice: 'Problem was successfully created. Next step is to add feedback messages' }
 				else
 					format.html { render action: "new" }
 					format.json { render json: @problem.errors, status: :unprocessable_entity }
@@ -15,7 +16,23 @@ ActiveAdmin.register Problem do
 			end
 		end
 	end
+
+	# GET /admin/problems/:id/upload_partial
+	member_action :upload_partial, :method => :get do
+		@problem = Problem.find_by_id(params[:id])
+		
+		@out=[]
+		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>_______________"
+		
+		output_file=File.open(@problem.output,"r")
+		output_file.each_with_index { |line,i|
+			@out[i]=line
+		}
+		output_file.close
+		render 'admin/problems/upload_partial'
+	end	
 	
+	#form :partial => "upload_partial"
 	form do |f|
 		f.inputs do
 			f.input :title
@@ -27,7 +44,7 @@ ActiveAdmin.register Problem do
 		end
 		f.buttons
 	end
-  
+
 	index do
 		column "ID", :sortable=>true do |problem|
      			link_to problem.id, admin_problem_path(problem)

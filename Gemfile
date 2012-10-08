@@ -15,6 +15,7 @@ gem 'RedCloth'
 # Required for file uploads (Carrierwave)
 gem "rmagick"
 gem "carrierwave"
+gem "jquery-fileupload-rails"
 
 # Active Admin + Required Gems
 gem 'activeadmin'
