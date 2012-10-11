@@ -12,6 +12,22 @@ ActiveAdmin.register Problem do
 				end
 			end
 		end
+
+		def edit
+			@problem = Problem.find(params[:id])
+			@types = @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
+			puts "/////////////////////////////////////////////////////////////////////////"
+			puts @types.to_s
+		end
+
+		def show
+		    @problem = Problem.find(params[:id])
+		    respond_to do |format|
+		      	format.html # new.html.erb
+		      	format.json { render json: @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}}
+	    end
+  end
+
 	end
 
 	collection_action :type_tokens, :method => :get do
@@ -24,7 +40,13 @@ ActiveAdmin.register Problem do
 	form do |f|
 		f.inputs do
 			f.input :title
-			f.input :type_list, input_html: {id: "type_autocomplete"}
+			@types = f.object.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
+			@preP = @types.to_s
+			puts "/////////////////////////////////////////////jamonazo///////////////////////////////////"
+			@preP.gsub!(":", "\"")
+			@preP.gsub!("=>", "\":")
+			f.input :type_list, input_html: {id: "type_autocomplete", "data-pre" => @preP}
+			#f.input :type_list, input_html: {id: "type_autocomplete", "data-pre" => "[{\"id\":\"25\",\"name\":\"lolol\"},{\"id\":\"26\",\"name\":\"reddit\"},{\"id\":\"28\",\"name\":\"hadouken\"},{\"id\":\"29\",\"name\":\"mayhem\"}]"}
 			f.input :description
 			f.input :time
 			f.input :main
@@ -61,6 +83,7 @@ ActiveAdmin.register Problem do
 	  		row :title
 	  		row :description
 	  		row :time
+	  		row :type_list
 	  	end
   	end
 end
