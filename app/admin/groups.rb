@@ -1,4 +1,5 @@
 ActiveAdmin.register Group do
+  controller.authorize_resource 
   form do |f|
     f.inputs "Details" do
       f.input :name

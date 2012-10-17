@@ -48,6 +48,7 @@ GEM
     bourbon (2.1.1)
       sass (>= 3.1)
     builder (3.0.0)
+    cancan (1.6.8)
     carrierwave (0.6.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -171,6 +172,7 @@ DEPENDENCIES
   ace-rails
   activeadmin
   acts-as-taggable-on
+  cancan
   carrierwave
   coderay
   coffee-rails (~> 3.2.1)
