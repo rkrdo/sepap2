@@ -17,7 +17,7 @@ class ProblemsController < ApplicationController
     @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user)
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @problem }
+      format.json { render json: @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}}
     end
   end
 
@@ -90,4 +90,5 @@ class ProblemsController < ApplicationController
     end
 
   end
+
 end

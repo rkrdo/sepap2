@@ -1,13 +1,26 @@
 class Problem < ActiveRecord::Base
   has_many :attempts, :dependent => :delete_all
   has_many :feedbacks, :dependent => :delete_all
-  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output
+  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :type_list, :feedbacks
+  attr_reader :type_list
+
+  before_save :remove_quotes
+
+  acts_as_taggable_on :type
+
 
   mount_uploader :main, MainUploader
   mount_uploader :method, MethodUploader
 
-  validates :title, :description, :main, :presence => true
+
   validates_numericality_of :time, :greater_than_or_equal_to =>1, :message => "El tiempo debe ser mayor o igual a 1."
+  validates_presence_of :title, :description, :main
+
+  def remove_quotes
+    self.type_list.each do |name|
+      name.gsub!("'", "")
+    end
+  end
 
 
 	def  store_input
@@ -65,6 +78,10 @@ class Problem < ActiveRecord::Base
     resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'`
     resultado.gsub! /\n/, "&#013;&#010;"
     resultado
+  end
+
+  def type_tokens=(ids)
+    self.type_ids = ids.split(",")
   end
 
 end

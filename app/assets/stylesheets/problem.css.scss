@@ -1,7 +1,15 @@
+#left{
+width:50%;
+float:left;
+}
+#right{
+width:50%;
+float:right;
+}
 #problem_info, #problem_attempt{
   height: 510px;
   font-size: 13px;
-  width:48.28%;
+  width:97%;
   float:left;
 }
 #problem_info{margin:0px 10px 0px 0px; float:left;}
@@ -12,7 +20,7 @@
 .tabs-bottom { position: relative; }
 .tabs-bottom .ui-tabs-panel { height: 89%; overflow: auto;}
 .tabs-bottom .ui-tabs-nav { position: absolute !important; left: 0; bottom: 0; right:0; padding: 0 0.2em 0.2em 0; }
-  .tabs-bottom .ui-tabs-nav li { margin-top: -4px !important; margin-bottom: 1px !important; border-top: none; border-bottom-width: 1px; }
+.tabs-bottom .ui-tabs-nav li { margin-top: -4px !important; margin-bottom: 1px !important; border-top: none; border-bottom-width: 1px; }
 
 
 .CodeRay {
