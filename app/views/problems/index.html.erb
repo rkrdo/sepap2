@@ -6,6 +6,7 @@
   <tr>
     <th>Title</th>
     <th>ID</th>
+    <th>Type</th>
   </tr>
   </thead>
   <tbody>
@@ -13,6 +14,7 @@
   <tr onclick="location.href='<%= problem_path(problem) %>'" style='cursor:pointer'>
     <td><%=  problem.title %></td>
     <td><%=  problem.id %></td>
+    <td><%=  problem.type_list %></td>
   </tr>
 <% end %>
   </tbody>

@@ -3,7 +3,6 @@
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 @import "problem.css.scss";
 @import "jquery-ui.css";
-@import "token-input"
 @import "dataTables.css";
 @import "facebox.css";
 
@@ -44,6 +43,7 @@ body{
 	text-align: left;
 	text-decoration: none;
 	height: 500px;
+	min-width:700px;
 }
 
 hr{
