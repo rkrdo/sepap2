@@ -22,7 +22,6 @@ ActiveAdmin.register Problem do
 		@problem = Problem.find_by_id(params[:id])
 		
 		@out=[]
-		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>_______________"
 		
 		output_file=File.open(@problem.output,"r")
 		output_file.each_with_index { |line,i|
@@ -30,6 +29,24 @@ ActiveAdmin.register Problem do
 		}
 		output_file.close
 		render 'admin/problems/upload_partial'
+	end	
+	
+	# GET /admin/problems/:id/upload_created
+	member_action :upload_created, :method => :post do
+		@problem = Problem.find_by_id(params[:id])
+		
+		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>_______________"
+		for i in 0..Integer(params[:lines])-1
+			if(!params["#{i}"].empty?)
+				f = Feedback.new()
+				f.problem = @problem
+				f.line_number = i
+				f.comment=params["#{i}"]
+				f.save
+			end
+		end
+
+		render 'admin/problems/upload_created'
 	end	
 	
 	#form :partial => "upload_partial"

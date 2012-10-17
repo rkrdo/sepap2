@@ -47,9 +47,9 @@ class Problem < ActiveRecord::Base
 			compile=`./lib/scripts/compilarJava_solucion #{basepath_problem} #{file} '#{exe}' #{self.input} #{self.output} #{error}`
 			puts compile
 		elsif (extension.include? "c") || (extension.include? "cpp")
-			exe=File.basename(file,extension)
+			exe="./"+File.basename(file,extension)
 			# Compile C code !
-			compile=`./lib/scripts/compilarC_solucion #{basepath_problem} #{file} #{exe} #{error}`
+			compile=`./lib/scripts/compilarC_solucion #{basepath_problem} #{file} #{exe} #{self.input} #{self.output} #{error}`
 		else
 			compile="error"
 		end

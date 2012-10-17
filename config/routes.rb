@@ -3,7 +3,6 @@ Sepap2::Application.routes.draw do
   ActiveAdmin.routes(self)
   resources :attempts
   resources :problems, only:[:index,:show] do
-  	resources :feedbacks
     resources :attempts
     get :use_toolkit, on: :member
   end
