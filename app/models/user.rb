@@ -16,4 +16,13 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :num, case_sensitive: false
   validates_uniqueness_of :email
 
+	before_save do
+		self.num.downcase! if self.num
+	end
+	
+	def self.find_for_authentication(conditions) 
+		conditions[:num].downcase! 
+		super(conditions) 
+	end 
+
 end

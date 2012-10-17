@@ -4,8 +4,8 @@ gem 'rails', '3.2.3'
 
 #thin webserver
 gem 'thin'
-gem 'capistrano-nginx'
 
+gem 'cancan'
 
 #ace code editor and syntax highlighter
 gem 'ace-rails'

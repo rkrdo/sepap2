@@ -1,4 +1,5 @@
 ActiveAdmin.register Problem do
+	controller.authorize_resource 
 	controller do
 		def create
 			@problem = Problem.new(params[:problem])
