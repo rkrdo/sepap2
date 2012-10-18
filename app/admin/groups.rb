@@ -1,9 +1,9 @@
 ActiveAdmin.register Group do
-  controller.authorize_resource 
+  # controller.authorize_resource 
   form do |f|
     f.inputs "Details" do
       f.input :name
-      f.input :period, as: :select
+      f.input :period, as: :select, collection: Group::PERIODS
       f.input :subject
     end
     f.inputs "Members"do
@@ -71,7 +71,7 @@ ActiveAdmin.register Group do
             flash[:errors] = "The following student ids are not valid: #{errors}" unless errors.blank?
             format.html { redirect_to admin_group_path(@group), notice: 'Group was successfully updated.' }
         else
-          format.html { render action: "index" }
+          format.html {render action: "index"}
         end
       end
     end

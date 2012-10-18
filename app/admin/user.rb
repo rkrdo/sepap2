@@ -9,6 +9,15 @@ ActiveAdmin.register User do
     f.buttons
   end
 
+  show do |ad|
+    attributes_table do
+        row :name
+        row :num
+        row :email
+        row :teacher
+      end
+  end
+
   index do
     column :email
     column :reset_password_sent_at
