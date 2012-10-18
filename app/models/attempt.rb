@@ -80,7 +80,7 @@ class Attempt < ActiveRecord::Base
 		problem = Problem.find(problem_id)
 		feedback_lines = []
 		feedback_comments = []
-		feedback_list = "Consider the following: <br />"
+		feedback_list = "Consider the following: <br /><ul>"
 
 		problem.feedbacks.each_with_index do |feed, i|
 			feedback_lines[i] = feed.line_number
@@ -90,10 +90,10 @@ class Attempt < ActiveRecord::Base
 
 		f1Lines.each_with_index do |line, i|
 			if(!line.eql?(f2Lines[i]))
-				feedback_list += "" + feedback_comments[i] +"<br />"
+				feedback_list += "<li>" + feedback_comments[i] +"</li>"
 			end
 		end
-		feedback_list
+		feedback_list += "</ul>"
 	end
 
 end
