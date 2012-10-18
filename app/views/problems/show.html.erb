@@ -6,16 +6,12 @@
     <div id="problem_info" class="tabs-bottom">
       <ul>
         <li><a href="#tabs-1">Description</a></li>
-        <li><a href="#tabs-2">Sample I/O</a></li>
-        <li><a href="#tabs-3">Toolkit</a></li>
+        <li><a href="#tabs-2">Toolkit</a></li>
       </ul>
       <div id="tabs-1">
         <p><%= raw(@problem.description) %></p>
       </div>
       <div id="tabs-2">
-        <p>Sample I/O</p>
-      </div>
-      <div id="tabs-3">
         <p><%= render "toolkit" %></p>
       </div>
     </div>
@@ -26,7 +22,6 @@
         <li><a href="#tabs-0">New Attempt</a></li>
         <% @user_problem_attempts.each_with_index do |attempt, i|  %>
           <li id='tabs<%=i+1%>'><a href="#tabs-<%=i+1%>">Attempt #<%=i+1%>
-          <%= link_to 'Delete', attempt, :confirm => 'Are you sure?', :method => :delete%>
           </a></li>
         <% end %>
       </ul>
@@ -36,6 +31,35 @@
       <% @user_problem_attempts.each_with_index do |attempt, i|  %>
         <div id="tabs-<%=i+1%>">
           <div>
+            <p><%= attempt.outcome %></p>
+
+            <p>
+              <%if attempt.outcome.strip == "ACEPTADO" %>
+              <div id="aceptado" class="respuesta">
+              <%= image_tag "verde.ico" %><div id="outcome">Congratulations!</div>
+              <p class="descripcion">Your code worked just as expected, good work!</p>
+              </div>
+
+              <% elsif attempt.outcome.strip == "RECHAZADO" %>
+              <div id="rechazado" class="respuesta">
+              <%= image_tag "magenta.ico" %><div id="outcome">Wrong Answer!</div>
+              <p class="descripcion">We are sorry, your solution didn't worked the way it needed to.</p>
+              </div>
+
+              <%elsif attempt.outcome.strip == "TIEMPO EXCEDIDO" %>
+              <div id="error" class="respuesta">
+              <%= image_tag "ambar.ico" %><div id="outcome"><%= attempt.outcome %></div>
+              <p class="descripcion">Tu solución tardó más tiempo del permitido.</p>
+              </div>
+
+              <% else %>
+              <div id="error" class="respuesta">
+              <%= image_tag "ambar.ico" %><div id="outcome">Compilation Error</div>
+              <p class="descripcion">We are sorry, your code couldn't be compiled succesfuly.</p>
+              </div>
+              <%end%>
+            </p>
+
             <a href="#<%=i+1%>info" rel="facebox">View Attempt Code</a>
             <div id="<%=i+1%>info" style="display:none"><%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %></div>
           </div>
