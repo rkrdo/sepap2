@@ -46,7 +46,7 @@ ActiveAdmin.register Group do
       end
     end
     panel "Revision Per Problem" do
-      
+      render "problem_revision"
     end
   end
 
