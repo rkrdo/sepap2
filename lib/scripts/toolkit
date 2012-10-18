@@ -2,7 +2,11 @@
 
 ejecutable=$1
 entrada=$2
+tiempo=$3
 
-java -classpath $ejecutable << INPUT
-$entrada
-INPUT
+java -classpath $ejecutable <<< $entrada &
+
+javaPID=$!
+./lib/scripts/matar $javaPID $tiempo &	#se manda llamar otro script con el PID del ejecutable y el tiempo limite
+
+wait $javaPID
