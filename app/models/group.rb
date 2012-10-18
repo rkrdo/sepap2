@@ -12,8 +12,8 @@ class Group < ActiveRecord::Base
   attr_accessor :members 
   #Method that finds or creates students and adds them to the group
   def populate_group
-    groupMembers = members.split(',')
-    groupMembers.collect{|x| x.strip.squeeze(" ").downcase}
+    formatedMembers = members.downcase!.gsub(" ","")
+    groupMembers = formatedMembers.split(',')
     errors = Array.new
 
     groupMembers.each do |num|
@@ -21,12 +21,15 @@ class Group < ActiveRecord::Base
       conditions = {num: "#{num}", email: "#{num}@itesm.mx", password: "#{num}", password_confirmation: "#{num}"}
 
       member = User.find_by_num("#{num}") || User.create(conditions)
-      if member != nil
-        enroll = Enrollment.create(user_id: member.id, group_id: id) unless users.include? member
-      else
+      if member.nil?
         errors << member
+      else
+        enroll = Enrollment.create(user_id: member.id, group_id: id) unless users.include? member
       end
     end
     return errors
   end
+
+  PERIODS  = ["Ene - May","Verano","Ago - Dic"]
+
 end
