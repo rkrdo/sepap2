@@ -45,8 +45,7 @@ class AttemptsController < ApplicationController
 
     respond_to do |format|
       if @attempt.save
-	@attempt.compile
-  @attempt.get_feedback
+	       @attempt.compile
 	format.html { redirect_to @problem, notice: "Attempt was successfully created [#{@attempt.outcome}]" }
         format.json { render json: @problem, status: :created, location: @attempt }
       else

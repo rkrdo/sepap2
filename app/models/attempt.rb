@@ -77,13 +77,23 @@ class Attempt < ActiveRecord::Base
 		f1Lines = f1.readlines
 		f2Lines = f2.readlines
 
-		puts "////////////////////FEEDBACK////////////////////////////"
-		f1Lines.each_with_index do |line, i|
-			if(!line.eql?(f2Lines[i]))
-				puts i
-			end
+		problem = Problem.find(problem_id)
+		feedback_lines = []
+		feedback_comments = []
+		feedback_list = "Consider the following: <br />"
+
+		problem.feedbacks.each_with_index do |feed, i|
+			feedback_lines[i] = feed.line_number
+			feedback_comments[i] = feed.comment
 		end
 
+
+		f1Lines.each_with_index do |line, i|
+			if(!line.eql?(f2Lines[i]))
+				feedback_list += "" + feedback_comments[i] +"<br />"
+			end
+		end
+		feedback_list
 	end
 
 end
