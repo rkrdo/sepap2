@@ -31,7 +31,6 @@
       <% @user_problem_attempts.each_with_index do |attempt, i|  %>
         <div id="tabs-<%=i+1%>">
           <div>
-            <p><%= attempt.outcome %></p>
 
             <p>
               <%if attempt.outcome.strip == "ACEPTADO" %>
@@ -43,7 +42,9 @@
               <% elsif attempt.outcome.strip == "RECHAZADO" %>
               <div id="rechazado" class="respuesta">
               <%= image_tag "magenta.ico" %><div id="outcome">Wrong Answer!</div>
-              <p class="descripcion">We are sorry, your solution didn't worked the way it needed to.</p>
+              <p class="descripcion">We are sorry, your solution didn't work the way it needed to.</p>
+              <br />
+              <%= raw(attempt.get_feedback) %>
               </div>
 
               <%elsif attempt.outcome.strip == "TIEMPO EXCEDIDO" %>

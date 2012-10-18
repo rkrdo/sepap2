@@ -73,11 +73,28 @@ class Problem < ActiveRecord::Base
   def toolkit(params)
     basepath_problem="#{Rails.root.to_s}/files/problems/#{id}"
     file = File.basename(main.to_s, File.extname(main.to_s))
-    exe = "#{basepath_problem} #{file}"
-    puts "#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'"
-    resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}'`
-    resultado.gsub! /\n/, "&#013;&#010;"
-    resultado
+	time=Integer(self.time)
+    extension=File.extname(self.main.to_s)
+	
+	if !params[:input].empty?
+
+		if extension.include? "java"
+			exe = "#{basepath_problem} #{file}"
+			resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}' '#{time}'`
+
+		elsif (extension.include? "c") || (extension.include? "cpp")
+			exe = "#{basepath_problem}/#{file}"
+			resultado = `#{Rails.root.to_s}/lib/scripts/toolkit_c '#{exe}' '#{params[:input]}' '#{time}'`
+
+		end
+		
+	else
+	
+		resultado = "[Missing input]"
+	end
+	
+	resultado.gsub! /\n/, "&#013;&#010;"
+	return resultado
   end
 
   def type_tokens=(ids)
