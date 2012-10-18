@@ -64,4 +64,26 @@ class Attempt < ActiveRecord::Base
 	  IO.read((self.code.to_s))
 	end
 
+	def get_feedback
+		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}"
+		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
+
+		output=basepath_user+"/output"
+		expected_output = basepath_problem + "/output"
+
+		f1 = File.open(output)
+		f2 = File.open(expected_output)
+
+		f1Lines = f1.readlines
+		f2Lines = f2.readlines
+
+		puts "////////////////////FEEDBACK////////////////////////////"
+		f1Lines.each_with_index do |line, i|
+			if(!line.eql?(f2Lines[i]))
+				puts i
+			end
+		end
+
+	end
+
 end
