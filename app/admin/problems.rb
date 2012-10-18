@@ -5,8 +5,11 @@ ActiveAdmin.register Problem do
 			@problem = Problem.new(params[:problem])
 			respond_to do |format|
 				if @problem.save
+					# Create and store input
+					@problem.store_input
 					@problem.compile_solution
-					format.html { redirect_to admin_problem_path(@problem), notice: 'Problem was successfully created.' }
+					
+					format.html { redirect_to upload_partial_admin_problem_path(@problem), notice: 'Problem was successfully created. Next step is to add feedback messages' }
 				else
 					format.html { render action: "new" }
 					format.json { render json: @problem.errors, status: :unprocessable_entity }
@@ -17,8 +20,8 @@ ActiveAdmin.register Problem do
 		def edit
 			@problem = Problem.find(params[:id])
 			@types = @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
-			puts "/////////////////////////////////////////////////////////////////////////"
-			puts @types.to_s
+			#puts "/////////////////////////////////////////////////////////////////////////"
+			#puts @types.to_s
 		end
 
 		def show
@@ -26,10 +29,42 @@ ActiveAdmin.register Problem do
 		    respond_to do |format|
 		      	format.html # new.html.erb
 		      	format.json { render json: @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}}
-	    end
-  end
-
+	    	end
+  		end
 	end
+
+
+	# GET /admin/problems/:id/upload_partial
+	member_action :upload_partial, :method => :get do
+		@problem = Problem.find_by_id(params[:id])
+		
+		@out=[]
+		
+		output_file=File.open(@problem.output,"r")
+		output_file.each_with_index { |line,i|
+			@out[i]=line
+		}
+		output_file.close
+		render 'admin/problems/upload_partial'
+	end	
+	
+	# GET /admin/problems/:id/upload_created
+	member_action :upload_created, :method => :post do
+		@problem = Problem.find_by_id(params[:id])
+		
+		for i in 0..Integer(params[:lines])-1
+			if(!params["#{i}"].empty?)
+				f = Feedback.new()
+				f.problem = @problem
+				f.line_number = i
+				f.comment=params["#{i}"]
+				f.save
+			end
+		end
+
+		render 'admin/problems/upload_created'
+	end	
+	
 
 	collection_action :type_tokens, :method => :get do
 		@tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:q]}%")
@@ -52,9 +87,11 @@ ActiveAdmin.register Problem do
 			f.input :time
 			f.input :main
 			f.input :method
+			f.input :input, :as => :text
 		end
 		f.buttons
 	end
+
 
  	#filters
  	filter :id

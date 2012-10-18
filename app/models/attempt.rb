@@ -17,7 +17,7 @@ class Attempt < ActiveRecord::Base
 #		end
 
 		# Time limit
-		time=self.problem.time
+		time=Integer(self.problem.time)
 
 		# Source code with solution
 		file=self.code
@@ -33,24 +33,27 @@ class Attempt < ActiveRecord::Base
 
 		# File that stores expected output of the problem,
 		#  provided by teacher
-		expected_output=basepath_problem+"/expected_output"
+		expected_output=basepath_problem+"/output"
 
 		# File that stores compile/execution errors thrown
 		error=basepath_user+"/error"
+		
+		# Route where the scripts run
+		route=Rails.root.to_s+"/lib/scripts"
 
 		if self.language.include? "Java"
 
 			# File to execute after compile
 			exe=basepath_user+" "+file_basename
 
-			self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time}`)
+			self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
 
-		elsif self.language.include? "C/C++"
+		elsif self.language.include? "C"
 
 			# File to execute after compile
 			exe=basepath_user+"/"+file_basename
 
-			self.update_attributes(:outcome=>`./lib/scripts/compilarC #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time}`)
+			self.update_attributes(:outcome=>`./lib/scripts/compilarC #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
 
 		else
 			self.update_attributes(:outcome=>"Lenguaje no identificado")
