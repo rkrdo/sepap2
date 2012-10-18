@@ -5,7 +5,7 @@ gem 'rails', '3.2.3'
 #thin webserver
 gem 'thin'
 
-
+gem 'cancan'
 
 #ace code editor and syntax highlighter
 gem 'ace-rails'
@@ -31,6 +31,10 @@ gem 'sqlite3'
 
 group :development do
   gem "rails-erd"
+end
+
+group :production do
+  gem "mysql2", "~> 0.3.11"
 end
 
 
