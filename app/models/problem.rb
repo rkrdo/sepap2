@@ -1,6 +1,7 @@
 class Problem < ActiveRecord::Base
   has_many :attempts, :dependent => :delete_all
-  attr_accessible :description, :module, :time, :title, :main, :method, :type_list
+  has_many :feedbacks, :dependent => :delete_all
+  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :type_list, :feedbacks
   attr_reader :type_list
 
   before_save :remove_quotes
@@ -8,12 +9,11 @@ class Problem < ActiveRecord::Base
   acts_as_taggable_on :type
 
 
-
-
   mount_uploader :main, MainUploader
   mount_uploader :method, MethodUploader
 
-  validates_numericality_of :time, :greater_than_or_equal_to =>1, :message => "El tiempo no puede ser negativo."
+
+  validates_numericality_of :time, :greater_than_or_equal_to =>1, :message => "El tiempo debe ser mayor o igual a 1."
   validates_presence_of :title, :description, :main
 
   def remove_quotes
@@ -22,6 +22,20 @@ class Problem < ActiveRecord::Base
     end
   end
 
+
+	def  store_input
+		basepath_problem=Rails.root.to_s+"/files/problems/#{self.id}"
+		
+		input_path = basepath_problem+"/input"
+		
+		File.open(input_path,'w') {|f| f.write(self.input)}
+		self.update_attributes(:input=> input_path)
+		
+		# Store output path
+		self.update_attributes(:output=> basepath_problem+"/output")
+		
+	end
+	
 	def compile_solution
 
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.id}"
@@ -34,14 +48,21 @@ class Problem < ActiveRecord::Base
 
 		# File extension
 		extension=File.extname(file)
+		
+		# Filename without extension
+		file_basename=File.basename(file, extension)
 
 		if extension.include? "java"
+			# where executable should be
+			exe = basepath_problem+" "+file_basename
+
 			# Compile!
-			compile=`./lib/scripts/compilarJava_solucion #{basepath_problem} #{file} #{error}`
+			compile=`./lib/scripts/compilarJava_solucion #{basepath_problem} #{file} '#{exe}' #{self.input} #{self.output} #{error}`
+			puts compile
 		elsif (extension.include? "c") || (extension.include? "cpp")
-			exe=File.basename(file,extension)
+			exe="./"+File.basename(file,extension)
 			# Compile C code !
-			compile=`./lib/scripts/compilarC_solucion #{basepath_problem} #{file} #{exe} #{error}`
+			compile=`./lib/scripts/compilarC_solucion #{basepath_problem} #{file} #{exe} #{self.input} #{self.output} #{error}`
 		else
 			compile="error"
 		end

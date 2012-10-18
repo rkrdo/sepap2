@@ -15,6 +15,7 @@ gem 'RedCloth'
 # Required for file uploads (Carrierwave)
 gem "rmagick"
 gem "carrierwave"
+gem "jquery-fileupload-rails"
 
 # Active Admin + Required Gems
 gem 'activeadmin'
@@ -33,7 +34,7 @@ group :development do
 end
 
 group :production do
-  gem "mysql2", "~> 0.3.11"
+# gem "mysql2", "~> 0.3.11"
 end
 
 

@@ -1,0 +1,54 @@
+<script type="text/javascript">
+	function generate_feedback(button){
+		id = button.id
+		h=document.getElementById("comment_"+id);
+	
+		if(button.name.indexOf("rm" )!= -1){
+			h.innerHTML=" ";
+			button.value="-->";
+			button.name="add";
+		}else{
+			h.innerHTML="<input type='text' id='"+id+"' />";
+			
+			button.value="<--";
+			button.name="rm";
+		}
+	}
+</script>
+
+<b>Hello there </b>
+<br />
+<b> Title: </b><%= @problem.title %>
+<br />
+
+	<%= form_tag(upload_created_admin_problem_path) do %>
+	
+	<table id="feedback_table">
+		<tr>
+			<th>Index</th>
+			<th>Line</th>
+			<th>Button</th>
+			<th>Feedback Comment</th>
+		</tr>
+		<% @out.each_with_index do |line,i| %>
+		<tr>
+			<td> 
+				<%= i %>
+			</td>
+			<td>
+				<%= line %>
+			</td>
+			<td>
+				<input type="button" value="-->" id="<%= i %>" name="add" onclick="generate_feedback(this)" />
+			</td>
+			<td id='<%= "comment_#{i}" %>' >
+				<%= text_field_tag i %>
+			</td>
+		</tr>
+		<% end %>
+	</table>
+	<br />
+	<br />
+	<%= hidden_field_tag 'lines', @out.length %>
+	<%= submit_tag "Create " %>
+	<% end %>

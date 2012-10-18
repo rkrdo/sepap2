@@ -3,14 +3,20 @@
 route=$1
 archivo=$2
 ejecutable=$3
-error=$4
+entrada=$4
+salida=$5
+error=$6
 
 echo "" > $error
 
 cd $route
 g++ $archivo -o $ejecutable &> $error
 if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
-	echo "ok"
+	echo "ok - compilacion exitosa de solucion"
+	
+	$ejecutable < $entrada &> $salida &
+	CppPID=$!
+	wait $CppPID
 else
 	echo "Error de compilación"
 fi

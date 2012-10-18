@@ -2,14 +2,21 @@
 #Se compila el archivo de solucion de un problema
 route=$1
 archivo=$2
-error=$3
+ejecutable=$3
+entrada=$4
+salida=$5
+error=$6
 
 echo "" > $error
 
 cd $route
 javac $archivo &> $error
 if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
-	echo "ok"
+	echo "ok - compilación exitosa de solucion"
+	
+	java -classpath $ejecutable < $entrada &> $salida &
+	javaPID=$!
+	wait $javaPID
 else
 	echo "Error de compilación"
 fi
