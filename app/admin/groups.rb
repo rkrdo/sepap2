@@ -35,7 +35,7 @@ ActiveAdmin.register Group do
     panel "Members" do
       table_for group.enrollments do
         column "Num" do |enrollment|
-          enrollment.user.try(:num)
+          link_to enrollment.user.num, admin_user_path(enrollment.user)
         end
         column "First Name" do |enrollment|
           enrollment.user.try(:name)
@@ -44,6 +44,9 @@ ActiveAdmin.register Group do
           enrollment.user.try(:lastname)
         end
       end
+    end
+    panel "Revision Per Problem" do
+      render "problem_revision"
     end
   end
 

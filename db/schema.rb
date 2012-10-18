@@ -109,9 +109,6 @@ ActiveRecord::Schema.define(:version => 20121010001256) do
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",    :null => false
-    t.string   "num"
-    t.string   "name"
-    t.string   "lastname"
     t.string   "encrypted_password",     :default => "",    :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -124,6 +121,9 @@ ActiveRecord::Schema.define(:version => 20121010001256) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
     t.boolean  "teacher",                :default => false, :null => false
+    t.string   "name"
+    t.string   "lastname"
+    t.string   "num"
     t.boolean  "admin",                  :default => false
   end
 

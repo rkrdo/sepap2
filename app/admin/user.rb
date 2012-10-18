@@ -10,12 +10,19 @@ ActiveAdmin.register User do
   end
 
   show do |ad|
-    attributes_table do
-        row :name
-        row :num
-        row :email
-        row :teacher
+    panel "User" do
+      attributes_table do
+          row :name
+          row :num
+          row :email
+        end
+    end
+    panel "Attempts" do
+      table_for(user.attempts) do |t|
+        t.column :problem
+        t.column :outcome
       end
+    end
   end
 
   index do
