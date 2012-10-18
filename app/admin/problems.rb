@@ -19,8 +19,8 @@ ActiveAdmin.register Problem do
 		def edit
 			@problem = Problem.find(params[:id])
 			@types = @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
-			puts "/////////////////////////////////////////////////////////////////////////"
-			puts @types.to_s
+			#puts "/////////////////////////////////////////////////////////////////////////"
+			#puts @types.to_s
 		end
 
 		def show
@@ -51,7 +51,6 @@ ActiveAdmin.register Problem do
 	member_action :upload_created, :method => :post do
 		@problem = Problem.find_by_id(params[:id])
 		
-		puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>_______________"
 		for i in 0..Integer(params[:lines])-1
 			if(!params["#{i}"].empty?)
 				f = Feedback.new()
