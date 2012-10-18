@@ -7,6 +7,8 @@ gem 'thin'
 
 gem 'cancan'
 
+gem 'json_builder'
+
 #ace code editor and syntax highlighter
 gem 'ace-rails'
 gem 'coderay'
