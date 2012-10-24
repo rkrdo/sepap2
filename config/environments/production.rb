@@ -64,4 +64,11 @@ Sepap2::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+
+  #Send notifications on errors
+  config.middleware.use ExceptionNotifier,
+  :email_prefix => "[SEPAP Exception] ",
+  :sender_address => %{"SEPAP EXCEPTIONS" <notifier@sepap.com>},
+  :exception_recipients => %w{omgitsalan@gmail.com, higgg.1989@gmail, rafagarciag90@gmail.com,jblancosegura@gmail.com}
 end
