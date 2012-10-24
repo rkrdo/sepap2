@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-
+gem "jquery-fileupload-rails"
+gem "mysql2"
 #thin webserver
 gem 'thin'
 
