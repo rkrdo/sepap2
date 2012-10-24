@@ -19,6 +19,8 @@ gem "rmagick"
 gem "carrierwave"
 gem "jquery-fileupload-rails"
 
+gem "exception_notification"
+
 # Active Admin + Required Gems
 gem 'activeadmin'
 gem "meta_search", '>= 1.1.0.pre'
