@@ -21,6 +21,7 @@ ActiveAdmin.register User do
       table_for(user.attempts) do |t|
         t.column :problem
         t.column :outcome
+        t.column :created_at
       end
     end
   end

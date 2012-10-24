@@ -1,7 +1,8 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-
+gem "jquery-fileupload-rails"
+gem "mysql2"
 #thin webserver
 gem 'thin'
 
@@ -18,6 +19,8 @@ gem 'RedCloth'
 gem "rmagick"
 gem "carrierwave"
 gem "jquery-fileupload-rails"
+
+gem "exception_notification"
 
 # Active Admin + Required Gems
 gem 'activeadmin'
