@@ -1,7 +1,7 @@
 class Group < ActiveRecord::Base
   belongs_to :subject
   has_many :users, through: :enrollments
-  has_many :enrollments
+  has_many :enrollments,  dependent: :destroy
   attr_accessible :name, :period, :subject_id, :members, :enrollments_attributes
 
   accepts_nested_attributes_for :enrollments, allow_destroy: true
