@@ -5,7 +5,7 @@ class Attempt < ActiveRecord::Base
 
 	# File uploader
 	mount_uploader :code, CodeUploader
-
+	validates_presence_of :code
 	def compile
 
 		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}"
@@ -76,23 +76,29 @@ class Attempt < ActiveRecord::Base
 
 		f1Lines = f1.readlines
 		f2Lines = f2.readlines
+		
+		expected_output_lines = f2.lineno
 
 		problem = Problem.find(problem_id)
-		feedback_lines = []
-		feedback_comments = []
 		feedback_list = "Consider the following: <br /><ul>"
 
-		problem.feedbacks.each_with_index do |feed, i|
-			feedback_lines[i] = feed.line_number
-			feedback_comments[i] = feed.comment
-		end
-
-
 		f1Lines.each_with_index do |line, i|
-			if(!line.eql?(f2Lines[i]))
-				feedback_list += "<li>" + feedback_comments[i] +"</li>"
+			puts "valores #{i}  con #{expected_output_lines}"
+			puts "entra"
+			if(i<expected_output_lines)
+				if(!line.eql?(f2Lines[i]))
+					begin
+						feedback_list += "<li>" + Feedback.find_by_sql("SELECT comment FROM feedbacks WHERE problem_id=#{problem.id} AND line_number=#{i}").first[:comment] +"</li>"
+					rescue 
+						puts "Error en feedbacks "
+					end
+				end
 			end
 		end
+		
+		f1.close
+		f2.close
+		
 		feedback_list += "</ul>"
 	end
 
