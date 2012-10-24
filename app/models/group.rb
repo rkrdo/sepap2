@@ -4,7 +4,7 @@ class Group < ActiveRecord::Base
   has_many :enrollments
   attr_accessible :name, :period, :subject_id, :members, :enrollments_attributes
 
-  accepts_nested_attributes_for :enrollments, allow_destroy: true
+  accepts_nested_attributes_for :enrollments, allow_destroy: true, dependent: :destroy
   accepts_nested_attributes_for :users
 
   validates_presence_of :name, :period, :subject, :members
