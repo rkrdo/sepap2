@@ -1,16 +1,24 @@
-<h2>Change your password</h2>
+<%= devise_error_messages! %>
+<div id="wrapper2">
+	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
+	<div class="upper">	
+		<h1>Change your password</h1>
+		<%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
+	</div>
 
-<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
-  <%= f.hidden_field :reset_password_token %>
+	<div class="content">
+		<span>Please input your newly desired password.</span><br />
+ 		 <%= f.hidden_field :reset_password_token %>
 
-  <div><%= f.label :password, "New password" %><br />
-  <%= f.password_field :password %></div>
+		<%= f.password_field :password, :placeholder=>"New Password", :class=>"input password"  %>
 
-  <div><%= f.label :password_confirmation, "Confirm new password" %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "Change my password" %></div>
-<% end %>
-
-<%= render "links" %>
+ 		 <%= f.password_field :password_confirmation, :placeholder=>"Confirm New Password", :class=>"input password" %>
+	</div>
+	
+	<div class="footer">
+ 		<div><%= f.submit "Change my password", :class=>"button" %></div>
+		<%= link_to 'Sign In', new_user_session_path, :class=>"register" %>
+		<%= link_to 'Register', new_user_registration_path, :class=>"register" %>
+	<% end %>
+	</div>
+</div>
