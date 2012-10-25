@@ -22,6 +22,13 @@ class Problem < ActiveRecord::Base
     end
   end
 
+	def get_feedback_comment(line) 
+		self.feedbacks.each do |f|
+			if f.line_number == line
+				return f.comment
+			end
+		end
+	end
 
 	def  store_input
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.id}"

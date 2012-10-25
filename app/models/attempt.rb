@@ -88,9 +88,9 @@ class Attempt < ActiveRecord::Base
 			if(i<expected_output_lines)
 				if(!line.eql?(f2Lines[i]))
 					begin
-						feedback_list += "<li>" + Feedback.find_by_sql("SELECT comment FROM feedbacks WHERE problem_id=#{problem.id} AND line_number=#{i}").first[:comment] +"</li>"
+						feedback_list += "<li>" + problem.get_feedback_comment(i) +"</li>"
 					rescue 
-						puts "Error en feedbacks "
+						
 					end
 				end
 			end
