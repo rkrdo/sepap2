@@ -50,6 +50,15 @@ Sepap2::Application.configure do
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.smtp_settings = {
+     :address              => "smtp.gmail.com",
+     :port                 => 587,
+     :domain               => 'gmail.com',
+     :user_name            => 'robertoplancarte@gmail.com',
+     :password             => 'zaqokm303030',
+     :authentication       => :plain,
+     :enable_starttls_auto => true  }
+  config.action_mailer.default_url_options = { :host => 'sepap.mty.itesm.mx:8080' }
 
   # Enable threaded mode
   # config.threadsafe!
@@ -69,6 +78,6 @@ Sepap2::Application.configure do
   #Send notifications on errors
   config.middleware.use ExceptionNotifier,
   :email_prefix => "[SEPAP Exception] ",
-  :sender_address => %{"SEPAP EXCEPTIONS" <notifier@sepap.com>},
+  :sender_address => %{"SEPAP EXCEPTIONS" <robertoplancarte@gmail.com>},
   :exception_recipients => %w{omgitsalan@gmail.com, higgg.1989@gmail, rafagarciag90@gmail.com,jblancosegura@gmail.com}
 end
