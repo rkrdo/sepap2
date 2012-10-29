@@ -102,4 +102,12 @@ class Attempt < ActiveRecord::Base
 		feedback_list += "</ul>"
 	end
 
+	def self.search(search)
+	  if search
+	    where('name LIKE ?', "%#{search}%")
+	  else
+	    nil
+	  end
+	end
+
 end

@@ -46,7 +46,7 @@ ActiveAdmin.register Group do
       end
     end
     panel "Revision Per Problem" do
-      render "problem_revision"
+      render "problem_revision", locals: {group: group}
     end
   end
 
