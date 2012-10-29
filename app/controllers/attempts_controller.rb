@@ -49,7 +49,7 @@ class AttemptsController < ApplicationController
 	format.html { redirect_to @problem, notice: "Attempt was successfully created [#{@attempt.outcome}]" }
         format.json { render json: @problem, status: :created, location: @attempt }
       else
-        format.html { render action: "new" }
+        format.html { redirect_to @problem, notice: 'You need to upload a file.' }
         format.json { render json: @problem.errors, status: :unprocessable_entity }
       end
     end
