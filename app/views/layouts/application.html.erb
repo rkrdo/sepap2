@@ -13,9 +13,9 @@
         <li><%= link_to "Admin", admin_dashboard_path if current_user.try(:teacher?) %></li>
       <div class="right">
         <ul>
-          <li><%= link_to "Problem list", problems_path %></li>
+          <li><%= link_to "#{t :menu_problems}", problems_path %></li>
           <%= render 'devise/menu/login_items' %>
-	  <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0">Feedback</a></li>
+	  <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0"><%=t :feedback %></a></li>
         </ul>
       </div>
     </ul>
@@ -23,6 +23,11 @@
   <p id="notice"><%= notice %></p>
   <div class="container">
     <%= yield %>
+     	 <div>
+		TEST LANGUAGE<br />
+		<%= link_to "English", :locale=>'en'%>
+		<%= link_to "Espanol", :locale=>'es'%>
+  	</div>
   </div>
 </body>
 </html>

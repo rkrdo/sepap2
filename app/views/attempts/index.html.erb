@@ -1,12 +1,31 @@
-<h3>Listing attempted problems</h3>
+<script type="text/javascript">
+$(document).ready(function() {
+    oTable = $('.data_table').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+	"bDestroy":true,
+	 "oLanguage": {
+		<% if  "#{t :locale}" == "en" %>
+               	    	"sUrl":     "/assets/dataTables.english.txt"
+		<% else %>
+			"sUrl":     "/assets/dataTables.spanish.txt"
+		<% end %>
+            }
+    });
+    $('.data_table').css('width', '');
+} );
+</script>
+
+
+<h3><%=t :attempt_listing %></h3>
 <hr/>
 <div id="table_container">
   <table class="data_table">
       <thead>
       <tr>
-        <th>Problem</th>
-        <th>Number of attempts</th>
-        <th>Outcome</th>
+        <th><%=t :attempt_problem %></th>
+        <th><%=t :attempt_number %></th>
+        <th><%=t :attempt_outcome %></th>
       </tr>
       </thead>
       <tbody>

@@ -2,4 +2,72 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+    hello: "Hello world"
+    welcome: "Welcome to SEPAP"
+    listing: "Listing problems"
+    prob_title: "Title"
+    prob_type: "Type"
+    attempt_listing: "Listing attempted problems"
+    attempt_problem: "Problem"
+    attempt_number: "Number of attempts"
+    attempt_outcome: "Outcome"
+    feedback: "Feedback"
+    menu_problems: "Problem List"
+    menu_attempts: "My attempts"
+    menu_edit: "Edit Registration"
+    menu_logout: "Logout"
+    menu_login: "Login"
+    menu_register: "Register"
+    locale: "en"
+    home_body: "<h3>Quick Guide</h3>
+<br/>
+<h3>Before Starting</h3>
+<p>Reading this quick guide is recommended in order to start using SEPAP properly.</p>
+
+<p>To configure your account for the first time there are two possible scenarios. <br />
+a) If your teacher/instructor created an account for you:</p>
+<ol>
+   	<li>Go to the Sign In page.</li>
+   	<li>Enter your ID in the following format: 'A00123456'.</li>
+   	<li>Enter your password, which should be your ID 'a00123456' (must be in lower case!). </li>
+    	<p>Once logged in, it is strongly recommended to change your password to avoid misuse of your account.</p>
+	<li>Click on 'Edit Registration' on the upper menu.</li>
+	<li>Type in your current password as well as the newly desired password to edit your sign in credentials.</li>
+</ol>
+
+<p>b) Or if you do not have an account then head to the Register page.</p>
+
+<h3>To verify the problem's solution</h3>
+<p>Una vez realizada la solución de un problema, es hora de utilizar el juez en línea que provee el SEPAP
+para verificar si efectivamente nuestra solución es exitosa.</p>
+<ol>
+    <li>Da click en la opción “Subir solución” del Menú</li>
+    <li>Aparecerá una forma en la que se ingresará el número de problema a resolver, el
+    lenguaje de programación utilizado para resolver dicho problema, así como un campo
+    donde tendrás que anexar el archivo con tu código fuente.</li>
+    <li>Una vez completada la información anterior, hacer click en el botón de “Subir solución”</li>
+    <li>Una vez terminado el proceso de verificación, aparecerá una nueva pantalla con el
+    resultado a tu solución, así como una muestra del código fuente que fue utilizado y los
+    errores de compilación del mismo en caso de existir.</li>
+</ol>
+<p> El resultado a tu solución puede caer en alguna de las siguientes clasificaciones:</p>
+
+<ul>
+    <li><b>ACEPTADO</b> –Tu solución fue exitosa y arrojó los resultados esperados</li>
+    <li><b>RECHAZADO</b> – Tu solución compiló exitosamente pero los resultados arrojados no cumple con las especificaciones</li>
+    <li><b>ERROR DE COMPILACIÖN</b> – Tu solución no pudo ser compilada en el servidor, posiblemente por errores de sintaxis</li>
+    <li><b>TIEMPO EXCEDIDO</b> – Tu solución ha tardado más tiempo del esperado en ejecutarse, posiblemente
+    por algún error de lógica (por ejemplo ciclos infinitos)</li>
+</ul>
+
+<h3>Para verificar el historial de soluciones a problemas anteriores</h3>
+<p>En ocaciones es necesario verificar si un problema ya ha sido aceptado por el juez, para hacerlo
+podemos seguir los siguientes pasos:</p>
+<ol>
+<li>Da click en la opción “Historial” del Menú</li>
+<li>Aparecerá una tabla con los números de problema así como un resumen de los
+resultados</li>
+<li>Para ver cuál fue el resultado de nuestro último intento podemos dar click sobre el
+número de problema, aparecerá una nueva pantalla con el último resultado así como el
+código fuente utilizado.</li>
+</ol>"
