@@ -1,26 +1,42 @@
-<%= devise_error_messages! %>
-<div id="wrapper2">
-	<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-	<div class="upper">
-		<h1><%=t :menu_edit %></h1>
-		<%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
-	</div>
+<div id="hmenu">
+  <ul>
+    <li><%= link_to 'SEPAP', root_path %></li>
+      <li><%= link_to "Admin", admin_dashboard_path if current_user.try(:teacher?) %></li>
+    <div class="right">
+      <ul>
+        <li><%= link_to "#{t :menu_problems}", problems_path %></li>
+        <%= render 'devise/menu/login_items' %>
+  <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0"><%=t :feedback %></a></li>
+      </ul>
+    </div>
+  </ul>
+</div>
+<p id="notice"><%= notice %></p>
+<div class="container">
+  <%= devise_error_messages! %>
+  <h3><%=t :menu_edit %></h3>
+  <hr />
+  <div id="wrapper2">
+	  <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+	  <div class="upper">
+		  <%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
+	  </div>
 
-	<div class="content">
-		<span>Please edit your registration</span><br />
-		<%= f.email_field :email, :class=>"input username"  %>
-		
-		<%= f.password_field :current_password, :placeholder=>"Current Password", :class=>"input password" %>
-		<br />
+	  <div class="content">
+		  <span>Please edit your registration</span><br />
+		  <%= f.email_field :email, :class=>"input username"  %>
 
-		<%= f.password_field :password, :placeholder=>"New Password", :class=>"input password" %>
-	  	<%= f.password_field :password_confirmation, :placeholder=>"Please input your new password again", :class=>"input password" %>
-		
-	</div>
-	
-	<div class="footer">
-		<div><%= f.submit "Update", :class=>"button"   %></div>
-	<% end %>
-	</div>
+		  <%= f.password_field :current_password, :placeholder=>"Current Password", :class=>"input password" %>
+		  <br />
 
+		  <%= f.password_field :password, :placeholder=>"New Password", :class=>"input password" %>
+    	<%= f.password_field :password_confirmation, :placeholder=>"Please input your new password again", :class=>"input password" %>
+
+	  </div>
+
+	  <div class="footer">
+		  <div><%= f.submit "Update", :class=>"button"   %></div>
+	  </div>
+	  <% end %>
+  </div>
 </div>
