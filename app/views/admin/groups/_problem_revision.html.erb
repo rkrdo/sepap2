@@ -1,22 +1,14 @@
-<table>
-  <tr>
-    <th> Problem: </th>
-    <th>
-
-    </th>
-  </tr>
-  <tr>
-    <th> Num </th>
-    <th> Number of Attempts </th>
-    <th> Status </th>
-    <th> Date of Last Attempt </th>
-  </tr>
-  <% group.enrollments.each do |e| %>
-    <tr>
-      <th><%= e.user.num %></th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  <% end %>
-</table>
+<div id="table_container">
+  <table class="data_table">
+    <thead>
+      <tr>
+        <th> Num </th>
+        <th> Number of Attempts </th>
+        <th> Status </th>
+        <th> Date of Last Attempt </th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>

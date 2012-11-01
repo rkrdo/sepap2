@@ -1,5 +1,6 @@
 class Group < ActiveRecord::Base
   belongs_to :subject
+  has_many :attempts, through: :users
   has_many :users, through: :enrollments
   has_many :enrollments,  dependent: :destroy
   attr_accessible :name, :period, :subject_id, :members, :enrollments_attributes
