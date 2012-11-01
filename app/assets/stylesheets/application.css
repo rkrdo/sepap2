@@ -117,7 +117,7 @@ div.right {
 LOGIN FORM
 *******************/
 
-.new_user {
+.new_user, .edit_user {
 	width: 600px;
 	margin: 0 auto;
 	position: relative;
@@ -135,11 +135,11 @@ LOGIN FORM
 HEADER
 *******************/
 
-.new_user .upper {
+.new_user .upper, .edit_user .upper {
 	padding: 10px 30px 110px 30px;
 }
 
-.new_user .upper h1 {
+.new_user .upper h1, .edit_user .upper h1 {
 	font-family: 'Bree Serif', serif;
 	font-weight: 300;
 	font-size: 28px;
@@ -150,14 +150,14 @@ HEADER
 	float: left;
 }
 
-.new_user .upper .logo_tec{
+.new_user .upper .logo_tec, .edit_user .upper .logo_tec{
 	float:right;
 }
 
 /*******************
 CONTENT
 *******************/
-.new_user .content span {
+.new_user .content span, .edit_user .content span {
 	font-size: 11px;
 	line-height: 16px;
 	color: #678889;
@@ -165,12 +165,12 @@ CONTENT
 	float: left;
 }
 
-.new_user .content {
+.new_user .content, .edit_user .content {
 	padding: 0 30px 25px 30px;
 }
 
 /* Input field */
-.new_user .content .input {
+.new_user .content .input, .edit_user .content .input {
 	width: 288px;
 	padding: 15px 25px;
 
@@ -190,16 +190,16 @@ CONTENT
 }
 
 /* Second input field */
-.new_user .content .password, .new_user .content .pass-icon {
+.new_user .content .password, .new_user .content .pass-icon, .edit_user .content .password, .edit_user .content .pass-icon {
 	margin-top: 25px;
 }
 
-.new_user .content .input:hover {
+.new_user .content .input:hover, .edit_user .content .input:hover {
 	background: #dfe9ec;
 	color: #414848;
 }
 
-.new_user .content .input:focus {
+.new_user .content .input:focus, .edit_user .content .input:focus {
 	background: #dfe9ec;
 	color: #414848;
 
@@ -250,7 +250,7 @@ CONTENT
 FOOTER
 *******************/
 
-.new_user .footer {
+.new_user .footer, .edit_user .footer {
 	padding: 25px 30px 20px 30px;
 	overflow: auto;
 
@@ -263,7 +263,7 @@ FOOTER
 }
 
 /* Login button */
-.new_user .footer .button {
+.new_user .footer .button, .edit_user .footer .button {
 	float:right;
 	padding: 11px 25px;
 
@@ -283,7 +283,7 @@ FOOTER
 	-webkit-box-shadow: inset 0 0 2px rgba(255,255,255,0.75);
 }
 
-.new_user .footer .button:hover {
+.new_user .footer .button:hover, .edit_user .footer .button:hover {
 	background: #3f9db8;
 	border: 1px solid rgba(255,255,255,0.75);
 
@@ -292,7 +292,7 @@ FOOTER
 	-webkit-box-shadow: inset 0 1px 3px rgba(0,0,0,0.5);
 }
 
-.new_user .footer .button:focus {
+.new_user .footer .button:focus, .edit_user .footer .button:focus {
 	position: relative;
 	bottom: -1px;
 
@@ -304,7 +304,7 @@ FOOTER
 }
 
 /* Register button */
-.new_user .footer .register {
+.new_user .footer .register, .edit_user .footer .register {
 	display: block;
 	float: right;
 	padding: 10px;
@@ -321,11 +321,11 @@ FOOTER
 	text-shadow: 0px 1px 0 rgba(255,255,255,0.5);
 }
 
-.new_user .footer .register:hover {
+.new_user .footer .register:hover, .edit_user .footer .register:hover {
 	color: #3f9db8;
 }
 
-.new_user .footer .register:focus {
+.new_user .footer .register:focus, .edit_user .footer .register:focus {
 	position: relative;
 	bottom: -1px;
 }
