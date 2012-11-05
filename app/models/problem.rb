@@ -1,7 +1,7 @@
 class Problem < ActiveRecord::Base
   has_many :attempts, :dependent => :destroy
   has_many :feedbacks, :dependent => :destroy
-  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :type_list, :feedbacks
+  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :type_list, :feedbacks, :exe
   attr_reader :type_list
 
   before_save :remove_quotes
@@ -35,11 +35,16 @@ class Problem < ActiveRecord::Base
 		
 		input_path = basepath_problem+"/input"
 		
+		exe = File.basename(self.main.to_s,File.extname(self.main.to_s))
+		
 		File.open(input_path,'w') {|f| f.write(self.input)}
 		self.update_attributes(:input=> input_path)
 		
 		# Store output path
 		self.update_attributes(:output=> basepath_problem+"/output")
+		
+		# Store exe path
+		self.update_attributes(:exe=> basepath_problem+"/"+exe)
 		
 	end
 	

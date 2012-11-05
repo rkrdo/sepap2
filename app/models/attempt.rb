@@ -6,15 +6,11 @@ class Attempt < ActiveRecord::Base
 	# File uploader
 	mount_uploader :code, CodeUploader
 	validates_presence_of :code
+	
+	
 	def compile
-
-		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}"
-
+		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
-
-#		if self.problem.module?
-#			link = `cd #{basepath};ln -s #{self.problem.main}`
-#		end
 
 		# Time limit
 		time=Integer(self.problem.time)
@@ -43,8 +39,14 @@ class Attempt < ActiveRecord::Base
 
 		if self.language.include? "Java"
 
-			# File to execute after compile
-			exe=basepath_user+" "+file_basename
+			if self.problem.method?
+				to_link = self.problem.exe+".class"
+				link = `cd #{basepath_user};ln -s #{to_link}`
+				exe = basepath_user+" "+File.basename(self.problem.main.to_s,File.extname(self.problem.main.to_s))
+			else
+				# File to execute after compile
+				exe=basepath_user+" "+file_basename
+			end
 
 			self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
 
@@ -65,9 +67,9 @@ class Attempt < ActiveRecord::Base
 	end
 
 	def get_feedback
-		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}"
+		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
-
+		
 		output=basepath_user+"/output"
 		expected_output = basepath_problem + "/output"
 
