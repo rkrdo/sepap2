@@ -1,7 +1,7 @@
 class Problem < ActiveRecord::Base
   has_many :attempts, :dependent => :destroy
   has_many :feedbacks, :dependent => :destroy
-  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :type_list, :feedbacks, :exe
+  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :type_list, :feedbacks, :exe, :language
   attr_reader :type_list
 
   before_save :remove_quotes
