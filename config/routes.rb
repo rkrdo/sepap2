@@ -1,6 +1,6 @@
 Sepap2::Application.routes.draw do
 
-
+scope "/:locale" do
   devise_for :users
   ActiveAdmin.routes(self)
   resources :attempts
@@ -8,7 +8,7 @@ Sepap2::Application.routes.draw do
     resources :attempts
     get :use_toolkit, on: :member
   end
-
+end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
