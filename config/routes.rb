@@ -9,6 +9,7 @@ scope "/:locale" do
     get :use_toolkit, on: :member
   end
 end
+devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
