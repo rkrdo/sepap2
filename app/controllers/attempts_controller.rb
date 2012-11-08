@@ -46,7 +46,8 @@ class AttemptsController < ApplicationController
     respond_to do |format|
       if @attempt.save
 	       @attempt.compile
-	       format.html { redirect_to @problem, notice: "Your attempt was successfully created." }
+	       new_tab = problem_path(@problem) + "/#tabs-1"
+	       format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
          format.json { render json: @problem, status: :created, location: @attempt }
       else
         format.html { redirect_to @problem, notice: 'You need to upload a file.' }
