@@ -2,6 +2,40 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 es:
+    activerecord:
+        models:
+          user: "Usuario"
+        attributes:
+          user:
+            email: "Correo electrónico"
+            num: "Matrícula"
+            password: "Clave"
+            password: "Confirmación de Clave"
+        errors:
+          models:
+            user:
+              attributes:
+                num:
+                  blank: "no puede estar vacía."
+                  taken: "ya ha sido utilizada."
+                  too_short: "es muy corta."
+                  too_long: "es muy larga."
+                  invalid: "no es del formato correcto (a0xxxxxxx)."
+                email:
+                  blank: "no puede estar vacío."
+                  taken: "ya ha sido utilizado."
+                  too_short: "es muy corto."
+                  too_long: "es muy largo."
+                password:
+                  blank: "no puede estar vacía."
+                  taken: "ya ha sido utilizada."
+                  too_short: "es muy corta."
+                  too_long: "es muy larga."
+                password_confirmation:
+                  blank: "no puede estar vacía."
+                  taken: "ya ha sido utilizada."
+                  too_short: "es muy corta."
+                  too_long: "es muy larga."
     hello: "Hola mundo"
     welcome: "Bienvenido a SEPAP"
     studentID: "Matrícula"

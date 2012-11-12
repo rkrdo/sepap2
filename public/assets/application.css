@@ -357,7 +357,7 @@ div#error{
   box-shadow: 0px 0px 5px 5px rgba(0, 0, 0, 0.5);
 }
 
-#notice{
+#notice, div#error_explanation{
 	border: 1px solid #CCC;
 	color: #666;
 	background-color: #E8E8E8;
