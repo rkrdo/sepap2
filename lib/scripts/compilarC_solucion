@@ -8,6 +8,7 @@ salida=$5
 error=$6
 
 echo "" > $error
+echo "" > $salida
 
 cd $route
 g++ $archivo -o $ejecutable &> $error
