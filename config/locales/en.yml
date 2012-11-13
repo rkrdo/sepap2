@@ -4,9 +4,44 @@
 en:
     hello: "Hello world"
     welcome: "Welcome to SEPAP"
+    studentID: "Student ID"
+    password: "Password"
+    password_confirm: "Please input your password again"
+    password_current: "Current Password"
+    password_new: "New Password"
+    password_new_confirm: "Please input your new password again"
+    update: "Update"
+    remember_me: "Remember me"
+    sign_in: "Sign In"
+    sign_in_page: "Sign In"
+    forgot_password: "Forgot your password?"
+    register: "Register"
+    sign_up: "Sign Up"
+    reset: "Reset"
+    session_sign_in: "Please Sign In"
+    session_register: "Please Sign Up"
+    session_password: "Please input your Student ID and e-mail to recover your password"
+    session_edit: "Please edit your registration"
     listing: "Listing problems"
     prob_title: "Title"
     prob_type: "Type"
+    prob_description: "Description"
+    prob_newA: "New Attempt"
+    toolkit_input: "Input to test"
+    toolkit_output: "Output"
+    outcome_accept: "ACCEPTED"
+    outcome_accept_text: "Your code worked just as expected, good work!"
+    outcome_fail: "REJECTED"
+    outcome_fail_text: "We are sorry, your solution didn't work the way it needed to."
+    outcome_timeout: "TIME EXCEEDED"
+    outcome_timeout_text: "We are sorry, your solution is taking too long. Oops, maybe it loops?"
+    outcome_uncompile: "COMPILATION ERROR"
+    outcome_uncompile_text: "We are sorry, your code couldn't be compiled successfully."
+    attempt_feedback: "Consider the following:"
+    attempt_code: "View Attempt Code"
+    attempt_language: "Language"
+    attempt_source: "Source Code"
+    attempt: "Attempt"
     attempt_listing: "Listing attempted problems"
     attempt_problem: "Problem"
     attempt_number: "Number of attempts"
@@ -18,6 +53,7 @@ en:
     menu_logout: "Logout"
     menu_login: "Login"
     menu_register: "Register"
+    submit: "Submit"
     locale: "en"
     home_body: "<h3>Quick Guide</h3>
 <br/>
@@ -36,38 +72,32 @@ a) If your teacher/instructor created an account for you:</p>
 </ol>
 
 <p>b) Or if you do not have an account then head to the Register page.</p>
+<p>Now go ahead and browse the problems list!</p>
 
-<h3>To verify the problem's solution</h3>
-<p>Una vez realizada la solución de un problema, es hora de utilizar el juez en línea que provee el SEPAP
-para verificar si efectivamente nuestra solución es exitosa.</p>
+<h3>Verifying the problem's solution</h3>
+<p>Once you have solved a problem, then the next step is using SEPAP's online judge to verify the result.</p>
+
 <ol>
-    <li>Da click en la opción “Subir solución” del Menú</li>
-    <li>Aparecerá una forma en la que se ingresará el número de problema a resolver, el
-    lenguaje de programación utilizado para resolver dicho problema, así como un campo
-    donde tendrás que anexar el archivo con tu código fuente.</li>
-    <li>Una vez completada la información anterior, hacer click en el botón de “Subir solución”</li>
-    <li>Una vez terminado el proceso de verificación, aparecerá una nueva pantalla con el
-    resultado a tu solución, así como una muestra del código fuente que fue utilizado y los
-    errores de compilación del mismo en caso de existir.</li>
+    <li>Go to the corresponding problem's page.</li>
+    <li>Select your code's corresponding language from the language select box.</li>
+    <li>Choose the file containg your solution's source code.</li>
+    <li>Finally click on Create Attempt.</li>
+    <li>Once you're done you will see the result on a new 'tab'.</li>
 </ol>
-<p> El resultado a tu solución puede caer en alguna de las siguientes clasificaciones:</p>
+<p> Your soultion can have one of the following outcomes:</p>
 
 <ul>
-    <li><b>ACEPTADO</b> –Tu solución fue exitosa y arrojó los resultados esperados</li>
-    <li><b>RECHAZADO</b> – Tu solución compiló exitosamente pero los resultados arrojados no cumple con las especificaciones</li>
-    <li><b>ERROR DE COMPILACIÖN</b> – Tu solución no pudo ser compilada en el servidor, posiblemente por errores de sintaxis</li>
-    <li><b>TIEMPO EXCEDIDO</b> – Tu solución ha tardado más tiempo del esperado en ejecutarse, posiblemente
-    por algún error de lógica (por ejemplo ciclos infinitos)</li>
+    <li><b>ACCEPTED</b> –Your solution was successful and did match the expected output.</li>
+    <li><b>REJECTED</b> – Your solution was compiled successfully but did not match the expected output.</li>
+    <li><b>COMPILATION ERROR</b> – Your solution could not be compiled.</li>
+    <li><b>TIME EXCEEDED</b> – Your solution took too much time during execution meaning it probably has an infinite loop.</li>
 </ul>
 
-<h3>Para verificar el historial de soluciones a problemas anteriores</h3>
-<p>En ocaciones es necesario verificar si un problema ya ha sido aceptado por el juez, para hacerlo
-podemos seguir los siguientes pasos:</p>
+<h3>Reviewing your previous attempts</h3>
+<p>To review your attempts you will need to do the following:</p>
 <ol>
-<li>Da click en la opción “Historial” del Menú</li>
-<li>Aparecerá una tabla con los números de problema así como un resumen de los
-resultados</li>
-<li>Para ver cuál fue el resultado de nuestro último intento podemos dar click sobre el
-número de problema, aparecerá una nueva pantalla con el último resultado así como el
-código fuente utilizado.</li>
+<li>Click on My attempts on the top menu.</li>
+<li>There will be a list containing all the problems you have previously attempted.</li>
+<li>Click on any problem you wish to review.</li>
+<li>Each tab contains an attempt you have done.</li>
 </ol>"

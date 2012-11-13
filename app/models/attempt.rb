@@ -82,7 +82,7 @@ class Attempt < ActiveRecord::Base
 		expected_output_lines = f2.lineno
 
 		problem = Problem.find(problem_id)
-		feedback_list = "Consider the following: <br /><ul>"
+		feedback_list = " <br /><ul>"
 
 		f1Lines.each_with_index do |line, i|
 			puts "valores #{i}  con #{expected_output_lines}"

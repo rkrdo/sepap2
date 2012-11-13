@@ -2,32 +2,36 @@
 <div id="wrapper2">
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
 <div class="upper">
-<h1>Welcome to SEPAP</h1>
+<h1><%=t :welcome %></h1>
 <%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
-
-
 </div>
 
+
 <div class="content">
-	<span>Please Sign In</span><br />
+	<span><%=t :session_sign_in %></span><br />
 	  
-	  <%= f.text_field :num, :placeholder=>"Student ID", :class=>"input username" %>
+	  <%= f.text_field :num, :placeholder=>"#{t :studentID}", :class=>"input username" %>
 	  
 	  <div class="user-icon"></div>
 	
 	  
-	  <%= f.password_field :password, :placeholder=>"Password", :class=>"input password"  %>
+	  <%= f.password_field :password, :placeholder=>"#{t :password}", :class=>"input password"  %>
           <div class="pass-icon"></div>	
 	
 	  <% if devise_mapping.rememberable? -%>
-	    <div><br /><%= f.check_box :remember_me %> <%= f.label :remember_me %></div>
+	    <div><br /><%= f.check_box :remember_me %> <%=t :remember_me %></div>
+
+	  <div class="flags_container">
+		<%=link_to( image_tag("english.png", size: "30x18", class:"flags") , :locale=>'en') %>
+		<%=link_to( image_tag("spanish.gif",  size: "30x18", class:"flags") , :locale=>'es') %>
+	</div>
  	  <% end -%>
 </div>
 
 <div class="footer">
-	<div><%= f.submit "Sign in", :class=>"button" %></div>
-	<%= link_to 'Register', new_user_registration_path, :class=>"register" %>
-	<%= link_to 'Forgot your password?', new_user_password_path, :class=>"register" %>
+	<div><%= f.submit "#{t :sign_in}", :class=>"button" %></div>
+	<%= link_to "#{t :register}", new_user_registration_path, :class=>"register" %>
+	<%= link_to "#{t :forgot_password}", new_user_password_path, :class=>"register" %>
 	<% end %>
 	
 </div>
