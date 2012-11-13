@@ -1,0 +1,37 @@
+<div id="table_container">
+  <table class="data_table">
+    <thead>
+      <tr>
+        <th> Problem: 
+          <%= form_tag admin_group_path(params[:id]) , method: 'get' , remote: true do %>
+            <%problems_array = group.assignments.map{ |a| [a.problem.title, a.problem.id] }%>
+            <%= select_tag 'problemToFind', options_for_select(problems_array),:include_blank => true%>
+            <%= submit_tag("Search")%>
+          <%end%>
+        </th>
+      </tr>
+      <tr>
+        <th> Num </th>
+        <th> Number of Attempts </th>
+        <th> Status </th>
+        <th> Date of Last Attempt </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @group.users.each do |user| %>
+        <tr>
+          <td> <%= user.num %></td>
+          <td> <%= user.attempts.where(:problem_id=> params[:problemToFind]).count %></td>
+          <td> 
+            <% if user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").count >= 1 %>
+              ACEPTADO
+            <%else%>
+              <%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:outcome) %>
+            <%end%>
+          </td>
+          <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)  %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

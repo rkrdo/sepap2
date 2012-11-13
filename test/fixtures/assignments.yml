@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  title: MyString
+  problem: 
+  group: 
+  due_date: 2012-11-12
+
+two:
+  title: MyString
+  problem: 
+  group: 
+  due_date: 2012-11-12
