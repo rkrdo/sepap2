@@ -14,7 +14,8 @@ class ProblemsController < ApplicationController
   # GET /problems/1.json
   def show
     @problem = Problem.find(params[:id])
-    @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).last(4)
+    @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).limit(4).order("created_at DESC")
+    @num_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).count
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}}

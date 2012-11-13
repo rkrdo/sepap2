@@ -25,11 +25,11 @@ if [ $? -eq 0 ]; then		#checa que la compilacion haya sido exitosa
 	wait $CppPID
 	cmp -s $salida $salida_esperada
 	if [ $? -eq 0 ]; then		#archivos iguales = 0
-		echo ACEPTADO
+		echo -n "ACEPTADO"
 	else
-		echo RECHAZADO
+		echo -n "RECHAZADO"
 	fi
 	
 else
-	echo "Error de compilación"
+	echo -n "Error de compilación"
 fi

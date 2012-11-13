@@ -8,15 +8,16 @@ salida=$5
 error=$6
 
 echo "" > $error
+echo "" > $salida
 
 cd $route
 g++ $archivo -o $ejecutable &> $error
 if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
-	echo "ok - compilacion exitosa de solucion"
+	echo -n "ok - compilacion exitosa de solucion"
 	
 	$ejecutable < $entrada &> $salida &
 	CppPID=$!
 	wait $CppPID
 else
-	echo "Error de compilación"
+	echo -n "Error de compilación"
 fi

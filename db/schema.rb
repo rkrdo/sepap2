@@ -94,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20121112212219) do
     t.string   "method"
     t.string   "input"
     t.string   "output"
+    t.string   "exe"
+    t.string   "language"
   end
 
   create_table "subjects", :force => true do |t|

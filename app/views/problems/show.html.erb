@@ -5,7 +5,7 @@
   <div id="left">
     <div id="problem_info" class="tabs-bottom">
       <ul>
-        <li><a href="#tabs-1">Description</a></li>
+        <li><a href="#tabs-1"><%=t :prob_description %></a></li>
         <li><a href="#tabs-2">Toolkit</a></li>
       </ul>
       <div id="tabs-1">
@@ -19,9 +19,9 @@
   <div id="right">
     <div id="problem_attempt" class="tabs-bottom">
       <ul>
-        <li><a href="#tabs-0">New Attempt</a></li>
+        <li><a href="#tabs-0"><%=t :prob_newA %></a></li>
         <% @user_problem_attempts.each_with_index do |attempt, i|  %>
-          <li id='tabs<%=i+1%>'><a href="#tabs-<%=i+1%>">Attempt #<%=i+1%>
+          <li id='tabs<%=i+1%>'><a href="#tabs-<%=i+1%>"><%=t :attempt %> #<%=@num_attempts-i%>
           </a></li>
         <% end %>
       </ul>
@@ -35,35 +35,36 @@
             <p>
               <%if attempt.outcome.strip == "ACEPTADO" %>
               <div id="aceptado" class="respuesta">
-              <%= image_tag "verde.ico" %><div id="outcome">Congratulations!</div>
-              <p class="descripcion">Your code worked just as expected, good work!</p>
+              <%= image_tag "verde.ico" %><div id="outcome"><%=t :outcome_accept %></div>
+              <p class="descripcion"><%=t :outcome_accept_text %></p>
               </div>
 
               <% elsif attempt.outcome.strip == "RECHAZADO" %>
               <div id="rechazado" class="respuesta">
-              <%= image_tag "magenta.ico" %><div id="outcome">Wrong Answer!</div>
-              <p class="descripcion">We are sorry, your solution didn't work the way it needed to.</p>
+              <%= image_tag "magenta.ico" %><div id="outcome"><%=t :outcome_fail %></div>
+              <p class="descripcion"><%=t :outcome_fail_text %></p>
               <br />
               <br />
               <br />
+ 	      <%=t :attempt_feedback %>
               <%= raw(attempt.get_feedback) %>
               </div>
 
               <%elsif attempt.outcome.strip == "TIEMPO EXCEDIDO" %>
               <div id="error" class="respuesta">
-              <%= image_tag "ambar.ico" %><div id="outcome"><%= attempt.outcome %></div>
-              <p class="descripcion">Tu solución tardó más tiempo del permitido.</p>
+              <%= image_tag "ambar.ico" %><div id="outcome"><%=t :outcome_timeout %></div>
+              <p class="descripcion"><%=t :outcome_timeout_text %></p>
               </div>
 
               <% else %>
               <div id="error" class="respuesta">
-              <%= image_tag "ambar.ico" %><div id="outcome">Compilation Error</div>
-              <p class="descripcion">We are sorry, your code couldn't be compiled succesfuly.</p>
+              <%= image_tag "ambar.ico" %><div id="outcome"><%=t :outcome_uncompile %></div>
+              <p class="descripcion"><%=t :outcome_uncompile_text %></p>
               </div>
               <%end%>
             </p>
 
-            <a href="#<%=i+1%>info" rel="facebox">View Attempt Code</a>
+            <a href="#<%=i+1%>info" rel="facebox"><%=t :attempt_code %></a>
             <div id="<%=i+1%>info" style="display:none"><%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %></div>
           </div>
         </div>

@@ -8,15 +8,10 @@ class Attempt < ActiveRecord::Base
 	# File uploader
 	mount_uploader :code, CodeUploader
 	validates_presence_of :code
-
+	
 	def compile
-		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}"
-
+		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
-
-#		if self.problem.module?
-#			link = `cd #{basepath};ln -s #{self.problem.main}`
-#		end
 
 		# Time limit
 		time=Integer(self.problem.time)
@@ -45,8 +40,14 @@ class Attempt < ActiveRecord::Base
 
 		if self.language.include? "Java"
 
-			# File to execute after compile
-			exe=basepath_user+" "+file_basename
+			if self.problem.method?
+				to_link = self.problem.exe+".class"
+				link = `cd #{basepath_user};ln -s #{to_link}`
+				exe = basepath_user+" "+File.basename(self.problem.main.to_s,File.extname(self.problem.main.to_s))
+			else
+				# File to execute after compile
+				exe=basepath_user+" "+file_basename
+			end
 
 			self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
 
@@ -67,9 +68,9 @@ class Attempt < ActiveRecord::Base
 	end
 
 	def get_feedback
-		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}"
+		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
-
+		
 		output=basepath_user+"/output"
 		expected_output = basepath_problem + "/output"
 
@@ -82,7 +83,7 @@ class Attempt < ActiveRecord::Base
 		expected_output_lines = f2.lineno
 
 		problem = Problem.find(problem_id)
-		feedback_list = "Consider the following: <br /><ul>"
+		feedback_list = " <br /><ul>"
 
 		f1Lines.each_with_index do |line, i|
 			puts "valores #{i}  con #{expected_output_lines}"
@@ -90,9 +91,9 @@ class Attempt < ActiveRecord::Base
 			if(i<expected_output_lines)
 				if(!line.eql?(f2Lines[i]))
 					begin
-						feedback_list += "<li>" + Feedback.find_by_sql("SELECT comment FROM feedbacks WHERE problem_id=#{problem.id} AND line_number=#{i}").first[:comment] +"</li>"
+						feedback_list += "<li>" + problem.get_feedback_comment(i) +"</li>"
 					rescue 
-						puts "Error en feedbacks "
+						
 					end
 				end
 			end

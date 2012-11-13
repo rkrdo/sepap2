@@ -1,12 +1,31 @@
-<h3>Listing problems</h3>
+<script type="text/javascript">
+$(document).ready(function() {
+    oTable = $('.data_table').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers",
+	"bDestroy":true,
+	 "oLanguage": {
+		<% if  "#{t :locale}" == "en" %>
+               	    	"sUrl":     "/assets/dataTables.english.txt"
+		<% else %>
+			"sUrl":     "/assets/dataTables.spanish.txt"
+		<% end %>
+            }
+    });
+    $('.data_table').css('width', '');
+} );
+</script>
+
+
+<h3><%=t :listing %></h3>
 <hr/>
 <div id="table_container">
   <table class="data_table">
   <thead>
   <tr>
-    <th>Title</th>
+    <th><%=t :prob_title %></th>
     <th>ID</th>
-    <th>Type</th>
+    <th><%=t :prob_type %></th>
   </tr>
   </thead>
   <tbody>

@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
 gem 'rails', '3.2.3'
-gem "jquery-fileupload-rails"
-gem "mysql2"
+
+#gem "jquery-fileupload-rails"
+#gem "mysql2"
+
 #thin webserver
 gem 'thin'
 
@@ -18,7 +20,7 @@ gem 'RedCloth'
 # Required for file uploads (Carrierwave)
 gem "rmagick"
 gem "carrierwave"
-gem "jquery-fileupload-rails"
+
 
 gem "exception_notification"
 
