@@ -1,12 +1,13 @@
 class Attempt < ActiveRecord::Base
 	belongs_to :problem
 	belongs_to :user
-	attr_accessible :language, :outcome, :problem_id, :code
+	has_many :enrollments, through: :user
+	has_many :groups, through: :enrollments
+	attr_accessible :language, :outcome, :problem_id, :code, :groups, :user, :enrollments
 
 	# File uploader
 	mount_uploader :code, CodeUploader
 	validates_presence_of :code
-	
 	
 	def compile
 		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
@@ -103,5 +104,4 @@ class Attempt < ActiveRecord::Base
 		
 		feedback_list += "</ul>"
 	end
-
 end

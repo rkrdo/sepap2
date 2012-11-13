@@ -46,11 +46,12 @@ ActiveAdmin.register Group do
       end
     end
     panel "Revision Per Problem" do
-      render "problem_revision"
+      render "problem_revision", locals: {group: group}
     end
   end
 
   controller do
+
     def create
       @group = Group.new(params[:group])
       respond_to do |format|
@@ -77,6 +78,10 @@ ActiveAdmin.register Group do
           format.html {render action: "index"}
         end
       end
+    end
+
+    def show
+      @group = Group.find(params[:id])
     end
   end
 end

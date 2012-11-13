@@ -1,6 +1,8 @@
 class Group < ActiveRecord::Base
   belongs_to :subject
+  has_many :attempts, through: :users
   has_many :users, through: :enrollments
+  has_many :assignments
   has_many :enrollments,  dependent: :destroy
   attr_accessible :name, :period, :subject_id, :members, :enrollments_attributes
 
@@ -10,6 +12,7 @@ class Group < ActiveRecord::Base
   validates_presence_of :name, :period, :subject, :members
 
   attr_accessor :members 
+
   #Method that finds or creates students and adds them to the group
   def populate_group
     formatedMembers = members.downcase!.gsub(" ","")
