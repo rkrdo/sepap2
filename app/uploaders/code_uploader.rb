@@ -43,7 +43,7 @@ class CodeUploader < CarrierWave::Uploader::Base
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
 	def extension_white_list
-		%w(java c cpp h py rb)
+		%w(java c cpp h py rb cs)
 	end
 
   # Override the filename of the uploaded files:

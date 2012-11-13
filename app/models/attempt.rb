@@ -50,7 +50,13 @@ class Attempt < ActiveRecord::Base
 
 			self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
 
-		elsif self.language.include? "C"
+		elsif self.language.include? "cs"
+			# File to execute after compile
+			exe=basepath_user+"/"+file_basename+".exe"
+
+			self.update_attributes(:outcome=>`./lib/scripts/compilarCs #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
+
+		elsif self.language.include? "c"
 
 			# File to execute after compile
 			exe=basepath_user+"/"+file_basename
