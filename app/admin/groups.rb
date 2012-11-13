@@ -51,6 +51,7 @@ ActiveAdmin.register Group do
   end
 
   controller do
+
     def create
       @group = Group.new(params[:group])
       respond_to do |format|
@@ -77,6 +78,10 @@ ActiveAdmin.register Group do
           format.html {render action: "index"}
         end
       end
+    end
+
+    def show
+      @group = Group.find(params[:id])
     end
   end
 end

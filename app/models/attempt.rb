@@ -8,13 +8,8 @@ class Attempt < ActiveRecord::Base
 	# File uploader
 	mount_uploader :code, CodeUploader
 	validates_presence_of :code
-	
-	scope :group_eq, lambda{ |group_id| where(groups.include?(Group.find(group_id)) }
-
-	search_methods :group_eq
 
 	def compile
-
 		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}"
 
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
