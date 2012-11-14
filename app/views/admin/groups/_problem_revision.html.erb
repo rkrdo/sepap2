@@ -3,7 +3,7 @@
     <thead>
       <tr>
         <th> Problem: 
-          <%= form_tag admin_group_path(params[:id]) , method: 'get' , remote: true do %>
+          <%= form_tag admin_group_path(params[:id]) , method: 'get' do %>
             <%problems_array = group.assignments.map{ |a| [a.problem.title, a.problem.id] }%>
             <%= select_tag 'problemToFind', options_for_select(problems_array),:include_blank => true%>
             <%= submit_tag("Search")%>
