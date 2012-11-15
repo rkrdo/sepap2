@@ -1,5 +1,3 @@
-<form>
-
 <fieldset class="inputs">
 
 	<b> Title: </b><%= @problem.title %>
@@ -32,11 +30,11 @@
 		</tr>
 		<% end %>
 	</table>
-
-</fieldset>
-
+	<br/>
 	<%= hidden_field_tag 'lines', @out.length %>
 	<%= submit_tag "Create " %>
 	<% end %>
 
-</form>
+</fieldset>
+
+

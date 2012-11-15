@@ -1,0 +1,46 @@
+#!/bin/bash
+#Se compila el archivo y se ejecuta para luego comparar la salida con al salida esperada
+#Scipt para C# utilizando MONO
+
+archivo=$1
+ejecutable=$2
+entrada=$3
+salida=$4
+salida_esperada=$5
+error=$6
+tiempo=$7
+route=$8
+
+cd $route
+
+echo "" > $error
+echo "" > $salida
+
+
+gmcs $archivo &> $error
+if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
+	#echo se ha compilado exitosamente
+	#ejecutable=${archivo%.*}	#toma el nombre del archivo sin el .java
+	
+	#nohup ./matar $BASHPID > /dev/null 2>&1 &
+	#./matar $BASHPID & #se llama a otro script que matará a este en caso de que se cicle
+	
+	mono $ejecutable < $entrada &> $salida &
+	monoPID=$!
+	./matar $monoPID $tiempo &	#se manda llamar otro script con el PID del JAVA y el tiempo limite
+	matarPID=$!
+	
+	wait $monoPID
+	#kill -9 $matarPID
+	#wait $matarPID
+	cmp -s $salida $salida_esperada
+	if [ $? -eq 0 ]; then		#archivos iguales = 0
+		echo -n "ACEPTADO"
+
+	else
+		echo -n "RECHAZADO"
+
+	fi
+else
+	echo -n "Error de compilación"
+fi

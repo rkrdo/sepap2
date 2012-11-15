@@ -58,6 +58,8 @@ class Problem < ActiveRecord::Base
 		# Store problem language
 		if self.extension.include? "java"
 			self.update_attributes(:language=> "java")
+		elsif self.extension.include? "cs"
+			self.update_attributes(:language=> "cs")
 		elsif (self.extension.include? "c") || (self.extension.include? "cpp")
 			self.update_attributes(:language=> "c")
 		end
@@ -82,7 +84,12 @@ class Problem < ActiveRecord::Base
 
 			# Compile!
 			compile=`./lib/scripts/compilarJava_solucion #{self.basepath_problem} #{file} '#{exe}' #{self.input} #{self.output} #{error}`
-			puts compile
+		
+		elsif self.extension.include? "cs"
+			exe="./"+File.basename(file,self.extension)+".exe"
+			# Compile C# code !
+			compile=`./lib/scripts/compilarCs_solucion #{self.basepath_problem} #{file} #{exe} #{self.input} #{self.output} #{error}	`
+		
 		elsif (self.extension.include? "c") || (self.extension.include? "cpp")
 			exe="./"+File.basename(file,self.extension)
 			# Compile C code !
