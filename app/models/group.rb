@@ -15,7 +15,7 @@ class Group < ActiveRecord::Base
 
   #Method that finds or creates students and adds them to the group
   def populate_group
-    formatedMembers = members.downcase!.gsub(" ","")
+    formatedMembers = self.members.downcase.gsub(" ","")
     groupMembers = formatedMembers.split(',')
     errors = Array.new
 
