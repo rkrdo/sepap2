@@ -20,7 +20,7 @@
     <tbody>
       <% @group.users.each do |user| %>
         <tr>
-          <td> <%= user.num %></td>
+          <td> <%= link_to(user.num, admin_user_path(user)) %></td>
           <td> <%= user.attempts.where(:problem_id=> params[:problemToFind]).count %></td>
           <td> 
             <% if user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").count >= 1 %>
