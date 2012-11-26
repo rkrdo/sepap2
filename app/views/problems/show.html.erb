@@ -50,7 +50,7 @@
               <%= raw(attempt.get_feedback) %>
               </div>
 
-              <%elsif attempt.outcome.strip == "TIEMPO EXCEDIDO" %>
+              <%elsif attempt.outcome.strip == "Tiempo excedido\nRECHAZADO" %>
               <div id="error" class="respuesta">
               <%= image_tag "ambar.ico" %><div id="outcome"><%=t :outcome_timeout %></div>
               <p class="descripcion"><%=t :outcome_timeout_text %></p>
