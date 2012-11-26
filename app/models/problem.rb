@@ -102,7 +102,7 @@ class Problem < ActiveRecord::Base
 	end
 
   def toolkit(params)
-    file = File.basename(main.to_s, File.extname(main.to_s))
+    file = File.basename(main.to_s, self.extension)
 	time=Integer(self.time)
 	
 	if !params[:input].empty?
@@ -110,6 +110,10 @@ class Problem < ActiveRecord::Base
 		if self.extension.include? "java"
 			exe = "#{self.basepath_problem} #{file}"
 			resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}' '#{time}'`
+			
+		elsif self.extension.include? "cs"
+			exe="#{self.basepath_problem}/#{file}.exe"
+			resultado = `#{Rails.root.to_s}/lib/scripts/toolkit_cs '#{exe}' '#{params[:input]}' '#{time}'`
 
 		elsif (self.extension.include? "c") || (self.extension.include? "cpp")
 			exe = "#{self.basepath_problem}/#{file}"

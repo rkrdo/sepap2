@@ -1,0 +1,13 @@
+#!/bin/bash
+
+ejecutable=$1
+entrada=$2
+tiempo=$3
+
+#Ejecutar archivo compilado
+mono $ejecutable <<< $entrada &
+
+CsPID=$!
+./lib/scripts/matar $CsPID $tiempo &	#se manda llamar otro script con el PID del ejecutable y el tiempo limite
+
+wait $CsPID
