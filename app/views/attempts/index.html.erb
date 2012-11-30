@@ -38,7 +38,7 @@ $(document).ready(function() {
 			<%=t :outcome_accept %>
 		<% elsif attempt["outcome"].strip == "RECHAZADO" %>
 			<%=t :outcome_fail %>
-		<%elsif attempt["outcome"].strip == "TIEMPO EXCEDIDO" %>
+		<%elsif attempt["outcome"].strip == "Tiempo excedido\nRECHAZADO" %>
 			<%=t :outcome_timeout %>
 		<% else %>
 			<%=t :outcome_uncompile %>
