@@ -17,3 +17,10 @@ $(document).ready(function () {
     	allowCustomEntry: false
     });
 });
+
+jQuery(document).ready(function($) {
+  $('a[rel*=facebox]').facebox() 
+})
+
+$.facebox.settings.closeImage = '../assets/images/closelabel.png'
+$.facebox.settings.loadingImage = '../assets/images/loading.gif'

@@ -43,7 +43,11 @@
 </div>
 <% @group.users.each_with_index do |user, i| %>
   <div id="<%=i+1%>info" style="display:none" class="code">
-    <% attempt = user.attempts.where(:problem_id=>  params[:problemToFind]).first %>
+    <% if user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").count >= 1 %>
+      <% attempt = user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").first %>
+    <% else %>
+      <% attempt = user.attempts.where(:problem_id=>  params[:problemToFind]).first %>
+    <% end %>
     <%if !attempt.nil? %>
       <%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %>
     <%end%>
