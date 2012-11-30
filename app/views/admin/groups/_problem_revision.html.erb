@@ -14,11 +14,12 @@
         <th> Num </th>
         <th> Number of Attempts </th>
         <th> Status </th>
+        <th> Code </th>
         <th> Date of Last Attempt </th>
       </tr>
     </thead>
     <tbody>
-      <% @group.users.each do |user| %>
+      <% @group.users.each_with_index do |user, i| %>
         <tr>
           <td> <%= link_to(user.num, admin_user_path(user)) %></td>
           <td> <%= user.attempts.where(:problem_id=> params[:problemToFind]).count %></td>
@@ -29,9 +30,22 @@
               <%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:outcome) %>
             <%end%>
           </td>
+          <td>
+            <%if user.attempts.where(:problem_id=>  params[:problemToFind]).count >= 1%>
+              <a href="#<%=i+1%>info" rel="facebox"><%=t :attempt_code %></a>
+            <%end%>
+          </td>
           <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)  %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 </div>
+<% @group.users.each_with_index do |user, i| %>
+  <div id="<%=i+1%>info" style="display:none" class="code">
+    <% attempt = user.attempts.where(:problem_id=>  params[:problemToFind]).first %>
+    <%if !attempt.nil? %>
+      <%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %>
+    <%end%>
+  </div>
+<% end %>
