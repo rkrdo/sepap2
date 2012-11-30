@@ -1,3 +1,15 @@
+<script>
+
+  function showCode(id){
+    var div = id+"info"
+    var code = document.getElementById(div);
+    var show = document.getElementById("showCode")
+    show.innerHTML = "";
+    show.innerHTML = code.innerHTML;
+    
+  }
+</script>
+
 <div id="table_container">
   <table class="data_table">
     <thead>
@@ -32,7 +44,8 @@
           </td>
           <td>
             <%if user.attempts.where(:problem_id=>  params[:problemToFind]).count >= 1%>
-              <a href="#<%=i+1%>info" rel="facebox"><%=t :attempt_code %></a>
+              <!-- <a href="#<%=i+1%>info" rel="facebox" class="code" <%=t :attempt_code %></a> -->
+              <%= link_to 'View Attempt Code', '#', :onclick => "showCode(#{i+1})"%>
             <%end%>
           </td>
           <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)  %></td>
@@ -52,4 +65,5 @@
       <%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %>
     <%end%>
   </div>
+  <div id= "showCode">
 <% end %>
