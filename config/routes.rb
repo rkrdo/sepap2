@@ -1,5 +1,7 @@
 Sepap2::Application.routes.draw do
 
+  resources :topics
+
 scope "/:locale" do
   devise_for :users
   ActiveAdmin.routes(self)
