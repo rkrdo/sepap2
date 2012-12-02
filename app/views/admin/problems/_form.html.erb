@@ -1,0 +1,13 @@
+<%= semantic_form_for [:admin, @problem] do |f| %>
+    <%= f.inputs :name => "Details" do %>
+      <%= f.input :title %>
+      <%= f.input :topics, as: :check_boxes %>
+      <%= f.input :description %>
+      <%= f.input :time %>
+      <%= f.input :main %>
+      <%= f.input :method %>
+      <%= f.input :input, as: :text %>
+
+    <% end %>
+    <%= f.buttons %>
+<% end %>

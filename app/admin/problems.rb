@@ -62,22 +62,7 @@ ActiveAdmin.register Problem do
 	end	
 	
 
-	form do |f|
-		f.inputs do
-			f.input :title
-			#f.input :topic
-
-			f.input :topics, as: :check_boxes
-
-
-			f.input :description
-			f.input :time
-			f.input :main
-			f.input :method
-			f.input :input, :as => :text
-		end
-		f.buttons
-	end
+	form partial: "form"
 
 
  	#filters
