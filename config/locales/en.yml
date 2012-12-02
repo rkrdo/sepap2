@@ -29,6 +29,7 @@ en:
     prob_type: "Topic"
     prob_description: "Description"
     prob_newA: "New Attempt"
+    toolkit: "Verifying Tool"
     toolkit_input: "Input to test"
     toolkit_output: "Output"
     outcome_accept: "ACCEPTED"

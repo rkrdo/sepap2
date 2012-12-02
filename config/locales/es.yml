@@ -63,6 +63,7 @@ es:
     prob_type: "Tema"
     prob_description: "Descripción"
     prob_newA: "Nuevo Intento"
+    toolkit: "Verificador"
     toolkit_input: "Entrada a probar"
     toolkit_output: "Salida"
     outcome_accept: "ACEPTADO"
