@@ -68,8 +68,7 @@ ActiveAdmin.register Problem do
  	#filters
  	filter :id
 	filter :title
-	#filter :taggings_tag_name, :label => "Type", :as => :check_boxes,
-        #:collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }
+	filter :topics_id, :as => :check_boxes, :collection => proc {Topic.all}
 	filter :created_at
 
 
@@ -91,7 +90,6 @@ ActiveAdmin.register Problem do
 	  		row :title
 	  		row :description
 	  		row :time
-	  		row :type_list
 	  	end
   	end
 end
