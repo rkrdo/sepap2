@@ -4,8 +4,29 @@
       <%= f.input :topics, as: :check_boxes %>
       <%= f.input :description %>
       <%= f.input :time %>
+      
+      <%= image_tag "infoicon.png" ,size: "20x20", id: "infoMain", class: "info"%>
+        <div style="position:relative">
+          <span id="spInfoMain", class="tooltip">
+            Here you must upload the file containing the source code file that contains the main method of the problem.
+          </span>
+        </div>
       <%= f.input :main %>
+      
+      <%= image_tag "infoicon.png" ,size: "20x20", id: "infoMethod", class: "info"%>
+        <div style="position:relative">
+          <span id="spInfoMethod", class="tooltip">
+            In case your problem consists in coding a method or function, you must upload the file containing the source code to the method.
+          </span>
+        </div>
       <%= f.input :method %>
+      
+      <%= image_tag "infoicon.png" ,size: "20x20", id: "infoInput", class: "info"%>
+        <div style ="position:relative">
+          <span id="spInfoInput", class="tooltip">
+            You must write the input to your problem as it would receive it from the console.
+          </span>
+        </div>
       <%= f.input :input, as: :text %>
 
     <% end %>
