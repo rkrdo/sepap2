@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   has_many :attempts
   has_many :problems, through: :attempts, group: :id, counter_sql: true
   has_many :enrollments
+  has_many :groups, through: :enrollments
+  has_many :assignments, through: :groups
 
   validates_presence_of :num, :email, :password, :password_confirmation
   validates_format_of :num, with: /\A(A|L)([0-9]{8})\z/i

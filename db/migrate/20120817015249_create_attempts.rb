@@ -3,6 +3,7 @@ class CreateAttempts < ActiveRecord::Migration
     create_table :attempts do |t|
       t.references :problem
       t.references :user
+      t.references :assignment
       t.string :outcome
       t.string :language
 

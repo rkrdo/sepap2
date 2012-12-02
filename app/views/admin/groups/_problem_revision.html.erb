@@ -21,7 +21,7 @@
     <tbody>
       <% @group.users.each_with_index do |user, i| %>
         <tr>
-          <td> <%= link_to(user.num, admin_user_path(user)) %></td>
+          <td> <%= link_to("#{user.num} #{user.name} #{user.lastname}", admin_user_path(user)) %></td>
           <td> <%= user.attempts.where(:problem_id=> params[:problemToFind]).count %></td>
           <td>
             <% if user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").count >= 1 %>
@@ -31,9 +31,8 @@
             <%end%>
           </td>
           <td>
-            <% user.attempts.where(problem_id: params[:problemToFind]).each_with_index do |attempt,i| %>
-              <%= link_to_function i+1, "$.facebox({ ajax: '#{attempt_path(attempt)}' })", :class => "nav_link" %>
-            <% end %>
+            <% attempt = user.attempts.where(problem_id: params[:problemToFind]).last %>
+            <%= link_to_function (t :attempt_code),"$.facebox({ ajax: '#{attempt_path(attempt)}' })" %>
           </td>
           <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)%></td>
         </tr>

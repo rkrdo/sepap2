@@ -43,10 +43,11 @@ ActiveRecord::Schema.define(:version => 20121112212219) do
   create_table "attempts", :force => true do |t|
     t.integer  "problem_id"
     t.integer  "user_id"
+    t.integer  "assignment_id"
     t.string   "outcome"
     t.string   "language"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "code"
   end
 

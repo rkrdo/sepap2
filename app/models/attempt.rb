@@ -1,6 +1,7 @@
 class Attempt < ActiveRecord::Base
 	belongs_to :problem
 	belongs_to :user
+	belongs_to :assignment
 	has_many :enrollments, through: :user
 	has_many :groups, through: :enrollments
 	attr_accessible :language, :outcome, :problem_id, :code, :groups, :user, :enrollments
@@ -8,7 +9,7 @@ class Attempt < ActiveRecord::Base
 	# File uploader
 	mount_uploader :code, CodeUploader
 	validates_presence_of :code
-	
+
 	def compile
 		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
@@ -34,7 +35,7 @@ class Attempt < ActiveRecord::Base
 
 		# File that stores compile/execution errors thrown
 		error=basepath_user+"/error"
-		
+
 		# Route where the scripts run
 		route=Rails.root.to_s+"/lib/scripts"
 
@@ -76,7 +77,7 @@ class Attempt < ActiveRecord::Base
 	def get_feedback
 		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
-		
+
 		output=basepath_user+"/output"
 		expected_output = basepath_problem + "/output"
 
@@ -85,7 +86,7 @@ class Attempt < ActiveRecord::Base
 
 		f1Lines = f1.readlines
 		f2Lines = f2.readlines
-		
+
 		expected_output_lines = f2.lineno
 
 		problem = Problem.find(problem_id)
@@ -98,16 +99,16 @@ class Attempt < ActiveRecord::Base
 				if(!line.eql?(f2Lines[i]))
 					begin
 						feedback_list += "<li>" + problem.get_feedback_comment(i) +"</li>"
-					rescue 
-						
+					rescue
+
 					end
 				end
 			end
 		end
-		
+
 		f1.close
 		f2.close
-		
+
 		feedback_list += "</ul>"
 	end
 end

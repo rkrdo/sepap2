@@ -3,6 +3,7 @@
 //= require jquery-ui
 //= require jquery-tokeninput
 //= require facebox
+//= require jquery.dataTables.min
 //= require active_admin/base
 
 $.facebox.settings.closeImage = '/assets/closelabel.png'
