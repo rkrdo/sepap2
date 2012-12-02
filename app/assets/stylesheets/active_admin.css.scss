@@ -4,6 +4,7 @@
 @import "dataTables";
 @import "facebox";
 @import "problem.css";
+
 // To customize the Active Admin interfaces, add your
 // styles here:
 
@@ -251,4 +252,28 @@ tr.feedback_odd td {
     background-color: #d9d9d9;
     padding-top: 10px;
     padding-bottom: 10px;
+}
+
+.tooltip{
+    position: absolute;
+    padding:6px 8px 8px 8px;
+    background:#222;
+    z-index:10;
+    display:inline-block; /*important*/
+    /*font*/
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:11px;
+    line-height:16px;
+    color:#fff;
+    /*css3 rounded corners*/
+    -moz-border-radius:5px;
+    -khtml-border-radius:5px;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+}
+
+img#infoMembers{
+    position: absolute;
+    left: 90px;
+    padding-top: 10px;
 }
