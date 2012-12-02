@@ -6,7 +6,7 @@ class ProblemsTopics < ActiveRecord::Migration
 	end
 
 	add_index :problems_topics, [:problem_id, :topic_id]
-        add_index :problems_topicss, [:topic_id, :problem_id]
+        add_index :problems_topics, [:topic_id, :problem_id]
   end
 
   def down

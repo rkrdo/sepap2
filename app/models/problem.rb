@@ -3,13 +3,7 @@ class Problem < ActiveRecord::Base
   has_many :feedbacks, :dependent => :destroy
   has_many :assignments
   has_and_belongs_to_many :topics, :join_table => :problems_topics
-  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :type_list, :feedbacks, :exe, :language, :problem, :topic_ids
-
-  attr_reader :type_list
-
-  before_save :remove_quotes
-
-  acts_as_taggable_on :type
+  attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :feedbacks, :exe, :language, :problem, :topic_ids
 
 
   mount_uploader :main, MainUploader
@@ -27,11 +21,6 @@ class Problem < ActiveRecord::Base
   	extension = File.extname(self.main.to_s)
   end
 
-  def remove_quotes
-    self.type_list.each do |name|
-      name.gsub!("'", "")
-    end
-  end
 
 	def get_feedback_comment(line)
 		self.feedbacks.each do |f|
@@ -129,10 +118,6 @@ class Problem < ActiveRecord::Base
 
 	resultado.gsub! /\n/, "&#013;&#010;"
 	return resultado
-  end
-
-  def type_tokens=(ids)
-    self.type_ids = ids.split(",")
   end
 
   def is_assigned?(user)

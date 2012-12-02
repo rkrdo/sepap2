@@ -104,6 +104,9 @@ ActiveRecord::Schema.define(:version => 20121202222719) do
     t.integer "topic_id",   :null => false
   end
 
+  add_index "problems_topics", ["problem_id", "topic_id"], :name => "index_problems_topics_on_problem_id_and_topic_id"
+  add_index "problems_topics", ["topic_id", "problem_id"], :name => "index_problems_topics_on_topic_id_and_problem_id"
+
   create_table "subjects", :force => true do |t|
     t.string   "name"
     t.datetime "created_at", :null => false
