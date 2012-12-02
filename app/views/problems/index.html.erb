@@ -33,7 +33,7 @@ $(document).ready(function() {
   <tr onclick="location.href='<%= problem_path(problem) %>'" style='cursor:pointer'>
     <td><%=  problem.title %></td>
     <td><%=  problem.id %></td>
-    <td><%=  problem.type_list %></td>
+    <td><%=  problem.topics.map{|t| t.name.gsub("\"","")} %></td> 
   </tr>
 <% end %>
   </tbody>

@@ -60,7 +60,7 @@ es:
     session_edit: "Favor de editar su registro"
     listing: "Problemas"
     prob_title: "Título"
-    prob_type: "Tipo"
+    prob_type: "Tema"
     prob_description: "Descripción"
     prob_newA: "Nuevo Intento"
     toolkit_input: "Entrada a probar"
