@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :num
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :num, :name, :lastname
   # attr_accessible :title, :body
   has_many :attempts
   has_many :problems, through: :attempts, group: :id, counter_sql: true
@@ -19,10 +19,10 @@ class User < ActiveRecord::Base
 	before_save do
 		self.num.downcase! if self.num
 	end
-	
-	def self.find_for_authentication(conditions) 
-		conditions[:num].downcase! 
-		super(conditions) 
-	end 
+
+	def self.find_for_authentication(conditions)
+		conditions[:num].downcase!
+		super(conditions)
+	end
 
 end

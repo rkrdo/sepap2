@@ -1,15 +1,3 @@
-<script>
-
-  function showCode(id){
-    var div = id+"info"
-    var code = document.getElementById(div);
-    var show = document.getElementById("showCode")
-    show.innerHTML = "";
-    show.innerHTML = code.innerHTML;
-
-  }
-</script>
-
 <div id="table_container">
   <table class="data_table">
     <thead>
@@ -43,10 +31,9 @@
             <%end%>
           </td>
           <td>
-            <%if user.attempts.where(:problem_id=>  params[:problemToFind]).count >= 1%>
-              <!-- <a href="#<%=i+1%>info" rel="facebox" class="code" <%=t :attempt_code %></a> -->
-              <%= link_to 'View Attempt Code', '#', :onclick => "showCode(#{i+1})"%>
-            <%end%>
+            <% user.attempts.where(problem_id: params[:problemToFind]).each_with_index do |attempt,i| %>
+              <%= link_to_function i+1, "$.facebox({ ajax: '#{attempt_path(attempt)}' })", :class => "nav_link" %>
+            <% end %>
           </td>
           <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)%></td>
         </tr>
@@ -54,17 +41,3 @@
     </tbody>
   </table>
 </div>
-<% @group.users.each_with_index do |user, i| %>
-  <div id="<%=i+1%>info" style="display:none" class="code">
-    <% if user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").count >= 1 %>
-      <% attempt = user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").first %>
-    <% else %>
-      <% attempt = user.attempts.where(:problem_id=>  params[:problemToFind]).first %>
-    <% end %>
-    <%if !attempt.nil? %>
-      <%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %>
-    <%end%>
-  </div>
-  <div id= "showCode">
-  </div>
-<% end %>
