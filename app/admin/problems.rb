@@ -19,16 +19,12 @@ ActiveAdmin.register Problem do
 
 		def edit
 			@problem = Problem.find(params[:id])
-			@types = @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
-			#puts "/////////////////////////////////////////////////////////////////////////"
-			#puts @types.to_s
 		end
 
 		def show
 		    @problem = Problem.find(params[:id])
 		    respond_to do |format|
 		      	format.html # new.html.erb
-		      	format.json { render json: @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}}
 	    	end
   		end
 	end
@@ -66,23 +62,14 @@ ActiveAdmin.register Problem do
 	end	
 	
 
-	collection_action :type_tokens, :method => :get do
-		@tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:q]}%")
-		respond_to do |format|
-			format.json { render :json => @tags.map {|t| {:id => t.id.to_s, :name => t.name }} }
-		end
-  	end
-
 	form do |f|
 		f.inputs do
 			f.input :title
-			@types = f.object.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
-			@preP = @types.to_s
-			puts "/////////////////////////////////////////////jamonazo///////////////////////////////////"
-			@preP.gsub!(":", "\"")
-			@preP.gsub!("=>", "\":")
-			f.input :type_list, input_html: {id: "type_autocomplete", "data-pre" => @preP}
-			#f.input :type_list, input_html: {id: "type_autocomplete", "data-pre" => "[{\"id\":\"25\",\"name\":\"lolol\"},{\"id\":\"26\",\"name\":\"reddit\"},{\"id\":\"28\",\"name\":\"hadouken\"},{\"id\":\"29\",\"name\":\"mayhem\"}]"}
+			#f.input :topic
+
+			f.input :topics, as: :check_boxes
+
+
 			f.input :description
 			f.input :time
 			f.input :main
@@ -96,10 +83,8 @@ ActiveAdmin.register Problem do
  	#filters
  	filter :id
 	filter :title
-	filter :taggings_tag_name, :label => "Type", :as => :check_boxes,
-        :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }
-    #filter :taggings_tag_name, :label => "Type", :as => :string,
-    #     :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }, :input_html => {:id => "type_autocomplete_search"}
+	#filter :taggings_tag_name, :label => "Type", :as => :check_boxes,
+        #:collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }
 	filter :created_at
 
 

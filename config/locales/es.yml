@@ -38,6 +38,8 @@ es:
                   too_long: "es muy larga."
     hello: "Hola mundo"
     welcome: "Bienvenido a SEPAP"
+    name: "Nombre"
+    lastname: "Apellido"
     studentID: "Matrícula"
     password: "Clave"
     password_confirm: "Confirmación de clave"
