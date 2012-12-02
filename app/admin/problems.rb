@@ -105,7 +105,6 @@ ActiveAdmin.register Problem do
 	  		row :title
 	  		row :description
 	  		row :time
-	  		row :type_list
 	  	end
   	end
 end
