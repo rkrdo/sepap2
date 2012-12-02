@@ -78,6 +78,7 @@ GEM
       actionpack (~> 3.0)
     has_scope (0.5.1)
     hike (1.2.1)
+    hirb (0.7.0)
     i18n (0.6.0)
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
@@ -183,6 +184,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise (~> 2.0.0)
   exception_notification
+  hirb
   jquery-rails
   json_builder
   meta_search (>= 1.1.0.pre)

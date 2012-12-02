@@ -16,8 +16,8 @@
 //= require_tree .
 
 
-$.facebox.settings.closeImage = '../assets/images/closelabel.png'
-$.facebox.settings.loadingImage = '../assets/images/loading.gif'
+$.facebox.settings.closeImage = '/assets/closelabel.png'
+$.facebox.settings.loadingImage = '/assets/loading.gif'
 
 jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox()

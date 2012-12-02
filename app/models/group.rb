@@ -11,7 +11,7 @@ class Group < ActiveRecord::Base
 
   validates_presence_of :name, :period, :subject, :members
 
-  attr_accessor :members 
+  attr_accessor :members
 
   #Method that finds or creates students and adds them to the group
   def populate_group
@@ -20,9 +20,7 @@ class Group < ActiveRecord::Base
     errors = Array.new
 
     groupMembers.each do |num|
-      
       conditions = {num: "#{num}", email: "#{num}@itesm.mx", password: "#{num}", password_confirmation: "#{num}"}
-
       member = User.find_by_num("#{num}") || User.create(conditions)
       if member.nil?
         errors << member

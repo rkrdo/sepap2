@@ -23,7 +23,7 @@ gem "carrierwave"
 
 
 gem "exception_notification"
-
+gem "hirb"
 # Active Admin + Required Gems
 gem 'activeadmin'
 gem "meta_search", '>= 1.1.0.pre'

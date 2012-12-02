@@ -6,7 +6,7 @@
     var show = document.getElementById("showCode")
     show.innerHTML = "";
     show.innerHTML = code.innerHTML;
-    
+
   }
 </script>
 
@@ -14,7 +14,7 @@
   <table class="data_table">
     <thead>
       <tr>
-        <th> Problem: 
+        <th> Problem:
           <%= form_tag admin_group_path(params[:id]) , method: 'get' do %>
             <%problems_array = group.assignments.map{ |a| [a.problem.title, a.problem.id] }%>
             <%= select_tag 'problemToFind', options_for_select(problems_array),:include_blank => true%>
@@ -35,7 +35,7 @@
         <tr>
           <td> <%= link_to(user.num, admin_user_path(user)) %></td>
           <td> <%= user.attempts.where(:problem_id=> params[:problemToFind]).count %></td>
-          <td> 
+          <td>
             <% if user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").count >= 1 %>
               ACEPTADO
             <%else%>
@@ -48,7 +48,7 @@
               <%= link_to 'View Attempt Code', '#', :onclick => "showCode(#{i+1})"%>
             <%end%>
           </td>
-          <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)  %></td>
+          <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)%></td>
         </tr>
       <% end %>
     </tbody>
