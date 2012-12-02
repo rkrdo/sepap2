@@ -4,6 +4,8 @@
 en:
     hello: "Hello world"
     welcome: "Welcome to SEPAP"
+    name: "Name"
+    lastname: "Last Name"
     studentID: "Student ID"
     password: "Password"
     password_confirm: "Please input your password again"
