@@ -15,10 +15,5 @@
 //= require jquery-tokeninput
 //= require_tree .
 
-
 $.facebox.settings.closeImage = '/assets/closelabel.png'
 $.facebox.settings.loadingImage = '/assets/loading.gif'
-
-jQuery(document).ready(function($) {
-  $('a[rel*=facebox]').facebox()
-})

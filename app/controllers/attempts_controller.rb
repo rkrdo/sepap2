@@ -2,8 +2,8 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts =  Attempt.connection.select_all("select count(*) as times_attempted, p.title, a.outcome, 
-          p.id as problem_id from attempts  a join problems p on  p.id=a.problem_id  
+    @attempts =  Attempt.connection.select_all("select count(*) as times_attempted, p.title, a.outcome,
+          p.id as problem_id from attempts  a join problems p on  p.id=a.problem_id
           where user_id = #{current_user.id} group by problem_id")
     respond_to do |format|
       format.html # index.html.erb
@@ -14,9 +14,10 @@ class AttemptsController < ApplicationController
   # GET /attempts/1
   # GET /attempts/1.json
   def show
+    @attempt = Attempt.find(params[:id])
     respond_to do |format|
-      format.html { redirect_to root_path, notice: 'Acceso Restringido' }
-      format.json { render json: @attempt }
+      format.html {render partial: 'show_code', formats: :html}
+      format.json
     end
   end
 
@@ -85,6 +86,7 @@ class AttemptsController < ApplicationController
       format.html { redirect_to problem_path(problem) }
       format.json { head :no_content }
     end
+
   end
 
 end

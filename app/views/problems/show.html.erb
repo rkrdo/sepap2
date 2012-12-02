@@ -46,7 +46,7 @@
               <br />
               <br />
               <br />
- 	      <%=t :attempt_feedback %>
+ 	            <%=t :attempt_feedback %>
               <%= raw(attempt.get_feedback) %>
               </div>
 
@@ -63,9 +63,7 @@
               </div>
               <%end%>
             </p>
-
-            <a href="#<%=i+1%>info" rel="facebox"><%=t :attempt_code %></a>
-            <div id="<%=i+1%>info" style="display:none"><%= raw(CodeRay.scan(attempt.show_code, attempt.language).div(line_numbers: :table)) %></div>
+            <%= link_to_function (t :attempt_code), "$.facebox({ ajax: '#{attempt_path(attempt)}' })", :class => "nav_link" %>
           </div>
         </div>
       <% end %>
