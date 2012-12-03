@@ -5,13 +5,15 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :num, :name, :lastname
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :num, :name, :lastname, :user
   # attr_accessible :title, :body
   has_many :attempts
   has_many :problems, through: :attempts, group: :id, counter_sql: true
   has_many :enrollments
   has_many :groups, through: :enrollments
   has_many :assignments, through: :groups
+  has_many :groups
+  has_many :problems
 
   validates_presence_of :num, :email, :password, :password_confirmation
   validates_format_of :num, with: /\A(A|L)([0-9]{8})\z/i
@@ -27,4 +29,11 @@ class User < ActiveRecord::Base
 		super(conditions)
 	end
 
+  def my_groups
+    if self.admin?
+      Group.scoped
+    else
+      self.groups
+    end
+  end
 end

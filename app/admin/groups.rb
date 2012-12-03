@@ -1,6 +1,12 @@
 ActiveAdmin.register Group do
-  # controller.authorize_resource 
+   controller.authorize_resource 
+
+
+  scope_to :current_user, :association_method => :my_groups
+  
   form partial: "form"
+
+
 
   index do 
     column :name
@@ -25,6 +31,7 @@ ActiveAdmin.register Group do
 
     def create
       @group = Group.new(params[:group])
+      @group.user = current_user
       respond_to do |format|
         if @group.save
           errors = @group.populate_group

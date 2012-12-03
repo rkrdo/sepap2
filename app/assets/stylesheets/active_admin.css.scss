@@ -1,10 +1,10 @@
 // Active Admin CSS Styles
 @import "active_admin/mixins";
 @import "active_admin/base";
-@import "dataTables";
+@import "jquery-ui.css";
 @import "facebox";
+@import "dataTables.css";
 @import "problem.css";
-
 // To customize the Active Admin interfaces, add your
 // styles here:
 
@@ -270,6 +270,8 @@ tr.feedback_odd td {
     -khtml-border-radius:5px;
     -webkit-border-radius:5px;
     border-radius:5px;
+    left: 120px;
+    top: 5px;
 }
 
 img.info{

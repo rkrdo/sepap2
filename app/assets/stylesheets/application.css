@@ -1,9 +1,9 @@
 /*
 */
+@import "dataTables.css";
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 @import "problem.css";
 @import "jquery-ui.css";
-@import "dataTables.css";
 @import "facebox.css";
 
 html {
@@ -232,12 +232,12 @@ CONTENT
 
 .user-icon {
 	top:142px; /* Positioning fix for slide-in, got lazy to think up of simpler method. */
-	background: rgba(65,72,72,0.75) url(http://www.demo.amitjakhu.com/login-form/images/user-icon.png) no-repeat center;
+	background: rgba(65,72,72,0.75) url(user-icon.png) no-repeat center;
 }
 
 .pass-icon {
 	top:193px;
-	background: rgba(65,72,72,0.75) url(http://www.demo.amitjakhu.com/login-form/images/pass-icon.png) no-repeat center;
+	background: rgba(65,72,72,0.75) url(pass-icon.png) no-repeat center;
 }
 
 .content input:focus + div{
@@ -397,4 +397,3 @@ div#error{
 .flags_container{
 	margin-right: 230px;
 }
-

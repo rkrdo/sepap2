@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121202222719) do
+ActiveRecord::Schema.define(:version => 20121203002137) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20121202222719) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   add_index "groups", ["subject_id"], :name => "index_groups_on_subject_id"
@@ -97,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20121202222719) do
     t.string   "output"
     t.string   "exe"
     t.string   "language"
+    t.integer  "user_id"
   end
 
   create_table "problems_topics", :id => false, :force => true do |t|
@@ -111,23 +113,6 @@ ActiveRecord::Schema.define(:version => 20121202222719) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-  end
-
-  create_table "taggings", :force => true do |t|
-    t.integer  "tag_id"
-    t.integer  "taggable_id"
-    t.string   "taggable_type"
-    t.integer  "tagger_id"
-    t.string   "tagger_type"
-    t.string   "context",       :limit => 128
-    t.datetime "created_at"
-  end
-
-  add_index "taggings", ["tag_id"], :name => "index_taggings_on_tag_id"
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], :name => "index_taggings_on_taggable_id_and_taggable_type_and_context"
-
-  create_table "tags", :force => true do |t|
-    t.string "name"
   end
 
   create_table "topics", :force => true do |t|

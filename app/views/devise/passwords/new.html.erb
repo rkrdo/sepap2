@@ -1,11 +1,11 @@
 <%= devise_error_messages! %>
 <div id="wrapper2">
-	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f| %>
-	<div class="upper">	
+	<%= form_for(resource, :as => resource_name, :url => edit_password_path(resource_name), :html => { :method => :get }) do |f| %>
+	<div class="upper">
 		<h1><%=t :forgot_password %></h1>
 		<%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
 	</div>
-	
+
 	<div class="content">
 		<span><%=t :session_password %></span><br />
 		<%= f.text_field :num, :placeholder=>"#{t :studentID}", :class=>"input username" %>
@@ -15,7 +15,7 @@
 			<%=link_to( image_tag("spanish.gif",  size: "30x18", class:"flags_pass") , :locale=>'es') %>
 		</div>
 	</div>
-	
+
 	<div class="footer">
 		<div><%= f.submit "#{t :reset}", :class=>"button" %></div>
 		<%= link_to "#{t :sign_in_page}", new_user_session_path, :class=>"register" %>

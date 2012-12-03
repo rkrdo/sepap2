@@ -3,7 +3,6 @@ class Attempt < ActiveRecord::Base
 	belongs_to :user
 	belongs_to :assignment
 	has_many :enrollments, through: :user
-	has_many :groups, through: :enrollments
 	attr_accessible :language, :outcome, :problem_id, :code, :groups, :user, :enrollments
 
 	# File uploader

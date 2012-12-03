@@ -3,6 +3,7 @@ ActiveAdmin.register Problem do
 	controller do
 		def create
 			@problem = Problem.new(params[:problem])
+			@problem.user = current_user
 			respond_to do |format|
 				if @problem.save
 					# Create and store input

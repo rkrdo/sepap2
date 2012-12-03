@@ -1,5 +1,6 @@
 class Group < ActiveRecord::Base
   belongs_to :subject
+  belongs_to :user
   has_many :attempts, through: :users
   has_many :users, through: :enrollments
   has_many :assignments

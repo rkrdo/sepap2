@@ -5,8 +5,12 @@ class Ability
     user ||= User.new       
     if user.admin?      
       can :manage, :all
-    else
+    elsif user.teacher?
       can :read, :all
+      can :manage, Group
+      can :manage, Assignment
+      can :manage, Subject
+      can :create, User
     end
   end 
 end  
