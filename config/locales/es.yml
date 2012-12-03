@@ -61,6 +61,7 @@ es:
     listing: "Problemas"
     listing_assignments: "Tareas"
     prob_title: "Título"
+    prob_class: "Clase"
     due_date: "Fecha límite"
     prob_type: "Tema"
     prob_description: "Descripción"
@@ -154,14 +155,14 @@ podemos seguir los siguientes pasos:</p>
 
 <h3 id='tech-detail'>Detalles técnicos</h3>
   <p> Toma en cuenta los siguientes detalles al momento de planear tu solución a un problema </p>
-  
+
   <p> Recomendaciones generales </p>
   <ul>
     <li> No utilizar letreros para “pedir“ las entradas al usuario </li>
     <li> Desplegar los resultados exactamente como se pide en la descripción del problema </li>
     <li> Compilador utilizado javac versión 1.6.0_33 </li>
   </ul>
-  
+
   <p> Para problemas en C/C++ </p>
   <ul>
     <li> Utilizar solamente bibliotecas soportadas por el estandar ANSI C </li>
@@ -169,7 +170,7 @@ podemos seguir los siguientes pasos:</p>
     <li> Incluir explícitamente los encabezados de todas las bibliotecas externas utilizadas. Por ejemplo: #include&lt;math.h&gt; </li>
     <li> Compilador utilizado g++ versión 4.6.3 </li>
   </ul>
-  
+
   <p> Para problemas en Java </p>
   <ul>
     <li> Utilizar solamente bibliotecas soportadas por el compilador javac </li>

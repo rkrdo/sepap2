@@ -27,6 +27,7 @@ en:
     listing: "Listing problems"
     listing_assignments: "Listing assignments"
     prob_title: "Title"
+    prob_class: "Class"
     due_date: "Due date"
     prob_type: "Topic"
     prob_description: "Description"
@@ -110,14 +111,14 @@ a) If your teacher/instructor created an account for you:</p>
 
 <h3 id='tech-detail'>Technical Details</h3>
   <p> While planning a solution for a problem, take the following into account: </p>
-  
+
   <p> General recommendations </p>
   <ul>
     <li> Do not use banners to “ask“ for input from the user </li>
     <li> Display the results exactly as requested on the problem description </li>
     <li> Compiler used javac version 1.6.0_33 </li>
   </ul>
-  
+
   <p> For problems written in C/C++ </p>
   <ul>
     <li> Only use libraries supported by the ANSI C standard </li>
@@ -125,7 +126,7 @@ a) If your teacher/instructor created an account for you:</p>
     <li> Make sure to include the headers of every external library used. For example: #include&lt;math.h&gt; </li>
     <li> Compiler used g++ version 4.6.3 </li>
   </ul>
-  
+
   <p> For problems written in Java </p>
   <ul>
     <li> Only use libraries supported by the javac compiler </li>
