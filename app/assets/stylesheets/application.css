@@ -1,9 +1,9 @@
 /*
 */
+@import "dataTables.css";
 @import url(http://fonts.googleapis.com/css?family=Bree+Serif);
 @import "problem.css";
 @import "jquery-ui.css";
-@import "dataTables.css";
 @import "facebox.css";
 
 html {
@@ -397,4 +397,3 @@ div#error{
 .flags_container{
 	margin-right: 230px;
 }
-
