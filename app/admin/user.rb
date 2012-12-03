@@ -1,4 +1,5 @@
 ActiveAdmin.register User do
+  controller.authorize_resource
   form do |f|
     f.inputs "User Details" do
       f.input :email
