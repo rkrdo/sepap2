@@ -27,7 +27,12 @@ $(document).ready(function() {
     <th><%=t :prob_class %></th>
     <th>ID</th>
     <th><%=t :prob_type %></th>
-    <th><%=t :due_date %></th>
+    <th><%=t :due_date %><%= image_tag "infoicon.png" ,size: "20x20", id: "infoMethod", class: "info"%>
+        <div style="position:relative">
+          <span id="spInfoMethod", class="tooltip">
+            Year-Month-Day
+          </span>
+        </div></th>
   </tr>
   </thead>
   <tbody>
