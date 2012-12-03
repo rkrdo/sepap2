@@ -2,10 +2,14 @@ ActiveAdmin.register User do
   controller.authorize_resource
   form do |f|
     f.inputs "User Details" do
-      if f.object.new_record?
+      
         f.input :email
         f.input :password
         f.input :password_confirmation
+        f.input :name
+        f.input :lastname
+      if f.object.new_record?
+        f.input :teacher, :label => "Teacher"
       else 
         f.input :teacher, :label => "Do you wish to give teacher power to #{f.object.name + f.object.lastname rescue f.object.num}"
       end
