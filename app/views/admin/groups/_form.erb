@@ -19,7 +19,7 @@
       <%= f.input :members, as: :text %>
     <% end %>
     <% if !f.object.new_record? %>
-      <%= f.has_many :enrollments do |enrollment| %>
+      <%= f.inputs for: :enrollments do |enrollment| %>
         <%= enrollment.inputs "#{enrollment.object.user.try(:num)}" do %>
           <%= enrollment.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove' %>
         <% end %>

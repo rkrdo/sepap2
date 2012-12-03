@@ -74,7 +74,7 @@ es:
     outcome_fail_text: "Lo sentimos, tu solución no presentó los resultados esperados por el sistema."
     outcome_timeout: "INCOMPLETO debido a TIEMPO EXCEDIDO"
     outcome_timeout_text: "Tu solución tardó más tiempo del permitido. Puede que sea un ciclo infinito."
-    outcome_uncompile: "INCOMPLETO debido a ERROR DE COMPILACION"
+    outcome_uncompile: "INCOMPLETO debido a ERROR DE COMPILACIÓN"
     outcome_uncompile_text: "Tu código no pudo ser compilado."
     attempt_feedback: "Considera lo siguiente:"
     attempt_code: "Ver código del intento"
@@ -135,10 +135,10 @@ para verificar si efectivamente nuestra solución es exitosa.</p>
 <p> El resultado a tu solución puede caer en alguna de las siguientes clasificaciones:</p>
 
 <ul>
-    <li><b>ACEPTADO</b> –Tu solución fue exitosa y arrojó los resultados esperados</li>
-    <li><b>RECHAZADO</b> – Tu solución compiló exitosamente pero los resultados arrojados no cumple con las especificaciones</li>
-    <li><b>ERROR DE COMPILACION</b> – Tu solución no pudo ser compilada en el servidor, posiblemente por errores de sintaxis</li>
-    <li><b>TIEMPO EXCEDIDO</b> – Tu solución ha tardado más tiempo del esperado en ejecutarse, posiblemente
+    <li><b>COMPLETO</b> –Tu solución fue exitosa y arrojó los resultados esperados</li>
+    <li><b>INCOMPLETO</b> – Tu solución compiló exitosamente pero los resultados arrojados no cumple con las especificaciones</li>
+    <li><b>INCOMPLETO debido a ERROR DE COMPILACIÓN</b> – Tu solución no pudo ser compilada en el servidor, posiblemente por errores de sintaxis</li>
+    <li><b>INCOMPLETO debido a TIEMPO EXCEDIDO</b> – Tu solución ha tardado más tiempo del esperado en ejecutarse, posiblemente
     por algún error de lógica (por ejemplo ciclos infinitos)</li>
 </ul>
 
@@ -150,4 +150,29 @@ podemos seguir los siguientes pasos:</p>
 <li>Aparecerá una tabla con los problemas intentados previamente.</li>
 <li>Elige el problema que deseas revisar.</li>
 <li>Cada 'tab' dentro del problema contiene un intento realizado.</li>
-</ol>"
+</ol>
+
+<h3 id='tech-detail'>Detalles técnicos</h3>
+  <p> Toma en cuenta los siguientes detalles al momento de planear tu solución a un problema </p>
+  
+  <p> Recomendaciones generales </p>
+  <ul>
+    <li> No utilizar letreros para “pedir“ las entradas al usuario </li>
+    <li> Desplegar los resultados exactamente como se pide en la descripción del problema </li>
+    <li> Compilador utilizado javac versión 1.6.0_33 </li>
+  </ul>
+  
+  <p> Para problemas en C/C++ </p>
+  <ul>
+    <li> Utilizar solamente bibliotecas soportadas por el estandar ANSI C </li>
+    <li> No utilizar bibliotecas/funciones realizadas específicamente para ciertos sistemas operativos/ambientes. Por ejemplo 'conio.h' o función System(“pause“) para Visual Studio </li>
+    <li> Incluir explícitamente los encabezados de todas las bibliotecas externas utilizadas. Por ejemplo: #include&lt;math.h&gt; </li>
+    <li> Compilador utilizado g++ versión 4.6.3 </li>
+  </ul>
+  
+  <p> Para problemas en Java </p>
+  <ul>
+    <li> Utilizar solamente bibliotecas soportadas por el compilador javac </li>
+    <li> No utilizar bibliotecas/funciones realizadas específicamente para ciertos sistemas operativos/ambientes. </li>
+    <li> Compilador utilizado javac versión 1.6.0_33 </li>
+  </ul>"
