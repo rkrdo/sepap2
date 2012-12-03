@@ -398,3 +398,23 @@ div#error{
 .flags_container{
 	margin-right: 230px;
 }
+
+.tooltip{
+    position: absolute;
+    padding:3px 3px 3px 3px;
+    background:#222;
+    z-index:10;
+    display:inline-block; /*important*/
+    /*font*/
+    font-family:Verdana, Geneva, sans-serif;
+    font-size:13px;
+    line-height:13px;
+    color:#fff;
+    /*css3 rounded corners*/
+    -moz-border-radius:4px;
+    -khtml-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    left: 120px;
+    top: 5px;
+}
