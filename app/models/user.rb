@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :enrollments
   has_many :assignments, through: :groups
   has_many :groups
+  has_many :problems
 
   validates_presence_of :num, :email, :password, :password_confirmation
   validates_format_of :num, with: /\A(A|L)([0-9]{8})\z/i
@@ -28,4 +29,11 @@ class User < ActiveRecord::Base
 		super(conditions)
 	end
 
+  def my_groups
+    if self.admin?
+      Group.scoped
+    else
+      self.groups
+    end
+  end
 end

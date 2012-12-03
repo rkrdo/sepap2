@@ -2,6 +2,7 @@ class Problem < ActiveRecord::Base
   has_many :attempts, :dependent => :destroy
   has_many :feedbacks, :dependent => :destroy
   has_many :assignments
+  belongs_to :user
   has_and_belongs_to_many :topics, :join_table => :problems_topics
   attr_accessible :description, :module, :time, :title, :main, :method, :input, :output, :feedbacks, :exe, :language, :problem, :topic_ids
 

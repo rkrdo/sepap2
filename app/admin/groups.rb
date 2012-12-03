@@ -1,6 +1,12 @@
 ActiveAdmin.register Group do
   # controller.authorize_resource 
+
+
+  scope_to :current_user, :association_method => :my_groups
+  
   form partial: "form"
+
+
 
   index do 
     column :name
