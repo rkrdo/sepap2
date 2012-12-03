@@ -9,6 +9,7 @@ class AddTeacherToUser < ActiveRecord::Migration
       r.password_confirmation   = '121212'
       r.num = 'A12121212'
       r.teacher = true
+      r.admin = true
     end
     User.create! do |r|
       r.email      = 'L00904961@itesm.mx'
@@ -16,6 +17,7 @@ class AddTeacherToUser < ActiveRecord::Migration
       r.password_confirmation   = '121212'
       r.num = 'L00904961'
       r.teacher = true
+      r.admin = true
     end
     User.create! do |r|
       r.email      = 'L00163642@itesm.mx'
@@ -23,6 +25,7 @@ class AddTeacherToUser < ActiveRecord::Migration
       r.password_confirmation   = '121212'
       r.num = 'L00163642'
       r.teacher = true
+      r.admin = true
     end
   end
 

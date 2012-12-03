@@ -1,9 +1,10 @@
 Sepap2::Application.routes.draw do
 
-  resources :topics
-
 scope "/:locale" do
-  devise_for :users
+  resources :topics
+  devise_for :users do
+    resources :assignments , only:[:index,:show]
+  end
   ActiveAdmin.routes(self)
   resources :attempts
   resources :problems, only:[:index,:show] do

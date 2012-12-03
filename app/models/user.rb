@@ -36,4 +36,9 @@ class User < ActiveRecord::Base
       self.groups
     end
   end
+
+  def assigned_problems
+    problems = []
+    self.enrollments.last.group.assignments if self.enrollments.last
+  end
 end
