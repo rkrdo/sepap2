@@ -27,6 +27,8 @@
 	  <div class="content">
 		  <span><%=t :session_edit %></span><br />
 		  <%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username"  %>
+		  <%= f.text_field :name, :placeholder=>"#{t :name}", :class=>"input username"  %>
+		  <%= f.text_field :lastname, :placeholder=>"#{t :lastname}", :class=>"input username"  %>
 
 		  <%= f.password_field :current_password, :placeholder=>"#{t :password_current}", :class=>"input password" %>
 

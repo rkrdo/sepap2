@@ -3,6 +3,7 @@ ActiveAdmin.register Problem do
 	controller do
 		def create
 			@problem = Problem.new(params[:problem])
+			@problem.user = current_user
 			respond_to do |format|
 				if @problem.save
 					# Create and store input
@@ -19,16 +20,12 @@ ActiveAdmin.register Problem do
 
 		def edit
 			@problem = Problem.find(params[:id])
-			@types = @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
-			#puts "/////////////////////////////////////////////////////////////////////////"
-			#puts @types.to_s
 		end
 
 		def show
 		    @problem = Problem.find(params[:id])
 		    respond_to do |format|
 		      	format.html # new.html.erb
-		      	format.json { render json: @problem.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}}
 	    	end
   		end
 	end
@@ -66,40 +63,13 @@ ActiveAdmin.register Problem do
 	end	
 	
 
-	collection_action :type_tokens, :method => :get do
-		@tags = ActsAsTaggableOn::Tag.where("name like ?", "%#{params[:q]}%")
-		respond_to do |format|
-			format.json { render :json => @tags.map {|t| {:id => t.id.to_s, :name => t.name }} }
-		end
-  	end
-
-	form do |f|
-		f.inputs do
-			f.input :title
-			@types = f.object.taggings.map {|t| {:id => t.tag_id.to_s, :name=>ActsAsTaggableOn::Tag.find(t.tag_id).name}}
-			@preP = @types.to_s
-			puts "/////////////////////////////////////////////jamonazo///////////////////////////////////"
-			@preP.gsub!(":", "\"")
-			@preP.gsub!("=>", "\":")
-			f.input :type_list, input_html: {id: "type_autocomplete", "data-pre" => @preP}
-			#f.input :type_list, input_html: {id: "type_autocomplete", "data-pre" => "[{\"id\":\"25\",\"name\":\"lolol\"},{\"id\":\"26\",\"name\":\"reddit\"},{\"id\":\"28\",\"name\":\"hadouken\"},{\"id\":\"29\",\"name\":\"mayhem\"}]"}
-			f.input :description
-			f.input :time
-			f.input :main
-			f.input :method
-			f.input :input, :as => :text
-		end
-		f.buttons
-	end
+	form partial: "form"
 
 
  	#filters
  	filter :id
 	filter :title
-	filter :taggings_tag_name, :label => "Type", :as => :check_boxes,
-        :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }
-    #filter :taggings_tag_name, :label => "Type", :as => :string,
-    #     :collection => proc {  ActsAsTaggableOn::Tag.all.map{|t| [t.name, t.name]} }, :input_html => {:id => "type_autocomplete_search"}
+	filter :topics_id, :as => :check_boxes, :collection => proc {Topic.all}
 	filter :created_at
 
 
@@ -121,7 +91,6 @@ ActiveAdmin.register Problem do
 	  		row :title
 	  		row :description
 	  		row :time
-	  		row :type_list
 	  	end
   	end
 end

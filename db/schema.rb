@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121112212219) do
+ActiveRecord::Schema.define(:version => 20121203002137) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.string   "resource_id",   :null => false
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(:version => 20121112212219) do
     t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "user_id"
   end
 
   add_index "groups", ["subject_id"], :name => "index_groups_on_subject_id"
@@ -97,7 +98,16 @@ ActiveRecord::Schema.define(:version => 20121112212219) do
     t.string   "output"
     t.string   "exe"
     t.string   "language"
+    t.integer  "user_id"
   end
+
+  create_table "problems_topics", :id => false, :force => true do |t|
+    t.integer "problem_id", :null => false
+    t.integer "topic_id",   :null => false
+  end
+
+  add_index "problems_topics", ["problem_id", "topic_id"], :name => "index_problems_topics_on_problem_id_and_topic_id"
+  add_index "problems_topics", ["topic_id", "problem_id"], :name => "index_problems_topics_on_topic_id_and_problem_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "name"
@@ -120,6 +130,12 @@ ActiveRecord::Schema.define(:version => 20121112212219) do
 
   create_table "tags", :force => true do |t|
     t.string "name"
+  end
+
+  create_table "topics", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "users", :force => true do |t|

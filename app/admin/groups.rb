@@ -1,23 +1,12 @@
 ActiveAdmin.register Group do
   # controller.authorize_resource 
-  form do |f|
-    f.inputs "Details" do
-      f.input :name
-      f.input :period, as: :select, collection: Group::PERIODS
-      f.input :subject
-    end
-    f.inputs "Members"do
-      f.input :members, as: :text
-    end
-    if !f.object.new_record?
-      f.has_many :enrollments do |enrollment|
-        enrollment.inputs "#{enrollment.object.user.try(:num)}" do
-          enrollment.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
-        end
-      end
-    end
-    f.buttons
-  end
+
+
+  scope_to :current_user, :association_method => :my_groups
+  
+  form partial: "form"
+
+
 
   index do 
     column :name
@@ -42,6 +31,7 @@ ActiveAdmin.register Group do
 
     def create
       @group = Group.new(params[:group])
+      @group.user = current_user
       respond_to do |format|
         if @group.save
           errors = @group.populate_group
