@@ -17,7 +17,7 @@ echo "" > $salida
 g++ $archivo -o $ejecutable &> $error
 if [ $? -eq 0 ]; then		#checa que la compilacion haya sido exitosa
 	
-	$ejecutable < $entrada &> $salida &
+	$ejecutable <<< $entrada &> $salida &
 	CppPID=$!
 	./matar $CppPID $tiempo &	#se manda llamar otro script con el PID del ejecutable y el tiempo limite
 	matarPID=$!

@@ -23,7 +23,7 @@ class Attempt < ActiveRecord::Base
 		file_basename=File.basename(self.code.to_s, File.extname(self.code.to_s))
 
 		# Input for executable
-		input=basepath_problem+"/input"
+		input=self.problem.input
 
 		# File that stores the output
 		output=basepath_user+"/output"
@@ -49,20 +49,20 @@ class Attempt < ActiveRecord::Base
 				exe=basepath_user+" "+file_basename
 			end
 
-			self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
+			self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' '#{input}' #{output} #{expected_output} #{error} #{time} #{route}`)
 
 		elsif self.language.include? "cs"
 			# File to execute after compile
 			exe=basepath_user+"/"+file_basename+".exe"
 
-			self.update_attributes(:outcome=>`./lib/scripts/compilarCs #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
+			self.update_attributes(:outcome=>`./lib/scripts/compilarCs #{file} '#{exe}' '#{input}' #{output} #{expected_output} #{error} #{time} #{route}`)
 
 		elsif self.language.include? "c"
 
 			# File to execute after compile
 			exe=basepath_user+"/"+file_basename
 
-			self.update_attributes(:outcome=>`./lib/scripts/compilarC #{file} '#{exe}' #{input} #{output} #{expected_output} #{error} #{time} #{route}`)
+			self.update_attributes(:outcome=>`./lib/scripts/compilarC #{file} '#{exe}' '#{input}' #{output} #{expected_output} #{error} #{time} #{route}`)
 
 		else
 			self.update_attributes(:outcome=>"Lenguaje no identificado")

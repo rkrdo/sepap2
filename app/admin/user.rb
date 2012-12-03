@@ -11,7 +11,7 @@ ActiveAdmin.register User do
       if f.object.new_record?
         f.input :teacher, :label => "Teacher"
       else 
-        f.input :teacher, :label => "Do you wish to give teacher power to #{f.object.name + f.object.lastname rescue f.object.num}"
+        f.input :teacher, :label => "Do you wish to give teacher power to #{f.object.name + ' ' + f.object.lastname rescue f.object.num}"
       end
     end
     f.buttons

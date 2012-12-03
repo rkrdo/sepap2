@@ -21,6 +21,23 @@ ActiveAdmin.register Problem do
 		def edit
 			@problem = Problem.find(params[:id])
 		end
+		
+		def update
+			@problem = Problem.find(params[:id])
+			respond_to do |format|
+			  if @problem.update_attributes(params[:problem])
+			  	@problem.compile_solution
+			  	@problem.feedbacks.each do |feed|
+			  		feed.destroy	# DESTROY THE MAGGOT
+			  	end
+				format.html { redirect_to upload_partial_admin_problem_path(@problem), notice: 'Problem was successfully edited. Next step is to modify feedback messages' }
+				format.json { head :no_content }
+			  else
+				format.html { render action: "edit" }
+				format.json { render json: @problem.errors, status: :unprocessable_entity }
+			  end
+			end
+		end
 
 		def show
 		    @problem = Problem.find(params[:id])

@@ -15,7 +15,7 @@ gmcs $archivo &> $error
 if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
 	echo -n "ok - compilación exitosa de solucion"
 	
-	mono $ejecutable < $entrada &> $salida &
+	mono $ejecutable <<< $entrada &> $salida &
 	monoPID=$!
 	wait $monoPID
 else

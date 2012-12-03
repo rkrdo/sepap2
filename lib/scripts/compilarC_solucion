@@ -15,7 +15,7 @@ g++ $archivo -o $ejecutable &> $error
 if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
 	echo -n "ok - compilacion exitosa de solucion"
 	
-	$ejecutable < $entrada &> $salida &
+	$ejecutable <<< $entrada &> $salida &
 	CppPID=$!
 	wait $CppPID
 else
