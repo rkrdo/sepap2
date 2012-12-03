@@ -10,6 +10,7 @@ class Ability
       can :manage, Group
       can :manage, Assignment
       can :manage, Subject
+      can :create, User
     end
   end 
 end  
