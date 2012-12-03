@@ -54,7 +54,7 @@ en:
     attempt_problem: "Problem"
     attempt_number: "Number of attempts"
     attempt_outcome: "Last outcome"
-    attempt_accepted: "Accepted"
+    attempt_accepted: "Complete"
     feedback: "Feedback"
     menu_problems: "Problem List"
     menu_attempts: "My attempts"

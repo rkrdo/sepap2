@@ -28,6 +28,7 @@ $(document).ready(function() {
     <th>ID</th>
     <th><%=t :prob_type %></th>
     <th><%=t :due_date %></th>
+    <th><%=t :attempt_accepted %></th>
   </tr>
   </thead>
   <tbody>
@@ -38,6 +39,13 @@ $(document).ready(function() {
     <td><%= assignment.problem.id %></td>
     <td><%= assignment.problem.topics.map{|t| t.name}.to_s.gsub("\"","").gsub("[","").gsub("]","") %></td>
     <td><%= assignment.due_date %></td>
+    <td>
+      <% if current_user.attempts.where(:problem_id=> assignment.problem.id, :outcome=> "ACEPTADO").count >= 1 %>
+        <%= image_tag "verde.ico" %>
+      <% else %>
+        <%= image_tag "magenta.ico" %>
+      <% end%>
+    </td>
   </tr>
 <% end %>
   </tbody>

@@ -88,7 +88,7 @@ es:
     attempt_problem: "Problema"
     attempt_number: "Número de intentos"
     attempt_outcome: "Ultimo resultado"
-    attempt_accepted: "Aceptado"
+    attempt_accepted: "Completo"
     feedback: "Retroalimentación"
     menu_problems: "Problemas"
     menu_attempts: "Mi historial"

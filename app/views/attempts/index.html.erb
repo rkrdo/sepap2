@@ -47,9 +47,9 @@ $(document).ready(function() {
         </td>
         <td>
           <% if current_user.attempts.where(:problem_id=> attempt["problem_id"], :outcome=> "ACEPTADO").count >= 1 %>
-            <%=t :yes %>
+            <%= image_tag "verde.ico" %>
           <% else %>
-            <%=t :no %>
+            <%= image_tag "magenta.ico" %>
           <% end%>
         </td>
       </tr>
