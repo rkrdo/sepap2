@@ -1,7 +1,7 @@
 <%= devise_error_messages! %>
 <div id="wrapper2">
-	<%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-	<div class="upper">	
+	<%= form_for(resource, :as => resource_name, :url => edit_password_path(resource_name), :html => { :method => :get }) do |f| %>
+	<div class="upper">
 		<h1>Change your password</h1>
 		<%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
 	</div>
@@ -14,7 +14,7 @@
 
  		 <%= f.password_field :password_confirmation, :placeholder=>"Confirm New Password", :class=>"input password" %>
 	</div>
-	
+
 	<div class="footer">
  		<div><%= f.submit "Change my password", :class=>"button" %></div>
 		<%= link_to 'Sign In', new_user_session_path, :class=>"register" %>
