@@ -1,6 +1,6 @@
 <% if user_signed_in? %>
   <li><%= link_to "#{t :menu_attempts}", attempts_path %></li>
-  <li><%= link_to "My assignments", attempts_path %></li>
+  <li><%= link_to "#{t :menu_assignments}", assignments_path %></li>
   <li><%= link_to("#{t :menu_edit}", edit_user_registration_path) %></li>
   <li><%= link_to("#{t :menu_logout}", destroy_user_session_path, :method => :delete) %></li>
 <% else %>

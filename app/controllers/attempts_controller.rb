@@ -86,7 +86,6 @@ class AttemptsController < ApplicationController
       format.html { redirect_to problem_path(problem) }
       format.json { head :no_content }
     end
-
   end
 
 end

@@ -36,4 +36,16 @@ class User < ActiveRecord::Base
       self.groups
     end
   end
+
+  def assigned_problems
+    assignments = []
+    if self.enrollments
+      self.enrollments.each do |enrollment|
+        enrollment.group.assignments.each do |a|
+          assignments << a
+        end
+      end
+    end
+    return assignments
+  end
 end

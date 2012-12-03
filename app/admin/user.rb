@@ -2,10 +2,17 @@ ActiveAdmin.register User do
   controller.authorize_resource
   form do |f|
     f.inputs "User Details" do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
-      f.input :teacher, :label => "Teacher"
+      
+        f.input :email
+        f.input :password
+        f.input :password_confirmation
+        f.input :name
+        f.input :lastname
+      if f.object.new_record?
+        f.input :teacher, :label => "Teacher"
+      else 
+        f.input :teacher, :label => "Do you wish to give teacher power to #{f.object.name + ' ' + f.object.lastname rescue f.object.num}"
+      end
     end
     f.buttons
   end
@@ -29,13 +36,13 @@ ActiveAdmin.register User do
 
   index do
     column :email
-    column :reset_password_sent_at
-    column :current_sign_in_at
-    column :last_sign_in_at
+    column :name
+    column :lastname
     column :current_sign_in_ip
+    column :last_sign_in_at
     column :created_at
-    column :updated_at
     column :teacher
+    default_actions
   end
 
   create_or_edit = Proc.new {

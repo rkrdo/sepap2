@@ -8,7 +8,10 @@
       <%= image_tag "infoicon.png" ,size: "20x20", id: "infoMain", class: "info"%>
         <div style="position:relative">
           <span id="spInfoMain", class="tooltip">
-            Here you must upload the file containing the source code file that contains the main method of the problem.
+            Here you must upload the file containing the source code file that contains the main method of the problem. </br>
+          </br>
+            The following file extensions are accepted: </br>
+            <code>.c, .cpp, .cs, .java</code>
           </span>
         </div>
       <%= f.input :main %>
@@ -16,7 +19,10 @@
       <%= image_tag "infoicon.png" ,size: "20x20", id: "infoMethod", class: "info"%>
         <div style="position:relative">
           <span id="spInfoMethod", class="tooltip">
-            In case your problem consists in coding a method or function, you must upload the file containing the source code to the method.
+            In case your problem consists in coding a method or function, you must upload the file containing the source code to the method. </br>
+            </br>
+            The following file extensions are accepted: </br>
+            <code>.c, .cpp, .cs, .java</code>
           </span>
         </div>
       <%= f.input :method %>

@@ -73,6 +73,10 @@ class Attempt < ActiveRecord::Base
 	  IO.read((self.code.to_s))
 	end
 
+	def is_assigned
+    current_user.enrollments.last.group.assignments if self.enrollments.last
+	end
+
 	def get_feedback
 		basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
 		basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
