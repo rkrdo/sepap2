@@ -33,12 +33,12 @@ class Problem < ActiveRecord::Base
 
 	def  store_input
 
-		input_path = self.basepath_problem+"/input"
+		# input_path = self.basepath_problem+"/input"
 
 		exe = File.basename(self.main.to_s,File.extname(self.main.to_s))
 
-		File.open(input_path,'w') {|f| f.write(self.input)}
-		self.update_attributes(:input=> input_path)
+		# File.open(input_path,'w') {|f| f.write(self.input)}
+		# self.update_attributes(:input=> input_path)
 
 		# Store output path
 		self.update_attributes(:output=> self.basepath_problem+"/output")
@@ -74,17 +74,17 @@ class Problem < ActiveRecord::Base
 			exe = self.basepath_problem+" "+file_basename
 
 			# Compile!
-			compile=`./lib/scripts/compilarJava_solucion #{self.basepath_problem} #{file} '#{exe}' #{self.input} #{self.output} #{error}`
+			compile=`./lib/scripts/compilarJava_solucion #{self.basepath_problem} #{file} '#{exe}' '#{self.input}' #{self.output} #{error}`
 
 		elsif self.extension.include? "cs"
 			exe="./"+File.basename(file,self.extension)+".exe"
 			# Compile C# code !
-			compile=`./lib/scripts/compilarCs_solucion #{self.basepath_problem} #{file} #{exe} #{self.input} #{self.output} #{error}	`
+			compile=`./lib/scripts/compilarCs_solucion #{self.basepath_problem} #{file} #{exe} '#{self.input}' #{self.output} #{error}	`
 
 		elsif (self.extension.include? "c") || (self.extension.include? "cpp")
 			exe="./"+File.basename(file,self.extension)
 			# Compile C code !
-			compile=`./lib/scripts/compilarC_solucion #{self.basepath_problem} #{file} #{exe} #{self.input} #{self.output} #{error}`
+			compile=`./lib/scripts/compilarC_solucion #{self.basepath_problem} #{file} #{exe} '#{self.input}' #{self.output} #{error}`
 		else
 			compile="error"
 		end

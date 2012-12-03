@@ -25,7 +25,7 @@ if [ $? -eq 0 ]; then			#checa que la compilacion haya jalado
 	#nohup ./matar $BASHPID > /dev/null 2>&1 &
 	#./matar $BASHPID & #se llama a otro script que matará a este en caso de que se cicle
 	
-	mono $ejecutable < $entrada &> $salida &
+	mono $ejecutable <<< $entrada &> $salida &
 	monoPID=$!
 	./matar $monoPID $tiempo &	#se manda llamar otro script con el PID del JAVA y el tiempo limite
 	matarPID=$!
