@@ -10,11 +10,7 @@ $.facebox.settings.closeImage = '/assets/closelabel.png'
 $.facebox.settings.loadingImage = '/assets/loading.gif'
 $(document).ready(function($) {
   $('a[rel*=facebox]').facebox()
-  $('.data_table').dataTable( {
-		"sDom": 'R<"H"lfr>t<"F"ip>',
-		"JQueryUI": true,
-		"sPaginationType": "full_numbers"
-	} );
+  $('.data_table').dataTable({"bJQueryUI": true});
   $("#spInfoMembers").hide();
   $("#spInfoMethod").hide();
   $("#spInfoMain").hide();

@@ -24,12 +24,12 @@ Problem:
           <% if user.attempts.where(:problem_id=>  params[:problemToFind], :outcome=> "ACEPTADO").count >= 1 %>
             ACEPTADO
           <%else%>
-            <%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:outcome) %>
+            <%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:outcome)  %>
           <%end%>
         </td>
         <td>
           <% attempt = user.attempts.where(problem_id: params[:problemToFind]).last %>
-          <%= link_to_function (t :attempt_code),"$.facebox({ ajax: '#{attempt_path(attempt)}' })" %>
+          <%= link_to_function (t :attempt_code),"$.facebox({ ajax: '#{attempt_path(attempt)}' })" if attempt %>
         </td>
         <td><%= user.attempts.where(:problem_id=>  params[:problemToFind]).order("created_at DESC").first.try(:created_at)%></td>
       </tr>

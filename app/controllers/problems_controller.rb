@@ -84,7 +84,6 @@ class ProblemsController < ApplicationController
   def use_toolkit
     @problem = Problem.find(params[:id])
     @resultado = @problem.toolkit(params)
-
     respond_to do |format|
       format.js
     end
