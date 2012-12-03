@@ -3,7 +3,6 @@
       <%= f.input :name %>
       <%= f.input :period, as: :select, collection: Group::PERIODS %>
       <%= f.input :subject %>
-      <%= f.input :user, as: :hidden, value: current_user.id %>
     <% end %>
     <%= f.inputs :name => "Members" do %>
       <%= image_tag "infoicon.png" ,size: "20x20", id: "infoMembers", class: "info"%>

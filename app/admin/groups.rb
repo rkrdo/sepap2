@@ -25,6 +25,7 @@ ActiveAdmin.register Group do
 
     def create
       @group = Group.new(params[:group])
+      @group.user = current_user
       respond_to do |format|
         if @group.save
           errors = @group.populate_group
