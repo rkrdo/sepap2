@@ -73,8 +73,10 @@ class Attempt < ActiveRecord::Base
 	  IO.read((self.code.to_s))
 	end
 
-	def is_assigned
-    current_user.enrollments.last.group.assignments if self.enrollments.last
+	def is_assigned(user)
+    user.assigned_problems.each do |assignment|
+      return assignment.id if assignment.problem == self.problem
+    end
 	end
 
 	def get_feedback

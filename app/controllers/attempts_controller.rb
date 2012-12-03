@@ -44,7 +44,7 @@ class AttemptsController < ApplicationController
     @attempt = @problem.attempts.new(params[:attempt])
     @attempt.user_id = current_user.id
     @attempt.language=params[:language]
-
+    @attempt.assignment_id = @attempt.is_assigned(current_user)
 
     respond_to do |format|
       if @attempt.save
