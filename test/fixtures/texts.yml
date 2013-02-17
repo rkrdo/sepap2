@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  textable_type: MyString
+  textable_id: 1
+  text_identifier: MyString
+  text_content: MyText
+  locale: MyString
+
+two:
+  textable_type: MyString
+  textable_id: 1
+  text_identifier: MyString
+  text_content: MyText
+  locale: MyString
