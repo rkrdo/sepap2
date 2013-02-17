@@ -1,18 +1,20 @@
 Sepap2::Application.routes.draw do
-
-scope "/:locale" do
+scope "/:locale", :defaults => {:locale => "en"} do
+  root :to => 'home#index'
   resources :topics
   devise_for :users do
     resources :assignments , only:[:index,:show]
   end
-  ActiveAdmin.routes(self)
   resources :attempts
   resources :problems, only:[:index,:show] do
     resources :attempts
     get :use_toolkit, on: :member
   end
+  namespace :admin do
+    resources :problems
+  end
 end
-devise_for :users
+#devise_for :users
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
@@ -63,10 +65,10 @@ devise_for :users
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  match '/:locale' => 'home#index'
+  
   match '/:locale/users' => 'home#index'
-  root :to => 'home#index'
-
+  match '/:locale' => 'home#index'
+  get '/' => 'home#index'
 
   # See how all your routes lay out with "rake routes"
 

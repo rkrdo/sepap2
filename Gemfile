@@ -38,6 +38,7 @@ gem 'sqlite3'
 
 group :development do
   gem "rails-erd"
+  gem 'railroady'
 end
 
 group :production do
@@ -60,6 +61,8 @@ end
 gem 'jquery-rails'
 
 gem 'acts-as-taggable-on'
+
+gem "nested_form"
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

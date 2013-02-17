@@ -10,16 +10,16 @@
   <div id="hmenu">
     <ul>
       <li><%= link_to 'SEPAP', root_path %></li>
-	<% if current_user.try(:teacher?) %>
+      <% if current_user.try(:teacher?) %>
         <li><%= link_to "Admin", admin_dashboard_path(:locale=>"en") %></li>
-        <% end %>
+      <% end %>
       <div class="right">
         <ul>
           <li><%= link_to "#{t :menu_problems}", problems_path %></li>
           <%= render 'devise/menu/login_items' %>
-	  <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0"><%=t :feedback %></a></li>
-	  <li><%=link_to( image_tag("english.png", size: "30x18") , :locale=>'en') %>
-		<%=link_to( image_tag("spanish.gif",  size: "30x18") , :locale=>'es') %></li>
+          <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0"><%=t :feedback %></a></li>
+          <li><%=link_to( image_tag("english.png", size: "30x18") , :locale=>'en') %>
+    <%=link_to( image_tag("spanish.gif",  size: "30x18") , :locale=>'es') %></li>
         </ul>
       </div>
     </ul>
