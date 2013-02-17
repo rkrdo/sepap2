@@ -1,15 +1,17 @@
 Sepap2::Application.routes.draw do
-scope "/:locale", :defaults => {:locale => "en"} do
+scope "/:locale", :defaults => {:locale => "en"}, :locale => /en|es/ do
   root :to => 'home#index'
   resources :topics
   devise_for :users do
     resources :assignments , only:[:index,:show]
   end
+  
   resources :attempts
   resources :problems, only:[:index,:show] do
     resources :attempts
     get :use_toolkit, on: :member
   end
+  
   namespace :admin do
     resources :problems
   end
