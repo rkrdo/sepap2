@@ -9,9 +9,9 @@
 
 <% @admin_groups.each do |admin_group| %>
   <tr>
-    <td><%= link_to 'Show', admin_group %></td>
+    <td><%= link_to 'Show', [:admin, admin_group] %></td>
     <td><%= link_to 'Edit', edit_admin_group_path(admin_group) %></td>
-    <td><%= link_to 'Destroy', admin_group, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', [:admin, admin_group], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
