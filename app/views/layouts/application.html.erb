@@ -11,7 +11,7 @@
     <ul>
       <li><%= link_to 'SEPAP', root_path %></li>
       <% if current_user.try(:teacher?) %>
-        <li><%= link_to "Admin", admin_dashboard_path(:locale=>"en") %></li>
+        <li><%= link_to "Admin", admin_problems_path(:locale=>"en") %></li>
       <% end %>
       <div class="right">
         <ul>
