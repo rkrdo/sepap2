@@ -9,9 +9,9 @@
 
 <% @admin_assignments.each do |admin_assignment| %>
   <tr>
-    <td><%= link_to 'Show', admin_assignment %></td>
+    <td><%= link_to 'Show', [:admin, admin_assignment] %></td>
     <td><%= link_to 'Edit', edit_admin_assignment_path(admin_assignment) %></td>
-    <td><%= link_to 'Destroy', admin_assignment, confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', [:admin, admin_assignment], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
