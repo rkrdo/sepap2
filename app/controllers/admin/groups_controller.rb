@@ -44,7 +44,7 @@ class Admin::GroupsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_group.save
-        format.html { redirect_to @admin_group, notice: 'Group was successfully created.' }
+        format.html { redirect_to [:admin, @admin_group], notice: 'Group was successfully created.' }
         format.json { render json: @admin_group, status: :created, location: @admin_group }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admin::GroupsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_group.update_attributes(params[:admin_group])
-        format.html { redirect_to @admin_group, notice: 'Group was successfully updated.' }
+        format.html { redirect_to [:admin, @admin_group], notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

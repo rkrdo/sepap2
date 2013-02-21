@@ -44,7 +44,7 @@ class Admin::AssignmentsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_assignment.save
-        format.html { redirect_to @admin_assignment, notice: 'Assignment was successfully created.' }
+        format.html { redirect_to [:admin, @admin_assignment], notice: 'Assignment was successfully created.' }
         format.json { render json: @admin_assignment, status: :created, location: @admin_assignment }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admin::AssignmentsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_assignment.update_attributes(params[:admin_assignment])
-        format.html { redirect_to @admin_assignment, notice: 'Assignment was successfully updated.' }
+        format.html { redirect_to [:admin, @admin_assignment], notice: 'Assignment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

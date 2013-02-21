@@ -44,7 +44,7 @@ class Admin::ProblemsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_problem.save
-        format.html { redirect_to @admin_problem, notice: 'Problem was successfully created.' }
+        format.html { redirect_to [:admin, @admin_problem], notice: 'Problem was successfully created.' }
         format.json { render json: @admin_problem, status: :created, location: @admin_problem }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admin::ProblemsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_problem.update_attributes(params[:admin_problem])
-        format.html { redirect_to @admin_problem, notice: 'Problem was successfully updated.' }
+        format.html { redirect_to [:admin, @admin_problem], notice: 'Problem was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

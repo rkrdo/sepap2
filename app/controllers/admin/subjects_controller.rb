@@ -44,7 +44,7 @@ class Admin::SubjectsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_subject.save
-        format.html { redirect_to @admin_subject, notice: 'Subject was successfully created.' }
+        format.html { redirect_to [:admin, @admin_subject], notice: 'Subject was successfully created.' }
         format.json { render json: @admin_subject, status: :created, location: @admin_subject }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admin::SubjectsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_subject.update_attributes(params[:admin_subject])
-        format.html { redirect_to @admin_subject, notice: 'Subject was successfully updated.' }
+        format.html { redirect_to [:admin, @admin_subject], notice: 'Subject was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

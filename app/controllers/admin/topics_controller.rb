@@ -44,7 +44,7 @@ class Admin::TopicsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_topic.save
-        format.html { redirect_to @admin_topic, notice: 'Topic was successfully created.' }
+        format.html { redirect_to [:admin, @admin_topic], notice: 'Topic was successfully created.' }
         format.json { render json: @admin_topic, status: :created, location: @admin_topic }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admin::TopicsController < Admin::BaseController
 
     respond_to do |format|
       if @admin_topic.update_attributes(params[:admin_topic])
-        format.html { redirect_to @admin_topic, notice: 'Topic was successfully updated.' }
+        format.html { redirect_to [:admin, @admin_topic], notice: 'Topic was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

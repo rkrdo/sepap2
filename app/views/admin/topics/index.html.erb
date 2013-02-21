@@ -9,9 +9,9 @@
 
 <% @admin_topics.each do |admin_topic| %>
   <tr>
-    <td><%= link_to 'Show', admin_topic_path(admin_topic) %></td>
+    <td><%= link_to 'Show', [:admin, admin_topic] %></td>
     <td><%= link_to 'Edit', edit_admin_topic_path(admin_topic) %></td>
-    <td><%= link_to 'Destroy', admin_topic_path(admin_topic), confirm: 'Are you sure?', method: :delete %></td>
+    <td><%= link_to 'Destroy', [:admin, admin_topic], confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
