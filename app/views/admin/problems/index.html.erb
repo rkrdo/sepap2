@@ -1,7 +1,11 @@
-<h1>Listing admin_problems</h1>
+<span class="action_item">
+  <%= link_to 'New Problem', new_admin_problem_path %>
+</span>
+<h1>Listing problems</h1>
 
 <table>
   <tr>
+    <td>Title</td>
     <th></th>
     <th></th>
     <th></th>
@@ -9,6 +13,7 @@
 
 <% @admin_problems.each do |admin_problem| %>
   <tr>
+    <td><%= admin_problem.titles.find_by_locale(params[:locale]).text_content%></td>
     <td><%= link_to 'Show', [:admin, admin_problem] %></td>
     <td><%= link_to 'Edit', edit_admin_problem_path(admin_problem) %></td>
     <td><%= link_to 'Destroy', [:admin, admin_problem], confirm: 'Are you sure?', method: :delete %></td>
@@ -17,5 +22,3 @@
 </table>
 
 <br />
-
-<%= link_to 'New Problem', new_admin_problem_path %>

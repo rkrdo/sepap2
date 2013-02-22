@@ -1,5 +1,6 @@
-<p id="notice"><%= notice %></p>
-
+<p>
+  Title: <%= @admin_problem.titles.find_by_locale(params[:locale]).text_content%>
+</p>
 
 <%= link_to 'Edit', edit_admin_problem_path(@admin_problem) %> |
 <%= link_to 'Back', admin_problems_path %>
