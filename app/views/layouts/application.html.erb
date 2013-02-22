@@ -1,34 +1,41 @@
 <!DOCTYPE html>
-<html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7 ]> <html class="ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--> <html lang="en"> <!--<![endif]-->
 <head>
-  <title>SEPAP</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+	<meta charset="utf-8" />
+	
+	<!-- Uncomment to make IE8 render like IE7 -->
+	<!-- <meta http-equiv="X-UA-Compatible" content="IE=7" /> -->
+	
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	
+	<title><%= content_for?(:title) ? yield(:title) : "SEPAP" %></title>
+  
+	<!-- Included CSS Files -->
+	<%= stylesheet_link_tag    "application" %>
+	
+	<!-- Included JS Files  -->
+	<%= javascript_include_tag "application" %>
+  
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="hmenu">
+  <nav class="top-bar">
     <ul>
-      <li><%= link_to 'SEPAP', root_path %></li>
+      <li class="name"><h1><%= link_to 'SEPAP', root_path %></h1></li>
       <% if current_user.try(:teacher?) %>
-        <li><%= link_to "Admin", admin_problems_path(:locale=>"en") %></li>
+        <li class="toggle-topbar"><%= link_to "Admin", admin_problems_path(:locale=>"en") %></li>
       <% end %>
-      <div class="right">
-        <ul>
-          <li><%= link_to "#{t :menu_problems}", problems_path %></li>
-          <%= render 'devise/menu/login_items' %>
-          <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0"><%=t :feedback %></a></li>
-          <li><%=link_to( image_tag("english.png", size: "30x18") , :locale=>'en') %>
-    <%=link_to( image_tag("spanish.gif",  size: "30x18") , :locale=>'es') %></li>
-        </ul>
-      </div>
     </ul>
-  </div>
-  <%if notice %>
-    <div id="notice"><%= notice %></div>
-  <% end %>
-  <div class="container">
-    <%= yield %>
-  </div>
+ 
+    <section>
+      <%= render 'devise/menu/login_items' %>
+    </section>
+  </nav>
+  <%= yield %>
 </body>
 </html>

@@ -1,9 +1,18 @@
-<% if user_signed_in? %>
+<ul class="left">
+  <li><%= link_to "#{t :menu_problems}", problems_path %></li>
   <li><%= link_to "#{t :menu_attempts}", attempts_path %></li>
   <li><%= link_to "#{t :menu_assignments}", assignments_path %></li>
-  <li><%= link_to("#{t :menu_edit}", edit_user_registration_path) %></li>
-  <li><%= link_to("#{t :menu_logout}", destroy_user_session_path, :method => :delete) %></li>
-<% else %>
-  <li><%= link_to("#{t :menu_login}", new_user_session_path)  %></li>
-  <li><%= link_to("#{t :menu_register}", new_user_registration_path)  %></li>
-<% end %>
+</ul>
+
+<ul class="right">
+  <li><%= link_to "#{t :feedback}", "https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0" %></li>
+  <li><%=link_to( image_tag("english.png", size: "30x18") , url_for(:locale=>'en'), :class => "locale_setter") %>
+  <%=link_to( image_tag("spanish.gif",  size: "30x18") , url_for(:locale=>'es'), :class => "locale_setter") %></li>
+  <li class="has-dropdown">
+    <%= link_to "#{current_user.name}", "#" %>
+    <ul class="dropdown">
+      <li><%= link_to("#{t :menu_edit}", edit_user_registration_path) %></li>
+      <li><%= link_to("#{t :menu_logout}", destroy_user_session_path, :method => :delete) %></li>
+    </ul>
+  </li>
+</ul>
