@@ -40,7 +40,7 @@ class Admin::SubjectsController < Admin::BaseController
   # POST /admin/subjects
   # POST /admin/subjects.json
   def create
-    @admin_subject = Subject.new(params[:admin_subject])
+    @admin_subject = Subject.new(params[:subject])
 
     respond_to do |format|
       if @admin_subject.save
@@ -59,7 +59,7 @@ class Admin::SubjectsController < Admin::BaseController
     @admin_subject = Subject.find(params[:id])
 
     respond_to do |format|
-      if @admin_subject.update_attributes(params[:admin_subject])
+      if @admin_subject.update_attributes(params[:subject])
         format.html { redirect_to [:admin, @admin_subject], notice: 'Subject was successfully updated.' }
         format.json { head :no_content }
       else

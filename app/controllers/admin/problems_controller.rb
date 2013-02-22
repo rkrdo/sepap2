@@ -40,7 +40,7 @@ class Admin::ProblemsController < Admin::BaseController
   # POST /admin/problems
   # POST /admin/problems.json
   def create
-    @admin_problem = Problem.new(params[:admin_problem])
+    @admin_problem = Problem.new(params[:problem])
 
     respond_to do |format|
       if @admin_problem.save
@@ -59,7 +59,7 @@ class Admin::ProblemsController < Admin::BaseController
     @admin_problem = Problem.find(params[:id])
 
     respond_to do |format|
-      if @admin_problem.update_attributes(params[:admin_problem])
+      if @admin_problem.update_attributes(params[:problem])
         format.html { redirect_to [:admin, @admin_problem], notice: 'Problem was successfully updated.' }
         format.json { head :no_content }
       else

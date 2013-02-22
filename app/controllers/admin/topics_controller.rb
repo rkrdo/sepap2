@@ -40,7 +40,7 @@ class Admin::TopicsController < Admin::BaseController
   # POST /admin/topics
   # POST /admin/topics.json
   def create
-    @admin_topic = Topic.new(params[:admin_topic])
+    @admin_topic = Topic.new(params[:topic])
 
     respond_to do |format|
       if @admin_topic.save
@@ -59,7 +59,7 @@ class Admin::TopicsController < Admin::BaseController
     @admin_topic = Topic.find(params[:id])
 
     respond_to do |format|
-      if @admin_topic.update_attributes(params[:admin_topic])
+      if @admin_topic.update_attributes(params[:topic])
         format.html { redirect_to [:admin, @admin_topic], notice: 'Topic was successfully updated.' }
         format.json { head :no_content }
       else

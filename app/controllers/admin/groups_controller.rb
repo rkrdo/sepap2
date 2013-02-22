@@ -40,7 +40,7 @@ class Admin::GroupsController < Admin::BaseController
   # POST /admin/groups
   # POST /admin/groups.json
   def create
-    @admin_group = Group.new(params[:admin_group])
+    @admin_group = Group.new(params[:group])
 
     respond_to do |format|
       if @admin_group.save
@@ -59,7 +59,7 @@ class Admin::GroupsController < Admin::BaseController
     @admin_group = Group.find(params[:id])
 
     respond_to do |format|
-      if @admin_group.update_attributes(params[:admin_group])
+      if @admin_group.update_attributes(params[:group])
         format.html { redirect_to [:admin, @admin_group], notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else
