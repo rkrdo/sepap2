@@ -1,7 +1,7 @@
 <%= form_for([:admin, @admin_group]) do |f| %>
   <% if @admin_group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@admin_group.errors.count, "error") %> prohibited this admin_group from being saved:</h2>
+      <h2><%= pluralize(@admin_group.errors.count, "error") %> prohibited this Group from being saved:</h2>
 
       <ul>
       <% @admin_group.errors.full_messages.each do |msg| %>
@@ -10,6 +10,21 @@
       </ul>
     </div>
   <% end %>
+
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :period %>
+    <%= f.select :period, options_for_select(Group::PERIODS) %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :subject %>
+    <%= f.select :subject, options_from_collection_for_select(Subject.all, "id", "name") %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
