@@ -39,6 +39,10 @@ gem 'sqlite3'
 group :development do
   gem "rails-erd"
   gem 'railroady'
+  # Better error handling
+  gem 'better_errors'
+  gem 'binding_of_caller'
+  gem 'meta_request'
 end
 
 group :production do

@@ -40,7 +40,7 @@ class Admin::AssignmentsController < Admin::BaseController
   # POST /admin/assignments
   # POST /admin/assignments.json
   def create
-    @admin_assignment = Assignment.new(params[:admin_assignment])
+    @admin_assignment = Assignment.new(params[:assignment])
 
     respond_to do |format|
       if @admin_assignment.save
@@ -59,7 +59,7 @@ class Admin::AssignmentsController < Admin::BaseController
     @admin_assignment = Assignment.find(params[:id])
 
     respond_to do |format|
-      if @admin_assignment.update_attributes(params[:admin_assignment])
+      if @admin_assignment.update_attributes(params[:assignment])
         format.html { redirect_to [:admin, @admin_assignment], notice: 'Assignment was successfully updated.' }
         format.json { head :no_content }
       else
