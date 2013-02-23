@@ -24,9 +24,6 @@ gem "carrierwave"
 
 gem "exception_notification"
 gem "hirb"
-# Active Admin + Required Gems
-gem 'activeadmin'
-gem "meta_search", '>= 1.1.0.pre'
 
 # Devise
 gem "devise", "~> 2.0.0"
@@ -60,6 +57,10 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+  
+  # Add these gems
+  gem 'compass-rails'
+  gem 'zurb-foundation'
 end
 
 gem 'jquery-rails'

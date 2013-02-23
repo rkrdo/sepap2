@@ -25,6 +25,10 @@ class Admin::ProblemsController < Admin::BaseController
   # GET /admin/problems/new.json
   def new
     @admin_problem = Problem.new
+    @admin_problem.titles.new(:locale => "es")
+    @admin_problem.titles.new(:locale => "en")
+    @admin_problem.descriptions.new(:locale => "es")
+    @admin_problem.descriptions.new(:locale => "en")
 
     respond_to do |format|
       format.html # new.html.erb

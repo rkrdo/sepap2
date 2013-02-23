@@ -10,7 +10,26 @@
       </ul>
     </div>
   <% end %>
-
+  <div>
+    <%= f.fields_for :titles do |tf|%>
+      <p>
+      <%= tf.label :text_content, "Tittle in #{humanized_language(tf.object.locale)}" %>
+      <%= tf.text_field :text_content%>
+      <%= tf.hidden_field :locale, :value => tf.object.locale%>
+      </p>
+    <% end %>
+    <%= f.fields_for :descriptions do |df|%>
+      <p>
+      <%= df.label :text_content, "Description in #{humanized_language(df.object.locale)}" %><br />
+      <%= df.text_area :text_content%>
+      <%= df.hidden_field :locale, :value => df.object.locale%>
+      </p>
+    <% end %>
+    <p>
+      <%= f.label :time%>
+      <%= f.number_field :time%>
+    </p>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

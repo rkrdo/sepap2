@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SEPAP</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="hmenu">
+    <ul>
+      <li><%= link_to 'SEPAP', root_path %></li>
+      <% if current_user.try(:teacher?) %>
+        <li><%= link_to "Admin", admin_problems_path(:locale=>"en") %></li>
+      <% end %>
+      <div class="right">
+        <ul>
+          <li><%= link_to "#{t :menu_problems}", problems_path %></li>
+          <%= render 'devise/menu/login_items' %>
+          <li><a href="https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0"><%=t :feedback %></a></li>
+          <li><%=link_to( image_tag("english.png", size: "30x18") , :locale=>'en') %>
+    <%=link_to( image_tag("spanish.gif",  size: "30x18") , :locale=>'es') %></li>
+        </ul>
+      </div>
+    </ul>
+  </div>
+  <%if notice %>
+    <div id="notice"><%= notice %></div>
+  <% end %>
+  <div class="container">
+    <%= yield %>
+  </div>
+</body>
+</html>

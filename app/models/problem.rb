@@ -25,7 +25,7 @@ class Problem < ActiveRecord::Base
   validates_numericality_of :time, :greater_than_or_equal_to =>1, 
                             :message => "El tiempo debe ser mayor o igual a 1."
 
-  validates_presence_of :main
+  #validates_presence_of :main
 
   def basepath_problem
     basepath_problem=Rails.root.to_s+"/files/problems/#{self.id}"
