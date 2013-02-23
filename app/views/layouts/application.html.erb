@@ -25,17 +25,33 @@
 </head>
 <body>
   <nav class="top-bar">
-    <ul>
-      <li class="name"><h1><%= link_to 'SEPAP', root_path %></h1></li>
-      <% if current_user.try(:teacher?) %>
-        <li class="toggle-topbar"><%= link_to "Admin", admin_problems_path(:locale=>"en") %></li>
-      <% end %>
-    </ul>
- 
-    <section>
+    <div class="centered-top-bar">
+      <ul>
+        <li class="name"><h1><%= link_to 'SEPAP', root_path, :style => "font-size:17px;" %></h1></li>
+        <li class="toggle-topbar"><a href="#"></a></li>
+      </ul>
       <%= render 'devise/menu/login_items' %>
-    </section>
+    </div>
   </nav>
-  <%= yield %>
+  <div class="row">
+    <%= yield %>
+  </div>
+  <footer class="row">
+      <hr />
+      <div class="row">
+        <div class="six columns">
+          <p>&copy; Copyright no one at all. Go to town.</p>
+        </div>
+
+        <div class="six columns">
+          <ul class="link-list right">
+            <li><a href="#">Link 1</a></li>
+            <li><a href="#">Link 2</a></li>
+            <li><a href="#">Link 3</a></li>
+            <li><a href="#">Link 4</a></li>
+          </ul>
+        </div>
+      </div>
+  </footer>
 </body>
 </html>
