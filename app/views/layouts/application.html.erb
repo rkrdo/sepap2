@@ -25,13 +25,13 @@
 </head>
 <body>
   <nav class="top-bar">
-    <div class="centered-top-bar">
       <ul>
         <li class="name"><h1><%= link_to 'SEPAP', root_path, :style => "font-size:17px;" %></h1></li>
         <li class="toggle-topbar"><a href="#"></a></li>
       </ul>
-      <%= render 'devise/menu/login_items' %>
-    </div>
+      <section>
+        <%= render 'devise/menu/login_items' %>
+      </section>
   </nav>
   <div class="row">
     <%= yield %>
