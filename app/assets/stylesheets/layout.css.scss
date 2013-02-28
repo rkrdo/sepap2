@@ -1,0 +1,30 @@
+@import "compass/css3";
+
+.locales {
+  padding-top: 5px !important;
+  height: 45px !important;
+  a.locale_setter {
+    display: inline !important;
+    padding: 0 !important;
+    &:first-child {
+      padding-left: 15px !important;
+    }
+    &:last-child {
+      padding-right: 15px !important;
+    }
+  }
+}
+
+body {
+  /*background: url(bg_pattern.png);*/
+  /*background-color: lighten(#FFBF73, 20%);*/
+  /*@include background-image(linear-gradient(lighten(#FFBF73,10%), white));*/
+  background-color: #f3f3f3;
+}
+
+.panel {
+  padding: 25px 50px;
+  & > h3 {
+    text-align: center;
+  }
+}

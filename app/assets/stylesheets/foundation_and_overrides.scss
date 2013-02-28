@@ -95,7 +95,8 @@
 
 // Top Bar Settings
 
-// $topBarBgColor: #222;
+ /*$topBarBgColor: #003275;*/
+ $topBarBgColor: #086CA2;
 // $topBarHeight: 45px;
 // $topBarHeightMobile: 45px;
 // $topBarBtmMargin: 30px;
@@ -104,10 +105,10 @@
 // $topBarLinkColor: #fff;
 // $topBarLinkWeight: bold;
 // $topBarLinkSize: 13px;
-// $topBarDropBgColor: #222;
+ $topBarDropBgColor: #003275;
 // $topBarDropLinkColor: #fff;
 // $topBarDropToggleSize: 5px;
-// $topBarDropToggleColor: #fff;
+ /*$topBarDropToggleColor: #003275;*/
 // $topBarDropToggleAlpha: 0.5;
 // $topBarSearchWidth: 200px;
 // $topBarBreakPoint: 940px; // Change to 9999px for always mobile layout
@@ -243,4 +244,14 @@
 // Produced the following list of values: 14, 17, 23, 27, 37, 44, 59, 71, 95, 115;
 // http://www.modularscale.com by Tim Brown
 // https://github.com/scottkellum/modular-scale by scottkellum
+
+$body-background: #fff;
 @import 'foundation';
+
+.top-bar {
+  li {
+    &:hover {
+      background: lighten(#003275, 10%) !important;
+    }
+  }
+}

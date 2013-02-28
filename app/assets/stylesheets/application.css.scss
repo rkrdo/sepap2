@@ -12,35 +12,3 @@
  *= require foundation_and_overrides
  *= require_tree .
 */
-
-.locales {
-  padding-top: 5px !important;
-  height: 45px !important;
-}
-
-.locales a.locale_setter {
-  display: inline !important;
-  padding: 0 !important;
-}
-
-.locales a.locale_setter:first-child {
-  padding-left: 15px !important;
-}
-
-.locales a.locale_setter:last-child {
-  padding-right: 15px !important;
-}
-
-.centered-top-bar {
-  width: 1000px;
-  max-width: 100%;
-  z-index: 0 !important;
-  margin: 0 auto;
-}
-
-.centered-top-bar > ul .name h1 {
-  line-height: 45px;
-  margin: 0;
-  font-size: 17px !important;
-}
-
