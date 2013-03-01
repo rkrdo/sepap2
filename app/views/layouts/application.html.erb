@@ -24,8 +24,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="row" id="barra-arriba" style="width:100%;height:60px;background-color:#034569"></div>
-  <nav class="top-bar">
+
+  <%#header%>
+  <div class="row" id="barra-arriba" >
+    <%= image_tag "http://placehold.it/120x70" %>
+  </div>
+  <nav class="top-bar" >
       <ul>
         <li class="name"><h1><%= link_to 'SEPAP', root_path, :style => "font-size:17px;" %></h1></li>
         <li class="toggle-topbar"><a href="#"></a></li>
@@ -34,6 +38,8 @@
         <%= render 'devise/menu/login_items' %>
       </section>
   </nav>
+
+  <%#flash notices%>
   <div class="row">
     <% flash.each do |key, value| %>
       <%= content_tag(:div, class: "alert-box #{key}") do %>
@@ -43,25 +49,30 @@
     <% end %>
   </div>
 
+  <%#main content%>
   <div class="row">
-    <%= yield %>
+    <div class="main-content panel radius">
+      <%= yield %>
+    </div>
   </div>
-  <footer class="row">
-      <hr />
-      <div class="row">
-        <div class="six columns">
-          <p>&copy; Copyright no one at all. Go to town.</p>
-        </div>
 
-        <div class="six columns">
-          <ul class="link-list right">
-            <li><a href="#">Link 1</a></li>
-            <li><a href="#">Link 2</a></li>
-            <li><a href="#">Link 3</a></li>
-            <li><a href="#">Link 4</a></li>
-          </ul>
-        </div>
+  <%#footer%>
+  <footer>
+    <hr />
+    <div>
+      <div class="six columns">
+        <p>&copy; Copyright no one at all. Go to town.</p>
       </div>
+
+      <div class="six columns">
+        <ul class="link-list right">
+          <li><a href="#">Link 1</a></li>
+          <li><a href="#">Link 2</a></li>
+          <li><a href="#">Link 3</a></li>
+          <li><a href="#">Link 4</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
 </body>
 </html>

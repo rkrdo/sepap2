@@ -1,8 +1,9 @@
 @import "compass/css3";
 
 .locales {
-  padding-top: 5px !important;
   height: 45px !important;
+  color: #FFF;
+  font-weight: bold;
   a.locale_setter {
     display: inline !important;
     padding: 0 !important;
@@ -16,14 +17,19 @@
 }
 
 body {
-  /*background: url(bg_pattern.png);*/
-  /*background-color: lighten(#FFBF73, 20%);*/
-  /*@include background-image(linear-gradient(lighten(#FFBF73,10%), white));*/
   background-color: #f3f3f3;
 }
 
-.panel {
-  padding: 25px 50px;
+#barra-arriba {
+  width:100%;
+  height:100px;
+  background-color:#034569;
+  img {
+    padding: 10px 0 0 30px;
+  }
+}
+
+.main-content {
   & > h3 {
     text-align: center;
   }

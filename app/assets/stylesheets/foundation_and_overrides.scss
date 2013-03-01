@@ -1,4 +1,6 @@
 @import "foundation/common/ratios";
+@import "compass/reset.scss";
+@import "compass/layout.scss";
 
 // Settings file containing Foundation defaults
 
@@ -105,7 +107,7 @@
 // $topBarLinkColor: #fff;
 // $topBarLinkWeight: bold;
 // $topBarLinkSize: 13px;
- $topBarDropBgColor: #003275;
+ $topBarDropBgColor: #086CA2;
 // $topBarDropLinkColor: #fff;
 // $topBarDropToggleSize: 5px;
  /*$topBarDropToggleColor: #003275;*/
@@ -245,13 +247,23 @@
 // http://www.modularscale.com by Tim Brown
 // https://github.com/scottkellum/modular-scale by scottkellum
 
-$body-background: #fff;
 @import 'foundation';
 
 .top-bar {
   li {
     &:hover {
-      background: lighten(#003275, 10%) !important;
+      background: lighten(#086ca2, 10%) !important;
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .locales {
+    padding-left: 8px !important;
+    .locale_setter {
+      &:last-child {
+        padding: 0 !important;
+      }
     }
   }
 }

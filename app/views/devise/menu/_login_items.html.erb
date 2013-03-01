@@ -7,8 +7,9 @@
 <ul class="right">
   <li><%= link_to "#{t :feedback}", "https://docs.google.com/spreadsheet/viewform?formkey=dFBtcFFTc2IyUE5VU3l2T1pfZGh4N2c6MQ#gid=0" %></li>
   <li class="locales">
-    <%=link_to( image_tag("english.png", size: "30x18") , url_for(:locale=>'en'), :class => "locale_setter") %>
-    <%=link_to( image_tag("spanish.gif",  size: "30x18") , url_for(:locale=>'es'), :class => "locale_setter") %>
+    <%=link_to( "EN", url_for(:locale=>'en'), :class => "locale_setter") %>
+    <span>/</span>
+    <%=link_to( "ES", url_for(:locale=>'es'), :class => "locale_setter") %>
   </li>
   <li class="has-dropdown">
     <%= link_to "#{current_user.name}", "#" %>

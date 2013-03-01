@@ -57,10 +57,11 @@ group :assets do
   # gem 'therubyracer', :platform => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  
+
   # Add these gems
   gem 'compass-rails'
   gem 'zurb-foundation'
+  gem 'jquery-datatables-rails'
 end
 
 gem 'jquery-rails'
