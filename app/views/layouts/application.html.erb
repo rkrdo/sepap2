@@ -26,12 +26,12 @@
 <body>
 
   <%#header%>
-  <div class="row" id="barra-arriba" >
-    <%= image_tag "http://placehold.it/120x70" %>
+  <div class="row hide-for-small" id="barra-arriba" >
+    <%= link_to image_tag("http://placehold.it/120x70"), root_path %>
   </div>
   <nav class="top-bar" >
       <ul>
-        <li class="name"><h1><%= link_to 'SEPAP', root_path, :style => "font-size:17px;" %></h1></li>
+        <li class="name show-for-small"><h1><%= link_to 'SEPAP', root_path, :style => "font-size:17px;" %></h1></li>
         <li class="toggle-topbar"><a href="#"></a></li>
       </ul>
       <section>
