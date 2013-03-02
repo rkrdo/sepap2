@@ -10,3 +10,10 @@ jQuery ->
         "sUrl":     "/assets/dataTables.spanish.txt"
       <% end %>
   $('.data_table').css('width', '')
+
+  setTimeout ->
+          hideFlashMessages()
+      ,2500
+
+      hideFlashMessages = ->
+          $("div.alert-box").slideUp()

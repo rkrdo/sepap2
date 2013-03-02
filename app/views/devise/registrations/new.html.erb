@@ -8,7 +8,8 @@
         <% end %>
       <% end %>
     </div>
-    <div id="wrapper2"> <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+    <div id="wrapper2">
+      <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
         <div class="upper">
           <h1><%=t :register %></h1>
           <%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
@@ -22,9 +23,11 @@
             <%= f.password_field :password, :placeholder=>"#{t :password}", :class=>"input password" %>
             <%= f.password_field :password_confirmation, :placeholder=>"#{t :password_confirm}", :class=>"input password" %>
             <div class="locale_container">
-              <%=link_to "EN" , :locale=>'en' %>
-              <span>/</span>
-              <%=link_to "ES", :locale=>'es' %>
+              <% if I18n.locale == :en %>
+                <%=link_to "Spanish", :locale=>'es' %>
+              <% else %>
+                <%=link_to "Inglés" , :locale=>'en' %>
+              <% end %>
             </div>
           </div>
 
