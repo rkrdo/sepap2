@@ -1,0 +1,19 @@
+<ul class="left">
+  <li><%= link_to 'Problems', admin_problems_path(locale: "en") %></li>
+  <li><%= link_to 'Assignments', admin_assignments_path(locale: "en") %></li>
+  <li><%= link_to 'Groups', admin_groups_path(locale: "en") %></li>
+  <li><%= link_to 'Problems', admin_problems_path(locale: "en") %></li>
+  <li><%= link_to 'Subjects', admin_subjects_path(locale: "en") %></li>
+  <li><%= link_to 'Topics', admin_topics_path(locale: "en") %></li>
+  <li><%= link_to 'Users', admin_users_path(locale: "en") %></li>
+</ul>
+
+<ul class="right">
+  <li class="has-dropdown">
+    <%= link_to "#{current_user.name} | ADMIN", "#" %>
+    <ul class="dropdown">
+      <li><%= link_to("#{t :menu_edit}", edit_user_registration_path) %></li>
+      <li><%= link_to("#{t :menu_logout}", destroy_user_session_path, :method => :delete) %></li>
+    </ul>
+  </li>
+</ul>

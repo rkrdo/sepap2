@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
+  before_filter :set_menu_location
   before_filter :authenticate_user!
   before_filter :set_locale
   
@@ -10,7 +11,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-
+  
+  def set_menu_location
+    @menu = 'devise/menu/login_items'
+  end
+  
   def set_locale
   	I18n.locale = params[:locale] || I18n.default_locale
   end

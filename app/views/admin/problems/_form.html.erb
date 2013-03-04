@@ -10,25 +10,40 @@
       </ul>
     </div>
   <% end %>
-  <div>
+  <div class="row">
     <%= f.fields_for :titles do |tf|%>
-      <p>
-      <%= tf.label :text_content, "Tittle in #{humanized_language(tf.object.locale)}" %>
-      <%= tf.text_field :text_content%>
-      <%= tf.hidden_field :locale, :value => tf.object.locale%>
-      </p>
+      <div class="six mobile-two columns">
+        <%= tf.label :text_content, "Tittle in #{humanized_language(tf.object.locale)}" %>
+        <%= tf.text_field :text_content %>
+        <%= tf.hidden_field :locale, :value => tf.object.locale%>
+      </div>
     <% end %>
+  </div>
+  
+  <div class="row">
     <%= f.fields_for :descriptions do |df|%>
-      <p>
-      <%= df.label :text_content, "Description in #{humanized_language(df.object.locale)}" %><br />
-      <%= df.text_area :text_content%>
-      <%= df.hidden_field :locale, :value => df.object.locale%>
-      </p>
+      <div class="six mobile-two columns">
+        <%= df.label :text_content, "Description in #{humanized_language(df.object.locale)}" %>
+        <%= df.text_area :text_content %>
+        <%= df.hidden_field :locale, :value => df.object.locale%>
+      </div>
     <% end %>
-    <p>
+  </div>
+  <div class="row">
+    <div class="one columns">
+      <%= f.label :topic_ids, "Topics" %>
+    </div>
+    <div class="eleven mobile-three columns">
+    <% Topic.all.each do |topic| %>
+      <%= label_tag 'problem[topic_ids][]', "#{check_box_tag 'problem[topic_ids][]', topic.id, @admin_problem.topics.include?(topic)} #{topic.name}".html_safe, :style=>"display:inline;" %>
+    <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="twelve columns">
       <%= f.label :time%>
-      <%= f.number_field :time%>
-    </p>
+      <%= f.number_field :time, :min=>0 %>
+    </div>
   </div>
   <div class="actions">
     <%= f.submit %>
