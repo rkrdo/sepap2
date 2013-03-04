@@ -11,7 +11,7 @@ User.create(email: "admin@sepap.com", password: "121212", password_confirmation:
 User.create(email: "L00904961@itesm.mx", password: "121212", password_confirmation: "121212", num: "L00904961", teacher: true, admin: true)
 User.create(email: "L00163642@itesm.mx", password: "121212", password_confirmation: "121212", num: "L00163642", teacher: true, admin: true)
 
-Command.create(name:"C", compile_command:"gcc -x c -o %s %s",   description:"placeholders for executable and sourcecode")
-Command.create(name:"CPP", compile_command:"g++ -x c++ -o %s %s", description:"placeholders for executable and sourcecode")
-Command.create(name:"CS", compile_command:"gmcs -out:%s.exe %s", description:"mono")
-Command.create(name:"JAVA", compile_command:"javac %s", description:"open jdk java 7 runtime")
+Command.create(name: "C", compile_command: "gcc -x c -o %s %s",   description: "placeholders for executable and sourcecode")
+Command.create(name: "CPP", compile_command: "g++ -x c++ -o %s %s", description: "placeholders for executable and sourcecode")
+Command.create(name: "CS", compile_command: "gmcs -out:%s.exe %s", description: "mono")
+Command.create(name: "JAVA", compile_command: "javac %s", description: "open jdk java 7 runtime")
