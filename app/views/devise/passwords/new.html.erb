@@ -1,26 +1,44 @@
-<%= devise_error_messages! %>
-<div id="wrapper2">
-	<%= form_for(resource, :as => resource_name, :url => edit_password_path(resource_name), :html => { :method => :get }) do |f| %>
-	<div class="upper">
-		<h1><%=t :forgot_password %></h1>
-		<%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
-	</div>
+<div class="row">
+  <div class='panel eight columns centered' id="devise-form">
+    <div class="row">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, class: "alert-box #{key}") do %>
+          <%= value %>
+          <%= content_tag(:a,"x", class:"close") %>
+        <% end %>
+      <% end %>
+    </div>
+    <div id="wrapper2">
+      <%= form_for(resource, :as => resource_name, :url => edit_password_path(resource_name), :html => { :method => :get }) do |f| %>
+        <div class="upper">
+          <h1><%=t :forgot_password %></h1>
+          <%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
+        </div>
 
-	<div class="content">
-		<span><%=t :session_password %></span><br />
-		<%= f.text_field :num, :placeholder=>"#{t :studentID}", :class=>"input username" %>
-		<%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username" %>
-		<div class="flags_container">
-			<%=link_to( image_tag("english.png", size: "30x18", class:"flags_pass") , :locale=>'en') %>
-			<%=link_to( image_tag("spanish.gif",  size: "30x18", class:"flags_pass") , :locale=>'es') %>
-		</div>
-	</div>
+        <div class="five columns centered">
+          <div class="content">
+            <%= f.text_field :num, :placeholder=>"#{t :studentID}", :class=>"input username" %>
+            <%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username" %>
+            <div class="locale_container">
+              <% if I18n.locale == :en %>
+                <%=link_to "Spanish", :locale=>'es' %>
+              <% else %>
+                <%=link_to "Inglés" , :locale=>'en' %>
+              <% end %>
+            </div>
+          </div>
 
-	<div class="footer">
-		<div><%= f.submit "#{t :reset}", :class=>"button" %></div>
-		<%= link_to "#{t :sign_in_page}", new_user_session_path, :class=>"register" %>
-		<%= link_to "#{t :register}", new_user_registration_path, :class=>"register" %>
-	<% end %>
-	</div>
+        <div class="footer">
+          <div>
+            <%= f.submit "#{t :reset}", :class=>"button" %>
+          </div>
+          <div class="back-link">
+            <%= link_to "Back", root_path %>
+          </div>
+        <% end %>
+      </div>
+    </div>
 
+    </div>
+  </div>
 </div>

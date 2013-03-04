@@ -25,9 +25,11 @@
               <%= f.check_box :remember_me %> <%=t :remember_me %>
 
               <div class="locale_container">
-                <%=link_to "EN" , :locale=>'en' %>
-                <span>/</span>
-                <%=link_to "ES", :locale=>'es' %>
+                <% if I18n.locale == :en %>
+                  <%=link_to "Spanish", :locale=>'es' %>
+                <% else %>
+                  <%=link_to "Inglés" , :locale=>'en' %>
+                <% end %>
               </div>
             <% end -%>
           </div>

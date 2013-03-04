@@ -1,29 +1,39 @@
-  <%if notice %>
-    <div id="notice"><%= notice %></div>
-  <% end %>
-<%= devise_error_messages! %>
-<div id="wrapper2">
-	  <%= form_for(resource,  :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-	  <div class="upper">
-		  <h1><%=t :menu_edit %></h1>
-		  <%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
-	  </div>
+<div class="row">
+  <div class="panel eight columns centered" id="devise-form">
+    <div class="row">
+      <% flash.each do |key, value| %>
+        <%= content_tag(:div, class: "alert-box #{key}") do %>
+          <%= value %>
+          <%= content_tag(:a,"x", class:"close") %>
+        <% end %>
+      <% end %>
+    </div>
+    <div id="wrapper2">
+      <%= form_for(resource,  :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+        <div class="upper">
+          <h1><%=t :menu_edit %></h1>
+          <%= image_tag("tec_logo.png", size: "240x100", class:"logo_tec") %>
+        </div>
 
-	  <div class="content">
-		  <span><%=t :session_edit %></span><br />
-		  <%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username"  %>
-		  <%= f.text_field :name, :placeholder=>"#{t :name}", :class=>"input username"  %>
-		  <%= f.text_field :lastname, :placeholder=>"#{t :lastname}", :class=>"input username"  %>
+        <div class="five columns centered">
+          <div class="content">
+            <%= f.email_field :email, :placeholder=>"mail@mail.com", :class=>"input username"  %>
+            <%= f.text_field :name, :placeholder=>"#{t :name}", :class=>"input username"  %>
+            <%= f.text_field :lastname, :placeholder=>"#{t :lastname}", :class=>"input username"  %>
 
-		  <%= f.password_field :current_password, :placeholder=>"#{t :password_current}", :class=>"input password" %>
+            <%= f.password_field :current_password, :placeholder=>"#{t :password_current}", :class=>"input password" %>
 
-		  <%= f.password_field :password, :placeholder=>"#{t :password_new}", :class=>"input password" %>
-    	          <%= f.password_field :password_confirmation, :placeholder=>"#{t :password_new_confirm}", :class=>"input password" %>
-
-	  </div>
-
-	  <div class="footer">
-		  <div><%= f.submit "#{t :update}", :class=>"button"   %></div>
-	  <% end %>
-	  </div>
+            <%= f.password_field :password, :placeholder=>"#{t :password_new}", :class=>"input password" %>
+            <%= f.password_field :password_confirmation, :placeholder=>"#{t :password_new_confirm}", :class=>"input password" %>
+          </div>
+          <div class="footer">
+            <div><%= f.submit "#{t :update}", :class=>"button"   %></div>
+            <div class="back-link">
+              <%= link_to "Back", root_path %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
