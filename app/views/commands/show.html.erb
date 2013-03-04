@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Name:</b>
+  <%= @command.name %>
+</p>
+
+<p>
+  <b>Compile command:</b>
+  <%= @command.compile_command %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @command.description %>
+</p>
+
+
+<%= link_to 'Edit', edit_command_path(@command) %> |
+<%= link_to 'Back', commands_path %>
