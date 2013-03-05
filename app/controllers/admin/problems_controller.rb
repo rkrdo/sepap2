@@ -29,6 +29,9 @@ class Admin::ProblemsController < Admin::BaseController
     @admin_problem.titles.new(:locale => "en")
     @admin_problem.descriptions.new(:locale => "es")
     @admin_problem.descriptions.new(:locale => "en")
+    @admin_problem.cases.new
+    @admin_problem.cases.first.feedbacks.new(:locale => "es")
+    @admin_problem.cases.first.feedbacks.new(:locale => "en")
 
     respond_to do |format|
       format.html # new.html.erb

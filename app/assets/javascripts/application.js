@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require foundation
 //= require dataTables/jquery.dataTables
+//= require jquery_nested_form
 //= require_tree .

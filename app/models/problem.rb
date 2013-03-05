@@ -2,7 +2,7 @@ class Problem < ActiveRecord::Base
   belongs_to :user
   
   has_many :attempts, :dependent => :destroy
-  has_many :feedbacks, :dependent => :destroy
+  has_many :cases, :dependent => :destroy
   has_many :assignments
   has_and_belongs_to_many :topics, :join_table => :problems_topics
   
@@ -11,20 +11,47 @@ class Problem < ActiveRecord::Base
            :conditions => {:text_identifier => "title"}
   has_many :descriptions, :as => :textable, :class_name => "Text",
            :conditions => {:text_identifier => "description"}
-  accepts_nested_attributes_for :titles, 
-                                :reject_if => proc { |attributes| attributes['text_content'].blank? }
-  accepts_nested_attributes_for :descriptions, 
-                                :reject_if => proc { |attributes| attributes['text_content'].blank? }
+  
+  accepts_nested_attributes_for :titles
+  accepts_nested_attributes_for :descriptions
+  accepts_nested_attributes_for :cases
   
   attr_accessible :descriptions_attributes, :module, :time, :titles_attributes, :main, 
-                  :method, :language, :problem, :topic_ids
+                  :method, :language, :problem, :topic_ids, :dificulty
 
   validates_numericality_of :time, :greater_than_or_equal_to =>1, 
-                            :message => "El tiempo debe ser mayor o igual a 1."
+                            :message => "debe ser mayor o igual a 1."
+  
+  validate do |problem|
+    problem.both_languages_on_text(:titles)
+    problem.both_languages_on_text(:descriptions)
+  end
   
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
 
-  #validates_presence_of :main
+  validates_presence_of :main
+  
+  # Validation method
+  # It validates that the association for title or description has both idioms
+  # The number 2 should change when idioms change
+  def both_languages_on_text(association)
+    if self.send(association).count < 2
+      errors.add(association, "debe tener mas de 1.")
+    else
+      self.send(association).each do |assoc|
+        errors.add(association, "debe estar en todos los idiomas.") if assoc.text_content.blank?
+      end
+    end
+  end
+  
+  # This method returns the title in the current locale
+  def title(locale)
+    if locale
+      return self.titles.find_by_locale(locale).text_content
+    else
+      return self.titles.find_by_locale("en").text_content
+    end
+  end
 
   def toolkit(params)
     file = File.basename(main.to_s, self.extension)

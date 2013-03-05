@@ -13,7 +13,7 @@
 
 <% @admin_problems.each do |admin_problem| %>
   <tr>
-    <td><%= admin_problem.titles.find_by_locale(params[:locale]).text_content%></td>
+    <td><%= admin_problem.title(params[:locale]) %></td>
     <td><%= link_to 'Show', [:admin, admin_problem] %></td>
     <td><%= link_to 'Edit', edit_admin_problem_path(admin_problem) %></td>
     <td><%= link_to 'Destroy', [:admin, admin_problem], confirm: 'Are you sure?', method: :delete %></td>
