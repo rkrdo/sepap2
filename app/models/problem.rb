@@ -17,19 +17,29 @@ class Problem < ActiveRecord::Base
   accepts_nested_attributes_for :cases
   
   attr_accessible :descriptions_attributes, :module, :time, :titles_attributes, :main, 
-                  :method, :language, :problem, :topic_ids, :dificulty
+                  :method, :language, :problem, :topic_ids, :dificulty, :cases_attributes
 
   validates_numericality_of :time, :greater_than_or_equal_to =>1, 
                             :message => "debe ser mayor o igual a 1."
+  
+  validates_presence_of :main
   
   validate do |problem|
     problem.both_languages_on_text(:titles)
     problem.both_languages_on_text(:descriptions)
   end
   
+  after_initialize do
+    if new_record?
+      self.titles.build({:locale => "es"})
+      self.titles.build({:locale => "en"})
+      self.descriptions.build({:locale => "es"})
+      self.descriptions.build({:locale => "en"})
+      self.cases.build
+    end
+  end
+  
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
-
-  validates_presence_of :main
   
   # Validation method
   # It validates that the association for title or description has both idioms

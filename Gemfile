@@ -13,7 +13,7 @@ gem 'cancan'
 gem 'json_builder'
 
 #ace code editor and syntax highlighter
-gem 'ace-rails'
+gem 'ace-rails-ap', "~> 2.0.0"
 gem 'coderay'
 gem 'RedCloth'
 

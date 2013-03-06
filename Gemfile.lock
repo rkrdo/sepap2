@@ -8,7 +8,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     RedCloth (4.2.9)
-    ace-rails (0.0.2)
+    ace-rails-ap (2.0.0)
     actionmailer (3.2.3)
       actionpack (= 3.2.3)
       mail (~> 2.4.4)
@@ -179,7 +179,7 @@ PLATFORMS
 
 DEPENDENCIES
   RedCloth
-  ace-rails
+  ace-rails-ap (~> 2.0.0)
   acts-as-taggable-on
   better_errors
   binding_of_caller

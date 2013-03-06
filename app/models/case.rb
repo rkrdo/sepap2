@@ -12,7 +12,7 @@ class Case < ActiveRecord::Base
     end
   end
   
-  attr_accessible :input, :output
+  attr_accessible :input, :output, :feedbacks_attributes
   
   validate :both_languages_on_feedbacks
   
