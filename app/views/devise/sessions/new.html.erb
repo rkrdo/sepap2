@@ -40,10 +40,10 @@
             </div>
             <div class="actions">
               <div class="register-link">
-                <%= link_to "#{t :register}", new_user_registration_path, :class=>"register" %>
+                <%= link_to "#{t :register}", new_user_registration_path(locale: params[:locale]), :class=>"register" %>
               </div>
               <div class="forgot-password-link">
-                <%= link_to "#{t :forgot_password}", new_user_password_path, :class=>"register" %>
+                <%= link_to "#{t :forgot_password}", new_user_password_path(locale: params[:locale]), :class=>"register" %>
               </div>
             </div>
           </div>
