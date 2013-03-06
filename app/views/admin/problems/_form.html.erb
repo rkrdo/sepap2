@@ -100,7 +100,7 @@
               </div>
               <div class="six columns">
                 <%= cf.fields_for :feedbacks do |fb| %>
-                  <%= fb.label :text_content%>
+                  <%= fb.label :text_content, "Feedback in #{humanized_language(fb.object.locale)}"%>
                   <%= fb.text_area :text_content, :rows => 5 %>
                 <% end %>
               </div>
@@ -109,7 +109,7 @@
         </li>
       <% end %>
     </ul>
-    <%= f.link_to_add "Add a case", :cases, :class => "button notice", :data => { :target => "#list_cases" } %>
+    <%= f.link_to_add "Add a case", :cases, :class => "button small notice", :data => { :target => "#list_cases" } %>
 
   </div>
   <div class="actions">

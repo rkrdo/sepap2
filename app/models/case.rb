@@ -5,6 +5,13 @@ class Case < ActiveRecord::Base
            
   accepts_nested_attributes_for :feedbacks
   
+  after_initialize do
+    if new_record?
+      self.feedbacks.build({:locale => "es"})
+      self.feedbacks.build({:locale => "en"})
+    end
+  end
+  
   attr_accessible :input, :output
   
   validate :both_languages_on_feedbacks
