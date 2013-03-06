@@ -1,3 +1,9 @@
+GIT
+  remote: git@github.com:ryanb/nested_form.git
+  revision: 8f89b2ee38808c7e3af6797c11092b5600e09376
+  specs:
+    nested_form (0.3.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -98,7 +104,6 @@ GEM
       sass (>= 3.2.0)
       sassy-math (>= 1.5)
     multi_json (1.3.6)
-    nested_form (0.3.1)
     orm_adapter (0.0.7)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -190,7 +195,7 @@ DEPENDENCIES
   jquery-rails
   json_builder
   meta_request
-  nested_form
+  nested_form!
   railroady
   rails (= 3.2.3)
   rails-erd

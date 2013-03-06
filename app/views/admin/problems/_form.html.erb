@@ -4,9 +4,9 @@
       <h2><%= pluralize(@admin_problem.errors.count, "error") %> prohibited this admin_problem from being saved:</h2>
 
       <ul>
-      <% @admin_problem.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @admin_problem.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
@@ -19,7 +19,7 @@
       </div>
     <% end %>
   </div>
-  
+
   <div class="row">
     <%= f.fields_for :descriptions do |df|%>
       <div class="six mobile-two columns">
@@ -34,9 +34,9 @@
       <%= f.label :topic_ids, "Topics" %>
     </div>
     <div class="eleven mobile-three columns">
-    <% Topic.all.each do |topic| %>
-      <%= label_tag 'problem[topic_ids][]', "#{check_box_tag 'problem[topic_ids][]', topic.id, @admin_problem.topics.include?(topic)} #{topic.name}".html_safe, :style=>"display:inline;" %>
-    <% end %>
+      <% Topic.all.each do |topic| %>
+        <%= label_tag 'problem[topic_ids][]', "#{check_box_tag 'problem[topic_ids][]', topic.id, @admin_problem.topics.include?(topic)} #{topic.name}".html_safe, :style=>"display:inline;" %>
+      <% end %>
     </div>
   </div>
   <div class="row">
@@ -84,37 +84,37 @@
   <div class="row">
     <%= f.label :cases %>
     <ul class="accordion" id="list_cases">
-    <% cases = 1 %>
-    <%= f.fields_for :cases, :wrapper => false do |cf| %>
-      <li>
-        <div class="title">
-          <h5>
-            Case <%= cases %>
-            <% cases += 1 %>
-            <%= cf.link_to_remove "Remove this case", :class=> "button tiny alert" %>
-          </h5>
-        </div>
-        <div class="content">
-          <div class="row">
-            <div class="six columns">
-              <%= cf.label :input %>
-              <%= cf.text_area :input, :rows => 13 %>
-            </div>
-            <div class="six columns">
-              <%= cf.fields_for :feedbacks do |fb| %>
-                <%= fb.label :text_content%>
-                <%= fb.text_area :text_content, :rows => 5 %>
-              <% end %>
+      <% cases = 1 %>
+      <%= f.fields_for :cases, :wrapper => false do |cf| %>
+        <li class="fields">
+          <div class="title">
+            <h5>
+              Case <%= cases %>
+              <% cases += 1 %>
+              <%= cf.link_to_remove "Remove this case", :class=> "button tiny alert" %>
+            </h5>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="six columns">
+                <%= cf.label :input %>
+                <%= cf.text_area :input, :rows => 13 %>
+              </div>
+              <div class="six columns">
+                <%= cf.fields_for :feedbacks do |fb| %>
+                  <%= fb.label :text_content%>
+                  <%= fb.text_area :text_content, :rows => 5 %>
+                <% end %>
+              </div>
             </div>
           </div>
-        </div>
-      </li>
-    <% end %>
-      <%= f.link_to_add "Add a case", :cases, :data => { :target => "list_cases" } %>
+        </li>
+      <% end %>
     </ul>
-    
+    <%= f.link_to_add "Add a case", :cases, :data => { :target => "#list_cases" } %>
+
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%j f.submit %>
   </div>
 <% end %>

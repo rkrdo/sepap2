@@ -17,3 +17,7 @@ jQuery ->
 
       hideFlashMessages = ->
           $("div.alert-box").slideUp()
+
+  window.nestedFormEvents.insertFields.removeFields = (content, assoc, link) ->
+    alert "removed"
+    $(link).closest("form").find(assoc + '_fields').remove($(content))
