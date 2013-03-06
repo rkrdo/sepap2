@@ -36,7 +36,7 @@
               <%= f.submit "#{t :sign_up}", :class=>"button"  %>
             </div>
             <div class="back-link">
-              <%= link_to "Back", root_path %>
+              <%= link_to "#{t :back}", root_path(locale: params[:locale]) %>
             </div>
           <% end %>
         </div>

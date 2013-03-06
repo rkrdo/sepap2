@@ -4,16 +4,19 @@ $(document).on "nested:fieldAdded", (event) ->
   case_num.text(total_cases)
 
 jQuery ->
+  locale = $(".locale_setter").text()
+  if locale is "Spanish"
+    tableLocale = "/assets/dataTables.english.txt"
+  else
+    tableLocale = "/assets/dataTables.spanish.txt"
+
   $(".data_table").dataTable
     "bJQueryUI": true
     "sPaginationType": "full_numbers"
     "bDestroy": true
     "oLanguage":
-      <% if  "#{t :locale}" == "en" %>
-        "sUrl":     "/assets/dataTables.english.txt"
-      <% else %>
-        "sUrl":     "/assets/dataTables.spanish.txt"
-      <% end %>
+        "sUrl":   tableLocale
+
   $('.data_table').css('width', '')
 
   setTimeout ->

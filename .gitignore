@@ -19,3 +19,4 @@ pickle-email-*.html
 ./archivos/*
 /public/uploads/*
 /files/*
+.DS_Store
