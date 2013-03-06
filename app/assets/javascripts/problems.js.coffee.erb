@@ -1,3 +1,8 @@
+$(document).on "nested:fieldAdded", (event) ->
+  total_cases = $(".case_number").size()
+  case_num = event.field.find('.case_number')
+  case_num.text(total_cases)
+
 jQuery ->
   $(".data_table").dataTable
     "bJQueryUI": true
@@ -17,7 +22,3 @@ jQuery ->
 
       hideFlashMessages = ->
           $("div.alert-box").slideUp()
-
-  window.nestedFormEvents.insertFields.removeFields = (content, assoc, link) ->
-    alert "removed"
-    $(link).closest("form").find(assoc + '_fields').remove($(content))
