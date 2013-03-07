@@ -4,8 +4,8 @@ $(document).on "nested:fieldAdded", (event) ->
   case_num.text(total_cases)
 
 jQuery ->
-  locale = $(".locale_setter").text()
-  if locale is "Spanish"
+  locale = $("#current_locale").val()
+  if locale is "en"
     tableLocale = "/assets/dataTables.english.txt"
   else
     tableLocale = "/assets/dataTables.spanish.txt"
