@@ -1,7 +1,7 @@
 Sepap2::Application.routes.draw do
   resources :commands
 
-scope "/:locale", :defaults => {:locale => "en"}, :locale => /en|es/ do
+scope "/:locale", :locale => /en|es/ do
   root :to => 'home#index'
   resources :topics
   devise_for :users do
