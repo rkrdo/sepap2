@@ -63,17 +63,6 @@
           <div class="content">
             <div id="mainEditor"></div>
             <%= f.text_area :main, :style=>"border:none;box-shadow:none;"%>
-            <script>
-              $('#mainEditor').html($('#problem_main').val());
-              var editor = ace.edit("mainEditor");
-              editor.setTheme("ace/theme/textmate");
-              editor.getSession().setMode("ace/mode/c_cpp");
-              editor.setHighlightActiveLine(false);
-              editor.setShowPrintMargin(false);
-              editor.getSession().setTabSize(2);
-              editor.getSession().setUseSoftTabs(false);
-              $('#problem_main').val("");
-            </script>
           </div>
         </li>
       </ul>
@@ -89,45 +78,6 @@
           <div class="content">
             <div id="methodEditor"></div>
             <%= f.text_area :method, :style=>"border:none;box-shadow:none;" %>
-            <script>
-              $('#methodEditor').html($('#problem_method').val());
-              var meditor = ace.edit("methodEditor");
-              meditor.setTheme("ace/theme/textmate");
-              meditor.getSession().setMode("ace/mode/c_cpp");
-              meditor.setHighlightActiveLine(false);
-              meditor.setShowPrintMargin(false);
-              meditor.getSession().setTabSize(2);
-              meditor.getSession().setUseSoftTabs(false);
-              $('#problem_method').val("");
-              
-              $('#problem_language').change(function(){
-                lang = $(this).val();
-                if(lang == "C" || lang == "CPP") {
-                  editor.getSession().setMode("ace/mode/c_cpp");
-                  meditor.getSession().setMode("ace/mode/c_cpp");
-                }else if(lang == "CS") {
-                  editor.getSession().setMode("ace/mode/csharp");
-                  meditor.getSession().setMode("ace/mode/csharp");
-                }else {
-                  editor.getSession().setMode("ace/mode/java");
-                  meditor.getSession().setMode("ace/mode/java");
-                }
-              });
-              
-              function resizeAce() {
-                $('#mainEditor').height($('#problem_main').outerHeight());
-                $('#mainEditor').width($('#problem_main').outerWidth());
-                $('#methodEditor').height($('#problem_main').outerHeight());
-                $('#methodEditor').width($('#problem_main').outerWidth());
-              }
-              $(window).resize(resizeAce);
-              resizeAce();
-              
-              $('form').on('submit', function(){
-                $('#problem_main').val(editor.getSession().getValue());
-                $('#problem_method').val(meditor.getSession().getValue());
-              })
-            </script>
           </div>
         </li>
       </ul>
