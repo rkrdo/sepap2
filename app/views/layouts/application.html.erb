@@ -28,7 +28,7 @@
   <%= hidden_field_tag "current_locale", params[:locale] %>
   <%#header%>
   <div class="row hide-for-small" id="barra-arriba" >
-    <%= link_to image_tag("http://placehold.it/120x70"), root_path %>
+    <%= link_to image_tag("http://placehold.it/120x70"), root_path(:locale => params[:locale]) %>
   </div>
   <nav class="top-bar">
       <ul>

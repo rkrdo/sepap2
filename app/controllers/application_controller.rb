@@ -17,13 +17,13 @@ class ApplicationController < ActionController::Base
   end
   
   def set_locale
-  	I18n.locale = params[:locale] || I18n.default_locale
-  	params[:locale] = I18n.locale
+    I18n.locale = params[:locale] || I18n.default_locale
+    params[:locale] = I18n.locale.to_s
   end
 
  def default_url_options(options={})
-  	logger.debug "default_url_options is passed options: #{options.inspect}\n"
-  	{ :locale => I18n.locale }
+    logger.debug "default_url_options is passed options: #{options.inspect}\n"
+    { :locale => I18n.locale }
  end
 
   rescue_from CanCan::AccessDenied do |exception|
