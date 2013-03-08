@@ -50,12 +50,12 @@ jQuery ->
   meditor.getSession().setTabSize 2
   meditor.getSession().setUseSoftTabs false
   $("#problem_method").val ""
-  $("#problem_language").change ->
+  $("#problem_command_id").change ->
     lang = $(this).val()
-    if lang is "C" or lang is "CPP"
+    if lang is "1" or lang is "2"
       editor.getSession().setMode "ace/mode/c_cpp"
       meditor.getSession().setMode "ace/mode/c_cpp"
-    else if lang is "CS"
+    else if lang is "3"
       editor.getSession().setMode "ace/mode/csharp"
       meditor.getSession().setMode "ace/mode/csharp"
     else

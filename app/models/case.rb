@@ -5,24 +5,23 @@ class Case < ActiveRecord::Base
            
   accepts_nested_attributes_for :feedbacks
   
-  after_initialize do
-    if new_record?
+  after_initialize :initialize_case
+  
+  attr_accessor :from_form
+  attr_accessible :input, :output, :feedbacks_attributes, :from_form
+  
+  validate :both_languages_on_feedbacks
+  
+  def initialize_case
+    if new_record? and self.from_form.nil?
       self.feedbacks.build({:locale => "es"})
       self.feedbacks.build({:locale => "en"})
     end
   end
   
-  attr_accessible :input, :output, :feedbacks_attributes
-  
-  validate :both_languages_on_feedbacks
-  
   def both_languages_on_feedbacks
-    if self.feedbacks.count < 2
-      errors.add(:feedbacks, "debe tener mas de 1.")
-    else
-      self.feedbacks.each do |feedback|
-        errors.add(:feedbacks, "debe estar en todos los idiomas.") if feedback.text_content.blank?
-      end
+    self.feedbacks.each do |feedback|
+      errors.add(:feedbacks, "debe estar en todos los idiomas.") if feedback.text_content.blank?
     end
   end
 end

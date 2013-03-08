@@ -1,5 +1,6 @@
 class Problem < ActiveRecord::Base
   belongs_to :user
+  belongs_to :command
   
   has_many :attempts, :dependent => :destroy
   has_many :cases, :dependent => :destroy
@@ -17,7 +18,7 @@ class Problem < ActiveRecord::Base
   accepts_nested_attributes_for :cases
   
   attr_accessible :descriptions_attributes, :module, :time, :titles_attributes, :main, 
-                  :method, :language, :problem, :topic_ids, :dificulty, :cases_attributes
+                  :method, :language, :problem, :topic_ids, :dificulty, :cases_attributes, :command_id
 
   validates_numericality_of :time, :greater_than_or_equal_to =>1, 
                             :message => "debe ser mayor o igual a 1."
@@ -25,19 +26,19 @@ class Problem < ActiveRecord::Base
   validates_presence_of :main
   
   validate do |problem|
-    problem.both_languages_on_text(:titles)
-    problem.both_languages_on_text(:descriptions)
+    #problem.both_languages_on_text(:titles)
+    #problem.both_languages_on_text(:descriptions)
   end
   
-  after_initialize do
-    if new_record?
-      self.titles.build({:locale => "es"})
-      self.titles.build({:locale => "en"})
-      self.descriptions.build({:locale => "es"})
-      self.descriptions.build({:locale => "en"})
-      self.cases.build
-    end
-  end
+#  after_create do
+#    if new_record? and self.titles.count == 0
+#      self.titles.build({:locale => "es"})
+#      self.titles.build({:locale => "en"})
+#      self.descriptions.build({:locale => "es"})
+#      self.descriptions.build({:locale => "en"})
+#      self.cases.build
+#    end
+#  end
   
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
   

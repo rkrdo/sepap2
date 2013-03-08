@@ -49,8 +49,8 @@
       <%= f.select :dificulty, Problem::DIFICULTY_LEVELS %>
     </div>
     <div class="two mobile-two columns end">
-      <%= f.label :language %>
-      <%= f.select :language, Command.all.map{|c| c.name} %>
+      <%= f.label :command_id, "Language" %>
+      <%= f.select :command_id, Command.all.map{|c| [c.name, c.id]} %>
     </div>
   </div>
   <div class="row">
@@ -99,11 +99,13 @@
                 <%= cf.label :input %>
                 <%= cf.text_area :input, :rows => 13 %>
                 <%= cf.link_to_remove "Remove this case", :class=> "button tiny alert" %>
+                <%= cf.hidden_field :from_form, :value => true %>
               </div>
               <div class="six columns">
                 <%= cf.fields_for :feedbacks do |fb| %>
                   <%= fb.label :text_content, "Feedback in #{humanized_language(fb.object.locale)}"%>
                   <%= fb.text_area :text_content, :rows => 5 %>
+                  <%= fb.hidden_field :locale, :value => fb.object.locale%>
                 <% end %>
               </div>
             </div>
