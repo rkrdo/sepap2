@@ -4,6 +4,7 @@ $(document).on "nested:fieldAdded", (event) ->
   case_num.text(total_cases)
 
 jQuery ->
+  # datatables
   locale = $("#current_locale").val()
   if locale is "en"
     tableLocale = "/assets/dataTables.english.txt"
@@ -19,6 +20,7 @@ jQuery ->
 
   $('.data_table').css('width', '')
 
+  #hide flash messages
   setTimeout ->
           hideFlashMessages()
       ,2500
@@ -26,6 +28,7 @@ jQuery ->
   hideFlashMessages = ->
       $("div.alert-box").slideUp()
 
+  #text editor
   $("#mainEditor").html $("#problem_main").val()
   editor = ace.edit "mainEditor"
   editor.setTheme "ace/theme/textmate"
@@ -67,3 +70,8 @@ jQuery ->
   $("form").on "submit", ->
     $("#problem_main").val editor.getSession().getValue()
     $("#problem_method").val meditor.getSession().getValue()
+
+  #case numbers
+  cases = $(".case_number")
+  for case_num, i in cases
+    $(case_num).text(i+1)
