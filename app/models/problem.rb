@@ -1,3 +1,5 @@
+require 'net/http'
+
 class Problem < ActiveRecord::Base
   belongs_to :user
   belongs_to :command
@@ -27,7 +29,7 @@ class Problem < ActiveRecord::Base
   
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
   
-  after_create :evaluate_inputs
+  #after_create :send_to_judge
   
   # Validation method
   # It validates that the association for title or description has both idioms
@@ -43,41 +45,33 @@ class Problem < ActiveRecord::Base
   end
   
   # This method returns the title in the current locale
-  def title(locale)
-    if locale
+  def title(locale = "en")
       return self.titles.find_by_locale(locale).text_content
-    else
-      return self.titles.find_by_locale("en").text_content
-    end
   end
   
-  def evaluate_inputs
-#    "request":{
-#      "id":"1",
-#      "command": "compiler command",
-#      "source": "source_code",
-#      "time": "time",
-#      "cases":{
-#        "1":{
-#            "input":"input",
-#            "output":
-#            },
-#        "2":{
-#            "input":"input",
-#            "output":
-#            }
-#      }
-#      callback_url: "problems/{id}/judge_results"
-#    }
-    ActiveSupport::JSON.encode(
-      :request => {
-        :id => self.id,
-        :command => self.command.compile_command,
-        :source => self.source_code,
-        :time => self.time,
-        :cases => Case.to_judge(self.cases),
-        :callback_url => "problems/#{self.id}/judge_results"
-      })
+  def send_to_judge
+    params_for_judge = {:params => ActiveSupport::JSON.encode({
+      :id => self.id,
+      :command => self.command.compile_command,
+      :source => self.source_code,
+      :time => self.time,
+      :cases => Case.to_judge(self.cases),
+      :callback_url => "problems/#{self.id}/judge_results"
+    })}
+    
+    # Sends HTTP post to python webservice that runs the algorithms
+    uri = URI.parse('http://localhost:6666/evaluate')
+    req = Net::HTTP::Post.new(uri.path)
+    req.set_form_data(params_for_judge)
+    
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.open_timeout = 60
+    http.read_timeout = 40
+    begin
+      response =  http.request(req)
+    rescue Exception
+      puts "Connection refused"
+    end
   end
   
   def source_code
