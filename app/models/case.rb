@@ -10,8 +10,6 @@ class Case < ActiveRecord::Base
   attr_accessor :from_form
   attr_accessible :input, :output, :feedbacks_attributes, :from_form
   
-  validate :both_languages_on_feedbacks
-  
   def initialize_case
     if new_record? and self.from_form.nil?
       self.feedbacks.build({:locale => "es"})
@@ -19,9 +17,14 @@ class Case < ActiveRecord::Base
     end
   end
   
-  def both_languages_on_feedbacks
-    self.feedbacks.each do |feedback|
-      errors.add(:feedbacks, "debe estar en todos los idiomas.") if feedback.text_content.blank?
+  def self.to_judge(cases)
+    cases.inject({}) do |hash, cse|
+      hash[cse.id] = {
+        "input" => cse.input,
+        "output" => cse.output
+      }
+      hash
     end
   end
+  
 end

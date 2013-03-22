@@ -25,22 +25,9 @@ class Problem < ActiveRecord::Base
   
   validates_presence_of :main
   
-  validate do |problem|
-    #problem.both_languages_on_text(:titles)
-    #problem.both_languages_on_text(:descriptions)
-  end
-  
-#  after_create do
-#    if new_record? and self.titles.count == 0
-#      self.titles.build({:locale => "es"})
-#      self.titles.build({:locale => "en"})
-#      self.descriptions.build({:locale => "es"})
-#      self.descriptions.build({:locale => "en"})
-#      self.cases.build
-#    end
-#  end
-  
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
+  
+  after_create :evaluate_inputs
   
   # Validation method
   # It validates that the association for title or description has both idioms
@@ -61,6 +48,43 @@ class Problem < ActiveRecord::Base
       return self.titles.find_by_locale(locale).text_content
     else
       return self.titles.find_by_locale("en").text_content
+    end
+  end
+  
+  def evaluate_inputs
+#    "request":{
+#      "id":"1",
+#      "command": "compiler command",
+#      "source": "source_code",
+#      "time": "time",
+#      "cases":{
+#        "1":{
+#            "input":"input",
+#            "output":
+#            },
+#        "2":{
+#            "input":"input",
+#            "output":
+#            }
+#      }
+#      callback_url: "problems/{id}/judge_results"
+#    }
+    ActiveSupport::JSON.encode(
+      :request => {
+        :id => self.id,
+        :command => self.command.compile_command,
+        :source => self.source_code,
+        :time => self.time,
+        :cases => Case.to_judge(self.cases),
+        :callback_url => "problems/#{self.id}/judge_results"
+      })
+  end
+  
+  def source_code
+    if self.method.blank?
+      return self.main
+    else
+      return self.main.gsub("<yield>",self.method)
     end
   end
 
