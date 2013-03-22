@@ -1,0 +1,1 @@
+ vagrant box add ubu https://s3-us-west-2.amazonaws.com/squishy.vagrant-boxes/precise64_squishy_2013-02-09.box

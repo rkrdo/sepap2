@@ -20,7 +20,7 @@ gem 'RedCloth'
 # Required for file uploads (Carrierwave)
 gem "rmagick"
 gem "carrierwave"
-
+gem "vagrant"
 
 gem "exception_notification"
 gem "hirb"
