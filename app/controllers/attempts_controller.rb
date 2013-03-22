@@ -2,9 +2,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts =  Attempt.connection.select_all("select count(*) as times_attempted, p.title, a.outcome,
-          p.id as problem_id from attempts  a join problems p on  p.id=a.problem_id
-          where a.user_id = #{current_user.id} group by problem_id")
+    @attempts = Attempt.connection.select_all("select count(*) as times_attempted, a.outcome, p.id as problem_id, t.text_content as title from attempts a join problems p join texts t on p.id=a.problem_id and t.textable_id=a.problem_id where a.user_id = #{current_user.id} and t.textable_type='Problem' and t.text_identifier='title' and t.locale = '#{params[:locale]}' group by problem_id")
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @attempts }

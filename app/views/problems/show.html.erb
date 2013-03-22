@@ -1,5 +1,5 @@
   <h3>
-    <%= @problem.title %>
+    <%= @problem.title(params[:title]) %>
   </h3>
   <hr/>
   <div id="left">
@@ -9,7 +9,7 @@
         <li><a href="#tabs-2"><%=t :toolkit %></a></li>
       </ul>
       <div id="tabs-1">
-        <p><%= raw(@problem.description) %></p>
+        <p><%= raw(@problem.descriptions.find_by_locale(params[:locale]).text_content) %></p>
       </div>
       <div id="tabs-2">
         <p><%= render "toolkit" %></p>
