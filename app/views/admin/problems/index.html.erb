@@ -1,24 +1,25 @@
-<span class="action_item">
-  <%= link_to 'New Problem', new_admin_problem_path %>
-</span>
 <h1>Listing problems</h1>
-
-<table>
-  <tr>
-    <td>Title</td>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @admin_problems.each do |admin_problem| %>
-  <tr>
-    <td><%= admin_problem.title(params[:locale]) %></td>
-    <td><%= link_to 'Show', [:admin, admin_problem] %></td>
-    <td><%= link_to 'Edit', edit_admin_problem_path(admin_problem) %></td>
-    <td><%= link_to 'Destroy', [:admin, admin_problem], confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<div id="table_container">
+  <table class="data_table">
+    <thead>
+      <tr>
+        <td>Title</td>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @admin_problems.each do |admin_problem| %>
+      <tr>
+        <td><%= admin_problem.title(params[:locale]) %></td>
+        <td><%= link_to 'Show', [:admin, admin_problem] %></td>
+        <td><%= link_to 'Edit', edit_admin_problem_path(admin_problem) %></td>
+        <td><%= link_to 'Destroy', [:admin, admin_problem], confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 <br />
+<%= link_to 'New Problem', new_admin_problem_path, class:"button success" %>
