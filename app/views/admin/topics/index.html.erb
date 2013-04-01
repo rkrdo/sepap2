@@ -1,21 +1,26 @@
 <h1>Listing admin_topics</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @admin_topics.each do |admin_topic| %>
-  <tr>
-    <td><%= link_to 'Show', [:admin, admin_topic] %></td>
-    <td><%= link_to 'Edit', edit_admin_topic_path(admin_topic) %></td>
-    <td><%= link_to 'Destroy', [:admin, admin_topic], confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<div id="table_container">
+  <table class="data_table">
+    <thead>
+      <tr>
+        <th>Topic</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @admin_topics.each do |admin_topic| %>
+      <tr>
+        <td><%= admin_topic.name %></td>
+        <td><%= link_to 'Show', [:admin, admin_topic] %></td>
+        <td><%= link_to 'Edit', edit_admin_topic_path(admin_topic) %></td>
+        <td><%= link_to 'Destroy', [:admin, admin_topic], confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 <br />
 
-<%= link_to 'New Topic', new_admin_topic_path %>
+<%= link_to 'New Topic', new_admin_topic_path, class:"button success" %>

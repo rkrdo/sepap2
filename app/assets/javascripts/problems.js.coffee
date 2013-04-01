@@ -13,7 +13,6 @@ jQuery ->
 
   $(".data_table").dataTable
     "bJQueryUI": true
-    "sPaginationType": "full_numbers"
     "bDestroy": true
     "oLanguage":
         "sUrl":   tableLocale
