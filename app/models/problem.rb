@@ -70,6 +70,7 @@ class Problem < ActiveRecord::Base
     begin
       response =  http.request(req)
     rescue Exception
+      puts params_for_judge
       puts "Connection refused"
     end
   end

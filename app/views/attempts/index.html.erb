@@ -1,40 +1,42 @@
-<h3><%=t :attempt_listing %></h3>
-<hr/>
-<div id="table_container">
-  <table class="data_table">
-      <thead>
-      <tr>
-        <th><%=t :attempt_problem %></th>
-        <th><%=t :attempt_number %></th>
-        <th><%=t :attempt_outcome %></th>
-        <th><%=t :attempt_accepted%></th>
-      </tr>
-      </thead>
-      <tbody>
-    <% @attempts.each do |attempt| %>
-      <tr onclick="location.href='<%= problem_path(attempt['problem_id']) %>'" style='cursor:pointer'>
-        <td><%= attempt["title"] %></td>
-        <td><%= attempt["times_attempted"] %></td>
-        <td>
-      		<%if attempt["outcome"].strip == "ACEPTADO" %>
-      			<%=t :outcome_accept %>
-      		<% elsif attempt["outcome"].strip == "RECHAZADO" %>
-      			<%=t :outcome_fail %>
-      		<%elsif attempt["outcome"].strip == "Tiempo excedido\nRECHAZADO" %>
-      			<%=t :outcome_timeout %>
-      		<% else %>
-      			<%=t :outcome_uncompile %>
-      		<%end%>
-        </td>
-        <td>
-          <% if current_user.attempts.where(:problem_id=> attempt["problem_id"], :outcome=> "ACEPTADO").count >= 1 %>
-            <%= image_tag "verde.ico" %>
-          <% else %>
-            <%= image_tag "magenta.ico" %>
-          <% end%>
-        </td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+<div class="twelve columns">
+  <h3><%=t :attempt_listing %></h3>
+  <hr/>
+  <div id="table_container">
+    <table class="data_table">
+        <thead>
+        <tr>
+          <th><%=t :attempt_problem %></th>
+          <th><%=t :attempt_number %></th>
+          <th><%=t :attempt_outcome %></th>
+          <th><%=t :attempt_accepted%></th>
+        </tr>
+        </thead>
+        <tbody>
+      <% @attempts.each do |attempt| %>
+        <tr onclick="location.href='<%= problem_path(attempt['problem_id']) %>'" style='cursor:pointer'>
+          <td><%= attempt["title"] %></td>
+          <td><%= attempt["times_attempted"] %></td>
+          <td>
+        		<%if attempt["outcome"].strip == "ACEPTADO" %>
+        			<%=t :outcome_accept %>
+        		<% elsif attempt["outcome"].strip == "RECHAZADO" %>
+        			<%=t :outcome_fail %>
+        		<%elsif attempt["outcome"].strip == "Tiempo excedido\nRECHAZADO" %>
+        			<%=t :outcome_timeout %>
+        		<% else %>
+        			<%=t :outcome_uncompile %>
+        		<%end%>
+          </td>
+          <td>
+            <% if current_user.attempts.where(:problem_id=> attempt["problem_id"], :outcome=> "ACEPTADO").count >= 1 %>
+              <%= image_tag "verde.ico" %>
+            <% else %>
+              <%= image_tag "magenta.ico" %>
+            <% end%>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
 </div>
