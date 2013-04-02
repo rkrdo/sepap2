@@ -29,9 +29,9 @@
           </td>
           <td>
             <% if current_user.attempts.where(:problem_id=> attempt["problem_id"], :outcome=> "ACEPTADO").count >= 1 %>
-              <%= image_tag "verde.ico" %>
+              <i class="icon-ok-sign icon-2x icono-aceptado"></i>
             <% else %>
-              <%= image_tag "magenta.ico" %>
+              <i class="icon-remove-sign icon-2x icono-rechazado"></i>
             <% end%>
           </td>
         </tr>
