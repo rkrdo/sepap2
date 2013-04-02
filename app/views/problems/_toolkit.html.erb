@@ -1,16 +1,10 @@
 <%= form_tag(use_toolkit_problem_path, :method=>'get', :remote=>true) do %>
-
 <div>
 	<p><%=t :toolkit_input %>:</p>
-
 	<%= text_area_tag "input", "", :size=>"70x15" %>
 	<br />
 	<%= submit_tag "#{t :submit}" %>
-
 	<p><%=t :toolkit_output %>:</p>
 	<%= text_area_tag "output", "", :size=>"70x15", :disabled=>true %>
-
 </div>
-
-
 <% end %>

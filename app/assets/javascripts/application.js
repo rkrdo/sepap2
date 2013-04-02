@@ -15,6 +15,7 @@
 //= require foundation
 //= require dataTables/jquery.dataTables
 //= require jquery_nested_form
+//= require facebox
 //= require ace/ace
 //= require ace/theme-textmate.js
 //= require ace/mode-c_cpp.js
