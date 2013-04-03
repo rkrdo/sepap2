@@ -1,24 +1,17 @@
 <%= form_for([@problem, @problem.attempts.build]) do |f| %>
-  <div class="field">
+  <div class="row">
     <%=t :attempt_language %>
     <br />
     <div class="three columns">
-      <select id="language" name="language">
-        <option value="c">C/C++</option>
-        <option value="cs">C#</option>
-        <option>Java</option>
-      </select>
+      <%= f.select :command_id, Command.all.map{|c| [c.name, c.id]} %>
     </div>
   </div>
   <br />
-  <div class="field" id="divSubir">
-    <fieldset>
-      <legend><%= f.label :code, "#{t :attempt_source}" %></legend>
-      <br />
-      <%= f.file_field :code %>
-    </fieldset>
+  <div class="row" id="divSubir">
+    <div id="mainEditor"></div>
+    <%= f.text_area :code, :style=>"border:none;box-shadow:none;" %>
   </div>
-  <div class="actions">
+  <div class="row">
     <%= f.submit "#{t :submit}", class: "button right" %>
   </div>
 <% end %>

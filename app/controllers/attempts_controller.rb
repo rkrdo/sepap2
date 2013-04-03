@@ -45,12 +45,11 @@ class AttemptsController < ApplicationController
     @problem = Problem.find(params[:problem_id])
     @attempt = @problem.attempts.new(params[:attempt])
     @attempt.user_id = current_user.id
-    @attempt.language=params[:language]
     @attempt.assignment_id = @attempt.is_assigned(current_user)
+    @attempt.outcome ="EnProceso"
 
     respond_to do |format|
       if @attempt.save
-	       @attempt.compile
 	       new_tab = problem_path(@problem) + "/#tabs-1"
 	       format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
          format.json { render json: @problem, status: :created, location: @attempt }
