@@ -20,7 +20,8 @@ class Problem < ActiveRecord::Base
   accepts_nested_attributes_for :cases
   
   attr_accessible :descriptions_attributes, :module, :time, :titles_attributes, :main, 
-                  :method, :language, :problem, :topic_ids, :dificulty, :cases_attributes, :command_id
+                  :method, :language, :problem, :topic_ids, :dificulty, :cases_attributes, :command_id,
+                  :compile_error, :error_message
 
   validates_numericality_of :time, :greater_than_or_equal_to =>1, 
                             :message => "debe ser mayor o igual a 1."
@@ -29,7 +30,7 @@ class Problem < ActiveRecord::Base
   
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
   
-  #after_create :send_to_judge
+  after_update :send_to_judge, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
   
   # Validation method
   # It validates that the association for title or description has both idioms
@@ -50,17 +51,18 @@ class Problem < ActiveRecord::Base
   end
   
   def send_to_judge
-    params_for_judge = {:params => ActiveSupport::JSON.encode({
+    params_for_judge = ActiveSupport::JSON.encode({
       :id => self.id,
+      :extension => self.command.name.downcase,
+      :return_type => 1,
       :command => self.command.compile_command,
       :source => self.source_code,
       :time => self.time,
-      :cases => Case.to_judge(self.cases),
-      :callback_url => "problems/#{self.id}/judge_results"
-    })}
-    
+      :cases => Case.to_judge(self.cases)
+    })
+    puts params_for_judge
     # Sends HTTP post to python webservice that runs the algorithms
-    uri = URI.parse('http://localhost:6666/evaluate')
+    uri = URI.parse('http://192.168.33.10:6666/')
     req = Net::HTTP::Post.new(uri.path)
     req.set_form_data(params_for_judge)
     

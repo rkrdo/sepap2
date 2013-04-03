@@ -87,7 +87,22 @@ class ProblemsController < ApplicationController
     respond_to do |format|
       format.js
     end
-
+  end
+  
+  # POST /problems/judge_results
+  # USED FOR THE TOOLKIT
+  def judge_results
+    if params.has_key?("stderr")
+      problem = Problem.find(params["id"])
+      problem.compile_error = true
+      problem.error_message = params["stderr"]
+      problem.save
+    else
+      problem = Problem.find(params["id"])
+      cse = problem.cases.find(params["case"])
+      cse.output = params["result"]
+      cse.save
+    end
   end
 
 end

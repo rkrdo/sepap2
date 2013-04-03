@@ -85,4 +85,19 @@ class Admin::ProblemsController < Admin::BaseController
       format.json { head :no_content }
     end
   end
+  
+  # POST /admin/problems/judge_results
+  def judge_results
+    if params.has_key?("stderr")
+      problem = Problem.find(params["id"])
+      problem.compile_error = true
+      problem.error_message = params["stderr"]
+      problem.save
+    else
+      problem = Problem.find(params["id"])
+      cse = problem.cases.find(params["case"])
+      cse.output = params["result"]
+      cse.save
+    end
+  end
 end
