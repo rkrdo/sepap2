@@ -97,6 +97,7 @@ class Admin::ProblemsController < Admin::BaseController
       problem = Problem.find(params["id"])
       problem.compile_error = true
       problem.error_message = params["stderr"]
+      problem.save
     else
       problem = Problem.find(params["id"])
       cse = problem.cases.find(params["case"])

@@ -2,7 +2,9 @@ class Case < ActiveRecord::Base
   belongs_to :problem
   has_many :feedbacks, :as => :textable, :class_name => "Text", 
            :conditions => {:text_identifier => "feedback"}
-           
+  
+  has_many :results
+  
   accepts_nested_attributes_for :feedbacks
   
   after_initialize :initialize_case

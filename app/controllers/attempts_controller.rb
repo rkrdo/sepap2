@@ -1,4 +1,8 @@
 class AttemptsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => :judge_results
+  skip_before_filter :set_menu_location, :only => :judge_results
+  skip_before_filter :set_locale, :only => :judge_results
+  skip_before_filter :authenticate_user!, :only => :judge_results
   # GET /attempts
   # GET /attempts.json
   def index
@@ -86,4 +90,17 @@ class AttemptsController < ApplicationController
     end
   end
 
+  # POST /attempts/judge_results
+  def judge_results
+    if params.has_key?("stderr")
+      attempt = Attempt.find(params["id"])
+      attempt.compile_error = true
+      attempt.error_message = params["stderr"]
+      attempt.save
+    else
+      attempt = Attempt.find(params["id"])
+      result = problem.results.create({:case_id => params["case"], :result => params["result"]})
+    end
+    render :nothing => true, :status => 200, :content_type => 'text/html'
+  end
 end

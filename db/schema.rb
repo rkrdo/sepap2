@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403063925) do
+ActiveRecord::Schema.define(:version => 20130403071413) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -31,11 +31,11 @@ ActiveRecord::Schema.define(:version => 20130403063925) do
     t.integer  "assignment_id"
     t.string   "outcome"
     t.string   "language"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.string   "code"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.text     "code",          :limit => 255
     t.integer  "command_id"
-    t.boolean  "compile_error", :default => false
+    t.boolean  "compile_error",                :default => false
     t.string   "error_message"
   end
 
@@ -114,6 +114,17 @@ ActiveRecord::Schema.define(:version => 20130403063925) do
 
   add_index "problems_topics", ["problem_id", "topic_id"], :name => "index_problems_topics_on_problem_id_and_topic_id"
   add_index "problems_topics", ["topic_id", "problem_id"], :name => "index_problems_topics_on_topic_id_and_problem_id"
+
+  create_table "results", :force => true do |t|
+    t.boolean  "result"
+    t.integer  "case_id"
+    t.integer  "attempt_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "results", ["attempt_id"], :name => "index_results_on_attempt_id"
+  add_index "results", ["case_id"], :name => "index_results_on_case_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "name"

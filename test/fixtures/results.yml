@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  result: false
+  case: 
+  attempt: 
+
+two:
+  result: false
+  case: 
+  attempt: 

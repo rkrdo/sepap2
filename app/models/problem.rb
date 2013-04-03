@@ -30,7 +30,17 @@ class Problem < ActiveRecord::Base
   
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
   
-  after_update :get_cases_outputs_from_judge, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
+  after_update :compile_and_run, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
+  
+  before_save :maybe_set_as_module
+  
+  def compile_and_run
+    Problem.request_to_judge hash_for_judge(1)
+  end
+  
+  def maybe_set_as_module
+    self.module = !self.method.empty?
+  end
   
   # Validation method
   # It validates that the association for title or description has both idioms
@@ -48,10 +58,6 @@ class Problem < ActiveRecord::Base
   # This method returns the title in the current locale
   def title(locale = "en")
       return self.titles.find_by_locale(locale).text_content
-  end
-  
-  def get_cases_outputs_from_judge
-    Problem.request_to_judge hash_for_judge(1)
   end
   
   def source_code
@@ -82,7 +88,7 @@ class Problem < ActiveRecord::Base
       :ext => self.command.name.downcase,
       :return_type => return_type,
       :command => self.command.compile_command,
-      :source => self.source_code,
+      :source => self.source_code.to_json,
       :time => self.time,
       :cases => cases
     })
