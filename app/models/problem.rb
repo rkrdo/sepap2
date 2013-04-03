@@ -32,7 +32,7 @@ class Problem < ActiveRecord::Base
   
   after_update :compile_and_run, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
   
-  before_save :maybe_set_as_module
+  #before_save :maybe_set_as_module
   
   def compile_and_run
     Problem.request_to_judge hash_for_judge(1)
