@@ -17,9 +17,7 @@
 
 	<!-- Included CSS Files -->
 	<%= stylesheet_link_tag "application" %>
-  <% if params[:controller] =~ /admin\/*/ %>
-    <%= stylesheet_link_tag "admin_overrides" %>
-  <% end %>
+  <%= admin_stylesheets %>
 	<!-- Included JS Files  -->
 	<%= javascript_include_tag "application" %>
 
