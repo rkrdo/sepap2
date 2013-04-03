@@ -30,7 +30,7 @@ class Problem < ActiveRecord::Base
   
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
   
-  after_update :send_to_judge, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
+  after_update :get_cases_outputs_from_judge, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
   
   # Validation method
   # It validates that the association for title or description has both idioms
@@ -50,31 +50,8 @@ class Problem < ActiveRecord::Base
       return self.titles.find_by_locale(locale).text_content
   end
   
-  def send_to_judge
-    params_for_judge = ActiveSupport::JSON.encode({
-      :id => self.id,
-      :extension => self.command.name.downcase,
-      :return_type => 1,
-      :command => self.command.compile_command,
-      :source => self.source_code,
-      :time => self.time,
-      :cases => Case.to_judge(self.cases)
-    })
-    puts params_for_judge
-    # Sends HTTP post to python webservice that runs the algorithms
-    uri = URI.parse('http://192.168.33.10:6666/')
-    req = Net::HTTP::Post.new(uri.path)
-    req.set_form_data(params_for_judge)
-    
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.open_timeout = 60
-    http.read_timeout = 40
-    begin
-      response =  http.request(req)
-    rescue Exception
-      puts params_for_judge
-      puts "Connection refused"
-    end
+  def get_cases_outputs_from_judge
+    Problem.request_to_judge hash_for_judge(1)
   end
   
   def source_code
@@ -85,36 +62,47 @@ class Problem < ActiveRecord::Base
     end
   end
 
-  def toolkit(params)
-    file = File.basename(main.to_s, self.extension)
-    time=Integer(self.time)
-
-    if !params[:input].empty?
-
-      if self.extension.include? "java"
-        exe = "#{self.basepath_problem} #{file}"
-        resultado = `#{Rails.root.to_s}/lib/scripts/toolkit '#{exe}' '#{params[:input]}' '#{time}'`
-
-      elsif self.extension.include? "cs"
-        exe="#{self.basepath_problem}/#{file}.exe"
-        resultado = `#{Rails.root.to_s}/lib/scripts/toolkit_cs '#{exe}' '#{params[:input]}' '#{time}'`
-
-      elsif (self.extension.include? "c") || (self.extension.include? "cpp")
-        exe = "#{self.basepath_problem}/#{file}"
-        resultado = `#{Rails.root.to_s}/lib/scripts/toolkit_c '#{exe}' '#{params[:input]}' '#{time}'`
-
-      end
-
+  def toolkit(case_from_toolkit)
+    Problem.request_to_judge hash_for_judge(2, case_from_toolkit)
+  end
+  
+  def is_assigned?(user)
+    true if true
+  end
+  
+  def hash_for_judge(return_type, case_from_toolkit = nil)
+    if return_type == 1
+      cases = Case.to_judge(self.cases)
     else
-
-      resultado = "[Missing input]"
+      cases = {0 => {"input" => case_from_toolkit, "output" => nil}}
     end
-
-    resultado.gsub! /\n/, "&#013;&#010;"
-    return resultado
-    end
-
-    def is_assigned?(user)
-      true if true
+    
+    ActiveSupport::JSON.encode({
+      :id => self.id,
+      :ext => self.command.name.downcase,
+      :return_type => return_type,
+      :command => self.command.compile_command,
+      :source => self.source_code,
+      :time => self.time,
+      :cases => cases
+    })
+  end
+  
+  def self.request_to_judge(params)
+    # Sends HTTP post to python webservice that runs the algorithms
+    uri = URI.parse('http://192.168.33.10:6666/')
+    req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' => 'application/json'})
+    puts params
+    req.body = params
+    
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.open_timeout = 30
+    http.read_timeout = 15
+    begin
+      response =  http.request(req)
+      puts response.body
+    rescue Exception
+      puts "Connection refused"
     end
   end
+end

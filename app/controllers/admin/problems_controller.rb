@@ -88,6 +88,9 @@ class Admin::ProblemsController < Admin::BaseController
   
   # POST /admin/problems/judge_results
   def judge_results
+    puts "================================="
+    puts params.inspect
+    puts "Hola"
     if params.has_key?("stderr")
       problem = Problem.find(params["id"])
       problem.compile_error = true
@@ -99,5 +102,6 @@ class Admin::ProblemsController < Admin::BaseController
       cse.output = params["result"]
       cse.save
     end
+    render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 end
