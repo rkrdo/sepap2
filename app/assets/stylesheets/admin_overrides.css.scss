@@ -1,0 +1,17 @@
+ $red: #EE4853;
+ $topBarBgColor: $red;
+ $topBarDropBgColor: $red;
+ @import "foundation";
+ body {
+   background-color: #d9d9d9;
+ }
+ #barra-arriba {
+   background-color: darken($red, 10%);
+ }
+.top-bar {
+  li {
+    &:hover {
+      background: lighten($red, 10%) !important;
+    }
+  }
+}

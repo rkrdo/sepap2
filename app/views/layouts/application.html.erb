@@ -16,8 +16,10 @@
 	<title><%= content_for?(:title) ? yield(:title) : "SEPAP" %></title>
 
 	<!-- Included CSS Files -->
-	<%= stylesheet_link_tag    "application" %>
-
+	<%= stylesheet_link_tag "application" %>
+  <% if params[:controller] =~ /admin\/*/ %>
+    <%= stylesheet_link_tag "admin_overrides" %>
+  <% end %>
 	<!-- Included JS Files  -->
 	<%= javascript_include_tag "application" %>
 

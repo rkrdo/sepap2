@@ -85,7 +85,7 @@ class Admin::ProblemsController < Admin::BaseController
       format.json { head :no_content }
     end
   end
-  
+
   # POST /admin/problems/judge_results
   def judge_results
     if params.has_key?("stderr")
