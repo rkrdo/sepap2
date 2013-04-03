@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   before_filter :authenticate_user!
   before_filter :set_locale
   
-    def authenticate_active_admin_user!
+  def authenticate_active_admin_user!
     authenticate_user!
     unless current_user.teacher?
       flash[:alert] = "Ocupas ser maestro para entrar"

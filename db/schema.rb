@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403003038) do
+ActiveRecord::Schema.define(:version => 20130403063925) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -31,10 +31,12 @@ ActiveRecord::Schema.define(:version => 20130403003038) do
     t.integer  "assignment_id"
     t.string   "outcome"
     t.string   "language"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
     t.string   "code"
     t.integer  "command_id"
+    t.boolean  "compile_error", :default => false
+    t.string   "error_message"
   end
 
   add_index "attempts", ["command_id"], :name => "index_attempts_on_command_id"

@@ -1,4 +1,9 @@
 class Admin::ProblemsController < Admin::BaseController
+  skip_before_filter :verify_authenticity_token, :only => :judge_results
+  skip_before_filter :set_menu_location, :only => :judge_results
+  skip_before_filter :set_locale, :only => :judge_results
+  skip_before_filter :authenticate_user!, :only => :judge_results
+  skip_before_filter :require_privileges, :only => :judge_results
   # GET /admin/problems
   # GET /admin/problems.json
   def index
@@ -88,14 +93,10 @@ class Admin::ProblemsController < Admin::BaseController
 
   # POST /admin/problems/judge_results
   def judge_results
-    puts "================================="
-    puts params.inspect
-    puts "Hola"
     if params.has_key?("stderr")
       problem = Problem.find(params["id"])
       problem.compile_error = true
       problem.error_message = params["stderr"]
-      problem.save
     else
       problem = Problem.find(params["id"])
       cse = problem.cases.find(params["case"])
