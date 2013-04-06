@@ -99,6 +99,10 @@ class AttemptsController < ApplicationController
     else
       attempt = Attempt.find(params["id"])
       result = problem.results.create({:case_id => params["case"], :result => params["result"]})
+      if !result.result and attempt.accepted
+        attempt.accepted = false
+        attempt.save
+      end
     end
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end

@@ -1,17 +1,15 @@
-<%= form_for([@problem, @problem.attempts.build]) do |f| %>
+<%= form_for([@problem, @problem.attempts.build], :html=>{:class=>"custom"}) do |f| %>
   <div class="row">
-    <%=t :attempt_language %>
-    <br />
-    <div class="three columns">
-      <%= f.select :command_id, Command.all.map{|c| [c.name, c.id]} %>
+    <div class="twelve columns">
+    <%= f.label :command_id, t(:attempt_language) %>
+    <%= f.select :command_id, Command.all.map{|c| [c.name, c.id]} %>
     </div>
-  </div>
-  <br />
-  <div class="row" id="divSubir">
-    <div id="mainEditor"></div>
-    <%= f.text_area :code, :style=>"border:none;box-shadow:none;" %>
-  </div>
-  <div class="row">
-    <%= f.submit "#{t :submit}", class: "button right" %>
+    <div class="twelve columns" id="divSubir">
+      <div id="attemptEditor"></div>
+      <%= f.text_area :code, :style=>"border:none;box-shadow:none;" %>
+    </div>
+    <div class="twelve columns">
+      <%= f.submit "#{t :submit}", class: "button right" %>
+    </div>
   </div>
 <% end %>

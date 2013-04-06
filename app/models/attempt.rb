@@ -8,12 +8,16 @@ class Attempt < ActiveRecord::Base
   has_many :results, dependent: :destroy
   
   attr_accessible :language, :outcome, :problem_id, :code, :groups, :user, :enrollments,
-                  :compile_error, :error_message, :command_id
+                  :compile_error, :error_message, :command_id, :accepted, :time_exceeded
   
   after_create :compile_and_run
   
   def compile_and_run
     Problem.request_to_judge hash_for_judge
+  end
+  
+  def compiled?
+    self.results.count == self.problem.cases.count
   end
   
   def hash_for_judge

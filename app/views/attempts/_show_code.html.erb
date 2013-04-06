@@ -1,3 +1,3 @@
 <div id="code_display">
-  <%= raw(CodeRay.scan(@attempt.show_code, @attempt.language).div(line_numbers: :table)) %>
+  <%= raw(CodeRay.scan(@attempt.code, @attempt.command.name).div(line_numbers: :table)) %>
 </div>

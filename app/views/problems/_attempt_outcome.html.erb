@@ -1,34 +1,33 @@
 <div>
-  <%if attempt.outcome.strip == "ACEPTADO" %>
-    <div id="aceptado" class="respuesta">
-      <div id="outcome">
-        <i class="icon-ok-sign icon-2x icono-aceptado"></i>
-        <span><%=t :outcome_accept %></span>
+  <% if attempt.compiled? %>
+    <% if attempt.accepted? %>
+      <div id="aceptado" class="respuesta">
+        <div id="outcome">
+          <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+          <span><%=t :outcome_accept %></span>
+        </div>
+        <p class="descripcion"><%=t :outcome_accept_text %></p>
       </div>
-      <p class="descripcion"><%=t :outcome_accept_text %></p>
-    </div>
-
-  <% elsif attempt.outcome.strip == "RECHAZADO" %>
-    <div id="rechazado" class="respuesta">
-      <div id="outcome">
-        <i class="icon-remove-sign icon-2x icono-rechazado"></i>
-        <span><%=t :outcome_fail %></span>
+    <%elsif attempt.time_exceeded? %>
+      <div id="error" class="respuesta">
+        <div id="outcome">
+          <i class="icon-exclamation-sign icon-2x icono-error"></i>
+          <span><%=t :outcome_timeout %></span>
+        </div>
+        <p class="descripcion"><%=t :outcome_timeout_text %></p>
       </div>
-      <p class="descripcion"><%=t :outcome_fail_text %></p>
-      <%=t :attempt_feedback %>
-      <%= raw(attempt.get_feedback) %>
-    </div>
-
-  <%elsif attempt.outcome.strip == "Tiempo excedido\nRECHAZADO" %>
-    <div id="error" class="respuesta">
-      <div id="outcome">
-        <i class="icon-exclamation-sign icon-2x icono-error"></i>
-        <span><%=t :outcome_timeout %></span>
+    <% else %>
+      <div id="rechazado" class="respuesta">
+        <div id="outcome">
+          <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+          <span><%=t :outcome_fail %></span>
+        </div>
+        <p class="descripcion"><%=t :outcome_fail_text %></p>
+        <%=t :attempt_feedback %>
+        <%= raw(attempt.get_feedback) %>
       </div>
-      <p class="descripcion"><%=t :outcome_timeout_text %></p>
-    </div>
-
-  <% else %>
+    <% end %>
+  <% elsif attempt.compile_error? %>
     <div id="error" class="respuesta">
       <div id="outcome">
         <i class="icon-exclamation-sign icon-2x icono-error"></i>
@@ -36,8 +35,26 @@
       </div>
       <p class="descripcion"><%=t :outcome_uncompile_text %></p>
     </div>
+  <% else %>
+    <div id="error" class="respuesta">
+      <div id="outcome">
+        <i class="icon-exclamation-sign icon-2x icono-error"></i>
+        <span>"Compiling..."</span>
+      </div>
+      <p class="descripcion">Your Attempt is compiling...</p>
+    </div>
   <%end%>
+  <script>
+    $('a.reveal').click(function(event) {
+      event.preventDefault();
+      div = $('.reveal-modal').addClass('large');
+      $.get($(this).attr('href'), function(data) {
+        div.children('.modal-content').empty().html(data);
+      });
+      div.reveal();
+    });
+  </script>
   <div class="show-code six columns centered">
-    <%= link_to_function (t :attempt_code), "$.facebox({ ajax: '#{attempt_path(attempt)}' })", :class => "button nav_link" %>
+    <%= link_to (t :attempt_code), attempt_path(attempt), :class => "button reveal" %>
   </div>
 </div>

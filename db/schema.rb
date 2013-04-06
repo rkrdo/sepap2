@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403071413) do
+ActiveRecord::Schema.define(:version => 20130405200427) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -37,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20130403071413) do
     t.integer  "command_id"
     t.boolean  "compile_error",                :default => false
     t.string   "error_message"
+    t.boolean  "accepted",                     :default => true
+    t.boolean  "time_exceeded",                :default => false
   end
 
   add_index "attempts", ["command_id"], :name => "index_attempts_on_command_id"
