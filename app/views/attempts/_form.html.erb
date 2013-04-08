@@ -9,7 +9,12 @@
       <%= f.text_area :code, :style=>"border:none;box-shadow:none;" %>
     </div>
     <div class="twelve columns">
-      <%= f.submit "#{t :submit}", class: "button right" %>
+      <div class="row">
+        <div class="three columns offset-by-five">
+          <i class="icon-spinner icon-spin icon-3x" id="attempt-loading"></i>
+        </div>
+        <%= f.submit "#{t :submit}", class: "button right" %>
+      </div>
     </div>
   </div>
 <% end %>
