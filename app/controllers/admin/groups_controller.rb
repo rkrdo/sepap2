@@ -45,7 +45,7 @@ class Admin::GroupsController < Admin::BaseController
     
     respond_to do |format|
       if @admin_group.save
-        @admin_group.populate_group
+        errors = @admin_group.populate_group
         flash[:errors] = "The following student ids are not valid: #{errors}" unless errors.blank?
         format.html { redirect_to [:admin, @admin_group], notice: 'Group was successfully created.' }
         format.json { render json: @admin_group, status: :created, location: @admin_group }
