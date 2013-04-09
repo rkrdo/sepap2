@@ -61,7 +61,6 @@ class Admin::GroupsController < Admin::BaseController
   def update
     @admin_group = Group.find(params[:id])
     @admin_group.members = params[:group][:members]
-    @admin_group.enrollments_attributes = params[:group][:enrollments_attributes]
     
     respond_to do |format|
       if @admin_group.update_attributes(params[:group])
