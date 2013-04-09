@@ -11,7 +11,22 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130304183805) do
+ActiveRecord::Schema.define(:version => 20130405200427) do
+
+  create_table "active_admin_comments", :force => true do |t|
+    t.string   "resource_id",   :null => false
+    t.string   "resource_type", :null => false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.text     "body"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+    t.string   "namespace"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -31,13 +46,30 @@ ActiveRecord::Schema.define(:version => 20130304183805) do
     t.integer  "assignment_id"
     t.string   "outcome"
     t.string   "language"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "code"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.text     "code",          :limit => 255
+    t.integer  "command_id"
+    t.boolean  "compile_error",                :default => false
+    t.string   "error_message"
+    t.boolean  "accepted",                     :default => true
+    t.boolean  "time_exceeded",                :default => false
+    t.boolean  "compiled",                     :default => false
   end
 
+  add_index "attempts", ["command_id"], :name => "index_attempts_on_command_id"
   add_index "attempts", ["problem_id"], :name => "index_attempts_on_problem_id"
   add_index "attempts", ["user_id"], :name => "index_attempts_on_user_id"
+
+  create_table "cases", :force => true do |t|
+    t.text     "input"
+    t.text     "output"
+    t.integer  "problem_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "cases", ["problem_id"], :name => "index_cases_on_problem_id"
 
   create_table "commands", :force => true do |t|
     t.string   "name"
@@ -81,13 +113,16 @@ ActiveRecord::Schema.define(:version => 20130304183805) do
   create_table "problems", :force => true do |t|
     t.float    "time"
     t.boolean  "module"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-    t.text     "main",       :limit => 255
-    t.text     "method",     :limit => 255
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.text     "main",          :limit => 255
+    t.text     "method",        :limit => 255
     t.string   "language"
     t.integer  "user_id"
     t.string   "dificulty"
+    t.integer  "command_id"
+    t.boolean  "compile_error",                :default => false
+    t.string   "error_message"
   end
 
   create_table "problems_topics", :id => false, :force => true do |t|
@@ -97,6 +132,17 @@ ActiveRecord::Schema.define(:version => 20130304183805) do
 
   add_index "problems_topics", ["problem_id", "topic_id"], :name => "index_problems_topics_on_problem_id_and_topic_id"
   add_index "problems_topics", ["topic_id", "problem_id"], :name => "index_problems_topics_on_topic_id_and_problem_id"
+
+  create_table "results", :force => true do |t|
+    t.boolean  "result"
+    t.integer  "case_id"
+    t.integer  "attempt_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "results", ["attempt_id"], :name => "index_results_on_attempt_id"
+  add_index "results", ["case_id"], :name => "index_results_on_case_id"
 
   create_table "subjects", :force => true do |t|
     t.string   "name"

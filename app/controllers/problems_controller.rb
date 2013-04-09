@@ -14,7 +14,7 @@ class ProblemsController < ApplicationController
   # GET /problems/1.json
   def show
     @problem = Problem.find(params[:id])
-    @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).limit(4).order("created_at DESC")
+    @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).limit(3).order("created_at DESC")
     @num_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).count
     respond_to do |format|
       format.html # new.html.erb
@@ -87,7 +87,12 @@ class ProblemsController < ApplicationController
     respond_to do |format|
       format.js
     end
-
+  end
+  
+  # POST /problems/judge_results
+  # USED FOR THE TOOLKIT
+  def judge_results
+    @result = params["result"]
   end
 
 end

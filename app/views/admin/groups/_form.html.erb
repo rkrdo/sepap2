@@ -23,7 +23,7 @@
 
   <div class="fields">
     <%= f.label :subject %>
-    <%= f.select :subject, options_from_collection_for_select(Subject.all, "id", "name") %>
+    <%= f.select :subject_id, options_from_collection_for_select(Subject.all, "id", "name") %>
   </div>
 
   <div class="actions">

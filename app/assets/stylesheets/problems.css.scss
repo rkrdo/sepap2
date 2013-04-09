@@ -1,0 +1,34 @@
+ul#list_cases {
+  margin-top: 15px;
+}
+
+.description-container {
+  min-height: 300px;
+  background: #FFF;
+  li {
+    padding: 20px;
+  }
+}
+
+.attempts-container {
+  @extend .description-container;
+  .show-code {
+    margin-top: 50px;
+  }
+}
+
+i {
+  &.icono-fail {
+    color: red;
+  }
+  &.icono-accept{
+    color: green;
+  }
+  &.icono-timeout, &.icono-uncompile, &.icono-compiling {
+    color: #FFC200;
+  }
+}
+
+.main {
+  margin-top: 20;
+}

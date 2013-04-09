@@ -13,14 +13,14 @@ gem 'cancan'
 gem 'json_builder'
 
 #ace code editor and syntax highlighter
-gem 'ace-rails'
+gem 'ace-rails-ap', "~> 2.0.0"
 gem 'coderay'
 gem 'RedCloth'
 
 # Required for file uploads (Carrierwave)
 gem "rmagick"
 gem "carrierwave"
-
+gem "vagrant"
 
 gem "exception_notification"
 gem "hirb"
@@ -68,8 +68,8 @@ gem 'jquery-rails'
 
 gem 'acts-as-taggable-on'
 
-gem "nested_form"
-
+gem "nested_form", git: "git@github.com:ryanb/nested_form.git"
+gem "font-awesome-rails"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

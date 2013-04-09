@@ -12,6 +12,8 @@ capybara-*.html
 /public/system/*
 /coverage/
 /spec/tmp/*
+/lib/judge/Vagrantfile
+/lib/judge/.vagrant
 **.orig
 rerun.txt
 pickle-email-*.html
@@ -19,3 +21,4 @@ pickle-email-*.html
 ./archivos/*
 /public/uploads/*
 /files/*
+.DS_Store

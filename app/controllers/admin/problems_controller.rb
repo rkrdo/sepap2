@@ -1,4 +1,9 @@
 class Admin::ProblemsController < Admin::BaseController
+  skip_before_filter :verify_authenticity_token, :only => :judge_results
+  skip_before_filter :set_menu_location, :only => :judge_results
+  skip_before_filter :set_locale, :only => :judge_results
+  skip_before_filter :authenticate_user!, :only => :judge_results
+  skip_before_filter :require_privileges, :only => :judge_results
   # GET /admin/problems
   # GET /admin/problems.json
   def index
@@ -25,10 +30,11 @@ class Admin::ProblemsController < Admin::BaseController
   # GET /admin/problems/new.json
   def new
     @admin_problem = Problem.new
-    @admin_problem.titles.new(:locale => "es")
-    @admin_problem.titles.new(:locale => "en")
-    @admin_problem.descriptions.new(:locale => "es")
-    @admin_problem.descriptions.new(:locale => "en")
+    @admin_problem.titles.build({:locale => "es"})
+    @admin_problem.titles.build({:locale => "en"})
+    @admin_problem.descriptions.build({:locale => "es"})
+    @admin_problem.descriptions.build({:locale => "en"})
+    @admin_problem.cases.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -83,5 +89,21 @@ class Admin::ProblemsController < Admin::BaseController
       format.html { redirect_to admin_problems_url }
       format.json { head :no_content }
     end
+  end
+
+  # POST /admin/problems/judge_results
+  def judge_results
+    if params.has_key?("stderr")
+      problem = Problem.find(params["id"])
+      problem.compile_error = true
+      problem.error_message = params["stderr"]
+      problem.save
+    else
+      problem = Problem.find(params["id"])
+      cse = problem.cases.find(params["case"])
+      cse.output = params["result"]
+      cse.save
+    end
+    render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 end
