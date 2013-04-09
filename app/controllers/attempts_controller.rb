@@ -93,7 +93,11 @@ class AttemptsController < ApplicationController
   def judge_results
     if params.has_key?("stderr")
       attempt = Attempt.find(params["id"])
-      attempt.compile_error = true
+      if params.has_key?("stderr")
+        attempt.time_exceeded = true
+      else
+        attempt.compile_error = true
+      end
       attempt.error_message = params["stderr"]
       attempt.save
     else
