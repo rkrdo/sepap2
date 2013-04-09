@@ -102,7 +102,7 @@ class Problem < ActiveRecord::Base
     req.body = params
     
     http = Net::HTTP.new(uri.host, uri.port)
-    http.open_timeout = 30
+    http.open_timeout = 15
     http.read_timeout = 15
     begin
       response =  http.request(req)

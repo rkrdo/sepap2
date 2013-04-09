@@ -5,7 +5,7 @@ $ ->
 
   #text editor
   if $("#attemptEditor").length > 0
-    $("#attemptEditor").html $("#attempt_code").val()
+    $("#attemptEditor").html $("#attempt_code").html()
     editor = ace.edit "attemptEditor"
     editor.setTheme "ace/theme/textmate"
     editor.getSession().setMode "ace/mode/c_cpp"

@@ -29,7 +29,7 @@ jQuery ->
   
   if $("#mainEditor").length > 0
     #text editor
-    $("#mainEditor").html $("#problem_main").val()
+    $("#mainEditor").html $("#problem_main").html()
     editor = ace.edit "mainEditor"
     editor.setTheme "ace/theme/textmate"
     editor.getSession().setMode "ace/mode/c_cpp"
@@ -44,7 +44,8 @@ jQuery ->
       $("#mainEditor").width $("#problem_main").outerWidth()
       $("#methodEditor").height $("#problem_main").outerHeight()
       $("#methodEditor").width $("#problem_main").outerWidth()
-    $("#methodEditor").html $("#problem_method").val()
+      
+    $("#methodEditor").html $("#problem_method").html()
     meditor = ace.edit("methodEditor")
     meditor.setTheme "ace/theme/textmate"
     meditor.getSession().setMode "ace/mode/c_cpp"
