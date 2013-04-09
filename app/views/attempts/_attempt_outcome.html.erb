@@ -1,0 +1,22 @@
+<div>
+  <div>
+    <div id="outcome">
+      <i class="<%= class_for_status(attempt.status)%>"></i>
+      <span><%=t "outcome_#{attempt.status.to_s}" %></span>
+    </div>
+    <p class="descripcion"><%=t "outcome_#{attempt.status.to_s}_text" %></p>
+  </div>
+  <script>
+    $('a.reveal').click(function(event) {
+      event.preventDefault();
+      div = $('.reveal-modal').addClass('large');
+      $.get($(this).attr('href'), function(data) {
+        div.children('.modal-content').empty().html(data);
+      });
+      div.reveal();
+    });
+  </script>
+  <div class="show-code six columns centered">
+    <%= link_to (t :attempt_code), attempt_path(attempt), :class => "button reveal" %>
+  </div>
+</div>

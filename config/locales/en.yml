@@ -45,6 +45,8 @@ en:
     outcome_timeout_text: "We are sorry, your solution is taking too long. Oops, maybe it loops?"
     outcome_uncompile: "INCOMPLETE due to COMPILATION ERROR."
     outcome_uncompile_text: "We are sorry, your code couldn't be compiled successfully."
+    outcome_compiling: "COMPILING"
+    outcome_compiling_text: "Your Attempt is compiling."
     attempt_feedback: "Consider the following:"
     attempt_code: "View Attempt Code"
     attempt_language: "Language"

@@ -6,7 +6,8 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = Attempt.connection.select_all("select count(*) as times_attempted, a.outcome, p.id as problem_id, t.text_content as title from attempts a join problems p join texts t on p.id=a.problem_id and t.textable_id=a.problem_id where a.user_id = #{current_user.id} and t.textable_type='Problem' and t.text_identifier='title' and t.locale = '#{params[:locale]}' group by problem_id")
+    @attempts = current_user.attempts.joins(:problem).group(:problem_id)
+    @times_attempted = current_user.attempts.count(:group => :problem_id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @attempts }
@@ -98,9 +99,13 @@ class AttemptsController < ApplicationController
       attempt.save
     else
       attempt = Attempt.find(params["id"])
-      result = problem.results.create({:case_id => params["case"], :result => params["result"]})
+      result = attempt.results.create({:case_id => params["case"], :result => params["result"]})
       if !result.result and attempt.accepted
         attempt.accepted = false
+        attempt.save
+      end
+      if attempt.results.count == attempt.problem.cases.count
+        attempt.compiled = true
         attempt.save
       end
     end

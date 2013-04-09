@@ -16,7 +16,7 @@
     </div>
 
     <div class="six columns">
-      <dl class="tabs five-up">
+      <dl class="tabs four-up">
         <dd class="active"><a href="#attempt"><%= t :prob_newA %></a></dd>
         <% @user_problem_attempts.each_with_index do |attempt, i|  %>
           <dd><a href="#attempt<%=i+1%>"><%=t :attempt %> #<%=@num_attempts-i%></a></dd>
@@ -29,7 +29,7 @@
           </li>
           <% @user_problem_attempts.each_with_index do |attempt, i|  %>
             <li id="attempt<%=i+1%>Tab">
-              <%= render 'attempt_outcome', attempt: attempt %>
+              <%= render 'attempts/attempt_outcome', attempt: attempt %>
             </li>
           <% end %>
         </ul>

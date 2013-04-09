@@ -18,13 +18,13 @@ ul#list_cases {
 }
 
 i {
-  &.icono-rechazado {
+  &.icono-fail {
     color: red;
   }
-  &.icono-aceptado {
+  &.icono-accept{
     color: green;
   }
-  &.icono-error {
+  &.icono-timeout, &.icono-uncompile, &.icono-compiling {
     color: #FFC200;
   }
 }

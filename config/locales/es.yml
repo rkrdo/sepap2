@@ -79,6 +79,8 @@ es:
     outcome_timeout_text: "Tu solución tardó más tiempo del permitido. Puede que sea un ciclo infinito."
     outcome_uncompile: "INCOMPLETO debido a ERROR DE COMPILACIÓN"
     outcome_uncompile_text: "Tu código no pudo ser compilado."
+    outcome_compiling: "COMPILANDO"
+    outcome_compiling_text: "Tu código se está compilando."
     attempt_feedback: "Considera lo siguiente:"
     attempt_code: "Ver código del intento"
     attempt_language: "Lenguaje"

@@ -39,6 +39,21 @@ class Attempt < ActiveRecord::Base
       self.code
     end
   end
+  
+  def status
+    if self.compiled?
+      return :accept if self.accepted?
+      return :timeout if self.time_exceeded?
+      return :fail
+    else
+      return :uncompile if self.compile_error?
+      return :compiling
+    end
+  end
+  
+  def self.accepted_for_problem?(problem)
+    self.where(:problem_id => problem.id, :compiled => true, :accepted => true).count >= 1
+  end
 
   def compile
     basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
