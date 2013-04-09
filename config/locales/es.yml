@@ -79,6 +79,8 @@ es:
     outcome_timeout_text: "Tu solución tardó más tiempo del permitido. Puede que sea un ciclo infinito."
     outcome_uncompile: "INCOMPLETO debido a ERROR DE COMPILACIÓN"
     outcome_uncompile_text: "Tu código no pudo ser compilado."
+    outcome_compiling: "COMPILANDO"
+    outcome_compiling_text: "Tu código se está compilando."
     attempt_feedback: "Considera lo siguiente:"
     attempt_code: "Ver código del intento"
     attempt_language: "Lenguaje"
@@ -99,84 +101,4 @@ es:
     menu_register: "Registrarse"
     submit: "Enviar"
     locale: "es"
-    home_body: "<h3>Guía rápida</h3>
-<br/>
-<h3>Inicio</h3>
-<p>Para comenzar a utilizar el Sistema de Evaluación para el Apredizaje de la Programación es recomendable leer esta guía rápida y seguir los siguientes pasos</p>
-
-<p>Para configurar tu cuenta por primera vez hay dos posibles escenarios. <br />
-a) Si tu profesor/instructor ya te creó una cuenta:</p>
-<ol>
-    <li>Ve a la página de Iniciar Sesión.</li>
-    <li>Ingresa tu matrícula en el campo correspondiente utlizando el formato 'A00123456'</li>
-    <li>Ingresa tu contraseña en el campo correspondiente, dicha contraseña es igual a la
-    matrícula en el formato 'a00123456' (En el caso de la contraseña si es importante que
-    la 'a' sea minúscula)</li>
-    <p>Una vez dentro del sistema, es muy importante que lo primero que hagamos sea cambiar la contraseña
-para evitar que alguien más pueda hacer mal uso de nuestras cuentas.</p>
-    <li>Da click en la opción “Editar Registro” del menú superior.</li>
-    <li>Escribir nueva contraseña en el campo correspondiente, así como la confirmación de la
-misma y finalmente escribir nuestra contraseña actual, que inicialmente es la matrícula
-(a00123456).</li>
-</ol>
-
-<p>b) O si no tienes una cuenta entonces accede la página de Registro y otorga los datos solicitados.</p>
-
-<p>Ahora estás listo para acceder a la lista de problemas.</p>
-
-<h3>Para verificar la solución a un problema</h3>
-<p>Una vez realizada la solución de un problema, es hora de utilizar el juez en línea que provee el SEPAP
-para verificar si efectivamente nuestra solución es exitosa.</p>
-<ol>
-    <li>Ve a la página del problem correspondiente.</li>
-    <li>Selecciona el lenguaje que corresponde al del código de tu solución.</li>
-    <li>Elige el archivo que contiene tu código fuente.</li>
-    <li>Finalmente haz clic en Crear Intento.</li>
-    <li>Una vez terminado el proceso de verificación, aparecerá una nueva 'tab' con el
-    resultado a tu solución, así como una muestra del código fuente que fue utilizado y los
-    errores de compilación del mismo en caso de existir.</li>
-</ol>
-<p> El resultado a tu solución puede caer en alguna de las siguientes clasificaciones:</p>
-
-<ul>
-    <li><b>COMPLETO</b> –Tu solución fue exitosa y arrojó los resultados esperados</li>
-    <li><b>INCOMPLETO</b> – Tu solución compiló exitosamente pero los resultados arrojados no cumple con las especificaciones</li>
-    <li><b>INCOMPLETO debido a ERROR DE COMPILACIÓN</b> – Tu solución no pudo ser compilada en el servidor, posiblemente por errores de sintaxis</li>
-    <li><b>INCOMPLETO debido a TIEMPO EXCEDIDO</b> – Tu solución ha tardado más tiempo del esperado en ejecutarse, posiblemente
-    por algún error de lógica (por ejemplo ciclos infinitos)</li>
-</ul>
-
-<h3>Para verificar el historial de soluciones a problemas anteriores</h3>
-<p>En ocaciones es necesario verificar si un problema ya ha sido aceptado por el juez, para hacerlo
-podemos seguir los siguientes pasos:</p>
-<ol>
-<li>Da click en la opción “Mi Historial” del menú superior.</li>
-<li>Aparecerá una tabla con los problemas intentados previamente.</li>
-<li>Elige el problema que deseas revisar.</li>
-<li>Cada 'tab' dentro del problema contiene un intento realizado.</li>
-</ol>
-
-<h3 id='tech-detail'>Detalles técnicos</h3>
-  <p> Toma en cuenta los siguientes detalles al momento de planear tu solución a un problema </p>
-
-  <p> Recomendaciones generales </p>
-  <ul>
-    <li> No utilizar letreros para “pedir“ las entradas al usuario </li>
-    <li> Desplegar los resultados exactamente como se pide en la descripción del problema </li>
-    <li> Compilador utilizado javac versión 1.6.0_33 </li>
-  </ul>
-
-  <p> Para problemas en C/C++ </p>
-  <ul>
-    <li> Utilizar solamente bibliotecas soportadas por el estandar ANSI C </li>
-    <li> No utilizar bibliotecas/funciones realizadas específicamente para ciertos sistemas operativos/ambientes. Por ejemplo 'conio.h' o función System(“pause“) para Visual Studio </li>
-    <li> Incluir explícitamente los encabezados de todas las bibliotecas externas utilizadas. Por ejemplo: #include&lt;math.h&gt; </li>
-    <li> Compilador utilizado g++ versión 4.6.3 </li>
-  </ul>
-
-  <p> Para problemas en Java </p>
-  <ul>
-    <li> Utilizar solamente bibliotecas soportadas por el compilador javac </li>
-    <li> No utilizar bibliotecas/funciones realizadas específicamente para ciertos sistemas operativos/ambientes. </li>
-    <li> Compilador utilizado javac versión 1.6.0_33 </li>
-  </ul>"
+    back: "Regresar"

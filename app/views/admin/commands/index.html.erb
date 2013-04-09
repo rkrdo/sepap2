@@ -1,0 +1,27 @@
+<h1>Listing compilers</h1>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Compile command</th>
+    <th>Description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @commands.each do |command| %>
+  <tr>
+    <td><%= command.name %></td>
+    <td><%= command.compile_command %></td>
+    <td><%= command.description %></td>
+    <td><%= link_to 'Show', [:admin, command] %></td>
+    <td><%= link_to 'Edit', edit_admin_command_path(command) %></td>
+    <td><%= link_to 'Destroy', [:admin, command], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Compiler', new_admin_command_path %>

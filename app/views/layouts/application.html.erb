@@ -16,8 +16,8 @@
 	<title><%= content_for?(:title) ? yield(:title) : "SEPAP" %></title>
 
 	<!-- Included CSS Files -->
-	<%= stylesheet_link_tag    "application" %>
-
+	<%= stylesheet_link_tag "application" %>
+  <%= admin_stylesheets %>
 	<!-- Included JS Files  -->
 	<%= javascript_include_tag "application" %>
 
@@ -25,9 +25,10 @@
 </head>
 <body>
 
+  <%= hidden_field_tag "current_locale", params[:locale] %>
   <%#header%>
   <div class="row hide-for-small" id="barra-arriba" >
-    <%= link_to image_tag("http://placehold.it/120x70"), root_path %>
+    <%= link_to image_tag("http://placehold.it/120x70"), root_path(:locale => params[:locale]) %>
   </div>
   <nav class="top-bar">
       <ul>
@@ -52,21 +53,21 @@
   <div class="row">
     <%= yield %>
   </div>
-
+  <div class="reveal-modal">
+    <div class="modal-content">
+    </div>
+    <a class="close-reveal-modal">&#215;</a>
+  </div>
   <%#footer%>
   <footer>
     <hr />
     <div>
       <div class="six columns">
-        <p>&copy; Copyright no one at all. Go to town.</p>
+        <p>SEPAP.</p>
       </div>
 
       <div class="six columns">
         <ul class="link-list right">
-          <li><a href="#">Link 1</a></li>
-          <li><a href="#">Link 2</a></li>
-          <li><a href="#">Link 3</a></li>
-          <li><a href="#">Link 4</a></li>
         </ul>
       </div>
     </div>

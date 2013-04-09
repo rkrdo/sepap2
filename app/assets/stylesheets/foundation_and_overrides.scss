@@ -261,13 +261,6 @@
   @extend .error;
 }
 
-@media only screen and (max-width: 767px) {
-  .locales {
-    padding-left: 8px !important;
-    .locale_setter {
-      &:last-child {
-        padding: 0 !important;
-      }
-    }
-  }
+dl.tabs {
+  margin-bottom: 0;
 }

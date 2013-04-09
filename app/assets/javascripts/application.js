@@ -14,4 +14,10 @@
 //= require jquery_ujs
 //= require foundation
 //= require dataTables/jquery.dataTables
+//= require jquery_nested_form
+//= require ace/ace
+//= require ace/theme-textmate.js
+//= require ace/mode-c_cpp.js
+//= require ace/mode-csharp.js
+//= require ace/mode-java.js
 //= require_tree .

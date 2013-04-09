@@ -1,10 +1,13 @@
 class AttemptsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => :judge_results
+  skip_before_filter :set_menu_location, :only => :judge_results
+  skip_before_filter :set_locale, :only => :judge_results
+  skip_before_filter :authenticate_user!, :only => :judge_results
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts =  Attempt.connection.select_all("select count(*) as times_attempted, p.title, a.outcome,
-          p.id as problem_id from attempts  a join problems p on  p.id=a.problem_id
-          where a.user_id = #{current_user.id} group by problem_id")
+    @attempts = current_user.attempts.joins(:problem).group(:problem_id)
+    @times_attempted = current_user.attempts.count(:group => :problem_id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @attempts }
@@ -43,14 +46,12 @@ class AttemptsController < ApplicationController
     @problem = Problem.find(params[:problem_id])
     @attempt = @problem.attempts.new(params[:attempt])
     @attempt.user_id = current_user.id
-    @attempt.language=params[:language]
     @attempt.assignment_id = @attempt.is_assigned(current_user)
 
     respond_to do |format|
       if @attempt.save
-	       @attempt.compile
-	       new_tab = problem_path(@problem) + "/#tabs-1"
-	       format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
+         new_tab = problem_path(@problem) + "/#tabs-1"
+         format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
          format.json { render json: @problem, status: :created, location: @attempt }
       else
         format.html { redirect_to @problem, notice: 'You need to upload a file.' }
@@ -88,4 +89,29 @@ class AttemptsController < ApplicationController
     end
   end
 
+  # POST /attempts/judge_results
+  def judge_results
+    if params.has_key?("stderr")
+      attempt = Attempt.find(params["id"])
+      if params.has_key?("stderr")
+        attempt.time_exceeded = true
+      else
+        attempt.compile_error = true
+      end
+      attempt.error_message = params["stderr"]
+      attempt.save
+    else
+      attempt = Attempt.find(params["id"])
+      result = attempt.results.create({:case_id => params["case"], :result => params["result"]})
+      if !result.result and attempt.accepted
+        attempt.accepted = false
+        attempt.save
+      end
+      if attempt.results.count == attempt.problem.cases.count
+        attempt.compiled = true
+        attempt.save
+      end
+    end
+    render :nothing => true, :status => 200, :content_type => 'text/html'
+  end
 end
