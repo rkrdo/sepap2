@@ -47,12 +47,11 @@ class AttemptsController < ApplicationController
     @attempt = @problem.attempts.new(params[:attempt])
     @attempt.user_id = current_user.id
     @attempt.assignment_id = @attempt.is_assigned(current_user)
-    @attempt.outcome ="EnProceso"
 
     respond_to do |format|
       if @attempt.save
-	       new_tab = problem_path(@problem) + "/#tabs-1"
-	       format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
+         new_tab = problem_path(@problem) + "/#tabs-1"
+         format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
          format.json { render json: @problem, status: :created, location: @attempt }
       else
         format.html { redirect_to @problem, notice: 'You need to upload a file.' }
