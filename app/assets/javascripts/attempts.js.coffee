@@ -1,4 +1,8 @@
 $ ->
+
+  $attempt_loading = $("#attempt-loading")
+  $attempt_loading.hide() if $attempt_loading.length > 0
+
   #text editor
   if $("#attemptEditor").length > 0
     $("#attemptEditor").html $("#attempt_code").val()
@@ -14,7 +18,7 @@ $ ->
     resizeAce = ->
       $("#attemptEditor").height $("#attempt_code").outerHeight()
       $("#attemptEditor").width $("#attempt_code").outerWidth()
-      
+
     $("#attempt_command_id").change ->
       lang = $(this).val()
       if lang is "1" or lang is "2"
@@ -35,3 +39,8 @@ $ ->
     $.get $(this).attr("href"), (data) ->
       div.children(".modal-content").empty().html data
     div.reveal()
+
+  $("#new_attempt").on "submit", ->
+    button = $("input[type=submit]")
+    button.attr("disabled", true)
+    $attempt_loading.show()
