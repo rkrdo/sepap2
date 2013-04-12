@@ -50,7 +50,7 @@ class AttemptsController < ApplicationController
 
     respond_to do |format|
       if @attempt.save
-         new_tab = problem_path(@problem) + "/#tabs-1"
+         new_tab = problem_path(@problem) + "/#attempt1"
          format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
          format.json { render json: @problem, status: :created, location: @attempt }
       else

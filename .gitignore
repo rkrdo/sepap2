@@ -22,3 +22,4 @@ pickle-email-*.html
 /public/uploads/*
 /files/*
 .DS_Store
+lib/judge/.vagrant
