@@ -38,7 +38,7 @@ group :development do
   gem 'railroady'
   # Better error handling
   gem 'better_errors'
-  gem 'binding_of_caller'
+  #gem 'binding_of_caller'
   gem 'meta_request'
   gem "hirb"
 end
