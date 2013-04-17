@@ -28,7 +28,8 @@ class Attempt < ActiveRecord::Base
       :command => self.command.compile_command,
       :source => self.source_code.to_json,
       :time => self.problem.time,
-      :cases => Case.to_judge(self.problem.cases)
+      :cases => Case.to_judge(self.problem.cases),
+      :channel => nil
     })
   end
 

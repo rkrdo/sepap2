@@ -17,6 +17,9 @@
 	  </div>
   </div>
 <% end %>
+<script>
+  Danthes.debug = true;
+</script>
 <%= subscribe_to "/#{current_user.id}/#{@problem.id}" %>
 <script>
   Danthes.subscribe("/<%=current_user.id%>/<%=@problem.id%>", function(data, channel) {
