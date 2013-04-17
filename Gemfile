@@ -6,7 +6,7 @@ gem 'rails', '3.2.3'
 #gem "mysql2"
 
 #thin webserver
-gem "private_pub"
+gem "danthes"
 gem 'thin'
 
 gem 'cancan'

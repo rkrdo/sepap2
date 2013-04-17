@@ -4,6 +4,14 @@ $(document).on "nested:fieldAdded", (event) ->
   case_num.text(total_cases)
 
 jQuery ->
+  
+  $toolkit_loading = $("#toolkit-loading")
+  $toolkit_loading.hide() if $toolkit_loading.length > 0
+  $("#toolkit").on "submit", ->
+    button = $("input[type=submit]")
+    button.attr("disabled", true)
+    $toolkit_loading.show()
+
   # datatables
   locale = $("#current_locale").val()
   if locale is "en"

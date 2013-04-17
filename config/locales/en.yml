@@ -68,3 +68,4 @@ en:
     submit: "Submit"
     locale: "en"
     back: "Back"
+    compiler_offline: "Compiler is currently down. Please contact the administrator."
