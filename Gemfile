@@ -41,6 +41,7 @@ group :development do
   #gem 'binding_of_caller'
   gem 'meta_request'
   gem "hirb"
+  gem 'debugger'
 end
 
 group :production do

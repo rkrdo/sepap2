@@ -52,12 +52,15 @@ class Attempt < ActiveRecord::Base
   end
 
   def get_feedbacks(locale = :en)
-      results = self.results.where(result:false)
       feedbacks = []
       results.each do |result|
         feedbacks << result.case.feedbacks.find_by_locale(locale)
       end
       feedbacks
+  end
+
+  def get_wrong_results_count
+    results.where(result: false).count
   end
 
   def self.accepted_for_problem?(problem)
