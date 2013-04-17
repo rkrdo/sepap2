@@ -6,7 +6,8 @@ gem 'rails', '3.2.3'
 #gem "mysql2"
 
 #thin webserver
-gem 'thin'
+#gem 'thin'
+gem 'puma'
 
 gem 'cancan'
 
@@ -18,12 +19,11 @@ gem 'coderay'
 gem 'RedCloth'
 
 # Required for file uploads (Carrierwave)
-gem "rmagick"
-gem "carrierwave"
+#gem "rmagick"
+#gem "carrierwave"
 gem "vagrant"
 
 gem "exception_notification"
-gem "hirb"
 
 # Devise
 gem "devise", "~> 2.0.0"
@@ -38,8 +38,9 @@ group :development do
   gem 'railroady'
   # Better error handling
   gem 'better_errors'
-  gem 'binding_of_caller'
+  #gem 'binding_of_caller'
   gem 'meta_request'
+  gem "hirb"
 end
 
 group :production do
@@ -66,7 +67,7 @@ end
 
 gem 'jquery-rails'
 
-gem 'acts-as-taggable-on'
+#gem 'acts-as-taggable-on'
 
 gem "nested_form", git: "git@github.com:ryanb/nested_form.git"
 gem "font-awesome-rails"
