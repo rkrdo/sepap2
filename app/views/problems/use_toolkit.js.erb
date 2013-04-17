@@ -1,1 +1,4 @@
-$('#output').html(<%= @result.html_safe %>)
+$("#toolkit-loading").hide();
+$('#output').html("<%=t :compiler_offline %>");
+button = $("input[type=submit]");
+button.attr("disabled", false);

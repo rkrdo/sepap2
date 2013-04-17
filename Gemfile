@@ -6,7 +6,8 @@ gem 'rails', '3.2.3'
 #gem "mysql2"
 
 #thin webserver
-#gem 'thin'
+gem "danthes"
+gem 'thin'
 gem 'puma'
 
 gem 'cancan'

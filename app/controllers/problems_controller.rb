@@ -1,4 +1,9 @@
 class ProblemsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => :judge_results
+  skip_before_filter :set_menu_location, :only => :judge_results
+  skip_before_filter :set_locale, :only => :judge_results
+  skip_before_filter :authenticate_user!, :only => :judge_results
+  
   # GET /problems
   # GET /problems.json
   def index
@@ -83,9 +88,9 @@ class ProblemsController < ApplicationController
 
   def use_toolkit
     @problem = Problem.find(params[:id])
-    @resultado = @problem.toolkit(params)
-    respond_to do |format|
-      format.js
+    
+    if @problem.compile_from_toolkit(params)
+      render :nothing => true, :status => 200, :content_type => 'text/html'
     end
   end
 
@@ -93,6 +98,10 @@ class ProblemsController < ApplicationController
   # USED FOR THE TOOLKIT
   def judge_results
     @result = params["result"]
+    @channel = params["channel"]
+    
+    Danthes.publish_to @channel, :result => @result
+    render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 
 end

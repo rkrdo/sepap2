@@ -25,8 +25,9 @@ Sepap2::Application.routes.draw do
   end
 
   # Routes for the judge results
-  post '/admin/problems/judge_results' => "admin/problems#judge_results"
-  post '/attempts/judge_results' => "attempts#judge_results"
+  post '/admin/problems/judge_results'
+  post '/attempts/judge_results'
+  post '/problems/judge_results'
 
   match '/:locale/users' => 'home#index'
   match '/:locale' => 'home#index'

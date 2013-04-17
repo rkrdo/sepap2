@@ -20,4 +20,5 @@
 //= require ace/mode-c_cpp.js
 //= require ace/mode-csharp.js
 //= require ace/mode-java.js
+//= require danthes
 //= require_tree .

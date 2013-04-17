@@ -68,15 +68,15 @@ class Problem < ActiveRecord::Base
     end
   end
 
-  def toolkit(case_from_toolkit)
-    Problem.request_to_judge hash_for_judge(2, case_from_toolkit)
+  def compile_from_toolkit(toolkit)
+    Problem.request_to_judge hash_for_judge(2, toolkit[:input], toolkit[:channel])
   end
 
   def is_assigned?(user)
     true if true
   end
 
-  def hash_for_judge(return_type, case_from_toolkit = nil)
+  def hash_for_judge(return_type, case_from_toolkit = nil, channel = nil)
     if return_type == 1
       cases = Case.to_judge(self.cases)
     else
@@ -90,7 +90,8 @@ class Problem < ActiveRecord::Base
       :command => self.command.compile_command,
       :source => self.source_code.to_json,
       :time => self.time,
-      :cases => cases
+      :cases => cases,
+      :channel => channel
     })
   end
 
@@ -107,8 +108,10 @@ class Problem < ActiveRecord::Base
     begin
       response =  http.request(req)
       puts response.body
+      return response
     rescue Exception
       puts "Connection refused"
+      return nil
     end
   end
 end

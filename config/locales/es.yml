@@ -105,3 +105,4 @@ es:
     submit: "Enviar"
     locale: "es"
     back: "Regresar"
+    compiler_offline: "El compilador está fuera de línea. Porfavor contacta al administrador."
