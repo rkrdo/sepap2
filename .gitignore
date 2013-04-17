@@ -13,7 +13,7 @@ capybara-*.html
 /coverage/
 /spec/tmp/*
 /lib/judge/Vagrantfile
-/lib/judge/.vagrant
+*.vagrant
 **.orig
 rerun.txt
 pickle-email-*.html
