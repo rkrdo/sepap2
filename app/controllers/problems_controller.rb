@@ -93,7 +93,7 @@ class ProblemsController < ApplicationController
       render :nothing => true, :status => 200, :content_type => 'text/html'
     end
   end
-  
+
   # POST /problems/judge_results
   # USED FOR THE TOOLKIT
   def judge_results

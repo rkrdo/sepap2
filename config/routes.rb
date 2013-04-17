@@ -23,12 +23,12 @@ Sepap2::Application.routes.draw do
       resources :users
     end
   end
-  
+
   # Routes for the judge results
   post '/admin/problems/judge_results'
   post '/attempts/judge_results'
   post '/problems/judge_results'
-  
+
   match '/:locale/users' => 'home#index'
   match '/:locale' => 'home#index'
   get '/' => 'home#index'

@@ -40,6 +40,10 @@ $ ->
       div.children(".modal-content").empty().html data
     div.reveal()
 
+  $("#attempt-editor-tab").on "click", (e) ->
+    resizeAce()
+
+
   $("#new_attempt").on "submit", ->
     button = $("input[type=submit]")
     button.attr("disabled", true)

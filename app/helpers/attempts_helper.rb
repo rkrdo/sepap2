@@ -15,4 +15,5 @@ module AttemptsHelper
       return ""
     end
   end
+
 end

@@ -41,9 +41,12 @@ class Admin::GroupsController < Admin::BaseController
   # POST /admin/groups.json
   def create
     @admin_group = Group.new(params[:group])
-
+    @admin_group.user = current_user
+    
     respond_to do |format|
       if @admin_group.save
+        errors = @admin_group.populate_group
+        flash[:errors] = "The following student ids are not valid: #{errors}" unless errors.blank?
         format.html { redirect_to [:admin, @admin_group], notice: 'Group was successfully created.' }
         format.json { render json: @admin_group, status: :created, location: @admin_group }
       else
@@ -57,9 +60,12 @@ class Admin::GroupsController < Admin::BaseController
   # PUT /admin/groups/1.json
   def update
     @admin_group = Group.find(params[:id])
-
+    @admin_group.members = params[:group][:members]
+    
     respond_to do |format|
       if @admin_group.update_attributes(params[:group])
+        errors = @admin_group.populate_group
+        flash[:errors] = "The following student ids are not valid: #{errors}" unless errors.blank?
         format.html { redirect_to [:admin, @admin_group], notice: 'Group was successfully updated.' }
         format.json { head :no_content }
       else

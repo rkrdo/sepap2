@@ -25,6 +25,11 @@
     <%= f.label :subject %>
     <%= f.select :subject_id, options_from_collection_for_select(Subject.all, "id", "name") %>
   </div>
+  
+  <div class="fields">
+    <%= f.label :members, :class => "has-tip tip-top", "data-width" => "500", :title => "Student IDs must be entered separated by commas and spaces.<br />Example: A01087768, A01087554, A01087740" %>
+    <%= f.text_field :members %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
