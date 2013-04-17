@@ -83,6 +83,8 @@ es:
     outcome_compiling_text: "Tu código se está compilando."
     attempt_feedback: "Considera lo siguiente:"
     attempt_input: "Usando de entrada:"
+    attempt_of: "de"
+    attempt_didnt_pass: "no pasaron"
     attempt_code: "Ver código del intento"
     attempt_language: "Lenguaje"
     attempt_source: "Código Fuente"
