@@ -4,13 +4,13 @@
   <div class="row">
     <div class="six columns">
       <dl class="tabs">
-        <dd class="active"><a href="#simple1"><%= t :prob_description %></a></dd>
-        <dd><a href="#simple2"><%= t :toolkit %></a></dd>
+        <dd class="active"><a href="#description"><%= t :prob_description %></a></dd>
+        <dd><a href="#toolkit"><%= t :toolkit %></a></dd>
       </dl>
       <div class="description-container">
         <ul class="tabs-content">
-          <li class="active" id="simple1Tab"><%= raw(@problem.descriptions.find_by_locale(params[:locale]).text_content) %></li>
-          <li id="simple2Tab"><%= render "toolkit" %></li>
+          <li class="active" id="descriptionTab"><%= raw(@problem.descriptions.find_by_locale(params[:locale]).text_content) %></li>
+          <li id="toolkitTab"><%= render "toolkit" %></li>
         </ul>
       </div>
     </div>

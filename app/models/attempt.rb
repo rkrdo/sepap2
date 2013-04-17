@@ -3,23 +3,23 @@ class Attempt < ActiveRecord::Base
   belongs_to :user
   belongs_to :assignment
   belongs_to :command
-  
+
   has_many :enrollments, through: :user
   has_many :results, dependent: :destroy
-  
+
   attr_accessible :language, :outcome, :problem_id, :code, :groups, :user, :enrollments,
                   :compile_error, :error_message, :command_id, :accepted, :time_exceeded
-  
+
   after_create :compile_and_run
-  
+
   def compile_and_run
     Problem.request_to_judge hash_for_judge
   end
-  
+
   def compiled?
     self.results.count == self.problem.cases.count
   end
-  
+
   def hash_for_judge
     ActiveSupport::JSON.encode({
       :id => self.id,
@@ -31,7 +31,7 @@ class Attempt < ActiveRecord::Base
       :cases => Case.to_judge(self.problem.cases)
     })
   end
-  
+
   def source_code
     if self.problem.module?
       self.problem.main.gsub("<yield>",self.code)
@@ -39,7 +39,7 @@ class Attempt < ActiveRecord::Base
       self.code
     end
   end
-  
+
   def status
     if self.compiled?
       return :accept if self.accepted?
@@ -50,9 +50,22 @@ class Attempt < ActiveRecord::Base
       return :compiling
     end
   end
-  
+
+  def get_feedbacks(locale = :en)
+      feedbacks = []
+      results.each do |result|
+        feedbacks << result.case.feedbacks.find_by_locale(locale)
+      end
+      feedbacks
+  end
+
+  def get_wrong_results_count
+    results.where(result: false).count
+  end
+
   def self.accepted_for_problem?(problem)
-    self.where(:problem_id => problem.id, :compiled => true, :accepted => true).count >= 1
+    #self.where(:problem_id => problem.id, :compiled => true, :accepted => true).count >= 1
+    self.where(:problem_id => problem.id, :accepted => true).count >= 1
   end
 
   def compile

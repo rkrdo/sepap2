@@ -88,7 +88,7 @@ class ProblemsController < ApplicationController
       format.js
     end
   end
-  
+
   # POST /problems/judge_results
   # USED FOR THE TOOLKIT
   def judge_results
