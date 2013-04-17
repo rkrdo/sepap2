@@ -69,7 +69,7 @@ class Problem < ActiveRecord::Base
   end
 
   def compile_from_toolkit(toolkit)
-    Problem.request_to_judge hash_for_judge(2, toolkit[:toolkit_input], toolkit[:channel])
+    Problem.request_to_judge hash_for_judge(2, toolkit[:input], toolkit[:channel])
   end
 
   def is_assigned?(user)
