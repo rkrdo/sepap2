@@ -6,13 +6,9 @@ gem 'rails', '3.2.3'
 #gem "mysql2"
 
 #thin webserver
-<<<<<<< HEAD
 gem "danthes"
 gem 'thin'
-=======
-#gem 'thin'
 gem 'puma'
->>>>>>> master
 
 gem 'cancan'
 
