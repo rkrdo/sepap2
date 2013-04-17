@@ -16,7 +16,4 @@ module AttemptsHelper
     end
   end
 
-  def get_feedback(attempt, locale)
-    attempt.results.first.case.feedbacks.find_by_locale(locale).text_content
-  end
 end

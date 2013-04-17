@@ -4,12 +4,17 @@
       <i class="<%= class_for_status(attempt.status)%>"></i>
       <span><%=t "outcome_#{attempt.status.to_s}" %></span>
     </div>
+    <br />
     <p class="descripcion"><%=t "outcome_#{attempt.status.to_s}_text" %></p>
     <% unless attempt.accepted? %>
       <div class="feedback">
-        <%= t :attempt_feedback %>
+        <p> <%= t :attempt_feedback %> </p>
         <div class="panel">
-          <%# get_feedback attempt, I18n.locale  %>
+          <% attempt.get_feedbacks(I18n.locale).each do |feedback| %>
+              <%= t :attempt_input %> <%= feedback.textable.input %>
+              <%= feedback.text_content %>
+              <br />
+          <% end %>
         </div>
       </div>
     <% end %>

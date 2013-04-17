@@ -51,11 +51,11 @@ class Attempt < ActiveRecord::Base
     end
   end
 
-  def get_feedback(locale = :en)
-      results = results.where(result:false)
+  def get_feedbacks(locale = :en)
+      results = self.results.where(result:false)
       feedbacks = []
       results.each do |result|
-        feedbacks << result.case.feedbacks.find_by_locale(locale).text_content
+        feedbacks << result.case.feedbacks.find_by_locale(locale)
       end
       feedbacks
   end

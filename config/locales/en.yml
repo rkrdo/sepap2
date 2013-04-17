@@ -48,6 +48,7 @@ en:
     outcome_compiling: "COMPILING"
     outcome_compiling_text: "Your Attempt is compiling."
     attempt_feedback: "Consider the following:"
+    attempt_input: "Using as input:"
     attempt_code: "View Attempt Code"
     attempt_language: "Language"
     attempt_source: "Source Code"
