@@ -1,10 +1,18 @@
 <div>
   <div>
-    <div id="outcome">
+    <div class="outcome">
       <i class="<%= class_for_status(attempt.status)%>"></i>
       <span><%=t "outcome_#{attempt.status.to_s}" %></span>
     </div>
     <p class="descripcion"><%=t "outcome_#{attempt.status.to_s}_text" %></p>
+    <% unless attempt.accepted? %>
+      <div class="feedback">
+        <%= t :attempt_feedback %>
+        <div class="panel">
+          <%# get_feedback attempt, I18n.locale  %>
+        </div>
+      </div>
+    <% end %>
   </div>
   <script>
     $('a.reveal').click(function(event) {
