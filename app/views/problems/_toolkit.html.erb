@@ -25,5 +25,6 @@
   Danthes.subscribe("/<%=current_user.id%>/<%=@problem.id%>", function(data, channel) {
     $('#output').html(data.result);
     $("#toolkit-loading").hide();
+    $("input[type=submit]").attr("disabled",false);
   });
 </script>
