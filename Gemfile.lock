@@ -1,4 +1,11 @@
 GIT
+  remote: git://github.com/puma/puma.git
+  revision: cc91b6cd511787b3a6d37df7c89d45facadef75f
+  specs:
+    puma (2.0.0.b7)
+      rack (>= 1.1, < 2.0)
+
+GIT
   remote: git@github.com:ryanb/nested_form.git
   revision: 8f89b2ee38808c7e3af6797c11092b5600e09376
   specs:
@@ -80,6 +87,7 @@ GEM
       orm_adapter (~> 0.0.3)
       railties (~> 3.1)
       warden (~> 1.1.1)
+    dotenv (0.7.0)
     em-http-request (1.0.3)
       addressable (>= 2.2.3)
       cookiejar
@@ -106,6 +114,9 @@ GEM
     ffi (1.5.0)
     font-awesome-rails (3.0.2.0)
       railties (>= 3.1)
+    foreman (0.63.0)
+      dotenv (>= 0.7)
+      thor (>= 0.13.6)
     fssm (0.2.10)
     hike (1.2.1)
     hirb (0.7.0)
@@ -140,8 +151,6 @@ GEM
     net-ssh (2.2.2)
     orm_adapter (0.0.7)
     polyglot (0.3.3)
-    puma (1.6.3)
-      rack (~> 1.2)
     rack (1.4.1)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -235,13 +244,14 @@ DEPENDENCIES
   devise (~> 2.0.0)
   exception_notification
   font-awesome-rails
+  foreman
   hirb
   jquery-datatables-rails
   jquery-rails
   json_builder
   meta_request
   nested_form!
-  puma
+  puma!
   railroady
   rails (= 3.2.3)
   rails-erd

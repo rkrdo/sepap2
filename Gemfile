@@ -8,7 +8,8 @@ gem 'rails', '3.2.3'
 #thin webserver
 gem "danthes"
 gem 'thin'
-gem 'puma'
+gem 'puma', :github => 'puma/puma'
+gem 'foreman'
 
 gem 'cancan'
 
