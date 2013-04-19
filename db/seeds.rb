@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.attr_accessible :teacher, :admin
-User.create(email: "admin@sepap.com", password: "121212", password_confirmation: "121212", num: "A12121212", teacher: true, admin: true)
-User.create(email: "L00904961@itesm.mx", password: "121212", password_confirmation: "121212", num: "L00904961", teacher: true, admin: true)
-User.create(email: "L00163642@itesm.mx", password: "121212", password_confirmation: "121212", num: "L00163642", teacher: true, admin: true)
+User.attr_accessible :teacher, :admin, :name, :lastname
+User.create(name: "Admin", lastname: "Super", email: "admin@sepap.com", password: "121212", password_confirmation: "121212", num: "A12121212", teacher: true, admin: true)
+User.create(name: "Luis", lastname: "Gonzalez", email: "L00904961@itesm.mx", password: "121212", password_confirmation: "121212", num: "L00904961", teacher: true, admin: true)
+User.create(name: "Armandina", lastname: "Leal", email: "L00163642@itesm.mx", password: "121212", password_confirmation: "121212", num: "L00163642", teacher: true, admin: true)
 
 Command.create(name: "C", compile_command: "gcc -o %s %s.c",   description: "placeholders for executable and sourcecode")
 Command.create(name: "CPP", compile_command: "g++ -x c++ -o %s %s.cpp", description: "placeholders for executable and sourcecode")

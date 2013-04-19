@@ -14,6 +14,8 @@
 //= require jquery_ujs
 //= require foundation
 //= require dataTables/jquery.dataTables
+//= require datatables.foundation
+//= require responsive-tables
 //= require jquery_nested_form
 //= require ace/ace
 //= require ace/theme-textmate.js
