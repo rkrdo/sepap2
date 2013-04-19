@@ -40,7 +40,7 @@ $ ->
       div.children(".modal-content").empty().html data
     div.reveal()
 
-  $("#attempt-editor-tab").on "click", (e) ->
+  $("#attempt-editor-tab").on "mouseout", (e) ->
     resizeAce()
 
 
