@@ -1,4 +1,4 @@
-class CommandsController < ApplicationController
+class Admin::CommandsController < Admin::BaseController
   # GET /commands
   # GET /commands.json
   def index

@@ -26,7 +26,7 @@ en:
     session_register: "Please Sign Up"
     session_password: "Please input your Student ID and e-mail to recover your password"
     session_edit: "Please edit your registration"
-    listing: "Listing problems"
+    listing: "Problems"
     listing_assignments: "Listing assignments"
     prob_title: "Title"
     prob_class: "Class"

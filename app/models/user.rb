@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :groups
   has_many :problems
 
-  validates_presence_of :num, :email, :password, :password_confirmation
+  validates_presence_of :num, :email
   validates_format_of :num, with: /\A(A|L)([0-9]{8})\z/i
   validates_uniqueness_of :num, case_sensitive: false
   validates_uniqueness_of :email
