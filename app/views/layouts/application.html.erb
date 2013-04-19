@@ -13,7 +13,7 @@
 	<!-- Set the viewport width to device width for mobile -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<title><%= content_for?(:title) ? yield(:title) : "SEPAP" %></title>
+	<title><%= content_for?(:title) ? "Tutoring 24/7 | #{yield(:title)}" : "Tutoring 24/7" %></title>
 
 	<!-- Included CSS Files -->
 	<%= stylesheet_link_tag "application" %>
@@ -32,7 +32,7 @@
   </div>
   <nav class="top-bar">
       <ul>
-        <li class="name show-for-small"><h1><%= link_to 'SEPAP', root_path, :style => "font-size:17px;" %></h1></li>
+        <li class="name show-for-small"><h1><%= link_to 'Tutoring 24/7', root_path, :style => "font-size:17px;" %></h1></li>
         <li class="toggle-topbar"><a href="#"></a></li>
       </ul>
       <section>
@@ -41,17 +41,21 @@
   </nav>
   <%#flash notices%>
   <div class="row">
+    <div class="twelve columns">
     <% flash.each do |key, value| %>
       <%= content_tag(:div, class: "alert-box #{key}") do %>
         <%= value %>
         <%= content_tag(:a,"x", class:"close") %>
       <% end %>
     <% end %>
+    </div>
   </div>
 
   <%#main content%>
   <div class="row">
-    <%= yield %>
+    <div class="twelve columns">
+      <%= yield %>
+    </div>
   </div>
   <div class="reveal-modal">
     <div class="modal-content">
@@ -60,10 +64,10 @@
   </div>
   <%#footer%>
   <footer>
-    <hr />
-    <div>
+    <div class="row">
+      <hr />
       <div class="six columns">
-        <p>SEPAP.</p>
+        <p>Tutoring 24/7</p>
       </div>
 
       <div class="six columns">

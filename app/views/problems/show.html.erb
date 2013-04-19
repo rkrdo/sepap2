@@ -1,39 +1,37 @@
-<div class="twelve columns">
-  <h3><%= @problem.title(params[:locale]) %></h3>
-  <br />
-  <div class="row">
-    <div class="six columns">
-      <dl class="tabs">
-        <dd class="active"><a href="#description"><%= t :prob_description %></a></dd>
-        <dd><a href="#toolkit"><%= t :toolkit %></a></dd>
-      </dl>
-      <div class="description-container">
-        <ul class="tabs-content">
-          <li class="active" id="descriptionTab"><%= raw(@problem.descriptions.find_by_locale(params[:locale]).text_content) %></li>
-          <li id="toolkitTab"><%= render "toolkit" %></li>
-        </ul>
-      </div>
+<h3><%= @problem.title(params[:locale]) %></h3>
+<br />
+<div class="row">
+  <div class="six columns">
+    <dl class="tabs">
+      <dd class="active"><a href="#description"><%= t :prob_description %></a></dd>
+      <dd><a href="#toolkit"><%= t :toolkit %></a></dd>
+    </dl>
+    <div class="description-container">
+      <ul class="tabs-content">
+        <li class="active" id="descriptionTab"><%= raw(@problem.descriptions.find_by_locale(params[:locale]).text_content) %></li>
+        <li id="toolkitTab"><%= render "toolkit" %></li>
+      </ul>
     </div>
+  </div>
 
-    <div class="six columns">
-      <dl class="tabs four-up">
-        <dd class="active"><a href="#attempt" id="attempt-editor-tab"><%= t :prob_newA %></a></dd>
+  <div class="six columns">
+    <dl class="tabs four-up">
+      <dd class="active"><a href="#attempt" id="attempt-editor-tab"><%= t :prob_newA %></a></dd>
+      <% @user_problem_attempts.each_with_index do |attempt, i|  %>
+        <dd><a href="#attempt<%=i+1%>"><%=t :attempt %> #<%=@num_attempts-i%></a></dd>
+      <% end %>
+    </dl>
+    <div class="attempts-container">
+      <ul class="tabs-content">
+        <li id="attemptTab" class="active">
+          <%= render "attempts/form" %>
+        </li>
         <% @user_problem_attempts.each_with_index do |attempt, i|  %>
-          <dd><a href="#attempt<%=i+1%>"><%=t :attempt %> #<%=@num_attempts-i%></a></dd>
-        <% end %>
-      </dl>
-      <div class="attempts-container">
-        <ul class="tabs-content">
-          <li id="attemptTab" class="active">
-            <%= render "attempts/form" %>
+          <li id="attempt<%=i+1%>Tab">
+            <%= render 'attempts/attempt_outcome', attempt: attempt %>
           </li>
-          <% @user_problem_attempts.each_with_index do |attempt, i|  %>
-            <li id="attempt<%=i+1%>Tab">
-              <%= render 'attempts/attempt_outcome', attempt: attempt %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div> <%#columns %>
-  </div> <%# row %>
-</div>
+        <% end %>
+      </ul>
+    </div>
+  </div> <%#columns %>
+</div> <%# row %>

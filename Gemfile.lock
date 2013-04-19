@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/puma/puma.git
+  remote: git@github.com:puma/puma
   revision: cc91b6cd511787b3a6d37df7c89d45facadef75f
   specs:
     puma (2.0.0.b7)

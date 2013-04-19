@@ -1,34 +1,32 @@
-<div class="twelve columns">
-  <h3><%=t :attempt_listing %></h3>
-  <hr/>
-  <div id="table_container">
-    <table class="data_table">
-        <thead>
-        <tr>
-          <th><%=t :attempt_problem %></th>
-          <th><%=t :attempt_number %></th>
-          <th><%=t :attempt_outcome %></th>
-          <th><%=t :attempt_accepted%></th>
-        </tr>
-        </thead>
-        <tbody>
-      <% @attempts.each do |attempt| %>
-        <tr onclick="location.href='<%= problem_path(attempt.problem) %>'" style='cursor:pointer'>
-          <td><%= attempt.problem.title %></td>
-          <td><%= @times_attempted[attempt.problem_id] %></td>
-          <td>
-            <%=t "outcome_#{attempt.status.to_s}" %>
-          </td>
-          <td>
-            <% if current_user.attempts.accepted_for_problem?(attempt.problem) %>
-              <i class="icon-ok-sign icon-2x icono-aceptado"></i>
-            <% else %>
-              <i class="icon-remove-sign icon-2x icono-rechazado"></i>
-            <% end%>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
-  </div>
+<h3><%=t :attempt_listing %></h3>
+<hr/>
+<div id="table_container">
+  <table class="data_table">
+      <thead>
+      <tr>
+        <th><%=t :attempt_problem %></th>
+        <th><%=t :attempt_number %></th>
+        <th><%=t :attempt_outcome %></th>
+        <th><%=t :attempt_accepted%></th>
+      </tr>
+      </thead>
+      <tbody>
+    <% @attempts.each do |attempt| %>
+      <tr onclick="location.href='<%= problem_path(attempt.problem) %>'" style='cursor:pointer'>
+        <td><%= attempt.problem.title %></td>
+        <td><%= @times_attempted[attempt.problem_id] %></td>
+        <td>
+          <%=t "outcome_#{attempt.status.to_s}" %>
+        </td>
+        <td>
+          <% if current_user.attempts.accepted_for_problem?(attempt.problem) %>
+            <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+          <% else %>
+            <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+          <% end%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 </div>
