@@ -107,7 +107,7 @@ class AttemptsController < ApplicationController
         attempt.accepted = false
         attempt.save
       end
-      if attempt.results.count == attempt.problem.cases.count
+      if attempt.results.count == attempt.problem.cases.count and !attempt.compile_error
         attempt.compiled = true
         attempt.save
       end

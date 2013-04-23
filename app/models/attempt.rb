@@ -16,10 +16,6 @@ class Attempt < ActiveRecord::Base
     Problem.request_to_judge hash_for_judge
   end
 
-  def compiled?
-    self.results.count == self.problem.cases.count
-  end
-
   def hash_for_judge
     ActiveSupport::JSON.encode({
       :id => self.id,
