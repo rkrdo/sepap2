@@ -14,7 +14,7 @@
       <h3 class="subheader text-center">Descriptions</h3>
       <% @admin_problem.descriptions.each do |description| %>
         <div class="problem-description">
-          <%= humanized_language(description.locale) %>: <%= description.text_content %>
+          <%= humanized_language(description.locale) %>: <%= raw description.text_content %>
         </div>
       <% end %>
     </div>

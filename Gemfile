@@ -66,6 +66,9 @@ group :assets do
   gem 'compass-rails'
   gem 'zurb-foundation'
   gem 'jquery-datatables-rails'
+  
+  # Wysiwyg
+  gem 'wysihtml5-rails'
 end
 
 gem 'jquery-rails'

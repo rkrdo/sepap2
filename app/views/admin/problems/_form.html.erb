@@ -24,7 +24,7 @@
     <%= f.fields_for :descriptions do |df|%>
       <div class="six mobile-two columns">
         <%= df.label :text_content, "Description in #{humanized_language(df.object.locale)}" %>
-        <%= df.text_area :text_content %>
+        <%= df.text_area :text_content, :class => "description_#{df.object.locale}" %>
         <%= df.hidden_field :locale, :value => df.object.locale%>
       </div>
     <% end %>
