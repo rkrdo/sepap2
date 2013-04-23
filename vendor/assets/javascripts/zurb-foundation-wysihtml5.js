@@ -59,7 +59,7 @@
                   "<a href='#' class='button close-reveal-modal action-insert'>" + locale.link.insert + "</a>" +
                 "</div>" +
               "</div>" +
-              "<a class='button secondary small" + size + "' data-wysihtml5-command='createLink' title='" + locale.link.insert + "' tabindex='-1'><i class='icon-share'></i></a>" +
+              "<a class='button secondary small " + size + "' data-wysihtml5-command='createLink' title='" + locale.link.insert + "' tabindex='-1'><i class='icon-link'></i></a>" +
             "</li>";
         },
 
@@ -224,6 +224,7 @@
                 if(e.which == 13) {
                     insertImage();
                     insertImageModal.trigger('reveal:close');
+                    e.preventDefault();
                 }
             });
 
@@ -283,6 +284,7 @@
                 if(e.which == 13) {
                     insertLink();
                     insertLinkModal.trigger('reveal:close');
+                    e.preventDefault();
                 }
             });
 
@@ -302,7 +304,7 @@
                 if (!activeButton) {
                     self.editor.currentView.element.focus(false);
                     caretBookmark = self.editor.composer.selection.getBookmark();
-                    insertLinkModal.appendTo('body').reveal();
+                    insertLinkModal.reveal();
                     insertLinkModal.on('click', '.close-reveal-modal', function(e) {
                         e.preventDefault();
                     });
