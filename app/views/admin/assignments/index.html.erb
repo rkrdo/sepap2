@@ -1,25 +1,31 @@
-<h1>Listing admin_assignments</h1>
+<h1>Listing Assignments by Group</h1>
 <div id="table_container">
-  <table class="data_table">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th></th>
-        <th></th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-    <% @admin_assignments.each do |admin_assignment| %>
-      <tr>
-        <td><%= admin_assignment.title %></td>
-        <td><%= link_to 'Show', [:admin, admin_assignment] %></td>
-        <td><%= link_to 'Edit', edit_admin_assignment_path(admin_assignment) %></td>
-        <td><%= link_to 'Destroy', [:admin, admin_assignment], confirm: 'Are you sure?', method: :delete %></td>
-      </tr>
-    <% end %>
-    </tbody>
-  </table>
+  <% current_user.groups.each do |group| %>
+    <div class="panel">
+    <%= group.name %>
+    <hr />
+    <table>
+      <thead>
+        <tr>
+          <th>Title</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% group.assignments do |assignment| %>
+        <tr>
+          <td><%= assignment.title %></td>
+          <td><%= link_to 'Show', [:admin, admin_assignment] %></td>
+          <td><%= link_to 'Edit', edit_admin_assignment_path(admin_assignment) %></td>
+          <td><%= link_to 'Destroy', [:admin, admin_assignment], confirm: 'Are you sure?', method: :delete %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+    </div>
+  <% end %>
 </div>
 <br />
 

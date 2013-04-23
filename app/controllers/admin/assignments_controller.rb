@@ -2,7 +2,6 @@ class Admin::AssignmentsController < Admin::BaseController
   # GET /admin/assignments
   # GET /admin/assignments.json
   def index
-    @admin_assignments = Assignment.all
 
     respond_to do |format|
       format.html # index.html.erb
