@@ -99,6 +99,7 @@ class AttemptsController < ApplicationController
         attempt.compile_error = true
       end
       attempt.error_message = params["stderr"]
+      attempt.accepted = false
       attempt.save
     else
       attempt = Attempt.find(params["id"])
