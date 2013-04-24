@@ -1,6 +1,7 @@
 <div>
   <div>
     <div class="outcome">
+      <!-- class_for_status is a helper in the attempts helper -->
       <i class="<%= class_for_status(attempt.status)%>"></i>
       <span><%=t "outcome_#{attempt.status.to_s}" %></span>
     </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405200427) do
+ActiveRecord::Schema.define(:version => 20130424025407) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -31,14 +31,16 @@ ActiveRecord::Schema.define(:version => 20130405200427) do
     t.integer  "assignment_id"
     t.string   "outcome"
     t.string   "language"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
     t.text     "code",          :limit => 255
     t.integer  "command_id"
     t.boolean  "compile_error",                :default => false
     t.string   "error_message"
     t.boolean  "accepted",                     :default => true
     t.boolean  "time_exceeded",                :default => false
+    t.boolean  "compiled",                     :default => false
+    t.string   "state",                        :default => "compiling"
   end
 
   add_index "attempts", ["command_id"], :name => "index_attempts_on_command_id"
@@ -72,6 +74,16 @@ ActiveRecord::Schema.define(:version => 20130405200427) do
 
   add_index "enrollments", ["group_id"], :name => "index_enrollments_on_group_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
+
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "problem_id"
+    t.integer  "line_number"
+    t.string   "comment"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "feedbacks", ["problem_id"], :name => "index_feedbacks_on_problem_id"
 
   create_table "groups", :force => true do |t|
     t.integer  "subject_id"

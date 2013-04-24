@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+	class Group < ActiveRecord::Base
   belongs_to :subject
   belongs_to :user
   has_many :attempts, through: :users

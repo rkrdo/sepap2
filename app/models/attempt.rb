@@ -8,7 +8,7 @@ class Attempt < ActiveRecord::Base
   has_many :results, dependent: :destroy
 
   attr_accessible :language, :outcome, :problem_id, :code, :groups, :user, :enrollments,
-                  :compile_error, :error_message, :command_id, :accepted, :time_exceeded
+                  :compile_error, :error_message, :command_id, :accepted, :time_exceeded, :state
 
   after_create :compile_and_run
 
@@ -34,6 +34,34 @@ class Attempt < ActiveRecord::Base
       self.problem.main.gsub("<yield>",self.code)
     else
       self.code
+    end
+  end
+
+  # Method that updates the attribute *state* to "fail" when the current state is compiling
+  def maybe_set_fail_state
+    self.update_attribute(:state, "fail") if self.state == "compiling"
+  end
+
+  def done_compiling?
+    self.results.count == self.problem.cases.count
+  end
+  
+  def compiling?
+    self.state == "compiling"
+  end
+  
+  def accepted?
+    self.state == "accept"
+  end
+  
+  def set_error(error_code, error_message)
+    case error_code
+    when 0
+      self.update_attributes({:error_message => error_message, :state => "compile_error"})
+    when 1
+      self.update_attributes({:error_message => error_message, :state => "execution_error"})
+    when 2
+      self.update_attributes({:error_message => error_message, :state => "timeout"})
     end
   end
 
