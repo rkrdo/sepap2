@@ -2,11 +2,11 @@
   <div>
     <div class="outcome">
       <!-- class_for_status is a helper in the attempts helper -->
-      <i class="<%= class_for_status(attempt.status)%>"></i>
-      <span><%=t "outcome_#{attempt.status.to_s}" %></span>
+      <i class="<%= class_for_status(attempt.state)%>"></i>
+      <span><%=t "outcome_#{attempt.state}" %></span>
     </div>
     <br />
-    <p class="descripcion"><%=t "outcome_#{attempt.status.to_s}_text" %></p>
+    <p class="descripcion"><%=t "outcome_#{attempt.state}_text" %></p>
     <% unless attempt.accepted? %>
       <div class="feedback">
         <p> <%= t :attempt_feedback %> </p>
