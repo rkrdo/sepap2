@@ -1,6 +1,32 @@
-<p>
-  Title:
-  <%= @admin_assignment.title %>
-</p>
+<div class="row" >
+  <p>
+    <%= @admin_assignment.title %>
+  </p>
+
+  <div class="panel">
+    <table class="data_table">
+      <thead>
+      <tr>
+        <th>Student Id</th>
+        <th>Name</th>
+        <th>Number of Attempts</th>
+        <th>Outcome</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+    </tbody>
+    </table>
+  </div>
+</div>
+
+
+
 <%= link_to 'Edit', edit_admin_assignment_path(@admin_assignment) %> |
 <%= link_to 'Back', admin_assignments_path %>

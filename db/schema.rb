@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20130405200427) do
     t.string   "error_message"
     t.boolean  "accepted",                     :default => true
     t.boolean  "time_exceeded",                :default => false
+    t.boolean  "compiled",                     :default => false
   end
 
   add_index "attempts", ["command_id"], :name => "index_attempts_on_command_id"

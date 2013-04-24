@@ -13,5 +13,5 @@ User.create(name: "Armandina", lastname: "Leal", email: "L00163642@itesm.mx", pa
 
 Command.create(name: "C", compile_command: "gcc -o %s %s.c",   description: "placeholders for executable and sourcecode")
 Command.create(name: "CPP", compile_command: "g++ -x c++ -o %s %s.cpp", description: "placeholders for executable and sourcecode")
-Command.create(name: "CS", compile_command: "gmcs -out:%s.exe %s", description: "mono")
-Command.create(name: "JAVA", compile_command: "javac %s", description: "open jdk java 7 runtime")
+Command.create(name: "CS", compile_command: "gmcs -out:%s.exe %s.cs", description: "mono")
+Command.create(name: "JAVA", compile_command: "javac %s.java", description: "open jdk java 7 runtime")

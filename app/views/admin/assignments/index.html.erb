@@ -4,29 +4,30 @@
     <div class="panel">
     <%= group.name %>
     <hr />
-    <table>
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      <% group.assignments do |assignment| %>
-        <tr>
-          <td><%= assignment.title %></td>
-          <td><%= link_to 'Show', [:admin, admin_assignment] %></td>
-          <td><%= link_to 'Edit', edit_admin_assignment_path(admin_assignment) %></td>
-          <td><%= link_to 'Destroy', [:admin, admin_assignment], confirm: 'Are you sure?', method: :delete %></td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+    <% if group.assignments.count > 0 %>
+      <table>
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <% group.assignments.each do |assignment| %>
+          <tr>
+            <td><%= assignment.title %></td>
+            <td><%= link_to 'Show', [:admin, assignment] %></td>
+            <td><%= link_to 'Edit', edit_admin_assignment_path(assignment) %></td>
+            <td><%= link_to 'Destroy', [:admin, assignment], confirm: 'Are you sure?', method: :delete %></td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
+    <% end %>
+    <%= link_to 'New Assignment', new_admin_assignment_path(group:group), class:"button success"  %>
     </div>
   <% end %>
 </div>
 <br />
-
-<%= link_to 'New Assignment', new_admin_assignment_path, class:"button success"  %>

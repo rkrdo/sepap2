@@ -23,8 +23,7 @@ class Admin::AssignmentsController < Admin::BaseController
   # GET /admin/assignments/new
   # GET /admin/assignments/new.json
   def new
-    @admin_assignment = Assignment.new
-
+    @admin_assignment = Group.find(params[:group]).assignments.build
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @admin_assignment }

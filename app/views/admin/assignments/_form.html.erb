@@ -21,10 +21,7 @@
       <%= f.label :problem %>
       <%= f.select :problem_id, options_from_collection_for_select(Problem.all, 'id', 'title')%>
     </div>
-    <div class="six mobile-two columns">
-      <%= f.label :group %>
-      <%= f.select :group_id, options_from_collection_for_select(Group.all, 'id', 'name')%>
-    </div>
+      <%= f.text_field :group_id, placeholder:@admin_assignment.group.id, style:"display:none" %>
   </div>
 
   <div class="actions">
