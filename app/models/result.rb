@@ -6,6 +6,6 @@ class Result < ActiveRecord::Base
   after_create :maybe_set_attempt_as_accepted
   
   def maybe_set_attempt_as_accepted
-    self.attempt.update_attribute(:state, "accept") if self.attempt.compiling? and self.done_compiling?
+    self.attempt.update_attribute(:state, "accept") if self.attempt.compiling? and self.attempt.done_compiling?
   end
 end
