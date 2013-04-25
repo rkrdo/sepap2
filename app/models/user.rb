@@ -37,6 +37,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def display_name
+    return self.num if self.name.blank?
+    self.name
+  end
+
   def assigned_problems
     assignments = []
     if self.enrollments
