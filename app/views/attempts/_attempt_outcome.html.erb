@@ -16,7 +16,7 @@
         <p> <%= t :attempt_feedback %> </p>
         <h5><%= attempt.get_wrong_results_count %> <%= t :attempt_of %> <%= attempt.results.count %> <%= t :attempt_didnt_pass %>:</h5>
         <% attempt.get_feedbacks(I18n.locale).each_with_index do |feedback, index| %>
-          <%= "#{index}:" %>
+          <strong><%= "#{index+1}:" %></strong>
           <% if feedback.get_result(attempt) %>
             <i class="icon-ok-sign icono-accept"></i>
           <% else %>
