@@ -11,7 +11,7 @@
     <% else %>
       <p class="descripcion"><%=t "outcome_#{attempt.state}_text" %></p>
     <% end %>
-    <% if attempt.failed? or attempt.accepted? %>
+    <% if attempt.failed? %>
       <div class="feedback">
         <p> <%= t :attempt_feedback %> </p>
         <h5><%= attempt.get_wrong_results_count %> <%= t :attempt_of %> <%= attempt.results.count %> <%= t :attempt_didnt_pass %>:</h5>
