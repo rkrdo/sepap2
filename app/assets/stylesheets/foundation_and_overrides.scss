@@ -255,6 +255,22 @@
       background: lighten(#086ca2, 10%) !important;
     }
   }
+  .login-dropdown {
+    width: 150px;
+    li {
+      &:hover {
+        background: #086ca2 !important;
+      }
+    }
+    input {
+      width: 130px;
+      margin-left: 10px;
+      &[type=submit] {
+        width: 70px;
+        margin-left: 40px;
+      }
+    }
+  }
 }
 
 .field_with_errors {
