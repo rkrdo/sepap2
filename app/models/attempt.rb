@@ -59,7 +59,7 @@ class Attempt < ActiveRecord::Base
   end
   
   def with_error?
-    self.state == "execution_error" or self.state = "compile_error"
+    self.state == "execution_error" or self.state == "compile_error"
   end
   
   def set_error(error_code, error_message)
