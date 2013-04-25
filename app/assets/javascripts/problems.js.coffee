@@ -4,6 +4,8 @@ $(document).on "nested:fieldAdded", (event) ->
   case_num.text(total_cases)
 
 jQuery ->
+  $('.description_es').wysihtml5()
+  $('.description_en').wysihtml5()
 
   $toolkit_loading = $("#toolkit-loading")
   $toolkit_loading.hide() if $toolkit_loading.length > 0

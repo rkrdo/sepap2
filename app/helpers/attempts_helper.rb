@@ -1,15 +1,17 @@
 module AttemptsHelper
   def class_for_status(status)
     case status
-    when :accept
+    when "accept"
       return "icon-ok-sign icon-2x icono-accept"
-    when :timeout
+    when "timeout"
       return "icon-time icon-2x icono-timeout"
-    when :fail
+    when "fail"
       return "icon-remove-sign icon-2x icono-fail"
-    when :uncompile
+    when "compile_error"
       return "icon-exclamation-sign icon-2x icono-uncompile"
-    when :compiling
+    when "execution_error"
+      return "icon-exclamation-sign icon-2x icono-uncompile"
+    when "compiling"
       return "icon-cogs icon-2x icono-compiling"
     else
       return ""

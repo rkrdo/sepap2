@@ -91,26 +91,16 @@ class AttemptsController < ApplicationController
 
   # POST /attempts/judge_results
   def judge_results
-    if params.has_key?("stderr")
-      attempt = Attempt.find(params["id"])
-      if params.has_key?("stderr")
-        attempt.time_exceeded = true
-      else
-        attempt.compile_error = true
-      end
-      attempt.error_message = params["stderr"]
-      attempt.save
-    else
-      attempt = Attempt.find(params["id"])
+    attempt = Attempt.find(params["id"])
+    if params["error_code"].nil?
       result = attempt.results.create({:case_id => params["case"], :result => params["result"]})
-      if !result.result and attempt.accepted
-        attempt.accepted = false
-        attempt.save
-      end
-      if attempt.results.count == attempt.problem.cases.count
-        attempt.compiled = true
-        attempt.save
-      end
+      
+      # Try to update the state to fail if the result is false
+      attempt.maybe_set_fail_state unless result.result
+    else
+      
+      # If the attempt is still in compiling state, set the first error that is reported back
+      attempt.set_error(params["error_code"], params["stderr"]) if attempt.compiling?
     end
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end

@@ -18,6 +18,8 @@
 //= require responsive-tables
 //= require jquery_nested_form
 //= require jquery.expander.min
+//= require wysihtml5
+//= require zurb-foundation-wysihtml5
 //= require ace/ace
 //= require ace/theme-textmate.js
 //= require ace/mode-c_cpp.js

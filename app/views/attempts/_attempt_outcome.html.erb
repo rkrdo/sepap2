@@ -1,12 +1,17 @@
 <div>
   <div>
     <div class="outcome">
-      <i class="<%= class_for_status(attempt.status)%>"></i>
-      <span><%=t "outcome_#{attempt.status.to_s}" %></span>
+      <!-- class_for_status is a helper in the attempts helper -->
+      <i class="<%= class_for_status(attempt.state)%>"></i>
+      <span><%=t "outcome_#{attempt.state}" %></span>
     </div>
     <br />
-    <p class="descripcion"><%=t "outcome_#{attempt.status.to_s}_text" %></p>
-    <% unless attempt.accepted? %>
+    <% if attempt.with_error?%>
+      <p class="descripcion"><%=raw(t("outcome_#{attempt.state}_text", :error_message => attempt.error_message)) %></p>
+    <% else %>
+      <p class="descripcion"><%=t "outcome_#{attempt.state}_text" %></p>
+    <% end %>
+    <% if attempt.failed? or attempt.accepted? %>
       <div class="feedback">
         <p> <%= t :attempt_feedback %> </p>
         <h5><%= attempt.get_wrong_results_count %> <%= t :attempt_of %> <%= attempt.results.count %> <%= t :attempt_didnt_pass %>:</h5>
