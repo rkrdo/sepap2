@@ -258,7 +258,7 @@
   .login-dropdown {
     width: 150px;
     li {
-      &:hover {
+      &:hover, & a:hover {
         background: #086ca2 !important;
       }
     }

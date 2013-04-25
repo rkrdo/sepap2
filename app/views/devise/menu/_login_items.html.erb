@@ -15,6 +15,7 @@
           <li><%= f.text_field :num, :placeholder=>"#{t :studentID}", :class=>"input username" %></li>
           <li><%= f.password_field :password, :placeholder=>"#{t :password}", :class=>"input password"  %></li>
           <li><%= f.submit "#{t :sign_in}", :class=>"button tiny round" %></li>
+          <li><%= link_to "#{t :register}", new_user_registration_path(locale: params[:locale]) %></li>
         <% end %>
       </ul>
     </li>
