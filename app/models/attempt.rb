@@ -54,6 +54,14 @@ class Attempt < ActiveRecord::Base
     self.state == "accept"
   end
   
+  def failed?
+    self.state == "fail"
+  end
+  
+  def with_error?
+    self.state == "execution_error" or self.state = "compile_error"
+  end
+  
   def set_error(error_code, error_message)
     case error_code
     when 0

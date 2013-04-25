@@ -9,6 +9,8 @@ module AttemptsHelper
       return "icon-remove-sign icon-2x icono-fail"
     when "compile_error"
       return "icon-exclamation-sign icon-2x icono-uncompile"
+    when "execution_error"
+      return "icon-exclamation-sign icon-2x icono-uncompile"
     when "compiling"
       return "icon-cogs icon-2x icono-compiling"
     else
