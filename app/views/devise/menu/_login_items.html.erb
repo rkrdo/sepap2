@@ -1,42 +1,41 @@
 <ul class="left">
   <% if current_user %>
-    <li><%= link_to "#{t :menu_problems}", problems_path(locale: params[:locale]) %></li>
-    <li><%= link_to "#{t :menu_attempts}", attempts_path(locale: params[:locale]) %></li>
-    <li><%= link_to "#{t :menu_assignments}", assignments_path(locale: params[:locale]) %></li>
+    <li><%= link_to t(:menu_problems), problems_path(locale: params[:locale]) %></li>
+    <li><%= link_to t(:menu_attempts), attempts_path(locale: params[:locale]) %></li>
+    <li><%= link_to t(:menu_assignments), assignments_path(locale: params[:locale]) %></li>
   <% end %>
 </ul>
 
 <ul class="right">
-  <% unless current_user %>
-    <li class="has-dropdown">
-      <%= link_to "Sign In", "#" %>
-      <ul class="dropdown login-dropdown">
-        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-          <li><%= f.text_field :num, :placeholder=>"#{t :studentID}", :class=>"input username" %></li>
-          <li><%= f.password_field :password, :placeholder=>"#{t :password}", :class=>"input password"  %></li>
-          <li><%= f.submit "#{t :sign_in}", :class=>"button tiny round" %></li>
-          <li><%= link_to "#{t :register}", new_user_registration_path(locale: params[:locale]) %></li>
-        <% end %>
-      </ul>
-    </li>
-  <% end %>
   <li class="locales">
     <% if I18n.locale == :en %>
-      <%=link_to( "Spanish", url_for(:locale=>'es'), :class => "locale_setter") %>
+      <%=link_to( "Español", url_for(:locale=>'es'), :class => "locale_setter") %>
     <% else %>
-      <%=link_to( "Inglés", url_for(:locale=>'en'), :class => "locale_setter") %>
+      <%=link_to( "English", url_for(:locale=>'en'), :class => "locale_setter") %>
     <% end %>
   </li>
   <% if current_user %>
     <li class="has-dropdown">
-      <%= link_to "#{current_user.name}", "#" %>
+      <%= link_to current_user.name, "#" %>
       <ul class="dropdown">
         <% if current_user.try(:teacher?) %>
           <li><%= link_to "Admin", admin_problems_path(locale: params[:locale]) %></li>
         <% end %>
-        <li><%= link_to("#{t :menu_edit}", edit_user_registration_path(locale: params[:locale])) %></li>
-        <li><%= link_to("#{t :menu_logout}", destroy_user_session_path, :method => :delete) %></li>
+        <li><%= link_to(t(:menu_edit), edit_user_registration_path(locale: params[:locale])) %></li>
+        <li><%= link_to(t(:menu_logout), destroy_user_session_path, :method => :delete) %></li>
       </ul>
-    <% end %>
-  </li>
+    </li>
+  <% else %>
+    <li class="has-dropdown">
+      <%= link_to t(:menu_login), "#" %>
+      <ul class="dropdown login-dropdown">
+        <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+          <li><%= f.text_field :num, :placeholder=>t(:studentID), :class=>"input username" %></li>
+          <li><%= f.password_field :password, :placeholder=>t(:password), :class=>"input password"  %></li>
+          <li><%= f.submit t(:sign_in), :class=>"button tiny round" %></li>
+          <li><%= link_to t(:register), new_user_registration_path(locale: params[:locale]) %></li>
+        <% end %>
+      </ul>
+    </li>
+  <% end %>
 </ul>
