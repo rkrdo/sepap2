@@ -17,6 +17,7 @@
 //= require datatables.foundation
 //= require responsive-tables
 //= require jquery_nested_form
+//= require jquery.expander.min
 //= require ace/ace
 //= require ace/theme-textmate.js
 //= require ace/mode-c_cpp.js
