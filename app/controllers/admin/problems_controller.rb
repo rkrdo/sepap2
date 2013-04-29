@@ -4,6 +4,7 @@ class Admin::ProblemsController < Admin::BaseController
   skip_before_filter :set_locale, :only => :judge_results
   skip_before_filter :authenticate_user!, :only => :judge_results
   skip_before_filter :require_privileges, :only => :judge_results
+  load_and_authorize_resource
   # GET /admin/problems
   # GET /admin/problems.json
   def index
