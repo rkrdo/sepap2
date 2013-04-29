@@ -16,7 +16,7 @@ Sepap2::Application.routes.draw do
       resources :problems
       resources :assignments
       resources :groups
-      resources :subjects
+      resources :subjects, path: "courses"
       resources :topics
       resources :users
       resources :commands
