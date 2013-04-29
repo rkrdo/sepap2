@@ -4,7 +4,9 @@ $(document).on "nested:fieldAdded", (event) ->
   case_num.text(total_cases)
 
 jQuery ->
-  
+  $('.description_es').wysihtml5()
+  $('.description_en').wysihtml5()
+
   $toolkit_loading = $("#toolkit-loading")
   $toolkit_loading.hide() if $toolkit_loading.length > 0
   $("#toolkit").on "submit", ->
@@ -34,7 +36,7 @@ jQuery ->
 
   hideFlashMessages = ->
       $("div.alert-box").slideUp()
-  
+
   if $("#mainEditor").length > 0
     #text editor
     $("#mainEditor").html $("#problem_main").html()
@@ -52,7 +54,7 @@ jQuery ->
       $("#mainEditor").width $("#problem_main").outerWidth()
       $("#methodEditor").height $("#problem_main").outerHeight()
       $("#methodEditor").width $("#problem_main").outerWidth()
-      
+
     $("#methodEditor").html $("#problem_method").html()
     meditor = ace.edit("methodEditor")
     meditor.setTheme "ace/theme/textmate"
@@ -84,3 +86,7 @@ jQuery ->
   cases = $(".case_number")
   for case_num, i in cases
     $(case_num).text(i+1)
+
+  # expander plugin
+  $(".problem-description, .input, .output").expander
+    slicePoint: 140
