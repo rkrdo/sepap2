@@ -5,6 +5,7 @@ class Ability
     user ||= User.new
     if user.admin?
       can :manage, :all
+      can :activate, Problem
     elsif user.teacher?
       can :read, :all
       can :manage, Group
@@ -14,6 +15,7 @@ class Ability
       can :create, Problem
       cannot :edit, Problem
       cannot :destroy, Problem
+      cannot :activate, Problem
     end
   end
 end

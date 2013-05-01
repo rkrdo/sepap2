@@ -5,6 +5,7 @@
       <tr>
         <th>Title</th>
         <th>Dificulty</th>
+        <th>Active</th>
         <th>Edit</th>
         <th>Delete</th>
       </tr>
@@ -14,6 +15,7 @@
       <tr>
         <td onclick="location.href='<%= admin_problem_path(admin_problem) %>'" style="cursor:pointer"> <%= admin_problem.title(params[:locale]) %></td>
         <td><%= admin_problem.dificulty %></td>
+        <td><%= admin_problem.active? %></td>
         <td><%= link_to 'Edit', edit_admin_problem_path(admin_problem) if can? :update, admin_problem %></td>
         <td><%= link_to 'Destroy', [:admin, admin_problem], confirm: 'Are you sure?', method: :delete if can? :destroy, admin_problem %></td>
       </tr>

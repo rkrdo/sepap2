@@ -52,6 +52,7 @@ class Admin::ProblemsController < Admin::BaseController
   # POST /admin/problems.json
   def create
     @admin_problem = Problem.new(params[:problem])
+    @admin_problem.active = true if current_user.admin?
 
     respond_to do |format|
       if @admin_problem.save
