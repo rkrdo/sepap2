@@ -86,6 +86,7 @@ class Teacher::AssignmentsController < Teacher::BaseController
   def compare
     @group = Group.find(params[:group_id])
     @assignment = @group.assignments.find(params[:id])
-
+    
+    @assignment.compare_attempts
   end
 end

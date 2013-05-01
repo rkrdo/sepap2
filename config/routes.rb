@@ -38,6 +38,7 @@ Sepap2::Application.routes.draw do
   post '/admin/problems/judge_results'
   post '/attempts/judge_results'
   post '/problems/judge_results'
+  post '/varch/:group_id/:assignment_id' => 'teacher/assignments#varch_results'
 
   match '/:locale/users' => 'home#index'
   match '/:locale' => 'home#index'

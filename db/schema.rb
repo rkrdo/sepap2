@@ -77,6 +77,16 @@ ActiveRecord::Schema.define(:version => 20130501083023) do
   add_index "enrollments", ["group_id"], :name => "index_enrollments_on_group_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
 
+  create_table "feedbacks", :force => true do |t|
+    t.integer  "problem_id"
+    t.integer  "line_number"
+    t.string   "comment"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "feedbacks", ["problem_id"], :name => "index_feedbacks_on_problem_id"
+
   create_table "groups", :force => true do |t|
     t.integer  "subject_id"
     t.string   "period"

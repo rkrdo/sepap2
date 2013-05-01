@@ -8,21 +8,26 @@
     <% @group.assignments.includes(:users).each do |assignment| %>
       <li>
         <div class="title">
-          <%= assignment.title %> 
+          <div class="row">
+            <div class="eight columns">
+              <%= assignment.title %>
+            </div>
+            <div class="three columns end">
+              <%= link_to 'Compare', compare_teacher_group_assignment_path(@group, assignment), class: "button tiny right" %>
+            </div>
+          </div>
         </div>
         <div class="content">
           <table width="100%">
             <thead>
               <tr>
-                <th width="5%"></th>
-                <th width="70%">Name</th>
+                <th width="75%">Name</th>
                 <th width="25%">Completed</th>
               </tr>
             </thead>
             <tbody>
             <% assignment.users.each do |user| %>
               <tr>
-                <td><%= check_box_tag "compare", user.id%></td>
                 <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment, :user_id => user) %>', '_blank')" style='cursor:pointer'"><%= user.display_name %></td>
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
