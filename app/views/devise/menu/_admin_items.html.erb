@@ -10,7 +10,7 @@
 
 <ul class="right">
   <li class="has-dropdown">
-    <%= link_to "#{current_user.name} | ADMIN", "#" %>
+    <%= link_to "#{current_user.display_name} | ADMIN", "#" %>
     <ul class="dropdown">
       <li><%= link_to("#{t :menu_edit}", edit_user_registration_path) %></li>
       <li><%= link_to("#{t :menu_logout}", destroy_user_session_path, :method => :delete) %></li>
