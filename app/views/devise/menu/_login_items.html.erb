@@ -18,8 +18,11 @@
     <li class="has-dropdown">
       <%= link_to current_user.display_name, "#" %>
       <ul class="dropdown">
-        <% if current_user.try(:teacher?) %>
-          <li><%= link_to "Admin", admin_problems_path(locale: params[:locale]) %></li>
+        <% if current_user.admin? %>
+          <li><%= link_to "Admin View", admin_problems_path(locale: "en") %></li>
+        <% end %>
+        <% if current_user.teacher? %>
+          <li><%= link_to "Teacher View", teacher_groups_path(locale: "en") %></li>
         <% end %>
         <li><%= link_to(t(:menu_edit), edit_user_registration_path(locale: params[:locale])) %></li>
         <li><%= link_to(t(:menu_logout), destroy_user_session_path, :method => :delete) %></li>

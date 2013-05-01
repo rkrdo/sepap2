@@ -1,0 +1,21 @@
+<h1>Listing teacher_problems</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teacher_problems.each do |teacher_problem| %>
+  <tr>
+    <td><%= link_to 'Show', [:teacher, teacher_problem] %></td>
+    <td><%= link_to 'Edit', edit_teacher_problem_path(teacher_problem) %></td>
+    <td><%= link_to 'Destroy', [:teacher, teacher_problem], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Problem', new_teacher_problem_path %>

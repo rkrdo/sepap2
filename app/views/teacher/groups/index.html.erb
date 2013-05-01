@@ -1,0 +1,21 @@
+<h1>Listing Groups</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teacher_groups.each do |teacher_group| %>
+  <tr>
+    <td><%= link_to 'Show', [:teacher, teacher_group] %></td>
+    <td><%= link_to 'Edit', edit_teacher_group_path(teacher_group) %></td>
+    <td><%= link_to 'Destroy', [:teacher, teacher_group], confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Group', new_teacher_group_path %>

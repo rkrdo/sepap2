@@ -99,7 +99,7 @@ class Problem < ActiveRecord::Base
     # Sends HTTP post to python webservice that runs the algorithms
     uri = URI.parse('http://192.168.33.10:6666/')
     req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' => 'application/json'})
-    puts params
+    #puts params
     req.body = params
 
     http = Net::HTTP.new(uri.host, uri.port)
