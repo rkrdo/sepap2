@@ -4,7 +4,7 @@
 <div class="row">
   <div class="six mobile-four columns">
     <ul class="accordion">
-    <h5>Assignments: <%= link_to 'New Assignment', new_teacher_group_assignment_path(@group), class: "button success small" %></h5> 
+    <h5>Assignments: <%= link_to 'New Assignment', new_teacher_group_assignment_path(@group), class: "button success tiny" %></h5> 
     <% @group.assignments.includes(:users).each do |assignment| %>
       <li>
         <div class="title">
@@ -13,7 +13,7 @@
               <%= assignment.title %>
             </div>
             <div class="three columns end">
-              <%= link_to 'Compare', compare_teacher_group_assignment_path(@group, assignment), class: "button tiny right" %>
+              <!--<%= link_to 'Compare', compare_teacher_group_assignment_path(@group, assignment), class: "button tiny right" %>-->
             </div>
           </div>
         </div>
@@ -21,14 +21,14 @@
           <table width="100%">
             <thead>
               <tr>
-                <th width="75%">Name</th>
+                <th width="75%">Student</th>
                 <th width="25%">Completed</th>
               </tr>
             </thead>
             <tbody>
             <% assignment.users.each do |user| %>
               <tr>
-                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment, :user_id => user) %>', '_blank')" style='cursor:pointer'"><%= user.display_name %></td>
+                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment, :user_id => user) %>', '_blank')" style='cursor:pointer'"><%= user.num %></td>
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
                     <i class="icon-ok-sign icon-2x icono-aceptado"></i>
@@ -51,7 +51,7 @@
     <% @group.users.with_assignments_from_group(@group).each do |user| %>
       <li>
         <div class="title">
-          <%= user.display_name %>
+          <%= user.num %>
         </div>
         <div class="content">
           <table width="100%">

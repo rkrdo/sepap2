@@ -6,7 +6,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = current_user.attempts.joins(:problem).group(:problem_id)
+    @attempts = current_user.attempts.joins(:problem).where(:problems => {:active => true}).group(:problem_id)
     @times_attempted = current_user.attempts.count(:group => :problem_id)
     respond_to do |format|
       format.html # index.html.erb
