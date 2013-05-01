@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501003455) do
+ActiveRecord::Schema.define(:version => 20130501083023) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20130501003455) do
     t.text     "description"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "run_extension"
+    t.string   "run_command"
   end
 
   create_table "enrollments", :force => true do |t|
@@ -74,16 +76,6 @@ ActiveRecord::Schema.define(:version => 20130501003455) do
 
   add_index "enrollments", ["group_id"], :name => "index_enrollments_on_group_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
-
-  create_table "feedbacks", :force => true do |t|
-    t.integer  "problem_id"
-    t.integer  "line_number"
-    t.string   "comment"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "feedbacks", ["problem_id"], :name => "index_feedbacks_on_problem_id"
 
   create_table "groups", :force => true do |t|
     t.integer  "subject_id"
