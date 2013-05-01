@@ -11,8 +11,6 @@ gem 'thin'
 gem 'puma', :git => 'git@github.com:puma/puma'
 gem 'foreman'
 
-gem 'cancan'
-
 gem 'json_builder'
 
 #ace code editor and syntax highlighter
@@ -66,7 +64,7 @@ group :assets do
   gem 'compass-rails'
   gem 'zurb-foundation'
   gem 'jquery-datatables-rails'
-  
+
   # Wysiwyg
   gem 'wysihtml5-rails'
 end
@@ -75,7 +73,7 @@ gem 'jquery-rails'
 
 #gem 'acts-as-taggable-on'
 
-gem "nested_form", git: "git@github.com:ryanb/nested_form.git"
+gem "nested_form", :git => "git@github.com:ryanb/nested_form.git"
 gem "font-awesome-rails"
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

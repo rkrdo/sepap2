@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<h3>
+  <% if @user %>
+    Attempts of <%= @user.display_name %> in <%= @assignment.title %>
+  <% else %>
+    Attempts in <%= @assignment.title %>
+  <% end %>
+</h3>
+<hr />
+<div class="row">
+  <div class="twelve mobile-four columns">
+    <% if @attempts.count == 0 %>
+      <h5>Student has 0 attempts for this problem.</h5>
+    <% else %>
+      <ul class="accordion">
+      <% @attempts.each do |attempt| %>
+        <li>
+          <div class="title">
+            Attempt #<%= attempt.id%>
+            <% unless @user %>
+              of <%= attempt.user.display_name%>
+            <% end %>
+             - 
+            <% if attempt.accepted? %>
+              <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+            <% else %>
+              <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+            <% end%>
+          </div>
+          <div class="content">
+            <div id="code_display">
+              <%= raw(CodeRay.scan(attempt.code, attempt.command.name).div(line_numbers: :table)) %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
+  </div>
+</div>

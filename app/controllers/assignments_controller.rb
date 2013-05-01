@@ -3,6 +3,6 @@ class AssignmentsController < ApplicationController
   end
 
   def index
-    @assignments = current_user.assigned_problems || []
+    @assignments = current_user.assignments
   end
 end

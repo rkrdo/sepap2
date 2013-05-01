@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424025407) do
+ActiveRecord::Schema.define(:version => 20130501083023) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(:version => 20130424025407) do
     t.text     "description"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
+    t.string   "run_extension"
+    t.string   "run_command"
   end
 
   create_table "enrollments", :force => true do |t|
@@ -99,6 +101,7 @@ ActiveRecord::Schema.define(:version => 20130424025407) do
     t.integer  "command_id"
     t.boolean  "compile_error",                :default => false
     t.string   "error_message"
+    t.boolean  "active",                       :default => false
   end
 
   create_table "problems_topics", :id => false, :force => true do |t|

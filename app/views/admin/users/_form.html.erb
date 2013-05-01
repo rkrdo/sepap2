@@ -1,17 +1,99 @@
-<%= form_for([ :admin, @admin_user ]) do |f| %>
-  <% if @admin_user.errors.any? %>
+<%= form_for([ :admin, @user ]) do |f| %>
+  <% if @user.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@admin_user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this admin_user from being saved:</h2>
 
       <ul>
-      <% @admin_user.errors.full_messages.each do |msg| %>
+      <% @user.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+      <div class="four columns">
+        <div class="row">
+          <div class="six mobile-one columns">
+            <%= f.label :num, "ID:", class: "right inline" %>
+          </div>
+          <div class="six mobile-three-columns">
+            <%= f.text_field :num, class: "twelve" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="eight columns">
+        <div class="row">
+          <div class="three mobile-one columns">
+            <%= f.label :name, "First Name:", class: "right inline" %>
+          </div>
+          <div class="nine mobile-three-columns">
+            <%= f.text_field :name, class: "four" %>
+          </div>
+        </div>
+      </div>
+  </div>
+
+  <div class="row">
+    <div class="four columns">
+      <div class="row">
+        <div class="six mobile-one columns">
+          <%= f.label :lastname, "Last Name:", class: "right inline" %>
+        </div>
+        <div class="six mobile-three-columns">
+          <%= f.text_field :lastname, class: "twelve" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="eight columns">
+      <div class="row">
+        <div class="three mobile-one columns">
+          <%= f.label :password, "Password:", class: "right inline" %>
+        </div>
+        <div class="nine mobile-three-columns">
+          <%= f.password_field :password, class: "four" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="four columns">
+      <div class="row">
+        <div class="six mobile-one columns">
+          <%= f.label :password_confirmation, "Password Confirmation:", class: "right inline" %>
+        </div>
+        <div class="six mobile-three-columns">
+          <%= f.text_field :password_confirmation, class: "twelve" %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="six columns">
+        <div class="six mobile-one columns">
+          <%= f.label :teacher, "Teacher:", class: "right inline" %>
+        </div>
+        <div class="one end mobile-three-columns">
+          <%= f.check_box :teacher %>
+        </div>
+    </div>
+    <div class="four end columns">
+        <div class="two mobile-one columns">
+          <%= f.label :admin, "Admin:", class: "right inline" %>
+        </div>
+        <div class="ten mobile-three-columns">
+          <%= f.check_box :admin %>
+        </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="six columns offset-by-four">
+      <%= f.submit class: "button medium round" %>
+    </div>
   </div>
 <% end %>

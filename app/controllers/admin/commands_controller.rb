@@ -44,7 +44,7 @@ class Admin::CommandsController < Admin::BaseController
 
     respond_to do |format|
       if @command.save
-        format.html { redirect_to @command, notice: 'Command was successfully created.' }
+        format.html { redirect_to [:admin, @command], notice: 'Command was successfully created.' }
         format.json { render json: @command, status: :created, location: @command }
       else
         format.html { render action: "new" }
@@ -60,7 +60,7 @@ class Admin::CommandsController < Admin::BaseController
 
     respond_to do |format|
       if @command.update_attributes(params[:command])
-        format.html { redirect_to @command, notice: 'Command was successfully updated.' }
+        format.html { redirect_to [:admin, @command], notice: 'Command was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }

@@ -1,0 +1,27 @@
+<h1>Listing Problems</h1>
+
+<div id="table_container">
+  <table class="data_table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Difficulty</th>
+        <th>Active</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @problems.each do |problem| %>
+        <tr>
+          <td onclick="location.href='<%= teacher_problem_path(problem) %>'" style="cursor:pointer"><%= problem.title(params[:locale]) %></td>
+          <td><%= problem.dificulty %></td>
+          <td><%= problem.active? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<br />
+
+<%= link_to 'New Problem', new_teacher_problem_path, class: "button success" %>

@@ -1,0 +1,18 @@
+<ul class="left">
+  <li><%= link_to 'Groups', teacher_groups_path(locale: "en") %></li>
+  <li><%= link_to 'Problems', teacher_problems_path(locale: "en") %></li>
+</ul>
+
+<ul class="right">
+  <li class="has-dropdown">
+    <%= link_to "#{current_user.display_name} | TEACHER", "#" %>
+    <ul class="dropdown">
+      <% if current_user.admin? %>
+        <li><%= link_to "Admin View", admin_problems_path(locale: "en") %></li>
+      <% end %>
+      <li><%= link_to "Student View", problems_path(locale: "en") %></li>
+      <li><%= link_to("#{t :menu_edit}", edit_user_registration_path) %></li>
+      <li><%= link_to("#{t :menu_logout}", destroy_user_session_path, :method => :delete) %></li>
+    </ul>
+  </li>
+</ul>

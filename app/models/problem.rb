@@ -21,7 +21,7 @@ class Problem < ActiveRecord::Base
 
   attr_accessible :descriptions_attributes, :module, :time, :titles_attributes, :main,
                   :method, :language, :problem, :topic_ids, :dificulty, :cases_attributes, :command_id,
-                  :compile_error, :error_message
+                  :compile_error, :error_message, :active
 
   validates_numericality_of :time, :greater_than_or_equal_to =>1,
                             :message => "debe ser mayor o igual a 1."
@@ -72,10 +72,6 @@ class Problem < ActiveRecord::Base
     Problem.request_to_judge hash_for_judge(2, toolkit[:input], toolkit[:channel])
   end
 
-  def is_assigned?(user)
-    true if true
-  end
-
   def hash_for_judge(return_type, case_from_toolkit = nil, channel = nil)
     if return_type == 1
       cases = Case.to_judge(self.cases)
@@ -88,6 +84,8 @@ class Problem < ActiveRecord::Base
       :ext => self.command.name.downcase,
       :return_type => return_type,
       :command => self.command.compile_command,
+      :run_command => command.run_command || " ",
+      :run_extension => command.run_extension || " ",
       :source => self.source_code.to_json,
       :time => self.time,
       :cases => cases,
@@ -99,7 +97,7 @@ class Problem < ActiveRecord::Base
     # Sends HTTP post to python webservice that runs the algorithms
     uri = URI.parse('http://192.168.33.10:6666/')
     req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' => 'application/json'})
-    puts params
+    #puts params
     req.body = params
 
     http = Net::HTTP.new(uri.host, uri.port)

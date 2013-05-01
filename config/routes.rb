@@ -13,13 +13,24 @@ Sepap2::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :problems
-      resources :assignments
-      resources :groups
-      resources :subjects
+      resources :problems do
+        put :toggle_active
+      end
+      resources :subjects, path: "courses"
       resources :topics
       resources :users
       resources :commands
+    end
+
+    namespace :teacher do
+      resources :groups do
+        resources :assignments, except: :index do
+          member do
+            get :compare
+          end
+        end
+      end
+      resources :problems, except:[:edit, :update, :destroy]
     end
   end
 
@@ -27,6 +38,7 @@ Sepap2::Application.routes.draw do
   post '/admin/problems/judge_results'
   post '/attempts/judge_results'
   post '/problems/judge_results'
+  post '/varch/:group_id/:assignment_id' => 'teacher/assignments#varch_results'
 
   match '/:locale/users' => 'home#index'
   match '/:locale' => 'home#index'

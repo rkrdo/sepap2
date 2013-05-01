@@ -1,0 +1,87 @@
+<p id="notice"><%= notice %></p>
+<h3>Group: <%= @group.name %></h3>
+<hr />
+<div class="row">
+  <div class="six mobile-four columns">
+    <ul class="accordion">
+    <h5>Assignments: <%= link_to 'New Assignment', new_teacher_group_assignment_path(@group), class: "button success small" %></h5> 
+    <% @group.assignments.includes(:users).each do |assignment| %>
+      <li>
+        <div class="title">
+          <div class="row">
+            <div class="eight columns">
+              <%= assignment.title %>
+            </div>
+            <div class="three columns end">
+              <%= link_to 'Compare', compare_teacher_group_assignment_path(@group, assignment), class: "button tiny right" %>
+            </div>
+          </div>
+        </div>
+        <div class="content">
+          <table width="100%">
+            <thead>
+              <tr>
+                <th width="75%">Name</th>
+                <th width="25%">Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% assignment.users.each do |user| %>
+              <tr>
+                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment, :user_id => user) %>', '_blank')" style='cursor:pointer'"><%= user.display_name %></td>
+                <td>
+                  <% if assignment.accepted_for_user?(user) %>
+                    <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+                  <% else %>
+                    <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+                  <% end%>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="six mobile-four columns">
+    <ul class="accordion">
+    <h5>Students:</h5>
+    <% @group.users.with_assignments_from_group(@group).each do |user| %>
+      <li>
+        <div class="title">
+          <%= user.display_name %>
+        </div>
+        <div class="content">
+          <table width="100%">
+            <thead>
+              <tr>
+                <th width="75%">Name</th>
+                <th width="25%">Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% user.assignments.each do |assignment| %>
+              <tr>
+                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment) %>', '_blank')" style='cursor:pointer'"><%= assignment.title %></td>
+                <td>
+                  <% if assignment.accepted_for_user?(user) %>
+                    <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+                  <% else %>
+                    <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+                  <% end%>
+                 </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<br />
+    <%= link_to 'Edit', edit_teacher_group_path(@group) %> |
+    <%= link_to 'Back', teacher_groups_path %>

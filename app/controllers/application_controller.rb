@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_menu_location
   before_filter :authenticate_user!
   before_filter :set_locale
-  
+
   def authenticate_active_admin_user!
     authenticate_user!
     unless current_user.teacher?
@@ -11,11 +11,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
-  
+
   def set_menu_location
     @menu = 'devise/menu/login_items'
   end
-  
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
     params[:locale] = I18n.locale.to_s
@@ -26,11 +26,4 @@ class ApplicationController < ActionController::Base
     { :locale => I18n.locale }
  end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to admin_dashboard_path, :alert => exception.message
-  end
-
-  def current_ability
-    @current_ability ||= Ability.new(current_user)
-  end
 end

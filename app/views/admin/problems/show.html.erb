@@ -2,7 +2,7 @@
   <div class="six columns">
     <div class="panel">
       <h3 class="subheader text-center">Titles</h3>
-      <% @admin_problem.titles.each do |title| %>
+      <% @problem.titles.each do |title| %>
         <div class="problem-title">
           <%= humanized_language(title.locale) %>: <%= title.text_content %>
         </div>
@@ -12,7 +12,7 @@
   <div class="six columns">
     <div class="panel">
       <h3 class="subheader text-center">Descriptions</h3>
-      <% @admin_problem.descriptions.each do |description| %>
+      <% @problem.descriptions.each do |description| %>
         <div class="problem-description">
           <%= humanized_language(description.locale) %>: <%= raw description.text_content %>
         </div>
@@ -26,25 +26,25 @@
     <div class="panel other-container">
       <h3 class="subheader text-center">Other</h3>
       <div class="time">
-        Time: <%= @admin_problem.time %>
+        Time: <%= @problem.time %>
       </div>
       <div class="difficulty">
-        Difficulty: <%= @admin_problem.dificulty %>
+        Difficulty: <%= @problem.dificulty %>
       </div>
       <div class="language">
-        Language: <%= @admin_problem.command.name %>
+        Language: <%= @problem.command.name %>
       </div>
       <div class="main">
         <div class="six columns centered text-center">
           <span>Main:</span>
-          <%= raw(CodeRay.scan(@admin_problem.main, @admin_problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+          <%= raw(CodeRay.scan(@problem.main, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
         </div>
       </div>
-      <% unless @admin_problem.method.blank?  %>
+      <% unless @problem.method.blank?  %>
         <div class="method">
           <div class="six columns centered text-center">
             <span>Method:</span>
-            <%= raw(CodeRay.scan(@admin_problem.method, @admin_problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+            <%= raw(CodeRay.scan(@problem.method, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
           </div>
         </div>
       <% end %>
@@ -53,7 +53,7 @@
   <div class="six columns">
     <div class="panel">
       <h3 class="subheader text-center">Cases</h3>
-      <% @admin_problem.cases.each do |prob_case| %>
+      <% @problem.cases.each do |prob_case| %>
         <div class="case callout panel">
           <div class="input">
             Input: <%= prob_case.input %>
@@ -75,6 +75,6 @@
 </div>
 
 <div>
-  <%= link_to 'Edit', edit_admin_problem_path(@admin_problem), class: "button round small" %> |
+  <%= link_to 'Edit', edit_admin_problem_path(@problem), class: "button round small" %> |
   <%= link_to 'Back', admin_problems_path, class: "button round small" %>
 </div>

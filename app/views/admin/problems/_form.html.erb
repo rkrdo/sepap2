@@ -1,10 +1,10 @@
-<%= nested_form_for([:admin, @admin_problem], :html=>{:class=>"custom"}) do |f| %>
-  <% if @admin_problem.errors.any? %>
+<%= nested_form_for([:admin, @problem], :html=>{:class=>"custom"}) do |f| %>
+  <% if @problem.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@admin_problem.errors.count, "error") %> prohibited this admin_problem from being saved:</h2>
+      <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this admin_problem from being saved:</h2>
 
       <ul>
-        <% @admin_problem.errors.full_messages.each do |msg| %>
+        <% @problem.errors.full_messages.each do |msg| %>
           <li><%= msg %></li>
         <% end %>
       </ul>
@@ -35,7 +35,7 @@
     </div>
     <div class="eleven mobile-three columns">
       <% Topic.all.each do |topic| %>
-        <%= label_tag 'problem[topic_ids][]', "#{check_box_tag 'problem[topic_ids][]', topic.id, @admin_problem.topics.include?(topic)} #{topic.name}".html_safe, :style=>"display:inline;" %>
+        <%= label_tag 'problem[topic_ids][]', "#{check_box_tag 'problem[topic_ids][]', topic.id, @problem.topics.include?(topic)} #{topic.name}".html_safe, :style=>"display:inline;" %>
       <% end %>
     </div>
   </div>
@@ -67,11 +67,9 @@
         </li>
       </ul>
     </div>
-  </div>
-  <div class="row">
     <div class="twelve columns">
       <ul class="accordion">
-        <li class="<%= 'active' unless @admin_problem.method.blank? %>">
+        <li class="<%= 'active' unless @problem.method.blank? %>">
           <div class="title">
             <%= f.label :method %>
           </div>

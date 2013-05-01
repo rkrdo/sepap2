@@ -1,10 +1,10 @@
-<%= form_for([:admin, @admin_assignment], :html=>{:class=>"custom"}) do |f| %>
-  <% if @admin_assignment.errors.any? %>
+<%= form_for([:teacher, @group, @assignment], :html=>{:class=>"custom"}) do |f| %>
+  <% if @assignment.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@admin_assignment.errors.count, "error") %> prohibited this admin_assignment from being saved:</h2>
+      <h2><%= pluralize(@assignment.errors.count, "error") %> prohibited this assignment from being saved:</h2>
 
       <ul>
-      <% @admin_assignment.errors.full_messages.each do |msg| %>
+      <% @assignment.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
@@ -23,11 +23,11 @@
     </div>
     <div class="six mobile-two columns">
       <%= f.label :group %>
-      <%= f.select :group_id, options_from_collection_for_select(Group.all, 'id', 'name')%>
+      <%= f.select :group_id, options_from_collection_for_select(current_user.teached_groups, 'id', 'name')%>
     </div>
   </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit class: "button" %>
   </div>
 <% end %>

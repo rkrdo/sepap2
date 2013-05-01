@@ -1,6 +1,0 @@
-<h1 class="subheader">Editing <%= @admin_problem.titles.find_by_locale(params[:locale]).text_content %></h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', [:admin, @admin_problem], class: "button round small" %> |
-<%= link_to 'Back', admin_problems_path, class: "button round small" %>
