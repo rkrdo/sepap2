@@ -23,7 +23,7 @@ Sepap2::Application.routes.draw do
       resources :users
       resources :commands
     end
-    
+
     namespace :teacher do
       resources :groups do
         resources :assignments, except:[:show, :index]
@@ -31,7 +31,7 @@ Sepap2::Application.routes.draw do
           resources :assignments, only:[:show, :index]
         end
       end
-      resources :problems
+      resources :problems, except:[:edit, :update, :destroy]
     end
   end
 

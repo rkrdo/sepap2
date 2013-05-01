@@ -4,63 +4,62 @@ class Admin::ProblemsController < Admin::BaseController
   skip_before_filter :set_locale, :only => :judge_results
   skip_before_filter :authenticate_user!, :only => :judge_results
   skip_before_filter :require_privileges, :only => :judge_results
-  load_and_authorize_resource
   # GET /admin/problems
   # GET /admin/problems.json
   def index
-    @admin_problems = Problem.all
+    @problems = Problem.all
 
     respond_to do |format|
       format.html # index.html.erb
-      format.json { render json: @admin_problems }
+      format.json { render json: @problems }
     end
   end
 
   # GET /admin/problems/1
   # GET /admin/problems/1.json
   def show
-    @admin_problem = Problem.find(params[:id])
+    @problem = Problem.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @admin_problem }
+      format.json { render json: @problem }
     end
   end
 
   # GET /admin/problems/new
   # GET /admin/problems/new.json
   def new
-    @admin_problem = Problem.new
-    @admin_problem.titles.build({:locale => "es"})
-    @admin_problem.titles.build({:locale => "en"})
-    @admin_problem.descriptions.build({:locale => "es"})
-    @admin_problem.descriptions.build({:locale => "en"})
-    @admin_problem.cases.build
+    @problem = Problem.new
+    @problem.titles.build({:locale => "es"})
+    @problem.titles.build({:locale => "en"})
+    @problem.descriptions.build({:locale => "es"})
+    @problem.descriptions.build({:locale => "en"})
+    @problem.cases.build
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @admin_problem }
+      format.json { render json: @problem }
     end
   end
 
   # GET /admin/problems/1/edit
   def edit
-    @admin_problem = Problem.find(params[:id])
+    @problem = Problem.find(params[:id])
   end
 
   # POST /admin/problems
   # POST /admin/problems.json
   def create
-    @admin_problem = Problem.new(params[:problem])
-    @admin_problem.active = true if current_user.admin?
+    @problem = Problem.new(params[:problem])
+    @problem.active = true
 
     respond_to do |format|
-      if @admin_problem.save
-        format.html { redirect_to [:admin, @admin_problem], notice: 'Problem was successfully created.' }
-        format.json { render json: @admin_problem, status: :created, location: @admin_problem }
+      if @problem.save
+        format.html { redirect_to [:admin, @problem], notice: 'Problem was successfully created.' }
+        format.json { render json: @problem, status: :created, location: @problem }
       else
         format.html { render action: "new" }
-        format.json { render json: @admin_problem.errors, status: :unprocessable_entity }
+        format.json { render json: @problem.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -68,15 +67,15 @@ class Admin::ProblemsController < Admin::BaseController
   # PUT /admin/problems/1
   # PUT /admin/problems/1.json
   def update
-    @admin_problem = Problem.find(params[:id])
+    @problem = Problem.find(params[:id])
 
     respond_to do |format|
-      if @admin_problem.update_attributes(params[:problem])
-        format.html { redirect_to [:admin, @admin_problem], notice: 'Problem was successfully updated.' }
+      if @problem.update_attributes(params[:problem])
+        format.html { redirect_to [:admin, @problem], notice: 'Problem was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @admin_problem.errors, status: :unprocessable_entity }
+        format.json { render json: @problem.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -84,8 +83,8 @@ class Admin::ProblemsController < Admin::BaseController
   # DELETE /admin/problems/1
   # DELETE /admin/problems/1.json
   def destroy
-    @admin_problem = Problem.find(params[:id])
-    @admin_problem.destroy
+    @problem = Problem.find(params[:id])
+    @problem.destroy
 
     respond_to do |format|
       format.html { redirect_to admin_problems_url }
@@ -110,10 +109,10 @@ class Admin::ProblemsController < Admin::BaseController
   end
 
   def toggle_active
-    @admin_problem = Problem.find(params[:problem_id])
-    @admin_problem.toggle(:active)
+    problem = Problem.find(params[:problem_id])
+    problem.toggle(:active)
     respond_to do |format|
-      if @admin_problem.save
+      if problem.save
         format.html { redirect_to admin_problems_path }
       else
         format.html { redirect_to admin_problems_path }

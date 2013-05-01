@@ -6,32 +6,24 @@
         <th>Title</th>
         <th>Dificulty</th>
         <th>Active</th>
-        <% if can? :activate, @admin_problems %>
           <th>Activate</th>
-        <% end %>
-        <% if can? :update, @admin_problems %>
           <th>Edit</th>
           <th>Delete</th>
-        <% end %>
       </tr>
     </thead>
     <tbody>
-    <% @admin_problems.each do |admin_problem| %>
+    <% @problems.each do |problem| %>
       <tr>
-        <td onclick="location.href='<%= admin_problem_path(admin_problem) %>'" style="cursor:pointer"> <%= admin_problem.title(params[:locale]) %></td>
-        <td><%= admin_problem.dificulty %></td>
-        <td><%= admin_problem.active? %></td>
-        <% if can? :activate, admin_problem %>
-        <td><%= activate_problem(admin_problem)  %></td>
-        <% end %>
-        <% if can? :update, admin_problem %>
-          <td><%= link_to 'Edit', edit_admin_problem_path(admin_problem)  %></td>
-          <td><%= link_to 'Destroy', [:admin, admin_problem], confirm: 'Are you sure?', method: :delete %></td>
-        <% end %>
+        <td onclick="location.href='<%= admin_problem_path(problem) %>'" style="cursor:pointer"> <%= problem.title(params[:locale]) %></td>
+        <td><%= problem.dificulty %></td>
+        <td><%= problem.active? %></td>
+        <td><%= activate_problem(problem)  %></td>
+        <td><%= link_to 'Edit', edit_admin_problem_path(problem)  %></td>
+        <td><%= link_to 'Destroy', [:admin, problem], confirm: 'Are you sure?', method: :delete %></td>
       </tr>
     <% end %>
-    </tbody>
-  </table>
+  </tbody>
+</table>
 </div>
 <br />
 <%= link_to 'New Problem', new_admin_problem_path, :class=>"button success" %>

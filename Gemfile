@@ -11,8 +11,6 @@ gem 'thin'
 gem 'puma', :git => 'git@github.com:puma/puma'
 gem 'foreman'
 
-gem 'cancan'
-
 gem 'json_builder'
 
 #ace code editor and syntax highlighter
