@@ -8,5 +8,13 @@ class Assignment < ActiveRecord::Base
   def accepted_for_user?(user)
     self.attempts.where(:user_id => user.id, :state => "accept").count > 0
   end
+
+  def hash_for_varch()
+    users = self.users.includes(:attempts).where(:attempts => {:state => "accept"})
+    ActiveSupport::JSON.encode({
+      :algorithms => [1,2],
+      :files => users.map{ |user| { :id => user.id, :code => user.attemps.first.code } }
+    })
+  end
   
 end

@@ -81,4 +81,11 @@ class Teacher::AssignmentsController < Teacher::BaseController
       format.json { head :no_content }
     end
   end
+
+  # GET /teacher/groups/{group_id}/assignments/{assignment_id}/compare
+  def compare
+    @group = Group.find(params[:group_id])
+    @assignment = @group.assignments.find(params[:id])
+
+  end
 end
