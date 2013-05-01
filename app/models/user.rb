@@ -12,22 +12,26 @@ class User < ActiveRecord::Base
   has_many :enrollments
   has_many :groups, through: :enrollments
   has_many :assignments, through: :groups
-  has_many :groups
+  has_many :teached_groups, class_name: "Group"
   has_many :problems
 
   validates_presence_of :num, :email
   validates_format_of :num, with: /\A(A|L)([0-9]{8})\z/i
   validates_uniqueness_of :num, case_sensitive: false
   validates_uniqueness_of :email
+  
+  scope :with_assignments_from_group, lambda { |group|
+    self.includes(:assignments).where(:assignments => {:group_id => group.id})
+  }
+  
+  before_save do
+    self.num.downcase! if self.num
+  end
 
-	before_save do
-		self.num.downcase! if self.num
-	end
-
-	def self.find_for_authentication(conditions)
-		conditions[:num].downcase!
-		super(conditions)
-	end
+  def self.find_for_authentication(conditions)
+    conditions[:num].downcase!
+    super(conditions)
+  end
 
   def my_groups
     if self.admin?
@@ -52,5 +56,9 @@ class User < ActiveRecord::Base
       end
     end
     return assignments
+  end
+  
+  def teacher?
+    admin? or teacher == true
   end
 end

@@ -1,21 +1,27 @@
 <h1>Listing Groups</h1>
-
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @teacher_groups.each do |teacher_group| %>
-  <tr>
-    <td><%= link_to 'Show', [:teacher, teacher_group] %></td>
-    <td><%= link_to 'Edit', edit_teacher_group_path(teacher_group) %></td>
-    <td><%= link_to 'Destroy', [:teacher, teacher_group], confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
-
+<hr />
+<div id="table_container">
+  <table class="data_table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Period</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @groups.each do |group| %>
+      <tr onclick="location.href='<%= teacher_group_path(group) %>'" style='cursor:pointer'>
+        <td><%= group.name %></td>
+        <td><%= group.period %></td>
+        <td><%= link_to 'Edit', edit_teacher_group_path(group) %></td>
+        <td><%= link_to 'Destroy', [:teacher, group], confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
 <br />
 
-<%= link_to 'New Group', new_teacher_group_path %>
+<%= link_to 'New Group', new_teacher_group_path, class:"button success"   %>

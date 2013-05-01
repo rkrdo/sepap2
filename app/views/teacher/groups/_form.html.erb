@@ -1,15 +1,35 @@
-<%= form_for([:teacher, @teacher_group]) do |f| %>
-  <% if @teacher_group.errors.any? %>
+<%= form_for([:teacher, @group]) do |f| %>
+  <% if @group.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@teacher_group.errors.count, "error") %> prohibited this teacher_group from being saved:</h2>
+      <h2><%= pluralize(@group.errors.count, "error") %> prohibited this Group from being saved:</h2>
 
       <ul>
-      <% @teacher_group.errors.full_messages.each do |msg| %>
+      <% @group.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
+
+  <div class="fields">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :period %>
+    <%= f.select :period, options_for_select(Group::PERIODS) %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :subject, "Course" %>
+    <%= f.select :subject_id, options_from_collection_for_select(Subject.all, "id", "name") %>
+  </div>
+
+  <div class="fields">
+    <%= f.label :members, :class => "has-tip tip-top", "data-width" => "500", :title => "Student IDs must be entered separated by commas and spaces.<br />Example: A01087768, A01087554, A01087740" %>
+    <%= f.text_field :members %>
+  </div>
 
   <div class="actions">
     <%= f.submit %>
