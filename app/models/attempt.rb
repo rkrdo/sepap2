@@ -11,7 +11,7 @@ class Attempt < ActiveRecord::Base
                   :compile_error, :error_message, :command_id, :accepted, :time_exceeded, :state
 
   after_create :compile_and_run
-
+  
   def compile_and_run
     Problem.request_to_judge hash_for_judge
   end

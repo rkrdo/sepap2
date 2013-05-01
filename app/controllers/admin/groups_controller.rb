@@ -60,7 +60,7 @@ class Admin::GroupsController < Admin::BaseController
   # PUT /admin/groups/1.json
   def update
     @admin_group = Group.find(params[:id])
-    @admin_group.members = params[:group][:members]
+    #@admin_group.members = params[:group][:members]
     
     respond_to do |format|
       if @admin_group.update_attributes(params[:group])

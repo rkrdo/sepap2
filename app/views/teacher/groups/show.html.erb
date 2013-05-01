@@ -1,5 +1,81 @@
 <p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Edit', edit_teacher_group_path(@teacher_group) %> |
+<h3>Group: <%= @group.name %></h3>
+<hr />
+<div class="row">
+  <div class="six mobile-four columns">
+    <ul class="accordion">
+    <h5>Assignments:</h5>
+    <% @group.assignments.includes(:users).each do |assignment| %>
+      <li>
+        <div class="title">
+          <%= assignment.title %>
+        </div>
+        <div class="content">
+          <table width="100%">
+            <thead>
+              <tr>
+                <th width="5%"></th>
+                <th width="70%">Name</th>
+                <th width="25%">Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% assignment.users.each do |user| %>
+              <tr>
+                <td><%= check_box_tag "compare", user.id%></td>
+                <td><%= user.display_name %></td>
+                <td>
+                  <% if assignment.accepted_for_user?(user) %>
+                    <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+                  <% else %>
+                    <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+                  <% end%>
+                </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+  <div class="six mobile-four columns">
+    <ul class="accordion">
+    <h5>Students:</h5>
+    <% @group.users.with_assignments_from_group(@group).each do |user| %>
+      <li>
+        <div class="title">
+          <%= user.display_name %>
+        </div>
+        <div class="content">
+          <table width="100%">
+            <thead>
+              <tr>
+                <th width="75%">Name</th>
+                <th width="25%">Completed</th>
+              </tr>
+            </thead>
+            <tbody>
+            <% user.assignments.each do |assignment| %>
+              <tr>
+                <td><%= assignment.title %></td>
+                <td>
+                  <% if assignment.accepted_for_user?(user) %>
+                    <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+                  <% else %>
+                    <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+                  <% end%>
+                 </td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </li>
+    <% end %>
+    </ul>
+  </div>
+</div>
+<%= link_to 'Edit', edit_teacher_group_path(@group) %> |
 <%= link_to 'Back', teacher_groups_path %>

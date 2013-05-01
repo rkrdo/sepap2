@@ -1,6 +1,6 @@
 	class Group < ActiveRecord::Base
   belongs_to :subject
-  belongs_to :user
+  belongs_to :teacher, class_name: "User"
   has_many :attempts, through: :users
   has_many :users, through: :enrollments
   has_many :assignments
@@ -13,6 +13,8 @@
   validates_presence_of :name, :period, :subject#, :members
 
   attr_accessor :members
+
+  PERIODS  = ["Ene - May","Verano","Ago - Dic"]
 
   #Method that finds or creates students and adds them to the group
   def populate_group
@@ -31,7 +33,4 @@
     end
     return errors
   end
-
-  PERIODS  = ["Ene - May","Verano","Ago - Dic"]
-
 end
