@@ -6,6 +6,8 @@
       <tr>
         <th>Name</th>
         <th>Compile command</th>
+        <th>Run command</th>
+        <th>Run extension</th>
         <th>Description</th>
         <th></th>
         <th></th>
@@ -17,6 +19,8 @@
         <tr>
           <td><%= command.name %></td>
           <td><%= command.compile_command %></td>
+          <td><%= command.run_command %></td>
+          <td><%= command.run_extension %></td>
           <td><%= command.description %></td>
           <td><%= link_to 'Show', [:admin, command] %></td>
           <td><%= link_to 'Edit', edit_admin_command_path(command) %></td>

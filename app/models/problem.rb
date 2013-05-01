@@ -84,6 +84,8 @@ class Problem < ActiveRecord::Base
       :ext => self.command.name.downcase,
       :return_type => return_type,
       :command => self.command.compile_command,
+      :run_command => command.run_command || " ",
+      :run_extension => command.run_extension || " ",
       :source => self.source_code.to_json,
       :time => self.time,
       :cases => cases,

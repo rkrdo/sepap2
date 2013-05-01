@@ -22,6 +22,8 @@ class Attempt < ActiveRecord::Base
       :ext => self.command.name.downcase,
       :return_type => 0,
       :command => self.command.compile_command,
+      :run_command => command.run_command || " ",
+      :run_extension => command.run_extension || " ",
       :source => self.source_code.to_json,
       :time => self.problem.time,
       :cases => Case.to_judge(self.problem.cases),
@@ -45,23 +47,23 @@ class Attempt < ActiveRecord::Base
   def done_compiling?
     self.results.count == self.problem.cases.count
   end
-  
+
   def compiling?
     self.state == "compiling"
   end
-  
+
   def accepted?
     self.state == "accept"
   end
-  
+
   def failed?
     self.state == "fail"
   end
-  
+
   def with_error?
     self.state == "execution_error" or self.state == "compile_error"
   end
-  
+
   def set_error(error_code, error_message)
     case error_code
     when 0
