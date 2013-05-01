@@ -31,9 +31,9 @@
                 <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment, :user_id => user) %>', '_blank')" style='cursor:pointer'"><%= user.num %></td>
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
-                    <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+                    <i class="icon-ok-sign icon-2x icono-accept"></i>
                   <% else %>
-                    <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+                    <i class="icon-remove-sign icon-2x icono-fail"></i>
                   <% end%>
                 </td>
               </tr>
@@ -67,9 +67,9 @@
                 <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment) %>', '_blank')" style='cursor:pointer'"><%= assignment.title %></td>
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
-                    <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+                    <i class="icon-ok-sign icon-2x icono-accept"></i>
                   <% else %>
-                    <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+                    <i class="icon-remove-sign icon-2x icono-fail"></i>
                   <% end%>
                  </td>
               </tr>
