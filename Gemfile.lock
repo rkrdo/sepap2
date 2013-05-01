@@ -51,7 +51,6 @@ GEM
       coderay (>= 1.0.0)
       erubis (>= 2.6.6)
     builder (3.0.0)
-    cancan (1.6.8)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     choice (0.1.6)
@@ -237,7 +236,6 @@ DEPENDENCIES
   RedCloth
   ace-rails-ap (~> 2.0.0)
   better_errors
-  cancan
   coderay
   coffee-rails (~> 3.2.1)
   compass-rails

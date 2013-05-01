@@ -26,11 +26,4 @@ class ApplicationController < ActionController::Base
     { :locale => I18n.locale }
  end
 
-  rescue_from CanCan::AccessDenied do |exception|
-    redirect_to admin_problems_path, :alert => exception.message
-  end
-
-  def current_ability
-    @current_ability ||= Ability.new(current_user)
-  end
 end

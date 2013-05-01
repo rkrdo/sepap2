@@ -1,21 +1,27 @@
-<h1>Listing teacher_problems</h1>
+<h1>Listing Problems</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="table_container">
+  <table class="data_table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Difficulty</th>
+        <th>Active</th>
+      </tr>
+    </thead>
 
-<% @teacher_problems.each do |teacher_problem| %>
-  <tr>
-    <td><%= link_to 'Show', [:teacher, teacher_problem] %></td>
-    <td><%= link_to 'Edit', edit_teacher_problem_path(teacher_problem) %></td>
-    <td><%= link_to 'Destroy', [:teacher, teacher_problem], confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+    <tbody>
+      <% @problems.each do |problem| %>
+        <tr>
+          <td onclick="location.href='<%= teacher_problem_path(problem) %>'" style="cursor:pointer"><%= problem.title(params[:locale]) %></td>
+          <td><%= problem.dificulty %></td>
+          <td><%= problem.active? %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
 
 <br />
 
-<%= link_to 'New Problem', new_teacher_problem_path %>
+<%= link_to 'New Problem', new_teacher_problem_path, class: "button success" %>

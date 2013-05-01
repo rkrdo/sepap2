@@ -1,17 +1,121 @@
-<%= form_for([:teacher, @teacher_problem]) do |f| %>
-  <% if @teacher_problem.errors.any? %>
+<%= nested_form_for([:teacher, @problem], :html=>{:class=>"custom"}) do |f| %>
+  <% if @problem.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@teacher_problem.errors.count, "error") %> prohibited this teacher_problem from being saved:</h2>
+      <h2><%= pluralize(@problem.errors.count, "error") %> prohibited this admin_problem from being saved:</h2>
 
       <ul>
-      <% @teacher_problem.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
+        <% @problem.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
       </ul>
     </div>
   <% end %>
+  <div class="row">
+    <%= f.fields_for :titles do |tf|%>
+      <div class="six mobile-two columns">
+        <%= tf.label :text_content, "Tittle in #{humanized_language(tf.object.locale)}" %>
+        <%= tf.text_field :text_content %>
+        <%= tf.hidden_field :locale, :value => tf.object.locale%>
+      </div>
+    <% end %>
+  </div>
 
-  <div class="actions">
-    <%= f.submit %>
+  <div class="row">
+    <%= f.fields_for :descriptions do |df|%>
+      <div class="six mobile-two columns">
+        <%= df.label :text_content, "Description in #{humanized_language(df.object.locale)}" %>
+        <%= df.text_area :text_content, :class => "description_#{df.object.locale}" %>
+        <%= df.hidden_field :locale, :value => df.object.locale%>
+      </div>
+    <% end %>
+  </div>
+  <div class="row">
+    <div class="one mobile-one columns">
+      <%= f.label :topic_ids, "Topics" %>
+    </div>
+    <div class="eleven mobile-three columns">
+      <% Topic.all.each do |topic| %>
+        <%= label_tag 'problem[topic_ids][]', "#{check_box_tag 'problem[topic_ids][]', topic.id, @problem.topics.include?(topic)} #{topic.name}".html_safe, :style=>"display:inline;" %>
+      <% end %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="two mobile-four columns">
+      <%= f.label :time%>
+      <%= f.number_field :time, :min=>0 %>
+    </div>
+    <div class="two mobile-two columns">
+      <%= f.label :dificulty, "Difficulty" %>
+      <%= f.select :dificulty, Problem::DIFICULTY_LEVELS %>
+    </div>
+    <div class="two mobile-two columns end">
+      <%= f.label :command_id, "Language" %>
+      <%= f.select :command_id, Command.all.map{|c| [c.name, c.id]} %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="twelve columns">
+      <ul class="accordion">
+        <li class="active">
+          <div class="title">
+            <%= f.label :main %>
+          </div>
+          <div class="content">
+            <div id="mainEditor"></div>
+            <%= f.text_area :main, :style=>"border:none;box-shadow:none;"%>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="twelve columns">
+      <ul class="accordion">
+        <li class="<%= 'active' unless @problem.method.blank? %>">
+          <div class="title">
+            <%= f.label :method %>
+          </div>
+          <div class="content">
+            <div id="methodEditor"></div>
+            <%= f.text_area :method, :style=>"border:none;box-shadow:none;" %>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <%= f.label :cases, :style => "display:inline" %> <%= f.link_to_add "Add a case", :cases, :class => "button small", :data => { :target => "#list_cases" } %>
+    <ul class="accordion" id="list_cases">
+      <%= f.fields_for :cases, :wrapper => false do |cf| %>
+        <li class="fields">
+          <div class="title">
+            <h5>
+              Case <span class="case_number">1</span>
+            </h5>
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="six columns">
+                <%= cf.label :input %>
+                <%= cf.text_area :input, :rows => 13 %>
+                <%= cf.link_to_remove "Remove this case", :class=> "button tiny alert" %>
+                <%= cf.hidden_field :from_form, :value => true %>
+              </div>
+              <div class="six columns">
+                <%= cf.fields_for :feedbacks do |fb| %>
+                  <%= fb.label :text_content, "Feedback in #{humanized_language(fb.object.locale)}"%>
+                  <%= fb.text_area :text_content, :rows => 5 %>
+                  <%= fb.hidden_field :locale, :value => fb.object.locale%>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+  <div class="row">
+    <%= f.submit :class=> "button" %>
   </div>
 <% end %>

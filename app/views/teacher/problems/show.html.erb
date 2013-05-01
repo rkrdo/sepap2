@@ -1,5 +1,79 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="six columns">
+    <div class="panel">
+      <h3 class="subheader text-center">Titles</h3>
+      <% @problem.titles.each do |title| %>
+        <div class="problem-title">
+          <%= humanized_language(title.locale) %>: <%= title.text_content %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="six columns">
+    <div class="panel">
+      <h3 class="subheader text-center">Descriptions</h3>
+      <% @problem.descriptions.each do |description| %>
+        <div class="problem-description">
+          <%= humanized_language(description.locale) %>: <%= raw description.text_content %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
+<div class="row">
+  <div class="six columns">
+    <div class="panel other-container">
+      <h3 class="subheader text-center">Other</h3>
+      <div class="time">
+        Time: <%= @problem.time %>
+      </div>
+      <div class="difficulty">
+        Difficulty: <%= @problem.dificulty %>
+      </div>
+      <div class="language">
+        Language: <%= @problem.command.name %>
+      </div>
+      <div class="main">
+        <div class="six columns centered text-center">
+          <span>Main:</span>
+          <%= raw(CodeRay.scan(@problem.main, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+        </div>
+      </div>
+      <% unless @problem.method.blank?  %>
+        <div class="method">
+          <div class="six columns centered text-center">
+            <span>Method:</span>
+            <%= raw(CodeRay.scan(@problem.method, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="six columns">
+    <div class="panel">
+      <h3 class="subheader text-center">Cases</h3>
+      <% @problem.cases.each do |prob_case| %>
+        <div class="case callout panel">
+          <div class="input">
+            Input: <%= prob_case.input %>
+          </div>
+          <div class="output">
+            Output: <%= prob_case.output %>
+          </div>
+          <div class="feedbacks">
+            <% prob_case.feedbacks.each do |feedback| %>
+              <div class="feedback">
+                Feedback in <%= humanized_language(feedback.locale) %>: <%= feedback.text_content %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_teacher_problem_path(@teacher_problem) %> |
-<%= link_to 'Back', teacher_problems_path %>
+<div>
+  <%= link_to 'Back', teacher_problems_path, class: "button round small" %>
+</div>

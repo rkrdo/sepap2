@@ -255,6 +255,21 @@
       background: lighten(#086ca2, 10%) !important;
     }
   }
+  .inline-login {
+    input {
+      &.password {
+        margin-right: 5px;
+        margin-left: 3px;
+      }
+
+      &[type=submit] {
+        margin-top: 3px !important;
+        margin-bottom: 5px;
+        margin-left: 10px;
+      }
+    }
+  }
+
   .login-dropdown {
     width: 150px;
     li {
