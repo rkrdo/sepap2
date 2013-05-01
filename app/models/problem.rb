@@ -72,10 +72,6 @@ class Problem < ActiveRecord::Base
     Problem.request_to_judge hash_for_judge(2, toolkit[:input], toolkit[:channel])
   end
 
-  def is_assigned?(user)
-    true if true
-  end
-
   def hash_for_judge(return_type, case_from_toolkit = nil, channel = nil)
     if return_type == 1
       cases = Case.to_judge(self.cases)

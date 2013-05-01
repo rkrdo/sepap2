@@ -45,18 +45,6 @@ class User < ActiveRecord::Base
     return self.num if self.name.blank?
     self.name
   end
-
-  def assigned_problems
-    assignments = []
-    if self.enrollments
-      self.enrollments.each do |enrollment|
-        enrollment.group.assignments.each do |a|
-          assignments << a
-        end
-      end
-    end
-    return assignments
-  end
   
   def teacher?
     admin? or teacher == true

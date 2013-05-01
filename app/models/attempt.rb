@@ -97,55 +97,10 @@ class Attempt < ActiveRecord::Base
   end
 
   def self.accepted_for_problem?(problem)
-    #self.where(:problem_id => problem.id, :compiled => true, :accepted => true).count >= 1
     self.where(:problem_id => problem.id, :state => "accept").count >= 1
   end
 
-  def show_code
-    IO.read((self.code.to_s))
-  end
-
-  def is_assigned(user)
-    user.assigned_problems.each do |assignment|
-      return assignment.id if assignment.problem == self.problem
-    end
-  end
-
-  def get_feedback
-    basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
-    basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
-
-    output=basepath_user+"/output"
-    expected_output = basepath_problem + "/output"
-
-    f1 = File.open(output)
-    f2 = File.open(expected_output)
-
-    f1Lines = f1.readlines
-    f2Lines = f2.readlines
-
-    expected_output_lines = f2.lineno
-
-    problem = Problem.find(problem_id)
-    feedback_list = " <br /><ul>"
-
-    f1Lines.each_with_index do |line, i|
-      puts "valores #{i}  con #{expected_output_lines}"
-      puts "entra"
-      if(i<expected_output_lines)
-        if(!line.eql?(f2Lines[i]))
-          begin
-            feedback_list += "<li>" + problem.get_feedback_comment(i) +"</li>"
-          rescue
-
-          end
-        end
-      end
-    end
-
-    f1.close
-    f2.close
-
-    feedback_list += "</ul>"
+  def is_assigned?(user)
+    user.assignments.where(:problem_id => problem).count > 0
   end
 end
