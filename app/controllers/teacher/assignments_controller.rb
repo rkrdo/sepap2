@@ -1,4 +1,9 @@
 class Teacher::AssignmentsController < Teacher::BaseController
+  skip_before_filter :verify_authenticity_token, :only => :varch_results
+  skip_before_filter :set_menu_location, :only => :varch_results
+  skip_before_filter :set_locale, :only => :varch_results
+  skip_before_filter :authenticate_user!, :only => :varch_results
+  skip_before_filter :require_privileges, :only => :varch_results
   # GET /teacher/assignments/1
   # GET /teacher/assignments/1.json
   def show
@@ -88,5 +93,15 @@ class Teacher::AssignmentsController < Teacher::BaseController
     @assignment = @group.assignments.find(params[:id])
     
     @assignment.compare_attempts
+  end
+
+  def varch_results
+    group_id = params[:group_id]
+    assignment_id = params[:assignment_id]
+    channel = "#{group_id}/#{assignment_id}"
+    result = params["_json"]
+
+    Danthes.publish_to channel, :result => result
+    render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 end

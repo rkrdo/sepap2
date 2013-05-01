@@ -17,9 +17,11 @@ class Assignment < ActiveRecord::Base
     users = self.users.includes(:attempts).where(:attempts => {:state => "accept"})
     
     ActiveSupport::JSON.encode({
-      :algorithms => [1,2],
-      :files => users.map{ |user| { :id => user.id, :code => user.attempts.first.code } },
-      :url => "http://localhost:3000/varch/#{group_id}/#{id}"
+      :params => {
+        :algorithms => ['1','2'],
+        :files => users.map{ |user| { :id => user.id, :code => user.attempts.first.code } },
+        :url => "http://localhost:3000/varch/#{group_id}/#{id}"
+      }
     })
   end
   
