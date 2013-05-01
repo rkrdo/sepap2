@@ -13,10 +13,12 @@ Sepap2::Application.routes.draw do
     end
 
     namespace :admin do
-      resources :problems
+      resources :problems do
+        put :toggle_active
+      end
       resources :assignments
       resources :groups
-      resources :subjects
+      resources :subjects, path: "courses"
       resources :topics
       resources :users
       resources :commands

@@ -21,7 +21,7 @@ class Problem < ActiveRecord::Base
 
   attr_accessible :descriptions_attributes, :module, :time, :titles_attributes, :main,
                   :method, :language, :problem, :topic_ids, :dificulty, :cases_attributes, :command_id,
-                  :compile_error, :error_message
+                  :compile_error, :error_message, :active
 
   validates_numericality_of :time, :greater_than_or_equal_to =>1,
                             :message => "debe ser mayor o igual a 1."

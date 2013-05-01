@@ -4,6 +4,7 @@ class Admin::ProblemsController < Admin::BaseController
   skip_before_filter :set_locale, :only => :judge_results
   skip_before_filter :authenticate_user!, :only => :judge_results
   skip_before_filter :require_privileges, :only => :judge_results
+  load_and_authorize_resource
   # GET /admin/problems
   # GET /admin/problems.json
   def index
@@ -51,6 +52,7 @@ class Admin::ProblemsController < Admin::BaseController
   # POST /admin/problems.json
   def create
     @admin_problem = Problem.new(params[:problem])
+    @admin_problem.active = true if current_user.admin?
 
     respond_to do |format|
       if @admin_problem.save
@@ -106,4 +108,17 @@ class Admin::ProblemsController < Admin::BaseController
     end
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
+
+  def toggle_active
+    @admin_problem = Problem.find(params[:problem_id])
+    @admin_problem.toggle(:active)
+    respond_to do |format|
+      if @admin_problem.save
+        format.html { redirect_to admin_problems_path }
+      else
+        format.html { redirect_to admin_problems_path }
+      end
+    end
+  end
+
 end

@@ -3,11 +3,11 @@ class ProblemsController < ApplicationController
   skip_before_filter :set_menu_location, :only => :judge_results
   skip_before_filter :set_locale, :only => :judge_results
   skip_before_filter :authenticate_user!, :only => :judge_results
-  
+
   # GET /problems
   # GET /problems.json
   def index
-    @problems = Problem.all
+    @problems = Problem.where(active: true)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -88,7 +88,7 @@ class ProblemsController < ApplicationController
 
   def use_toolkit
     @problem = Problem.find(params[:id])
-    
+
     if @problem.compile_from_toolkit(params)
       render :nothing => true, :status => 200, :content_type => 'text/html'
     end
@@ -99,7 +99,7 @@ class ProblemsController < ApplicationController
   def judge_results
     @result = params["result"]
     @channel = params["channel"]
-    
+
     Danthes.publish_to @channel, :result => @result
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
