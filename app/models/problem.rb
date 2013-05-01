@@ -31,6 +31,8 @@ class Problem < ActiveRecord::Base
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
 
   after_save :compile_and_run, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
+  
+  scope :active, where(active: true)
 
   #before_save :maybe_set_as_module
 
