@@ -26,9 +26,16 @@
       </ul>
     </li>
   <% else %>
-    <li class="has-dropdown">
+    <li class="login show-for-small inline-login">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <%= f.text_field :num, :placeholder=>t(:studentID), :class=>"input username" %>
+        <%= f.password_field :password, :placeholder=>t(:password), :class=>"input password"  %>
+        <%= f.submit t(:sign_in), :class=>"button tiny round" %>
+      <% end %>
+    </li>
+    <li class="has-dropdown hide-for-small">
       <%= link_to t(:menu_login), "#" %>
-      <ul class="dropdown login-dropdown">
+      <ul class="dropdown login-dropdown login-form">
         <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
           <li><%= f.text_field :num, :placeholder=>t(:studentID), :class=>"input username" %></li>
           <li><%= f.password_field :password, :placeholder=>t(:password), :class=>"input password"  %></li>
