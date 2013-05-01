@@ -16,8 +16,6 @@ Sepap2::Application.routes.draw do
       resources :problems do
         put :toggle_active
       end
-      resources :assignments
-      resources :groups
       resources :subjects, path: "courses"
       resources :topics
       resources :users
