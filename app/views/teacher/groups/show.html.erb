@@ -4,11 +4,11 @@
 <div class="row">
   <div class="six mobile-four columns">
     <ul class="accordion">
-    <h5>Assignments:</h5>
+    <h5>Assignments: <%= link_to 'New Assignment', new_teacher_group_assignment_path(@group), class: "button success small" %></h5> 
     <% @group.assignments.includes(:users).each do |assignment| %>
       <li>
         <div class="title">
-          <%= assignment.title %>
+          <%= assignment.title %> 
         </div>
         <div class="content">
           <table width="100%">
@@ -23,7 +23,7 @@
             <% assignment.users.each do |user| %>
               <tr>
                 <td><%= check_box_tag "compare", user.id%></td>
-                <td><%= user.display_name %></td>
+                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment, :user_id => user) %>', '_blank')" style='cursor:pointer'"><%= user.display_name %></td>
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
                     <i class="icon-ok-sign icon-2x icono-aceptado"></i>
@@ -59,7 +59,7 @@
             <tbody>
             <% user.assignments.each do |assignment| %>
               <tr>
-                <td><%= assignment.title %></td>
+                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment) %>', '_blank')" style='cursor:pointer'"><%= assignment.title %></td>
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
                     <i class="icon-ok-sign icon-2x icono-aceptado"></i>
@@ -77,5 +77,6 @@
     </ul>
   </div>
 </div>
-<%= link_to 'Edit', edit_teacher_group_path(@group) %> |
-<%= link_to 'Back', teacher_groups_path %>
+<br />
+    <%= link_to 'Edit', edit_teacher_group_path(@group) %> |
+    <%= link_to 'Back', teacher_groups_path %>

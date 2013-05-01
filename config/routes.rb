@@ -26,10 +26,7 @@ Sepap2::Application.routes.draw do
     
     namespace :teacher do
       resources :groups do
-        resources :assignments, except:[:show, :index]
-        resources :users do
-          resources :assignments, only:[:show, :index]
-        end
+        resources :assignments, except: :index
       end
       resources :problems
     end

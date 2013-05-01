@@ -1,54 +1,53 @@
 class Teacher::AssignmentsController < Teacher::BaseController
-  # GET /teacher/assignments
-  # GET /teacher/assignments.json
-  def index
-    @teacher_assignments = Assignment.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @teacher_assignments }
-    end
-  end
-
   # GET /teacher/assignments/1
   # GET /teacher/assignments/1.json
   def show
-    @teacher_assignment = Assignment.find(params[:id])
+    @group = Group.find(params[:group_id])
+    @assignment = @group.assignments.find(params[:id])
+    if params[:user_id]
+      @user = @group.users.find(params[:user_id])
+      @attempts = @assignment.attempts.where(:user_id => @user.id)
+    else
+      @attempts = @assignment.attempts.includes(:user)
+    end
 
     respond_to do |format|
       format.html # show.html.erb
-      format.json { render json: @teacher_assignment }
+      format.json { render json: @assignment }
     end
   end
 
   # GET /teacher/assignments/new
   # GET /teacher/assignments/new.json
   def new
-    @teacher_assignment = Assignment.new
+    @group = Group.find(params[:group_id])
+    @assignment = Assignment.new
 
     respond_to do |format|
       format.html # new.html.erb
-      format.json { render json: @teacher_assignment }
+      format.json { render json: @assignment }
     end
   end
 
   # GET /teacher/assignments/1/edit
   def edit
-    @teacher_assignment = Assignment.find(params[:id])
+    @group = Group.find(params[:group_id])
+    @assignment = @group.assignments.find(params[:id])
   end
 
   # POST /teacher/assignments
   # POST /teacher/assignments.json
   def create
-    @teacher_assignment = Assignment.new(params[:teacher_assignment])
+    @group = Group.find(params[:group_id])
+    @assignment = @group.assignments.build(params[:assignment])
 
     respond_to do |format|
-      if @teacher_assignment.save
-        format.html { redirect_to @teacher_assignment, notice: 'Assignment was successfully created.' }
-        format.json { render json: @teacher_assignment, status: :created, location: @teacher_assignment }
+      if @assignment.save
+        format.html { redirect_to [:teacher, @group], notice: 'Assignment was successfully created.' }
+        format.json { render json: @assignment, status: :created, location: @assignment }
       else
         format.html { render action: "new" }
-        format.json { render json: @teacher_assignment.errors, status: :unprocessable_entity }
+        format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -56,15 +55,16 @@ class Teacher::AssignmentsController < Teacher::BaseController
   # PUT /teacher/assignments/1
   # PUT /teacher/assignments/1.json
   def update
-    @teacher_assignment = Assignment.find(params[:id])
+    @group = Group.find(params[:group_id])
+    @assignment = @group.assignments.find(params[:id])
 
     respond_to do |format|
-      if @teacher_assignment.update_attributes(params[:teacher_assignment])
-        format.html { redirect_to @teacher_assignment, notice: 'Assignment was successfully updated.' }
+      if @assignment.update_attributes(params[:assignment])
+        format.html { redirect_to [:teacher, @group], notice: 'Assignment was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @teacher_assignment.errors, status: :unprocessable_entity }
+        format.json { render json: @assignment.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -72,8 +72,9 @@ class Teacher::AssignmentsController < Teacher::BaseController
   # DELETE /teacher/assignments/1
   # DELETE /teacher/assignments/1.json
   def destroy
-    @teacher_assignment = Assignment.find(params[:id])
-    @teacher_assignment.destroy
+    @group = Group.find(params[:group_id])
+    @assignment = @group.assignments.find(params[:id])
+    @assignment.destroy
 
     respond_to do |format|
       format.html { redirect_to teacher_assignments_url }

@@ -98,67 +98,7 @@ class Attempt < ActiveRecord::Base
 
   def self.accepted_for_problem?(problem)
     #self.where(:problem_id => problem.id, :compiled => true, :accepted => true).count >= 1
-    self.where(:problem_id => problem.id, :accepted => true).count >= 1
-  end
-
-  def compile
-    basepath_user=Rails.root.to_s+"/files/users/#{self.user.num}/#{self.problem_id}/#{self.id}/"
-    basepath_problem=Rails.root.to_s+"/files/problems/#{self.problem_id}"
-
-    # Time limit
-    time=Integer(self.problem.time)
-
-    # Source code with solution
-    file=self.code
-
-    # Filename without extension
-    file_basename=File.basename(self.code.to_s, File.extname(self.code.to_s))
-
-    # Input for executable
-    input=self.problem.input
-
-    # File that stores the output
-    output=basepath_user+"/output"
-
-    # File that stores expected output of the problem,
-    #  provided by teacher
-    expected_output=basepath_problem+"/output"
-
-    # File that stores compile/execution errors thrown
-    error=basepath_user+"/error"
-
-    # Route where the scripts run
-    route=Rails.root.to_s+"/lib/scripts"
-
-    if self.language.include? "Java"
-
-      if self.problem.method?
-        to_link = self.problem.exe+".class"
-        link = `cd #{basepath_user};ln -s #{to_link}`
-        exe = basepath_user+" "+File.basename(self.problem.main.to_s,File.extname(self.problem.main.to_s))
-      else
-        # File to execute after compile
-        exe=basepath_user+" "+file_basename
-      end
-
-      self.update_attributes(:outcome=>`./lib/scripts/compilarJava2 #{file} '#{exe}' '#{input}' #{output} #{expected_output} #{error} #{time} #{route}`)
-
-    elsif self.language.include? "cs"
-      # File to execute after compile
-      exe=basepath_user+"/"+file_basename+".exe"
-
-      self.update_attributes(:outcome=>`./lib/scripts/compilarCs #{file} '#{exe}' '#{input}' #{output} #{expected_output} #{error} #{time} #{route}`)
-
-    elsif self.language.include? "c"
-
-      # File to execute after compile
-      exe=basepath_user+"/"+file_basename
-
-      self.update_attributes(:outcome=>`./lib/scripts/compilarC #{file} '#{exe}' '#{input}' #{output} #{expected_output} #{error} #{time} #{route}`)
-
-    else
-      self.update_attributes(:outcome=>"Lenguaje no identificado")
-    end
+    self.where(:problem_id => problem.id, :state => "accept").count >= 1
   end
 
   def show_code
