@@ -1,0 +1,21 @@
+<h1>Listing teacher_users</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @teacher_users.each do |teacher_user| %>
+  <tr>
+    <td><%= link_to 'Show', teacher_user %></td>
+    <td><%= link_to 'Edit', edit_teacher_user_path(teacher_user) %></td>
+    <td><%= link_to 'Destroy', teacher_user, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New User', new_teacher_user_path %>

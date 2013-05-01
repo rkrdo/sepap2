@@ -23,6 +23,16 @@ Sepap2::Application.routes.draw do
       resources :users
       resources :commands
     end
+    
+    namespace :teacher do
+      resources :groups do
+        resources :assignments, except:[:show, :index]
+        resources :users do
+          resources :assignments, only:[:show, :index]
+        end
+      end
+      resources :problems
+    end
   end
 
   # Routes for the judge results
