@@ -9,11 +9,11 @@
       <li>
         <div class="title">
           <div class="row">
-            <div class="eight columns">
+            <div class="ten columns">
               <%= assignment.title %>
             </div>
-            <div class="three columns end">
-              <!--<%= link_to 'Compare', compare_teacher_group_assignment_path(@group, assignment), class: "button tiny right" %>-->
+            <div class="one columns end">
+              <%= link_to "<i class=\"icon-remove-sign icon icono-fail\"></i>".html_safe, [:teacher, @group, assignment], confirm: 'Are you sure?', method: :delete %>
             </div>
           </div>
         </div>
