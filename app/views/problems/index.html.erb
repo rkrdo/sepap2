@@ -5,7 +5,6 @@
     <thead>
       <tr>
         <th><%=t :prob_title %></th>
-        <th>ID</th>
         <th><%=t :prob_type %></th>
       </tr>
     </thead>
@@ -13,7 +12,6 @@
       <% @problems.each do |problem| %>
         <tr onclick="location.href='<%= problem_path(problem) %>'" style='cursor:pointer'>
           <td><%=  problem.title(params[:locale]) %></td>
-          <td><%=  problem.id %></td>
           <td><%=  problem.topics.map{|t| t.name}.to_s.gsub("\"","").gsub("[","").gsub("]","") %></td>
         </tr>
       <% end %>
