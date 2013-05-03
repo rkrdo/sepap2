@@ -6,7 +6,7 @@
       <tr>
         <th><%=t :attempt_problem %></th>
         <th><%=t :attempt_number %></th>
-        <th><%=t :attempt_outcome %></th>
+        <th><span class="hide-for-medium-down"><%=t :attempt_outcome %></span></th>
         <th><%=t :attempt_accepted%></th>
       </tr>
       </thead>
@@ -16,7 +16,7 @@
         <td><%= attempt.problem.title %></td>
         <td><%= @times_attempted[attempt.problem_id] %></td>
         <td>
-          <%=t "outcome_#{attempt.status.to_s}" %>
+          <span class="hide-for-medium-down"><%=t "outcome_#{attempt.state.to_s}" %></span>
         </td>
         <td>
           <% if current_user.attempts.accepted_for_problem?(attempt.problem) %>
