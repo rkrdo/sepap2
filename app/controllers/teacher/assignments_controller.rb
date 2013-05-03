@@ -27,6 +27,7 @@ class Teacher::AssignmentsController < Teacher::BaseController
   def new
     @group = Group.find(params[:group_id])
     @assignment = @group.assignments.build
+    @assignment.due_date = Date.today
 
     respond_to do |format|
       format.html # new.html.erb

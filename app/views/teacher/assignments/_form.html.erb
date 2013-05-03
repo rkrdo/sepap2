@@ -23,10 +23,16 @@
     </div>
     <div class="six mobile-two columns">
       <%= f.label :due_date %>
-      <%= f.date_select :due_date, :order => [:day, :month, :year] %>
+      <%= f.text_field :due_date %>
     </div>
   </div>
-
+  <script>
+    $(document).ready(function() {
+      $('#assignment_due_date').fdatepicker({
+        format: 'yyyy-mm-dd'
+      });
+    });
+  </script>
   <div class="actions">
     <%= f.submit class: "button" %>
   </div>
