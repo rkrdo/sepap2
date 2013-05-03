@@ -19,11 +19,11 @@
   <div class="row">
     <div class="six mobile-two columns">
       <%= f.label :problem %>
-      <%= f.select :problem_id, options_from_collection_for_select(Problem.active.all, 'id', 'title')%>
+      <%= f.select :problem_id, options_from_collection_for_select(Problem.active.all, 'id', "title")%>
     </div>
     <div class="six mobile-two columns">
-      <%= f.label :group %>
-      <%= f.select :group_id, options_from_collection_for_select(current_user.teached_groups, 'id', 'name')%>
+      <%= f.label :due_date %>
+      <%= f.date_select :due_date, :order => [:day, :month, :year] %>
     </div>
   </div>
 

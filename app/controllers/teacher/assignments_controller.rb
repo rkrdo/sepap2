@@ -26,7 +26,7 @@ class Teacher::AssignmentsController < Teacher::BaseController
   # GET /teacher/assignments/new.json
   def new
     @group = Group.find(params[:group_id])
-    @assignment = Assignment.new
+    @assignment = @group.assignments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -82,7 +82,7 @@ class Teacher::AssignmentsController < Teacher::BaseController
     @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to teacher_assignments_url }
+      format.html { redirect_to [:teacher, @group] }
       format.json { head :no_content }
     end
   end

@@ -6,14 +6,16 @@ class Problem < ActiveRecord::Base
 
   has_many :attempts, :dependent => :destroy
   has_many :cases, :dependent => :destroy
-  has_many :assignments
+  has_many :assignments, :dependent => :destroy
   has_and_belongs_to_many :topics, :join_table => :problems_topics
 
   # titles and descriptions that supports different languages
   has_many :titles, :as => :textable, :class_name => "Text",
-           :conditions => {:text_identifier => "title"}
+           :conditions => {:text_identifier => "title"},
+           :dependent => :destroy
   has_many :descriptions, :as => :textable, :class_name => "Text",
-           :conditions => {:text_identifier => "description"}
+           :conditions => {:text_identifier => "description"},
+           :dependent => :destroy
 
   accepts_nested_attributes_for :titles
   accepts_nested_attributes_for :descriptions
