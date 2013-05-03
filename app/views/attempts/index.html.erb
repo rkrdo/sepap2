@@ -20,9 +20,9 @@
         </td>
         <td>
           <% if current_user.attempts.accepted_for_problem?(attempt.problem) %>
-            <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+            <i class="icon-ok-sign icon-2x icono-accept"></i>
           <% else %>
-            <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+            <i class="icon-remove-sign icon-2x icono-fail"></i>
           <% end%>
         </td>
       </tr>

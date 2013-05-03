@@ -1,4 +1,9 @@
 class Teacher::AssignmentsController < Teacher::BaseController
+  skip_before_filter :verify_authenticity_token, :only => :varch_results
+  skip_before_filter :set_menu_location, :only => :varch_results
+  skip_before_filter :set_locale, :only => :varch_results
+  skip_before_filter :authenticate_user!, :only => :varch_results
+  skip_before_filter :require_privileges, :only => :varch_results
   # GET /teacher/assignments/1
   # GET /teacher/assignments/1.json
   def show
@@ -21,7 +26,7 @@ class Teacher::AssignmentsController < Teacher::BaseController
   # GET /teacher/assignments/new.json
   def new
     @group = Group.find(params[:group_id])
-    @assignment = Assignment.new
+    @assignment = @group.assignments.build
 
     respond_to do |format|
       format.html # new.html.erb
@@ -77,8 +82,26 @@ class Teacher::AssignmentsController < Teacher::BaseController
     @assignment.destroy
 
     respond_to do |format|
-      format.html { redirect_to teacher_assignments_url }
+      format.html { redirect_to [:teacher, @group] }
       format.json { head :no_content }
     end
+  end
+
+  # GET /teacher/groups/{group_id}/assignments/{assignment_id}/compare
+  def compare
+    @group = Group.find(params[:group_id])
+    @assignment = @group.assignments.find(params[:id])
+    
+    @assignment.compare_attempts
+  end
+
+  def varch_results
+    group_id = params[:group_id]
+    assignment_id = params[:assignment_id]
+    channel = "#{group_id}/#{assignment_id}"
+    result = params["_json"]
+
+    Danthes.publish_to channel, :result => result
+    render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 end

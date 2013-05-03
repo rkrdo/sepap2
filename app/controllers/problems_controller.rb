@@ -7,7 +7,7 @@ class ProblemsController < ApplicationController
   # GET /problems
   # GET /problems.json
   def index
-    @problems = Problem.where(active: true)
+    @problems = Problem.active.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -18,7 +18,7 @@ class ProblemsController < ApplicationController
   # GET /problems/1
   # GET /problems/1.json
   def show
-    @problem = Problem.find(params[:id])
+    @problem = Problem.active.find(params[:id])
     @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).limit(3).order("created_at DESC")
     @num_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).count
     respond_to do |format|
@@ -97,10 +97,10 @@ class ProblemsController < ApplicationController
   # POST /problems/judge_results
   # USED FOR THE TOOLKIT
   def judge_results
-    @result = params["result"]
-    @channel = params["channel"]
+    result = params["result"]
+    channel = params["channel"]
 
-    Danthes.publish_to @channel, :result => @result
+    Danthes.publish_to channel, :result => result
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 

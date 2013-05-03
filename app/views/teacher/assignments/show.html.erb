@@ -16,16 +16,17 @@
       <% @attempts.each do |attempt| %>
         <li>
           <div class="title">
-            Attempt #<%= attempt.id%>
+            Attempt
             <% unless @user %>
-              of <%= attempt.user.display_name%>
+              of <strong><%= attempt.user.display_name%></strong>
             <% end %>
-             - 
+            -
             <% if attempt.accepted? %>
-              <i class="icon-ok-sign icon-2x icono-aceptado"></i>
+              <i class="icon-ok-sign icon-2x icono-accept"></i>
             <% else %>
-              <i class="icon-remove-sign icon-2x icono-rechazado"></i>
+              <i class="icon-remove-sign icon-2x icono-fail"></i>
             <% end%>
+            - <%= attempt.created_at.to_s(:long_ordinal)%>
           </div>
           <div class="content">
             <div id="code_display">
