@@ -34,17 +34,19 @@
       <div class="language">
         Language: <%= @problem.command.name %>
       </div>
+      <br />
       <div class="main">
-        <div class="six columns centered text-center">
+        <div class="row">
           <span>Main:</span>
-          <%= raw(CodeRay.scan(@problem.main, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+          <%= link_to "Show Main", "#", class: "button", "data-reveal-id" => "modal-code-main", "data-animation" => "fade" %>
         </div>
       </div>
       <% unless @problem.method.blank?  %>
+        <br />
         <div class="method">
-          <div class="six columns centered text-center">
+          <div class="row">
             <span>Method:</span>
-            <%= raw(CodeRay.scan(@problem.method, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+            <%= link_to "Show Method", "#", class: "button", "data-reveal-id" => "modal-code-method", "data-animation" => "fade" %>
           </div>
         </div>
       <% end %>
@@ -73,7 +75,18 @@
     </div>
   </div>
 </div>
+/div>
 
 <div>
   <%= link_to 'Back', teacher_problems_path, class: "button round small" %>
+</div>
+<div id="modal-code-main" class="reveal-modal expand reveal-problem-code">
+  <div class="problem-code">
+    <%= raw(CodeRay.scan(@problem.main, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+<div id="modal-code-method" class="reveal-modal expand reveal-problem-code">
+  <%= raw(CodeRay.scan(@problem.method, @problem.command.name.downcase.to_sym).div(line_numbers: :table)) %>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
