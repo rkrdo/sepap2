@@ -7,8 +7,8 @@ class Attempt < ActiveRecord::Base
   has_many :enrollments, through: :user
   has_many :results, dependent: :destroy
 
-  attr_accessible :language, :outcome, :problem_id, :code, :groups, :user, :enrollments,
-                  :compile_error, :error_message, :command_id, :accepted, :time_exceeded, :state
+  attr_accessible :problem_id, :code, :groups, :user, :enrollments,
+                  :error_message, :command_id, :state
 
   after_create :compile_and_run
   
@@ -72,17 +72,6 @@ class Attempt < ActiveRecord::Base
       self.update_attributes({:error_message => error_message, :state => "execution_error"})
     when 2
       self.update_attributes({:error_message => error_message, :state => "timeout"})
-    end
-  end
-
-  def status
-    if self.compiled?
-      return :accept if self.accepted?
-      return :timeout if self.time_exceeded?
-      return :fail
-    else
-      return :uncompile if self.compile_error?
-      return :compiling
     end
   end
 

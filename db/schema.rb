@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130501083023) do
+ActiveRecord::Schema.define(:version => 20130503032211) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -29,17 +29,11 @@ ActiveRecord::Schema.define(:version => 20130501083023) do
     t.integer  "problem_id"
     t.integer  "user_id"
     t.integer  "assignment_id"
-    t.string   "outcome"
-    t.string   "language"
     t.datetime "created_at",                                            :null => false
     t.datetime "updated_at",                                            :null => false
     t.text     "code",          :limit => 255
     t.integer  "command_id"
-    t.boolean  "compile_error",                :default => false
     t.string   "error_message"
-    t.boolean  "accepted",                     :default => true
-    t.boolean  "time_exceeded",                :default => false
-    t.boolean  "compiled",                     :default => false
     t.string   "state",                        :default => "compiling"
   end
 
