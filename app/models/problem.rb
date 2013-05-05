@@ -71,7 +71,7 @@ class Problem < ActiveRecord::Base
   end
 
   def compile_from_toolkit(toolkit)
-    Requests.request_to_deb(hash_for_judge(2, toolkit[:input], toolkit[:channel]))
+    Requests.request_to_deb(hash_for_judge(2, toolkit[:input], toolkit[:channel]), true)
   end
 
   def hash_for_judge(return_type, case_from_toolkit = nil, channel = nil)
