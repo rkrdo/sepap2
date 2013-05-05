@@ -38,8 +38,10 @@ $ ->
     event.stopPropagation()
     div = $(".reveal-modal").addClass("large")
     div.children(".modal-content").empty()
+    $('#reveal-loading').show()
     $.get $(this).attr("href"), (data) ->
       div.children(".modal-content").html data
+      $('#reveal-loading').hide()
     div.reveal()
 
   $("#attempt-editor-tab").on "mouseout", (e) ->

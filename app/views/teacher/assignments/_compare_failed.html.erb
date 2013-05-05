@@ -2,7 +2,11 @@
 <div class="row" id="varch-spinner">
   <div class="twelve columns">
     <div class="panel">
-      There are not enought accepted attempts to run a comparison.
+      <% if @result %>
+        Error <%= "#{@result.code} - #{@result.message}" %>
+      <% else %>
+        There are not enought accepted attempts to run a comparison.
+      <% end %>
     </div>
   </div>
 </div>
