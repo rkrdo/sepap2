@@ -10,7 +10,11 @@ class Assignment < ActiveRecord::Base
   end
   
   def compare_attempts
-    request_to_varch hash_for_varch
+    if attempts.accepted.count >= 2
+      request_to_varch hash_for_varch
+    else
+      return nil
+    end
   end
 
   def hash_for_varch
@@ -19,17 +23,17 @@ class Assignment < ActiveRecord::Base
     ActiveSupport::JSON.encode({
       :params => {
         :algorithms => ['1','2'],
-        :files => users.map{ |user| { :id => user.id, :code => user.attempts.first.code } },
-        :url => "http://localhost:3000/varch/#{group_id}/#{id}"
+        :files => attempts.accepted.map{|attempt| {:id => attempt.user.id, :code => attempt.code}},
+        :url => "http://mikeki.pagekite.me/varch/#{group_id}/#{id}"
       }
     })
   end
   
   def request_to_varch(params)
     # Sends HTTP post to python webservice that runs the algorithms
-    uri = URI.parse('http://localhost:3001/compare')
+    uri = URI.parse('https://braulio.pagekite.me/compare')
     req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' => 'application/json'})
-    #puts params
+    puts params
     req.body = params
 
     http = Net::HTTP.new(uri.host, uri.port)
@@ -37,10 +41,10 @@ class Assignment < ActiveRecord::Base
     http.read_timeout = 15
     begin
       response =  http.request(req)
-      puts response.body
+      #puts response.body
       return response
     rescue Exception
-      puts "Connection refused"
+      #puts "Connection refused"
       return nil
     end
   end

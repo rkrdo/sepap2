@@ -93,16 +93,35 @@ class Teacher::AssignmentsController < Teacher::BaseController
     @group = Group.find(params[:group_id])
     @assignment = @group.assignments.find(params[:id])
     
-    @assignment.compare_attempts
+    respond_to do |format|
+      if @assignment.compare_attempts
+        format.html {render partial: 'compare', formats: :html}
+        format.json
+      else
+        format.html {render partial: 'compare_failed', formats: :html}
+        format.json
+      end
+    end
   end
 
   def varch_results
     group_id = params[:group_id]
     assignment_id = params[:assignment_id]
-    channel = "#{group_id}/#{assignment_id}"
+    channel = "/varch/#{group_id}/#{assignment_id}"
+    assignment = Assignment.find(assignment_id)
+    users = assignment.users.by_id_hash
+    
     result = params["_json"]
-
-    Danthes.publish_to channel, :result => result
+    result.uniq!
+    result = result.delete_if { |comp| comp["similarities"].empty? }
+    result.each do |comp|
+      comp["user"] = users[comp["id"]]
+      comp["similarities"].each do |sim|
+        sim["user"] = users[sim["id"]]
+      end
+    end
+    
+    Danthes.publish_to channel, :result => result.uniq
     render :nothing => true, :status => 200, :content_type => 'text/html'
   end
 end
