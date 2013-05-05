@@ -11,13 +11,9 @@ class Attempt < ActiveRecord::Base
                   :error_message, :command_id, :state
 
   after_create :compile_and_run
-<<<<<<< HEAD
 
-=======
-  
   scope :accepted, where(:state => "accept")
-  
->>>>>>> be5582ace927717b4642bebf64a00f1fb09170d3
+
   def compile_and_run
     DebWorker.perform_async(hash_for_judge)
   end
