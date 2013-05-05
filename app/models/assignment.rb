@@ -11,7 +11,7 @@ class Assignment < ActiveRecord::Base
   
   def compare_attempts
     if attempts.accepted.count >= 2
-      request_to_varch hash_for_varch
+      Requests.request_to_varch hash_for_varch
     else
       return nil
     end
@@ -24,28 +24,8 @@ class Assignment < ActiveRecord::Base
       :params => {
         :algorithms => ['1','2'],
         :files => attempts.accepted.map{|attempt| {:id => attempt.user.id, :code => attempt.code}},
-        :url => "http://mikeki.pagekite.me/varch/#{group_id}/#{id}"
+        :url => "#{SERVERS[:myself]}varch/#{group_id}/#{id}"
       }
     })
-  end
-  
-  def request_to_varch(params)
-    # Sends HTTP post to python webservice that runs the algorithms
-    uri = URI.parse('https://braulio.pagekite.me/compare')
-    req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' => 'application/json'})
-    puts params
-    req.body = params
-
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.open_timeout = 15
-    http.read_timeout = 15
-    begin
-      response =  http.request(req)
-      #puts response.body
-      return response
-    rescue Exception
-      #puts "Connection refused"
-      return nil
-    end
   end
 end

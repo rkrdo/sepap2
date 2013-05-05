@@ -95,7 +95,8 @@ class Teacher::AssignmentsController < Teacher::BaseController
     
     respond_to do |format|
       @result = @assignment.compare_attempts
-      if @result and @result.code == "200"
+      @code = @result.code if @result.respond_to?(:code)
+      if @result and @code == "200"
         format.html {render partial: 'compare', formats: :html}
         format.json
       else

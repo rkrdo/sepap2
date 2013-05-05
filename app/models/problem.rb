@@ -1,5 +1,3 @@
-require 'net/http'
-
 class Problem < ActiveRecord::Base
   belongs_to :user
   belongs_to :command
@@ -73,7 +71,7 @@ class Problem < ActiveRecord::Base
   end
 
   def compile_from_toolkit(toolkit)
-    DebWorker.perform_async(hash_for_judge(2, toolkit[:input], toolkit[:channel]))
+    Requests.request_to_deb(hash_for_judge(2, toolkit[:input], toolkit[:channel]))
   end
 
   def hash_for_judge(return_type, case_from_toolkit = nil, channel = nil)
