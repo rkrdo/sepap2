@@ -19,14 +19,20 @@
   <div class="row">
     <div class="six mobile-two columns">
       <%= f.label :problem %>
-      <%= f.select :problem_id, options_from_collection_for_select(Problem.all, 'id', 'title')%>
+      <%= f.select :problem_id, options_from_collection_for_select(Problem.active.all, 'id', "title")%>
     </div>
     <div class="six mobile-two columns">
-      <%= f.label :group %>
-      <%= f.select :group_id, options_from_collection_for_select(current_user.teached_groups, 'id', 'name')%>
+      <%= f.label :due_date %>
+      <%= f.text_field :due_date %>
     </div>
   </div>
-
+  <script>
+    $(document).ready(function() {
+      $('#assignment_due_date').fdatepicker({
+        format: 'yyyy-mm-dd'
+      });
+    });
+  </script>
   <div class="actions">
     <%= f.submit class: "button" %>
   </div>

@@ -6,14 +6,16 @@ class Problem < ActiveRecord::Base
 
   has_many :attempts, :dependent => :destroy
   has_many :cases, :dependent => :destroy
-  has_many :assignments
+  has_many :assignments, :dependent => :destroy
   has_and_belongs_to_many :topics, :join_table => :problems_topics
 
   # titles and descriptions that supports different languages
   has_many :titles, :as => :textable, :class_name => "Text",
-           :conditions => {:text_identifier => "title"}
+           :conditions => {:text_identifier => "title"},
+           :dependent => :destroy
   has_many :descriptions, :as => :textable, :class_name => "Text",
-           :conditions => {:text_identifier => "description"}
+           :conditions => {:text_identifier => "description"},
+           :dependent => :destroy
 
   accepts_nested_attributes_for :titles
   accepts_nested_attributes_for :descriptions
@@ -31,6 +33,8 @@ class Problem < ActiveRecord::Base
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
 
   after_save :compile_and_run, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
+  
+  scope :active, where(active: true)
 
   #before_save :maybe_set_as_module
 
@@ -70,10 +74,6 @@ class Problem < ActiveRecord::Base
 
   def compile_from_toolkit(toolkit)
     Problem.request_to_judge hash_for_judge(2, toolkit[:input], toolkit[:channel])
-  end
-
-  def is_assigned?(user)
-    true if true
   end
 
   def hash_for_judge(return_type, case_from_toolkit = nil, channel = nil)

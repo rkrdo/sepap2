@@ -20,6 +20,7 @@
 //= require jquery.expander.min
 //= require wysihtml5
 //= require zurb-foundation-wysihtml5
+//= require foundation-datepicker
 //= require ace/ace
 //= require ace/theme-textmate.js
 //= require ace/mode-c_cpp.js

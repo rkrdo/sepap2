@@ -6,7 +6,7 @@ class AttemptsController < ApplicationController
   # GET /attempts
   # GET /attempts.json
   def index
-    @attempts = current_user.attempts.joins(:problem).group(:problem_id)
+    @attempts = current_user.attempts.joins(:problem).where(:problems => {:active => true}).group(:problem_id)
     @times_attempted = current_user.attempts.count(:group => :problem_id)
     respond_to do |format|
       format.html # index.html.erb
@@ -44,9 +44,9 @@ class AttemptsController < ApplicationController
   # POST /attempts.json
   def create
     @problem = Problem.find(params[:problem_id])
-    @attempt = @problem.attempts.new(params[:attempt])
+    @attempt = @problem.attempts.build(params[:attempt])
     @attempt.user_id = current_user.id
-    @attempt.assignment_id = @attempt.is_assigned(current_user)
+    @attempt.assignment_id = @attempt.is_assigned?(current_user)
 
     respond_to do |format|
       if @attempt.save

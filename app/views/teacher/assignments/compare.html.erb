@@ -1,0 +1,11 @@
+<h3> Compare </h3>
+
+<script>
+  Danthes.debug = true;
+</script>
+<%= subscribe_to "#{@group.id}/#{@assignment.id}" %>
+<script>
+  Danthes.subscribe("<%=@group.id%>/<%=@assignment.id%>", function(data, channel) {
+    console.log(JSON.stringify(data,null, 2));
+  });
+</script>
