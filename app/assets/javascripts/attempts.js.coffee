@@ -35,9 +35,11 @@ $ ->
 
   $("a.reveal").click (event) ->
     event.preventDefault()
+    event.stopPropagation()
     div = $(".reveal-modal").addClass("large")
+    div.children(".modal-content").empty()
     $.get $(this).attr("href"), (data) ->
-      div.children(".modal-content").empty().html data
+      div.children(".modal-content").html data
     div.reveal()
 
   $("#attempt-editor-tab").on "mouseout", (e) ->

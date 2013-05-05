@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
     conditions[:num].downcase!
     super(conditions)
   end
+  
+  def self.by_id_hash
+    all.reduce({}) {|hsh,user| hsh[user.id] = user; hsh }
+  end
 
   def my_groups
     if self.admin?
