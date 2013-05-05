@@ -1,4 +1,7 @@
+require 'sidekiq/web'
 Sepap2::Application.routes.draw do
+
+  mount Sidekiq::Web, at: '/sidekiq'
   scope "/:locale", :defaults => {:locale => "en"}, :locale => /en|es/ do
     root :to => 'home#index'
     resources :topics
