@@ -94,11 +94,11 @@ class AttemptsController < ApplicationController
     attempt = Attempt.find(params["id"])
     if params["error_code"].nil?
       result = attempt.results.create({:case_id => params["case"], :result => params["result"]})
-      
+
       # Try to update the state to fail if the result is false
       attempt.maybe_set_fail_state unless result.result
     else
-      
+
       # If the attempt is still in compiling state, set the first error that is reported back
       attempt.set_error(params["error_code"], params["stderr"]) if attempt.compiling?
     end

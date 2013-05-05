@@ -10,6 +10,8 @@ gem "danthes"
 gem 'thin'
 gem 'puma', :git => 'git@github.com:puma/puma'
 gem 'sidekiq'
+gem 'sinatra', require:false
+gem 'slim'
 gem 'foreman'
 
 gem 'json_builder'
@@ -80,7 +82,7 @@ gem "font-awesome-rails"
 # gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
-# gem 'jbuilder'
+#gem 'jbuilder'
 
 # Use unicorn as the app server
 # gem 'unicorn'

@@ -1,3 +1,4 @@
-web_server:	rails s
-vagrant:	vagrant up
-faye:		rackup danthes.ru -s thin -E production
+web:      puma -p 3000
+faye:     rackup danthes.ru -s thin #-E production
+sidekiq:  sidekiq
+#vagrant:	vagrant up
