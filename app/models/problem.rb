@@ -1,5 +1,3 @@
-require 'net/http'
-
 class Problem < ActiveRecord::Base
   belongs_to :user
   belongs_to :command
@@ -33,13 +31,13 @@ class Problem < ActiveRecord::Base
   DIFICULTY_LEVELS = ['easy', 'normal', 'hard']
 
   after_save :compile_and_run, :if => lambda { |problem| problem.new_record? or problem.main_changed? or problem.method_changed? }
-  
+
   scope :active, where(active: true)
 
   #before_save :maybe_set_as_module
 
   def compile_and_run
-    Problem.request_to_judge hash_for_judge(1)
+    DebWorker.perform_async(hash_for_judge(1))
   end
 
   def maybe_set_as_module
@@ -73,7 +71,7 @@ class Problem < ActiveRecord::Base
   end
 
   def compile_from_toolkit(toolkit)
-    Problem.request_to_judge hash_for_judge(2, toolkit[:input], toolkit[:channel])
+    Requests.request_to_deb(hash_for_judge(2, toolkit[:input], toolkit[:channel]), true)
   end
 
   def hash_for_judge(return_type, case_from_toolkit = nil, channel = nil)
@@ -95,25 +93,5 @@ class Problem < ActiveRecord::Base
       :cases => cases,
       :channel => channel
     })
-  end
-
-  def self.request_to_judge(params)
-    # Sends HTTP post to python webservice that runs the algorithms
-    uri = URI.parse('http://192.168.33.10:6666/')
-    req = Net::HTTP::Post.new(uri.path, initheader = {'Content-Type' => 'application/json'})
-    #puts params
-    req.body = params
-
-    http = Net::HTTP.new(uri.host, uri.port)
-    http.open_timeout = 15
-    http.read_timeout = 15
-    begin
-      response =  http.request(req)
-      puts response.body
-      return response
-    rescue Exception
-      puts "Connection refused"
-      return nil
-    end
   end
 end

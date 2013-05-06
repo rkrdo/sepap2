@@ -1,2 +1,2 @@
-class TopicsController < InheritedResources::Base
+class TopicsController < ApplicationController
 end

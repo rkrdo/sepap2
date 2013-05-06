@@ -11,9 +11,11 @@ class Attempt < ActiveRecord::Base
                   :error_message, :command_id, :state
 
   after_create :compile_and_run
-  
+
+  scope :accepted, where(:state => "accept")
+
   def compile_and_run
-    Problem.request_to_judge hash_for_judge
+    DebWorker.perform_async(hash_for_judge)
   end
 
   def hash_for_judge

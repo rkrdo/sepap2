@@ -1,0 +1,12 @@
+<div class="row" id="varch-spinner">
+  <div class="twelve columns">
+    <h3>Comparison results</h3>
+    <div class="panel">
+      <% if @result %>
+        Error <%= "#{@code} - #{@result.message}" %>
+      <% else %>
+        There are not enought accepted attempts to run a comparison.
+      <% end %>
+    </div>
+  </div>
+</div>
