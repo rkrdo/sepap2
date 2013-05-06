@@ -10,20 +10,17 @@ class Requests
     http.open_timeout = 15
     http.read_timeout = 15
     
-    if toolkit
-      # if the quest comes from the toolkit, we need to rescue from the exception
-      begin
-        response =  http.request(req)
-        #puts response.body
-        return response
-      rescue Exception
-        #puts "Connection refused"
+    begin
+      response =  http.request(req)
+      return response
+    rescue Exception
+      # if the call to this function comes from the toolkit, then we return nil.
+      # if it comes from else where, then we raise an Exception in order for Sidekiq to catch it.
+      if toolkit
         return nil
+      else
+        raise Exception, "Deb is out of sigh."
       end
-    else
-      # Make the request without worrying about the error if not from toolkit
-      # The error will be handled by Sidekiq
-      http.request(req)
     end
   end
   
@@ -37,10 +34,8 @@ class Requests
     http.read_timeout = 15
     begin
       response =  http.request(req)
-      #puts response.body
       return response
     rescue Exception => error
-      #puts "Connection refused"
       return error
     end
   end
