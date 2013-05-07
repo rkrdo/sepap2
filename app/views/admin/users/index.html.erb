@@ -7,6 +7,7 @@
         <th>Number</th>
         <th>First Name</th>
         <th>Last Name</th>
+        <th>Admin</th>
         <th></th>
       </tr>
     </thead>
@@ -16,6 +17,7 @@
           <td onclick="location.href='<%= admin_user_path(user) %>'" style="cursor:pointer"><%= user.num.capitalize %></td>
           <td><%= user.name %></td>
           <td><%= user.lastname %></td>
+          <td><%= admin_icon user %></td>
           <td><%= link_to 'Delete', [:admin, user], confirm: 'Are you sure?', method: :delete, class: "button tiny round" %></td>
         </tr>
       <% end %>

@@ -27,7 +27,7 @@ Sepap2::Application.routes.draw do
         put :toggle_active
       end
       resources :subjects, path: "courses"
-      resources :topics
+      resources :topics, except: :show
       resources :users
       resources :commands
     end
