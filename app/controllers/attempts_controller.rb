@@ -46,7 +46,7 @@ class AttemptsController < ApplicationController
     @problem = Problem.find(params[:problem_id])
     @attempt = @problem.attempts.build(params[:attempt])
     @attempt.user_id = current_user.id
-    @attempt.assignment_id = @attempt.is_assigned?(current_user)
+    @attempt.assignment = @attempt.is_assigned?(current_user)
 
     respond_to do |format|
       if @attempt.save
