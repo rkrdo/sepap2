@@ -3,19 +3,17 @@
   <table class="data_table">
     <thead>
       <tr>
-        <th>Topic</th>
-        <th></th>
+        <th>Title</th>
         <th></th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-    <% @admin_topics.each do |admin_topic| %>
+    <% @topics.each do |topic| %>
       <tr>
-        <td><%= admin_topic.name %></td>
-        <td><%= link_to 'Show', [:admin, admin_topic] %></td>
-        <td><%= link_to 'Edit', edit_admin_topic_path(admin_topic) %></td>
-        <td><%= link_to 'Destroy', [:admin, admin_topic], confirm: 'Are you sure?', method: :delete %></td>
+        <td><%= topic.name %></td>
+        <td><%= link_to 'Edit', edit_admin_topic_path(topic) %></td>
+        <td><%= link_to 'Destroy', [:admin, topic], confirm: 'Are you sure?', method: :delete %></td>
       </tr>
     <% end %>
     </tbody>
