@@ -17,7 +17,8 @@ Sepap2::Application.routes.draw do
         resources :attempts, only: :create
       end
     end
-
+    
+    resources :attempts, only: :show
     resources :problems, only:[:index,:show] do
       resources :attempts, only: :create
       get :use_toolkit, on: :member
