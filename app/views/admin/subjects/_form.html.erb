@@ -1,17 +1,18 @@
-<%= form_for([:admin, @admin_subject]) do |f| %>
-  <% if @admin_subject.errors.any? %>
+<%= form_for([:admin, @subject]) do |f| %>
+  <% if @subject.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(@admin_subject.errors.count, "error") %> prohibited this admin_subject from being saved:</h2>
+      <h2><%= pluralize(@subject.errors.count, "error") %> prohibited this subject from being saved:</h2>
 
       <ul>
-      <% @admin_subject.errors.full_messages.each do |msg| %>
+      <% @subject.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
   <div class="row">
-    <div class="twelve columns">
+    <div class="six columns">
+      <%= f.label :name %>
       <%= f.text_field :name, :placeholder => :name%>
     </div>
   </div>

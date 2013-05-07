@@ -1,5 +1,8 @@
-<p id="notice"><%= notice %></p>
-
-
-<%= link_to 'Edit', edit_admin_subject_path(@admin_subject) %> |
-<%= link_to 'Back', admin_subjects_path %>
+<div class="row">
+  <div class="panel">
+      Name: <%= @subject.name %>
+  </div>
+</div>
+<br />
+<%= link_to 'Edit', edit_admin_subject_path(@subject), class: "button tiny round" %> |
+<%= link_to 'Back', admin_subjects_path, class: "button tiny round" %>
