@@ -1,7 +1,10 @@
 require 'sidekiq/web'
 Sepap2::Application.routes.draw do
 
-  mount Sidekiq::Web, at: '/sidekiq'
+  constraint = lambda { |request| request.env["warden"].authenticate? and request.env["warden"].user.admin? }
+  constraints constraint do
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
   
   scope "/:locale", :defaults => {:locale => "en"}, :locale => /en|es/ do
     devise_for :users
