@@ -3,7 +3,7 @@
   <table class="data_table">
     <thead>
       <tr>
-        <th>Topic</th>
+        <th>Title</th>
         <th></th>
         <th></th>
       </tr>
@@ -11,7 +11,7 @@
     <tbody>
     <% @topics.each do |topic| %>
       <tr>
-        <td onclick="location.href='<%= admin_topic_path(topic) %>'" style='cursor:pointer'><%= topic.name %></td>
+        <td><%= topic.name %></td>
         <td><%= link_to 'Edit', edit_admin_topic_path(topic) %></td>
         <td><%= link_to 'Destroy', [:admin, topic], confirm: 'Are you sure?', method: :delete %></td>
       </tr>

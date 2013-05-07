@@ -10,16 +10,6 @@ class Admin::TopicsController < Admin::BaseController
     end
   end
 
-  # GET /admin/topics/1
-  # GET /admin/topics/1.json
-  def show
-    @topic = Topic.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @topic }
-    end
-  end
 
   # GET /admin/topics/new
   # GET /admin/topics/new.json
@@ -44,7 +34,7 @@ class Admin::TopicsController < Admin::BaseController
 
     respond_to do |format|
       if @topic.save
-        format.html { redirect_to [:admin, @topic], notice: 'Topic was successfully created.' }
+        format.html { redirect_to admin_topics_path, notice: 'Topic was successfully created.' }
         format.json { render json: @topic, status: :created, location: @topic }
       else
         format.html { render action: "new" }
@@ -60,7 +50,7 @@ class Admin::TopicsController < Admin::BaseController
 
     respond_to do |format|
       if @topic.update_attributes(params[:topic])
-        format.html { redirect_to [:admin, @topic], notice: 'Topic was successfully updated.' }
+        format.html { redirect_to admin_topics_path, notice: 'Topic was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
