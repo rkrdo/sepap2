@@ -10,6 +10,6 @@ class Result < ActiveRecord::Base
   end
   
   def feedback(locale = "en")
-    case.feedback(locale)
+    self.case.feedback(locale)
   end
 end
