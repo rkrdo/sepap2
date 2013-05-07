@@ -15,13 +15,13 @@
       <div class="feedback">
         <p> <%= t :attempt_feedback %> </p>
         <h5><%= attempt.get_wrong_results_count %> <%= t :attempt_of %> <%= attempt.results.count %> <%= t :attempt_didnt_pass %>:</h5>
-        <% attempt.get_feedbacks(I18n.locale).each_with_index do |feedback, index| %>
+        <% attempt.results.each_with_index do |result, index| %>
           <strong><%= "#{index+1}:" %></strong>
-          <% if feedback.get_result(attempt) %>
+          <% if result.result? %>
             <i class="icon-ok-sign icono-accept"></i>
           <% else %>
             <i class="icon-remove-sign icono-fail"></i>
-            <%= feedback.text_content %>
+            <%= result.feedback(params[:locale]) %>
           <% end %>
           <br />
         <% end %>

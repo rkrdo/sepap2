@@ -59,7 +59,11 @@ class Problem < ActiveRecord::Base
 
   # This method returns the title in the current locale
   def title(locale = "en")
-      return self.titles.find_by_locale(locale).text_content
+    self.titles.find_by_locale(locale).text_content
+  end
+  
+  def description(locale = "en")
+    self.descriptions.find_by_locale(locale).text_content
   end
 
   def source_code
@@ -68,6 +72,10 @@ class Problem < ActiveRecord::Base
     else
       return self.main.gsub("<yield>",self.method)
     end
+  end
+
+  def has_accepted_attempt_for_user?(user)
+    self.attempts.accepted.of(user).count > 0
   end
 
   def compile_from_toolkit(toolkit)

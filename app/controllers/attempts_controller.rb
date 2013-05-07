@@ -45,16 +45,16 @@ class AttemptsController < ApplicationController
   def create
     @problem = Problem.find(params[:problem_id])
     @attempt = @problem.attempts.build(params[:attempt])
-    @attempt.user_id = current_user.id
-    @attempt.assignment = @attempt.is_assigned?(current_user)
+    @attempt.user = current_user
+    @attempt.assignment = Assignment.find_by_id(params[:assignment_id])
 
     respond_to do |format|
       if @attempt.save
-         new_tab = problem_path(@problem) + "/#attempt1"
+         new_tab = polymorphic_path([@attempt.assignment, @problem]) + "/#attempt1"
          format.html { redirect_to new_tab, notice: "Your attempt was successfully created." }
          format.json { render json: @problem, status: :created, location: @attempt }
       else
-        format.html { redirect_to @problem, notice: 'You need to upload a file.' }
+        format.html { redirect_to @problem, alert: 'Make sure you select the language and write the code.' }
         format.json { render json: @problem.errors, status: :unprocessable_entity }
       end
     end

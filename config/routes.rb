@@ -1,20 +1,30 @@
 require 'sidekiq/web'
 Sepap2::Application.routes.draw do
 
-  mount Sidekiq::Web, at: '/sidekiq'
+  constraint = lambda { |request| request.env["warden"].authenticate? and request.env["warden"].user.admin? }
+  constraints constraint do
+    mount Sidekiq::Web, at: '/sidekiq'
+  end
+  
   scope "/:locale", :defaults => {:locale => "en"}, :locale => /en|es/ do
+    devise_for :users
+
     root :to => 'home#index'
+    
     resources :topics
-    devise_for :users do
-      resources :assignments , only:[:index,:show]
+    resources :assignments , only: :index do
+      resources :problems, only: :show do
+        resources :attempts, only: :create
+      end
     end
 
-    resources :attempts
     resources :problems, only:[:index,:show] do
-      resources :attempts
+      resources :attempts, only: :create
       get :use_toolkit, on: :member
     end
-
+    
+    
+    # Admin Namespace and resources for admin.
     namespace :admin do
       resources :problems do
         put :toggle_active
@@ -24,7 +34,8 @@ Sepap2::Application.routes.draw do
       resources :users
       resources :commands
     end
-
+    
+    # Teacher Namespace and resources for teacher.
     namespace :teacher do
       resources :groups do
         resources :assignments, except: :index do
