@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="six columns">
+    <div class="panel">
+      <h3 class="subheader text-center">Titles</h3>
+      <% @problem.titles.each do |title| %>
+        <div class="problem-title">
+          <strong><%= humanized_language(title.locale) %>:</strong> <%= title.text_content %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="six columns">
+    <div class="panel">
+      <h3 class="subheader text-center">Descriptions</h3>
+      <% @problem.descriptions.each do |description| %>
+        <div class="problem-description">
+          <strong><%= humanized_language(description.locale) %>:</strong>
+          <br /><%= raw description.text_content %>
+        </div>
+        <br />
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="six columns">
+    <div class="panel other-container">
+      <h3 class="subheader text-center">Other</h3>
+      <div class="time">
+        <strong>Time:</strong> <%= @problem.time %>
+      </div>
+      <div class="difficulty">
+        <strong>Difficulty:</strong> <%= @problem.dificulty %>
+      </div>
+      <div class="language">
+        <strong>Language:</strong> <%= @problem.command.name %>
+      </div>
+      <br />
+      <div class="row">
+        <div class="six columns main">
+          <%= link_to "Show Main", "#", class: "button", "data-reveal-id" => "modal-code-main", "data-animation" => "fade" %>
+        </div>
+      <% unless @problem.method.blank?  %>
+        <div class="six columns method">
+          <%= link_to "Show Method", "#", class: "button", "data-reveal-id" => "modal-code-method", "data-animation" => "fade" %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="six columns">
+    <div class="panel">
+      <h3 class="subheader text-center">Cases</h3>
+      <% @problem.cases.each do |prob_case| %>
+        <div class="case callout panel">
+          <div class="input">
+            <strong>Input:</strong> <%= prob_case.input %>
+          </div>
+          <div class="output">
+            <strong>Output:</strong> <%= prob_case.output %>
+          </div>
+          <br />
+          <div class="feedbacks">
+            <% prob_case.feedbacks.each do |feedback| %>
+              <div class="feedback">
+                <strong>Feedback in <%= humanized_language(feedback.locale) %>:</strong> 
+                <br /><%= feedback.text_content %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
