@@ -94,6 +94,8 @@ class Attempt < ActiveRecord::Base
   end
 
   def is_assigned?(user)
-    user.assignments.where(:problem_id => problem).count > 0
+    assignments  = user.assignments.where(:problem_id => problem)
+    return assignments.first if assignments.count > 0
+    return nil
   end
 end
