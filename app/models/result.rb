@@ -8,4 +8,8 @@ class Result < ActiveRecord::Base
   def maybe_set_attempt_as_accepted
     self.attempt.update_attribute(:state, "accept") if self.attempt.compiling? and self.attempt.done_compiling?
   end
+  
+  def feedback(locale = "en")
+    case.feedback(locale)
+  end
 end

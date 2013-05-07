@@ -19,8 +19,11 @@ class ProblemsController < ApplicationController
   # GET /problems/1.json
   def show
     @problem = Problem.active.find(params[:id])
-    @user_problem_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).limit(3).order("created_at DESC")
-    @num_attempts = Attempt.where(problem_id: @problem.id, user_id: current_user).count
+    @assignment = Assignment.find_by_id(params[:assignment_id])
+    @assignments_for_problem = current_user.assignments.for(@problem)
+    
+    @user_problem_attempts = current_user.attempts.where(problem_id: @problem.id, assignment_id: params[:assignment_id]).limit(3).order("created_at DESC")
+    @num_attempts = current_user.attempts.where(problem_id: @problem.id, assignment_id: params[:assignment_id]).count
     respond_to do |format|
       format.html # new.html.erb
     end

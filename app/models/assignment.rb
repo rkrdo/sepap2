@@ -5,8 +5,10 @@ class Assignment < ActiveRecord::Base
   has_many :users, :through => :group
   attr_accessible :due_date, :title, :problem_id, :group_id
   
+  scope :for, lambda {|problem| where(:problem_id => problem.id)}
+  
   def accepted_for_user?(user)
-    self.attempts.where(:user_id => user.id, :state => "accept").count > 0
+    self.attempts.accepted.of(user).count > 0
   end
   
   def compare_attempts

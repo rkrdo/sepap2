@@ -8,7 +8,7 @@
     </dl>
     <div class="description-container">
       <ul class="tabs-content">
-        <li class="active" id="descriptionTab"><%= raw(@problem.descriptions.find_by_locale(params[:locale]).text_content) %></li>
+        <li class="active" id="descriptionTab"><%= raw(@problem.description(params[:locale])) %></li>
         <li id="toolkitTab"><%= render "toolkit" %></li>
       </ul>
     </div>

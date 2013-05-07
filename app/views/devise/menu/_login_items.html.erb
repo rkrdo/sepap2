@@ -1,7 +1,6 @@
 <ul class="left">
   <% if current_user %>
     <li><%= link_to t(:menu_problems), problems_path(locale: params[:locale]) %></li>
-    <li><%= link_to t(:menu_attempts), attempts_path(locale: params[:locale]) %></li>
     <li><%= link_to t(:menu_assignments), assignments_path(locale: params[:locale]) %></li>
   <% end %>
 </ul>

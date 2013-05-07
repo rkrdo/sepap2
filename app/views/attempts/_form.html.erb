@@ -1,8 +1,14 @@
-<%= form_for([@problem, @problem.attempts.build], :html=>{:class=>"custom"}) do |f| %>
+<%= form_for([@assignment, @problem, @problem.attempts.build], :html=>{:class=>"custom"}) do |f| %>
   <div class="row">
-    <div class="twelve columns">
-    <%= f.label :command_id, t(:attempt_language) %>
-    <%= f.select :command_id, Command.all.map{|c| [c.name, c.id]} %>
+    <% if @assignment.nil? and @assignments_for_problem %>
+      <div class="six columns">
+        <%= label_tag t('activerecord.models.assignment') %>
+        <%= select_tag "assignment_id", options_from_collection_for_select(@assignments_for_problem, "id", "title"), :prompt => t(:select_assignment) %>
+      </div>
+    <% end %>
+    <div class="six columns end">
+      <%= f.label :command_id, t(:attempt_language) %>
+      <%= f.select :command_id, options_from_collection_for_select(Command.all, "id", "name"), :include_blank => t(:select_language) %>
     </div>
     <div class="twelve columns" id="divSubir">
       <div id="attemptEditor"></div>
