@@ -23,5 +23,5 @@ production:
   encoding: unicode
   database: sepap2_production
   pool: 5
-  username: sepap2
+  username: deployer
   password: sepap2000

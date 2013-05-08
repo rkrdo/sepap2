@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503032211) do
+ActiveRecord::Schema.define(:version => 20130508232153) do
 
   create_table "assignments", :force => true do |t|
     t.string   "title"
@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(:version => 20130503032211) do
     t.integer  "problem_id"
     t.integer  "user_id"
     t.integer  "assignment_id"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
-    t.text     "code"
+    t.datetime "created_at",                                            :null => false
+    t.datetime "updated_at",                                            :null => false
+    t.text     "code",          :limit => 255
     t.integer  "command_id"
-    t.string   "error_message"
-    t.string   "state",         :default => "compiling"
+    t.text     "error_message", :limit => 255
+    t.string   "state",                        :default => "compiling"
   end
 
   add_index "attempts", ["command_id"], :name => "index_attempts_on_command_id"
@@ -85,17 +85,17 @@ ActiveRecord::Schema.define(:version => 20130503032211) do
   create_table "problems", :force => true do |t|
     t.float    "time"
     t.boolean  "module"
-    t.datetime "created_at",                       :null => false
-    t.datetime "updated_at",                       :null => false
-    t.text     "main"
-    t.text     "method"
+    t.datetime "created_at",                                      :null => false
+    t.datetime "updated_at",                                      :null => false
+    t.text     "main",          :limit => 255
+    t.text     "method",        :limit => 255
     t.string   "language"
     t.integer  "user_id"
     t.string   "dificulty"
     t.integer  "command_id"
-    t.boolean  "compile_error", :default => false
+    t.boolean  "compile_error",                :default => false
     t.string   "error_message"
-    t.boolean  "active",        :default => false
+    t.boolean  "active",                       :default => false
   end
 
   create_table "problems_topics", :id => false, :force => true do |t|
