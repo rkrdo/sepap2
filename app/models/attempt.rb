@@ -9,10 +9,13 @@ class Attempt < ActiveRecord::Base
 
   attr_accessible :problem_id, :code, :groups, :user, :enrollments,
                   :error_message, :command_id, :state
+                  
+  validates_presence_of :command_id, :code
 
   after_create :compile_and_run
 
   scope :accepted, where(:state => "accept")
+  scope :of, lambda {|user| where(:user_id => user.id)}
 
   def compile_and_run
     DebWorker.perform_async(hash_for_judge)
@@ -77,23 +80,7 @@ class Attempt < ActiveRecord::Base
     end
   end
 
-  def get_feedbacks(locale = :en)
-      feedbacks = []
-      results.each do |result|
-        feedbacks << result.case.feedbacks.find_by_locale(locale)
-      end
-      feedbacks
-  end
-
   def get_wrong_results_count
     results.where(result: false).count
-  end
-
-  def self.accepted_for_problem?(problem)
-    self.where(:problem_id => problem.id, :state => "accept").count >= 1
-  end
-
-  def is_assigned?(user)
-    user.assignments.where(:problem_id => problem).count > 0
   end
 end

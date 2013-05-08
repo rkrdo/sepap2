@@ -12,6 +12,10 @@ class Case < ActiveRecord::Base
   attr_accessor :from_form
   attr_accessible :input, :output, :feedbacks_attributes, :from_form
   
+  def feedback(locale = "en")
+    feedbacks.find_by_locale(locale).text_content
+  end
+  
   def initialize_case
     if new_record? and self.from_form.nil?
       self.feedbacks.build({:locale => "es"})
