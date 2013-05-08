@@ -40,8 +40,8 @@ class Requests
     req.body = payload
 
     http = Net::HTTP.new(uri.host, uri.port)
-    http.open_timeout = 15
-    http.read_timeout = 15
+    http.open_timeout = 3000
+    http.read_timeout = 3000
     
     begin
       # if the Request is succesful, we return the response, which includes the code of the server.
