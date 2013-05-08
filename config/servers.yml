@@ -1,5 +1,5 @@
 development:
-  deb: "http://localhost:6666/"
+  deb: "http://192.168.33.10:6666/"
   varch: "http://localhost:8000/compare"
   myself: "http://localhost:3000/"
 

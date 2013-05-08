@@ -13,21 +13,6 @@
 
 ActiveRecord::Schema.define(:version => 20130503032211) do
 
-  create_table "active_admin_comments", :force => true do |t|
-    t.string   "resource_id",   :null => false
-    t.string   "resource_type", :null => false
-    t.integer  "author_id"
-    t.string   "author_type"
-    t.text     "body"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
-    t.string   "namespace"
-  end
-
-  add_index "active_admin_comments", ["author_type", "author_id"], :name => "index_active_admin_comments_on_author_type_and_author_id"
-  add_index "active_admin_comments", ["namespace"], :name => "index_active_admin_comments_on_namespace"
-  add_index "active_admin_comments", ["resource_type", "resource_id"], :name => "index_admin_notes_on_resource_type_and_resource_id"
-
   create_table "assignments", :force => true do |t|
     t.string   "title"
     t.integer  "problem_id"
@@ -44,12 +29,12 @@ ActiveRecord::Schema.define(:version => 20130503032211) do
     t.integer  "problem_id"
     t.integer  "user_id"
     t.integer  "assignment_id"
-    t.datetime "created_at",                                            :null => false
-    t.datetime "updated_at",                                            :null => false
-    t.text     "code",          :limit => 255
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.text     "code"
     t.integer  "command_id"
     t.string   "error_message"
-    t.string   "state",                        :default => "compiling"
+    t.string   "state",         :default => "compiling"
   end
 
   add_index "attempts", ["command_id"], :name => "index_attempts_on_command_id"
@@ -86,16 +71,6 @@ ActiveRecord::Schema.define(:version => 20130503032211) do
   add_index "enrollments", ["group_id"], :name => "index_enrollments_on_group_id"
   add_index "enrollments", ["user_id"], :name => "index_enrollments_on_user_id"
 
-  create_table "feedbacks", :force => true do |t|
-    t.integer  "problem_id"
-    t.integer  "line_number"
-    t.string   "comment"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
-  end
-
-  add_index "feedbacks", ["problem_id"], :name => "index_feedbacks_on_problem_id"
-
   create_table "groups", :force => true do |t|
     t.integer  "subject_id"
     t.string   "period"
@@ -110,17 +85,17 @@ ActiveRecord::Schema.define(:version => 20130503032211) do
   create_table "problems", :force => true do |t|
     t.float    "time"
     t.boolean  "module"
-    t.datetime "created_at",                                      :null => false
-    t.datetime "updated_at",                                      :null => false
-    t.text     "main",          :limit => 255
-    t.text     "method",        :limit => 255
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+    t.text     "main"
+    t.text     "method"
     t.string   "language"
     t.integer  "user_id"
     t.string   "dificulty"
     t.integer  "command_id"
-    t.boolean  "compile_error",                :default => false
+    t.boolean  "compile_error", :default => false
     t.string   "error_message"
-    t.boolean  "active",                       :default => false
+    t.boolean  "active",        :default => false
   end
 
   create_table "problems_topics", :id => false, :force => true do |t|
