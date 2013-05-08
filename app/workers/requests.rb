@@ -1,9 +1,14 @@
 # Defines the functions to make a request to Deb and to Varch
 # Coded by: Miguel Cervera
 class Requests
+<<<<<<< HEAD
+  #define the different request methods between varch, deb and sepap
+
+=======
   
   # Function to make a request to Deb, it has an optional parameter that is used to make a correctly
   # handling of errors, depending if this is called from the toolkit or from Sidekiq
+>>>>>>> 502ce7c8a0b89fe4358ba45cd216d32b4c3dd589
   def self.request_to_deb(payload, toolkit = false)
     # Prepare the objects to make a request
     # Set the DEB Server IP in config/servers.yml
@@ -16,7 +21,7 @@ class Requests
     # The timeout is 15 seconds, just because of reasons.
     http.open_timeout = 15
     http.read_timeout = 15
-    
+
     begin
       response =  http.request(req)
       return response
@@ -30,8 +35,12 @@ class Requests
       end
     end
   end
+<<<<<<< HEAD
+
+=======
   
   # Function to make a request to Varch.
+>>>>>>> 502ce7c8a0b89fe4358ba45cd216d32b4c3dd589
   def self.request_to_varch(payload)
     # Prepare the objects to make a request
     # Set the DEB Server IP in config/servers.yml
