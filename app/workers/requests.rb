@@ -42,15 +42,13 @@ class Requests
     http = Net::HTTP.new(uri.host, uri.port)
     http.open_timeout = 15
     http.read_timeout = 15
-    
     begin
-      # if the Request is succesful, we return the response, which includes the code of the server.
-      # if the response code is different than 200, renders views/teacher/assignment/_compiler_failed.html.erb
-      response =  http.request(req)
-      return response
+      http.request(req)
     rescue Exception => error
-      # If the request is unsuccesful, return the error.
-      return error
+      # If there is an error, we publish on the channel to print the error.
+      json = ActiveSupport::JSON.decode(payload)
+      channel = json["params"]["channel"]
+      pub = Danthes.publish_to channel, :message => error.message
     end
   end
 end

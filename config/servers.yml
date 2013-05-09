@@ -1,7 +1,7 @@
 development:
   deb: "http://localhost:6666/"
-  varch: "http://localhost:8000/compare"
-  myself: "http://localhost:3000/"
+  varch: "http://braulio.pagekite.me/compare"
+  myself: "http://mikeki.pagekite.me/"
 
 test:
   deb: test.host

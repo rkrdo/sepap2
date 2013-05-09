@@ -13,7 +13,7 @@ class Assignment < ActiveRecord::Base
   
   def compare_attempts
     if attempts.accepted.count >= 2
-      Requests.request_to_varch hash_for_varch
+      VarchWorker.perform_async hash_for_varch
     else
       return nil
     end
@@ -26,7 +26,8 @@ class Assignment < ActiveRecord::Base
       :params => {
         :algorithms => ['1','2'],
         :files => attempts.accepted.map{|attempt| {:id => attempt.user.id, :code => attempt.code}},
-        :url => "#{SERVERS[:myself]}varch/#{group_id}/#{id}"
+        :url => "#{SERVERS[:myself]}varch/#{group_id}/#{id}",
+        :channel => "/varch/#{group_id}/#{id}"
       }
     })
   end

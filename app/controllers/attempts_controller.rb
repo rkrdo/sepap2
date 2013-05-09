@@ -24,22 +24,6 @@ class AttemptsController < ApplicationController
     end
   end
 
-  # GET /attempts/new
-  # GET /attempts/new.json
-  def new
-    @attempt = Attempt.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @attempt }
-    end
-  end
-
-  # GET /attempts/1/edit
-  def edit
-    @attempt = Attempt.find(params[:id])
-  end
-
   # POST /attempts
   # POST /attempts.json
   def create
@@ -57,35 +41,6 @@ class AttemptsController < ApplicationController
         format.html { redirect_to @problem, alert: 'Make sure you select the language and write the code.' }
         format.json { render json: @problem.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # PUT /attempts/1
-  # PUT /attempts/1.json
-  def update
-    @attempt = Attempt.find(params[:id])
-
-    respond_to do |format|
-      if @attempt.update_attributes(params[:attempt])
-        format.html { redirect_to @attempt, notice: 'Attempt was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @attempt.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /attempts/1
-  # DELETE /attempts/1.json
-  def destroy
-    @attempt = Attempt.find(params[:id])
-    problem = @attempt.problem
-    @attempt.destroy
-
-    respond_to do |format|
-      format.html { redirect_to problem_path(problem) }
-      format.json { head :no_content }
     end
   end
 

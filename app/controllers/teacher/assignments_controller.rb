@@ -93,10 +93,9 @@ class Teacher::AssignmentsController < Teacher::BaseController
     @group = Group.find(params[:group_id])
     @assignment = @group.assignments.find(params[:id])
     @result = @assignment.compare_attempts
-    @code = @result.code if @result.respond_to?(:code)
     
     respond_to do |format|
-      if @result and @code == "200"
+      if @result
         format.html {render partial: 'compare', formats: :html}
         format.json
       else

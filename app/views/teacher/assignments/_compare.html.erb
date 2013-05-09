@@ -6,7 +6,9 @@
         <i class="icon-spinner icon-spin icon-3x"></i>
       </div>
     </div>
-    <ul class="accordion" id="varch-results">
+    <div class="panel" id="error-panel" style="display:none">
+    </div>
+    <ul class="accordion" id="varch-results" style="display:none">
     </ul>
   </div>
 </div>
@@ -17,30 +19,36 @@
 <script>
   Danthes.subscribe("/varch/<%=@group.id%>/<%=@assignment.id%>", function(data, channel) {
     $('#varch-spinner').hide();
-    results = $('#varch-results');
-    for(var comp in data.result){
-      obj = data.result[comp];
-      var li = $(document.createElement('li'));
-      var title = $(document.createElement('div'));
-      var content = $(document.createElement('div'));
-      title.addClass("title");
-      content.addClass("content");
-      var row = $(document.createElement('div'));
-      row.addClass("row");
-      title.html("<h5>"+obj.user.num+"</h5>");
-      for(var sim in obj.similarities){
-        simobj = obj.similarities[sim];
-        var subcontent = $(document.createElement('div'));
-        subcontent.addClass("four columns");
-        
-        subcontent.html("<div class=\"panel\"><strong>" + simobj.user.num +":</strong>" + "<br /\>Algorithm 1: " + simobj.similarity["1"] + "% <br /\>Algorithm 2: " + simobj.similarity["2"] + "%</div>");
-        row.append(subcontent);
+    if(data.message){
+      error = $('#error-panel');
+      error.show();
+      error.html("Error - "+data.message);
+    }else {
+      results = $('#varch-results');
+      results.show();
+      for(var comp in data.result){
+        obj = data.result[comp];
+        var li = $(document.createElement('li'));
+        var title = $(document.createElement('div'));
+        var content = $(document.createElement('div'));
+        title.addClass("title");
+        content.addClass("content");
+        var row = $(document.createElement('div'));
+        row.addClass("row");
+        title.html("<h5>"+obj.user.num+"</h5>");
+        for(var sim in obj.similarities){
+          simobj = obj.similarities[sim];
+          var subcontent = $(document.createElement('div'));
+          subcontent.addClass("four columns");
+          
+          subcontent.html("<div class=\"panel\"><strong>" + simobj.user.num +":</strong>" + "<br /\>Algorithm 1: " + simobj.similarity["1"] + "% <br /\>Algorithm 2: " + simobj.similarity["2"] + "%</div>");
+          row.append(subcontent);
+        }
+        content.append(row);
+        li.append(title);
+        li.append(content);
+        results.append(li);
       }
-      content.append(row);
-      li.append(title);
-      li.append(content);
-      results.append(li);
-      console.log(data);
     }
   });
 </script>
