@@ -1,7 +1,7 @@
 # Defines the functions to make a request to Deb and to Varch
 # Coded by: Miguel Cervera
 class Requests
-  
+
   # Function to make a request to Deb, it has an optional parameter that is used to make a correctly
   # handling of errors, depending if this is called from the toolkit or from Sidekiq
   def self.request_to_deb(payload, toolkit = false)
@@ -16,7 +16,7 @@ class Requests
     # The timeout is 15 seconds, just because of reasons.
     http.open_timeout = 15
     http.read_timeout = 15
-    
+
     begin
       response =  http.request(req)
       return response
@@ -42,6 +42,7 @@ class Requests
     http = Net::HTTP.new(uri.host, uri.port)
     http.open_timeout = 15
     http.read_timeout = 15
+    
     begin
       http.request(req)
     rescue Exception => error
