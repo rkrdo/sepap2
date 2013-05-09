@@ -26,6 +26,8 @@
     }else {
       results = $('#varch-results');
       results.show();
+      error = $('#error-panel');
+      error.hide();
       for(var comp in data.result){
         obj = data.result[comp];
         var li = $(document.createElement('li'));
