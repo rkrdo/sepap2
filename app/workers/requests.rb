@@ -40,8 +40,8 @@ class Requests
     req.body = payload
 
     http = Net::HTTP.new(uri.host, uri.port)
-    http.open_timeout = 15
-    http.read_timeout = 15
+    http.open_timeout = 30
+    http.read_timeout = 30
     
     begin
       http.request(req)

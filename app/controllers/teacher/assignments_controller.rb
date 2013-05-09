@@ -114,7 +114,9 @@ class Teacher::AssignmentsController < Teacher::BaseController
     
     result = params["_json"]
     result.uniq!
-    result = result.delete_if { |comp| comp["similarities"].empty? }
+    sim_count = result.map{|comp| comp["similarities"].count }
+    max = sim_count.max
+    result = result.delete_if { |comp| comp["similarities"].empty? or comp["similarities"].count < max }
     result.each do |comp|
       comp["user"] = users[comp["id"]]
       comp["similarities"].each do |sim|
