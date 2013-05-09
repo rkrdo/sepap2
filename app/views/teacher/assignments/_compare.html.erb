@@ -35,13 +35,20 @@
         content.addClass("content");
         var row = $(document.createElement('div'));
         row.addClass("row");
-        title.html("<h5>"+obj.user.num+"</h5>");
+        try {
+          title.html("<h5>"+obj.user.num+"</h5>");
+        } catch(err) {
+          title.html("<h5>"+obj.user+"</h5>");
+        }
         for(var sim in obj.similarities){
           simobj = obj.similarities[sim];
           var subcontent = $(document.createElement('div'));
           subcontent.addClass("four columns");
-          
-          subcontent.html("<div class=\"panel\"><strong>" + simobj.user.num +":</strong>" + "<br /\>Algorithm 1: " + simobj.similarity["1"] + "% <br /\>Algorithm 2: " + simobj.similarity["2"] + "%</div>");
+          try {
+           subcontent.html("<div class=\"panel\"><strong>" + simobj.user.num +":</strong>" + "<br /\>Algorithm 1: " + simobj.similarity["1"] + "% <br /\>Algorithm 2: " + simobj.similarity["2"] + "%</div>");
+          } catch(err) {
+            subcontent.html("<div class=\"panel\"><strong>" + simobj.user +":</strong>" + "<br /\>Algorithm 1: " + simobj.similarity["1"] + "% <br /\>Algorithm 2: " + simobj.similarity["2"] + "%</div>");
+          }
           row.append(subcontent);
         }
         content.append(row);
