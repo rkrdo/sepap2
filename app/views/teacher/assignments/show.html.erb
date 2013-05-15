@@ -8,9 +8,13 @@
 </h3>
 <hr />
 <div class="row">
-  <div class="twelve mobile-four columns">
+  <% id @user %>
+    <div class="six mobile-four columns">
+  <% else %>
+    <div class="twelve mobile-four columns">
+  <% end %>    
     <% if @attempts.count == 0 %>
-      <h5>Student has 0 attempts for this problem.</h5>
+      <h5>Student has 0 attempts for this assignment.</h5>
     <% else %>
       <ul class="accordion">
       <% @attempts.each do |attempt| %>
@@ -38,4 +42,36 @@
       </ul>
     <% end %>
   </div>
+  <% if @user %>
+    <div class="six mobile-four columns">
+    <% if @user.attempts.count == 0 %>
+      <h5>Student has 0 attempts for this problem.</h5>
+    <% else %>
+      <ul class="accordion">
+      <% @user.attempts.each do |attempt| %>
+        <li>
+          <div class="title">
+            Attempt
+            <% unless @user %>
+              of <strong><%= attempt.user.display_name%></strong>
+            <% end %>
+            -
+            <% if attempt.accepted? %>
+              <i class="icon-ok-sign icon-2x icono-accept"></i>
+            <% else %>
+              <i class="icon-remove-sign icon-2x icono-fail"></i>
+            <% end%>
+            - <%= attempt.created_at.to_s(:long_ordinal)%>
+          </div>
+          <div class="content">
+            <div id="code_display">
+              <%= raw(CodeRay.scan(attempt.code, attempt.command.name).div(line_numbers: :table)) %>
+            </div>
+          </div>
+        </li>
+      <% end %>
+      </ul>
+    <% end %>
+    </div>
+  <% end %>
 </div>
