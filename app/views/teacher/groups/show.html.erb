@@ -35,7 +35,9 @@
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
                     <i class="icon-ok-sign icon-2x icono-accept"></i>
-                  <% else %>
+                  <% elsif assignment.problem.has_accepted_attempt_for_user?(user) %>
+                    <i class="icon-remove-sign icon-2x icono-uncompile"></i>
+                  <% else %></td>
                     <i class="icon-remove-sign icon-2x icono-fail"></i>
                   <% end%>
                 </td>
