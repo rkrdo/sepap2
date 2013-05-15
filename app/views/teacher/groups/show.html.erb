@@ -67,7 +67,7 @@
             <tbody>
             <% user.assignments.each do |assignment| %>
               <tr>
-                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment) %>', '_blank')" style='cursor:pointer'"><%= assignment.title %></td>
+                <td onclick="window.open('<%= teacher_group_assignment_path(@group, assignment, :user_id => user) %>', '_blank')" style='cursor:pointer'"><%= assignment.title %></td>
                 <td>
                   <% if assignment.accepted_for_user?(user) %>
                     <i class="icon-ok-sign icon-2x icono-accept"></i>
